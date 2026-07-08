@@ -20,6 +20,15 @@
 <meta name="twitter:title" content="程龙 - 个人博客">
 <meta name="twitter:description" content="AI & 计算机视觉技术博客">
 
+<!-- Favicon (inline SVG) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23165DFF'/><stop offset='1' stop-color='%234080FF'/></linearGradient></defs><circle cx='16' cy='16' r='16' fill='url(%23g)'/><text x='16' y='22' text-anchor='middle' fill='white' font-size='15' font-weight='700' font-family='system-ui'>CL</text></svg>" type="image/svg+xml">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://chenglong.blog">
+
+<!-- OG Image -->
+<meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200x630'><rect width='1200' height='630' fill='%23165DFF'/><text x='600' y='315' text-anchor='middle' fill='white' font-size='60' font-weight='700'>程龙 - 个人博客</text></svg>">
+
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
 {
@@ -28,7 +37,6 @@
   "name": "程龙",
   "url": "https://chenglong.blog",
   "email": "cheng66da@163.com",
-  "telephone": "17630948543",
   "alumniOf": [
     { "@type": "CollegeOrUniversity", "name": "河南工学院" },
     { "@type": "CollegeOrUniversity", "name": "河南应用技术职业学院" }
@@ -45,25 +53,45 @@
     --primary-hover: #0E42D2;
     --primary-light: #E8F3FF;
     --primary-bg: #F2F7FF;
+    --primary-subtle: rgba(22,93,255,.06);
     --text: #1D2129;
     --text-secondary: #4E5969;
     --text-muted: #86909C;
     --border: #E5E6EB;
     --border-light: #F2F3F5;
-    --bg: #F9FAFB;
+    --bg: #F7F8FA;
     --surface: #FFFFFF;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,.04);
+    --surface-elevated: #FFFFFF;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.04);
     --shadow: 0 2px 8px rgba(0,0,0,.06);
-    --shadow-md: 0 4px 16px rgba(0,0,0,.08);
-    --shadow-lg: 0 8px 24px rgba(0,0,0,.1);
-    --code-bg: #1A1D24;
-    --code-text: #E4E7EC;
+    --shadow-md: 0 4px 16px rgba(0,0,0,.08), 0 0 0 1px rgba(0,0,0,.02);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.04);
+    --shadow-card-hover: 0 8px 24px rgba(22,93,255,.10), 0 2px 6px rgba(0,0,0,.05);
+    --code-bg: #282C34;
+    --code-text: #ABB2BF;
+    --radius-xs: 4px;
     --radius-sm: 8px;
-    --radius: 12px;
-    --radius-lg: 16px;
-    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --radius: 14px;
+    --radius-lg: 20px;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
     --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", "SF Mono", Consolas, monospace;
     --progress-height: 3px;
+    /* 排版层级 */
+    --fs-hero: clamp(32px, 5vw, 40px);
+    --fs-h1: 28px;
+    --fs-h2: 22px;
+    --fs-h3: 17px;
+    --fs-body: 15px;
+    --fs-small: 13px;
+    --fs-mini: 12px;
+    /* 间距规范 (8px grid) */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 36px;
+    --space-2xl: 56px;
+    --space-3xl: 80px;
   }
 
   /* ==================== 暗色模式 ==================== */
@@ -72,29 +100,52 @@
     --primary-hover: #5C9AFF;
     --primary-light: #1A2A4A;
     --primary-bg: #0D1B36;
+    --primary-subtle: rgba(64,128,255,.08);
     --text: #E4E7EC;
     --text-secondary: #A0A7B8;
     --text-muted: #6B7280;
     --border: #2D3040;
     --border-light: #1E2030;
-    --bg: #0F1117;
-    --surface: #161822;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,.3);
-    --shadow: 0 2px 8px rgba(0,0,0,.4);
-    --shadow-md: 0 4px 16px rgba(0,0,0,.5);
-    --shadow-lg: 0 8px 24px rgba(0,0,0,.6);
+    --bg: #0A0C10;
+    --surface: #14161C;
+    --surface-elevated: #1A1D25;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.4);
+    --shadow: 0 2px 8px rgba(0,0,0,.5);
+    --shadow-md: 0 4px 16px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.03);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,.7), 0 2px 8px rgba(0,0,0,.5);
+    --shadow-card-hover: 0 8px 30px rgba(64,128,255,.12), 0 2px 6px rgba(0,0,0,.4);
   }
 
   /* ==================== 全局重置 ==================== */
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior: smooth; }
+
+  /* Skip to content link — 无障碍 */
+  .skip-link {
+    position: absolute; top: -100%; left: 16px;
+    z-index: 9999; padding: 8px 16px;
+    background: var(--primary); color: #fff;
+    text-decoration: none; border-radius: var(--radius-sm);
+    font-size: 14px; font-weight: 600;
+    transition: top .2s;
+  }
+  .skip-link:focus {
+    top: 8px;
+  }
   body {
     font-family: var(--font);
     background: var(--bg);
     color: var(--text);
-    line-height: 1.7;
+    font-size: var(--fs-body);
+    line-height: 1.75;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     transition: background .3s, color .3s;
+  }
+  /* 页面容器 — 限制最大宽度，居中 */
+  .page-wrapper {
+    max-width: 1100px; margin: 0 auto;
+    padding: 0 var(--space-lg);
   }
 
   /* ==================== 阅读进度条 ==================== */
@@ -114,7 +165,14 @@
     -webkit-backdrop-filter: saturate(180%) blur(16px);
     border-bottom: 1px solid var(--border-light);
     padding: 0 24px;
-    transition: background .3s, border-color .3s;
+    transition: background .3s, border-color .3s, box-shadow .3s;
+  }
+  nav.scrolled {
+    box-shadow: 0 1px 8px rgba(0,0,0,.08);
+    border-bottom-color: var(--border);
+  }
+  [data-theme="dark"] nav.scrolled {
+    box-shadow: 0 1px 12px rgba(0,0,0,.4);
   }
   [data-theme="dark"] nav {
     background: rgba(22,24,34,.82);
@@ -177,80 +235,178 @@
 
   /* ==================== Hero 首页简介 ==================== */
   .hero {
-    max-width: 600px; margin: 80px auto 0; padding: 0 24px;
+    max-width: 620px; margin: var(--space-3xl) auto 0; padding: 0 var(--space-lg);
     display: flex; flex-direction: column; align-items: center;
-    text-align: center; min-height: auto;
+    text-align: center; position: relative;
   }
+  /* Hero 背景装饰 — 多层渐变 + 光晕 */
+  .hero::before {
+    content: ''; position: absolute;
+    top: -60px; left: -15%; right: -15%; bottom: -40px;
+    background:
+      radial-gradient(ellipse 600px 400px at 50% -10%, rgba(22,93,255,.08) 0%, transparent 70%),
+      radial-gradient(ellipse 500px 300px at 80% 60%, rgba(64,128,255,.05) 0%, transparent 70%),
+      linear-gradient(180deg, transparent 40%, rgba(22,93,255,.02) 100%);
+    border-radius: 40px;
+    z-index: -1; pointer-events: none;
+  }
+  /* 装饰性网格线 */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -5%; right: -5%; bottom: 0;
+    background-image:
+      linear-gradient(rgba(22,93,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(22,93,255,.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    z-index: -1; pointer-events: none;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+  [data-theme="dark"] .hero::before {
+    background:
+      radial-gradient(ellipse 600px 400px at 50% -10%, rgba(64,128,255,.12) 0%, transparent 70%),
+      radial-gradient(ellipse 500px 300px at 20% 80%, rgba(22,93,255,.06) 0%, transparent 70%);
+  }
+
   .hero-avatar {
-    width: 120px; height: 120px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary), #4080FF);
+    width: 110px; height: 110px; border-radius: 50%;
+    background: linear-gradient(145deg, var(--primary), #4D7CFF);
     display: flex; align-items: center; justify-content: center;
-    font-size: 44px; font-weight: 700; color: #fff; flex-shrink: 0;
-    box-shadow: 0 4px 20px rgba(22,93,255,.2);
+    font-size: 40px; font-weight: 800; color: #fff; flex-shrink: 0;
+    box-shadow:
+      0 8px 32px rgba(22,93,255,.25),
+      0 2px 8px rgba(22,93,255,.12),
+      inset 0 -3px 6px rgba(0,0,0,.08);
     user-select: none;
+    transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+    position: relative;
   }
-  .hero-info { width: 100%; }
-  .hero-info h1 { font-size: 32px; font-weight: 700; color: var(--text); margin-top: 20px; letter-spacing: 2px; }
-  .hero-info .subtitle { font-size: 14px; color: var(--text-muted); margin-top: 6px; font-weight: 400; }
+  .hero-avatar::after {
+    content: ''; position: absolute; inset: -3px;
+    border-radius: 50%;
+    border: 1px solid rgba(22,93,255,.2);
+    animation: avatar-pulse 3s ease-in-out infinite;
+  }
+  @keyframes avatar-pulse {
+    0%, 100% { transform: scale(1); opacity: .6; }
+    50% { transform: scale(1.04); opacity: .9; }
+  }
+  .hero:hover .hero-avatar { transform: scale(1.06); }
+  .hero-info { width: 100%; margin-top: var(--space-xl); }
+  .hero-info h1 {
+    font-size: var(--fs-hero); font-weight: 800; color: var(--text);
+    letter-spacing: 3px; line-height: 1.2;
+    background: linear-gradient(135deg, var(--text), var(--text-secondary));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  [data-theme="dark"] .hero-info h1 {
+    background: linear-gradient(135deg, #F0F2F5, #A0A7B8);
+    -webkit-background-clip: text; background-clip: text;
+  }
+  .hero-info .subtitle {
+    font-size: var(--fs-small); color: var(--text-muted); margin-top: var(--space-sm);
+    font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 16px; background: var(--primary-bg);
+    border-radius: 20px; display: inline-block;
+  }
   .hero-info .desc {
-    font-size: 15px; color: var(--text-secondary); margin-top: 16px;
-    max-width: 480px; line-height: 1.8; margin-left: auto; margin-right: auto;
+    font-size: var(--fs-body); color: var(--text-secondary); margin-top: var(--space-lg);
+    max-width: 480px; line-height: 1.85; margin-left: auto; margin-right: auto;
   }
   .hero-info .contact-row {
-    display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 20px;
+    display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: var(--space-xl);
     justify-content: center;
   }
   .hero-info .contact-item {
-    font-size: 13px; color: var(--text-muted);
+    font-size: var(--fs-mini); color: var(--text-secondary);
     display: flex; align-items: center; gap: 6px;
-    padding: 6px 14px; background: var(--surface);
-    border-radius: 20px; border: 1px solid var(--border-light);
+    padding: 8px 18px; background: var(--surface);
+    border-radius: 24px; border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+    transition: all .25s ease; text-decoration: none;
   }
-  .hero-info .contact-item svg { width: 14px; height: 14px; fill: var(--text-muted); flex-shrink: 0; }
+  .hero-info .contact-item:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    box-shadow: 0 2px 12px rgba(22,93,255,.1);
+    transform: translateY(-1px);
+  }
+  .hero-info .contact-item svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
 
 
   /* ==================== 通用 Section ==================== */
+  .section--compact { padding-top: var(--space-2xl); padding-bottom: var(--space-xl); }
+  .section--top-only { padding-top: var(--space-2xl); }
   .section {
-    max-width: 1200px; margin: 0 auto; padding: 72px 24px;
+    max-width: 1100px; margin: 0 auto; padding: var(--space-3xl) var(--space-lg);
   }
   .section-header {
-    text-align: center; margin-bottom: 44px;
+    text-align: center; margin-bottom: var(--space-3xl);
   }
   .section-header h2 {
-    font-size: 28px; font-weight: 700; color: var(--text);
-    display: inline-block; position: relative; padding-bottom: 10px;
+    font-size: var(--fs-h1); font-weight: 800; color: var(--text);
+    display: inline-block; position: relative; padding-bottom: 14px;
+    letter-spacing: -.5px;
   }
   .section-header h2::after {
     content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 40px; height: 3px; background: var(--primary); border-radius: 2px;
+    width: 36px; height: 3.5px; background: linear-gradient(90deg, var(--primary), #4080FF);
+    border-radius: 3px;
   }
-  .section-header .section-desc { font-size: 14px; color: var(--text-muted); margin-top: 8px; }
+  /* Section 编号徽标 */
+  .section-header h2 .sec-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; margin-right: 10px;
+    background: var(--primary-bg); color: var(--primary);
+    border-radius: 8px; font-size: 13px; font-weight: 700;
+    vertical-align: middle;
+  }
+  .section-header .section-desc {
+    font-size: var(--fs-small); color: var(--text-muted); margin-top: var(--space-sm);
+    max-width: 420px; margin-left: auto; margin-right: auto;
+    line-height: 1.6;
+  }
 
   /* ==================== 文章列表 ==================== */
   .blog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 24px; max-width: 900px; margin: 0 auto;
+    gap: var(--space-lg); max-width: 900px; margin: 0 auto;
   }
   .blog-card {
     background: var(--surface); border-radius: var(--radius); overflow: hidden;
-    border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);
-    transition: transform .3s, box-shadow .3s;
-    cursor: pointer;
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+    transition: all .35s cubic-bezier(.25,.46,.45,.94);
+    cursor: pointer; position: relative;
   }
-  .blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-  .blog-card-body { padding: 24px; }
+  /* 卡片顶部装饰线 */
+  .blog-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), #4080FF, #7C5CFC);
+    opacity: 0; transition: opacity .3s;
+  }
+  .blog-card:hover::before { opacity: 1; }
+  .blog-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card-hover); border-color: transparent; }
+  .blog-card-body { padding: var(--space-xl); }
   .blog-card .bc-date {
-    font-size: 12px; color: var(--text-muted); margin-bottom: 8px;
-    display: flex; align-items: center; gap: 8px;
+    font-size: var(--fs-mini); color: var(--text-muted); margin-bottom: var(--space-sm);
+    display: flex; align-items: center; gap: 10px;
   }
   .blog-card .bc-date .bc-tag {
-    font-size: 11px; padding: 2px 10px; border-radius: 12px;
-    background: var(--primary-bg); color: var(--primary); font-weight: 500;
+    font-size: 11px; padding: 3px 12px; border-radius: 14px;
+    background: var(--primary-bg); color: var(--primary); font-weight: 600;
+    letter-spacing: .3px;
   }
-  .blog-card h3 { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+  .blog-card h3 {
+    font-size: var(--fs-h3); font-weight: 700; color: var(--text);
+    margin-bottom: 10px; line-height: 1.5; letter-spacing: -.2px;
+  }
   .blog-card .bc-desc {
-    font-size: 13px; color: var(--text-secondary); line-height: 1.7;
+    font-size: var(--fs-small); color: var(--text-secondary); line-height: 1.75;
   }
   .blog-card .bc-more {
     display: inline-flex; align-items: center; gap: 4px;
@@ -258,6 +414,7 @@
     color: var(--primary); text-decoration: none;
   }
   .blog-card .bc-more:hover { text-decoration: underline; }
+  .blog-card .bc-more .bc-arrow { font-size: 12px; }
   .blog-empty {
     text-align: center; padding: 48px; color: var(--text-muted);
     background: var(--surface); border-radius: var(--radius);
@@ -267,51 +424,81 @@
   .blog-empty p { font-size: 14px; }
 
   /* ==================== 教育经历 — 时间线 ==================== */
-  .timeline { position: relative; padding-left: 36px; max-width: 700px; margin: 0 auto; }
-  .timeline::before {
-    content: ''; position: absolute; left: 13px; top: 0; bottom: 0;
-    width: 2px; background: var(--border);
+  .timeline {
+    position: relative; padding-left: 40px; max-width: 700px; margin: 0 auto;
   }
-  .timeline-item { position: relative; margin-bottom: 24px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 15px; top: 4px; bottom: 4px;
+    width: 2px; background: linear-gradient(180deg, var(--primary), var(--border), transparent);
+    border-radius: 1px;
+  }
+  .timeline-item { position: relative; margin-bottom: var(--space-lg); }
+  .timeline-item:last-child { margin-bottom: 0; }
   .timeline-item::before {
-    content: ''; position: absolute; left: -27px; top: 8px;
-    width: 10px; height: 10px; background: var(--primary); border-radius: 50%;
-    border: 3px solid var(--bg);
+    content: ''; position: absolute; left: -29px; top: 10px;
+    width: 12px; height: 12px;
+    background: var(--surface);
+    border: 3px solid var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(22,93,255,.18);
+    z-index: 1;
   }
   .timeline-card {
-    background: var(--surface); border-radius: var(--radius); padding: 20px 24px;
-    box-shadow: var(--shadow-sm); border: 1px solid var(--border-light);
-    transition: transform .3s, box-shadow .3s;
+    background: var(--surface); border-radius: var(--radius); padding: var(--space-lg) var(--space-xl);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    transition: all .3s ease; position: relative;
+    overflow: hidden;
   }
-  .timeline-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  /* 时间线卡片左侧细条 */
+  .timeline-card::before {
+    content: '';
+    position: absolute; left: 0; top: 16px; bottom: 16px;
+    width: 3px;
+    background: linear-gradient(180deg, var(--primary), #4080FF);
+    border-radius: 0 2px 2px 0;
+    opacity: 0; transition: opacity .25s;
+  }
+  .timeline-card:hover::before { opacity: 1; }
+  .timeline-card:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
   .timeline-card .tl-date {
-    font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 4px;
-    letter-spacing: .5px;
+    font-size: var(--fs-mini); color: var(--primary); font-weight: 600;
+    margin-bottom: 6px; letter-spacing: .8px; text-transform: uppercase;
   }
-  .timeline-card .tl-school { font-size: 17px; font-weight: 700; color: var(--text); }
-  .timeline-card .tl-major { font-size: 14px; color: var(--text-secondary); margin-top: 2px; }
+  .timeline-card .tl-school {
+    font-size: var(--fs-h3); font-weight: 700; color: var(--text);
+  }
+  .timeline-card .tl-major {
+    font-size: var(--fs-small); color: var(--text-secondary); margin-top: 4px;
+  }
   .timeline-card .tl-courses {
-    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: var(--space-md);
   }
   .timeline-card .course-tag {
-    font-size: 12px; padding: 4px 12px; border-radius: 16px;
+    font-size: var(--fs-mini); padding: 5px 14px; border-radius: 20px;
     background: var(--primary-light); color: var(--primary); font-weight: 500;
+    transition: all .2s;
+  }
+  .timeline-card .course-tag:hover {
+    background: var(--primary-bg);
   }
 
   /* ==================== 项目经历卡片 ==================== */
   .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 24px; justify-content: center; max-width: 900px; margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-lg); justify-content: center; max-width: 960px; margin: 0 auto;
   }
   .project-card {
-    background: var(--surface); border-radius: var(--radius); padding: 28px;
-    border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);
-    transition: transform .3s, box-shadow .3s;
+    background: var(--surface); border-radius: var(--radius); padding: var(--space-xl) var(--space-xl);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+    transition: all .35s cubic-bezier(.25,.46,.45,.94);
     display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
     border-left: 4px solid var(--primary);
   }
-  .project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card-hover); }
   .project-card .pc-date {
     font-size: 12px; color: var(--primary); font-weight: 600; margin-bottom: 8px;
     letter-spacing: .5px; text-transform: uppercase;
@@ -341,17 +528,42 @@
   .tech-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px; max-width: 900px; margin: 0 auto;
+    gap: var(--space-md); max-width: 900px; margin: 0 auto;
   }
   .tech-chip {
-    display: flex; flex-direction: column; align-items: center; gap: 12px;
-    padding: 24px 16px 20px;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    padding: var(--space-xl) 16px var(--space-lg);
     background: var(--surface);
     border: 1px solid var(--border-light);
     border-radius: var(--radius);
-    cursor: pointer; transition: transform .3s, box-shadow .3s, border-color .3s;
-    font-size: 14px; font-weight: 600; color: var(--text);
+    cursor: pointer;
+    transition: all .35s cubic-bezier(.25,.46,.45,.94);
+    font-size: var(--fs-small); font-weight: 600; color: var(--text);
     text-align: center; position: relative;
+    overflow: hidden;
+  }
+  .tech-chip::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(22,93,255,.03));
+    opacity: 0; transition: opacity .3s;
+  }
+  .tech-chip:hover::before { opacity: 1; }
+  .tech-chip:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-6px);
+  }
+  .tech-chip .tc-icon {
+    width: 52px; height: 52px; border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; color: #fff; flex-shrink: 0;
+    transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+    box-shadow: 0 4px 12px rgba(0,0,0,.12);
+    z-index: 1;
+    position: relative;
+  }
+  .tech-chip .tech-name {
+    z-index: 1; position: relative;
   }
   .tech-chip:hover {
     border-color: var(--primary);
@@ -364,7 +576,11 @@
     font-size: 22px; color: #fff; flex-shrink: 0;
     transition: transform .3s;
   }
-  .tech-chip:hover .tc-icon { transform: scale(1.08); }
+  .tech-chip:hover .tc-icon { transform: scale(1.08) rotate(5deg); }
+  /* Tech card 差异化 hover 动效 */
+  .tech-chip:nth-child(3n+1):hover .tc-icon { transform: scale(1.1) rotate(-8deg); }
+  .tech-chip:nth-child(3n+2):hover .tc-icon { transform: scale(1.06) rotate(10deg); }
+  .tech-chip:nth-child(odd):hover .tc-icon { transform: scale(1.12) translateY(-2px); }
 
   /* Loading skeleton */
   .tech-loading {
@@ -374,27 +590,32 @@
 
   /* ==================== 弹窗 (Modal) ==================== */
   .modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,.35);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    position: fixed; inset: 0; background: rgba(0,0,0,.45);
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
     z-index: 200;
     display: flex; align-items: center; justify-content: center;
-    opacity: 0; pointer-events: none; transition: opacity .3s;
+    opacity: 0; pointer-events: none; transition: opacity .3s ease;
   }
   .modal-overlay.active { opacity: 1; pointer-events: auto; }
   .modal {
     background: var(--surface); border-radius: var(--radius-lg);
-    width: 720px; max-width: 94vw; max-height: 82vh;
+    width: 740px; max-width: 94vw; max-height: 84vh;
     overflow: hidden; display: flex; flex-direction: column;
-    box-shadow: 0 20px 60px rgba(0,0,0,.12);
-    transform: translateY(16px); transition: transform .3s;
+    box-shadow:
+      0 24px 80px rgba(0,0,0,.16),
+      0 4px 12px rgba(0,0,0,.08);
+    transform: translateY(20px) scale(.98);
+    transition: all .35s cubic-bezier(.25,.46,.45,.94);
+    border: 1px solid var(--border-light);
   }
-  .modal-overlay.active .modal { transform: translateY(0); }
+  .modal-overlay.active .modal { transform: translateY(0) scale(1); }
   .modal-header {
-    padding: 24px 28px 16px; border-bottom: 1px solid var(--border-light);
+    padding: var(--space-xl) var(--space-2xl) var(--space-lg);
+    border-bottom: 1px solid var(--border-light);
     display: flex; align-items: center; justify-content: space-between;
   }
-  .modal-header h3 { font-size: 20px; font-weight: 700; color: var(--text); }
+  .modal-header h3 { font-size: 19px; font-weight: 700; color: var(--text); letter-spacing: -.3px; }
   .modal-close {
     width: 32px; height: 32px; border-radius: var(--radius-sm); border: none;
     background: var(--bg); cursor: pointer; font-size: 18px; color: var(--text-muted);
@@ -403,7 +624,7 @@
   }
   .modal-close:hover { background: var(--border-light); color: var(--text); }
   .modal-body {
-    padding: 28px 32px; overflow-y: auto; flex: 1;
+    padding: 20px 24px; overflow-y: auto; flex: 1;
     scroll-behavior: smooth;
   }
   .modal-body h4 {
@@ -421,59 +642,104 @@
     background: var(--bg);
   }
 
-  /* Ref overview */
+  /* 社交分享按钮 */
+  .share-row {
+    display: flex; align-items: center; gap: 8px;
+    padding-top: 16px; margin-top: 16px;
+    border-top: 1px solid var(--border-light);
+  }
+  .share-row .share-label {
+    font-size: 12px; color: var(--text-muted); margin-right: 4px;
+  }
+  .share-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 6px 14px; border-radius: 20px;
+    border: 1px solid var(--border); background: var(--surface);
+    color: var(--text-secondary); font-size: 12px; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    transition: all .2s; line-height: 1;
+  }
+  .share-btn:hover {
+    border-color: var(--primary); color: var(--primary);
+    background: var(--primary-bg);
+  }
+
+  /* Ref overview — 紧凑卡片风格 */
   .ref-overview {
     background: var(--primary-bg);
     border: 1px solid var(--primary-light);
     border-radius: var(--radius);
-    padding: 20px 24px; margin-bottom: 28px;
+    padding: 16px 20px; margin-bottom: 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap;
   }
-  .ref-overview .ref-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+  .ref-overview .ref-desc {
+    font-size: 13.5px; color: var(--text-secondary); line-height: 1.6;
+    max-width: calc(100% - 160px);
+  }
   .ref-overview .ref-meta {
-    display: flex; flex-wrap: wrap; gap: 16px; margin-top: 14px;
-    font-size: 12px; color: var(--text-muted);
+    display: flex; gap: 8px; font-size: 11.5px; color: var(--text-muted);
+    flex-shrink: 0;
   }
   .ref-overview .ref-meta span {
-    display: flex; align-items: center; gap: 4px;
-    padding: 3px 10px; background: var(--surface);
-    border-radius: 16px; border: 1px solid var(--border-light);
+    padding: 4px 10px; background: var(--surface);
+    border-radius: 20px; border: 1px solid var(--border-light);
+    white-space: nowrap;
   }
+
+  /* Ref section — 轻量标题 */
   .ref-section h4 {
-    display: flex; align-items: center; gap: 10px;
-    font-size: 15px; font-weight: 700; color: var(--text);
-    margin: 28px 0 12px; padding-bottom: 8px;
-    border-bottom: 1px solid var(--border-light);
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13.5px; font-weight: 600; color: var(--primary);
+    margin: 18px 0 10px; padding-bottom: 0;
+    border: none; background: none;
+    letter-spacing: .3px; text-transform: uppercase;
   }
-  .ref-section h4:first-of-type { margin-top: 0; }
+  .ref-section h4:first-of-type { margin-top: 4px; }
   .ref-section .ref-num {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 24px; height: 24px;
+    width: 22px; height: 22px;
     background: var(--primary); color: #fff;
-    border-radius: 6px; font-size: 12px; font-weight: 700;
+    border-radius: 50%; font-size: 11px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
 
-  /* ==================== 代码块 ==================== */
+  /* ==================== 代码块 — 紧凑版 ==================== */
   .code-block {
-    background: var(--code-bg); color: var(--code-text); border-radius: var(--radius-sm);
-    padding: 18px 20px; margin-bottom: 14px;
-    font-family: var(--font-mono); font-size: 13px;
-    line-height: 1.7; overflow-x: auto;
-    position: relative;
+    background: var(--code-bg); color: var(--code-text);
+    border-radius: 8px; border: 1px solid rgba(255,255,255,.06);
+    padding: 30px 14px 12px; margin-bottom: 10px;
+    font-family: var(--font-mono);
+    font-size: 12.5px; line-height: 1.7; overflow-x: auto;
+    position: relative; box-shadow: inset 0 1px 2px rgba(0,0,0,.15);
+  }
+  .code-block .cb-lang {
+    position: absolute; top: 6px; left: 10px;
+    font-size: 10px; color: #5C9AFF;
+    font-family: var(--font); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px;
   }
   .code-block pre { margin: 0; white-space: pre; }
   .code-block .cb-copy {
-    position: absolute; top: 10px; right: 12px;
-    padding: 4px 10px; border: 1px solid rgba(255,255,255,.12); border-radius: 4px;
-    background: rgba(255,255,255,.05); color: #A0A7B8; font-size: 11px;
-    cursor: pointer; transition: background .3s, border-color .3s;
-    font-family: var(--font);
+    position: absolute; top: 8px; right: 10px;
+    padding: 4px 12px; border: 1px solid rgba(255,255,255,.08);
+    border-radius: 6px; background: rgba(255,255,255,.04);
+    color: #86909C; font-size: 11px; cursor: pointer;
+    transition: all .25s; font-family: var(--font);
+    letter-spacing: .3px;
   }
-  .code-block .cb-copy:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.2); }
-  .code-block .keyword { color: #C084FC; }
-  .code-block .string { color: #86EFAC; }
-  .code-block .func { color: #60A5FA; }
-  .code-block .comment { color: #6B7280; font-style: italic; }
+  .code-block .cb-copy:hover {
+    background: rgba(255,255,255,.10);
+    border-color: rgba(255,255,255,.16);
+    color: #E4E7EC;
+  }
+  /* 语法高亮 — 更专业的配色 */
+  .code-block .keyword { color: #C678DD; font-weight: 500; }      /* 紫色 - 关键字 */
+  .code-block .string { color: #98C379; }                        /* 绿色 - 字符串 */
+  .code-block .func { color: #61AFEF; }                          /* 蓝色 - 函数 */
+  .code-block .comment { color: #5C6370; font-style: italic; }   /* 灰色 - 注释 */
+  .code-block .number { color: #D19A66; }                        /* 橙色 - 数字 */
+  .code-block .operator { color: #56B6C2; }                      /* 青色 - 操作符 */
 
   /* ==================== 返回顶部按钮 ==================== */
   .blog-modal { width: 840px; max-width: 96vw; }
@@ -512,10 +778,30 @@
 
   /* ==================== 页脚 ==================== */
   footer {
-    text-align: center; padding: 32px 24px;
-    font-size: 13px; color: var(--text-muted);
+    text-align: center; padding: var(--space-3xl) var(--space-lg) var(--space-2xl);
+    font-size: var(--fs-small); color: var(--text-muted);
     border-top: 1px solid var(--border-light);
-    max-width: 1200px; margin: 0 auto;
+    max-width: 1100px; margin: 0 auto;
+    background: linear-gradient(180deg, transparent, var(--primary-subtle));
+  }
+  footer .footer-inner {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 14px;
+  }
+  footer .footer-links {
+    display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+  }
+  footer .footer-links a {
+    color: var(--text-muted); text-decoration: none;
+    font-size: var(--fs-small); font-weight: 500;
+    transition: color .25s; position: relative;
+  }
+  footer .footer-links a:hover { color: var(--primary); }
+  footer .footer-bottom {
+    margin-top: 10px; padding-top: 16px;
+    border-top: 1px solid var(--border-light);
+    width: 100%; max-width: 400px;
+    font-size: var(--fs-mini); opacity: .6;
   }
 
   /* ==================== 动画 ==================== */
@@ -527,20 +813,29 @@
   /* ==================== 响应式 — 平板 (768-1024) ==================== */
   @media (max-width: 900px) {
     .tech-grid { grid-template-columns: repeat(2, 1fr); }
-    .project-grid { grid-template-columns: 1fr; max-width: 500px; }
-    .blog-grid { grid-template-columns: 1fr; max-width: 500px; }
-    .section { padding: 56px 20px; }
-    .modal { width: 96vw; max-height: 90vh; }
-    .modal-body { padding: 24px 20px; }
-    .hero { margin-top: 60px; }
+    .project-grid { grid-template-columns: 1fr; max-width: 540px; }
+    .blog-grid { grid-template-columns: 1fr; max-width: 540px; }
+    .section { padding: var(--space-3xl) 20px; }
+    .section-header { margin-bottom: var(--space-2xl); }
+    .modal { width: 96vw; max-height: 90vh; border-radius: var(--radius); }
+    .modal-body { padding: var(--space-xl) 20px; }
+    .hero { margin-top: 64px; }
     .hero-avatar { width: 100px; height: 100px; font-size: 36px; }
-    .hero-info h1 { font-size: 26px; }
-    nav .nav-links { gap: 18px; }
+    .hero-info h1 { font-size: 28px; letter-spacing: 2px; }
+    .nav-links { gap: 18px; }
     .back-to-top { bottom: 24px; right: 20px; }
+    .section-header h2 .sec-num { width: 24px; height: 24px; font-size: 11px; }
   }
 
   /* ==================== 响应式 — 手机 (<768) ==================== */
   @media (max-width: 768px) {
+    :root {
+      --fs-hero: 28px;
+      --fs-h1: 22px;
+      --fs-h2: 19px;
+      --space-3xl: 56px;
+      --space-2xl: 40px;
+    }
     nav { padding: 0 16px; }
     nav .logo { font-size: 16px; }
 
@@ -584,11 +879,11 @@
     footer { padding: 24px 16px; }
   }
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+<!-- Skip link — 无障碍 -->
+<a href="#home" class="skip-link">跳转到主内容</a>
 
 <!-- ===== READING PROGRESS BAR ===== -->
 <div class="reading-progress" id="readingProgress"></div>
@@ -633,12 +928,34 @@
 </section>
 
 <!-- ===== ARTICLES ===== -->
-<section class="section" id="articles" style="padding-bottom: 24px">
+<section class="section section--compact" id="articles">
   <div class="section-header">
-    <h2>技术文章</h2>
+    <h2><span class="sec-num">01</span>技术文章</h2>
     <div class="section-desc">记录学习过程中的思考与实践</div>
   </div>
   <div class="blog-grid">
+    <article class="blog-card">
+      <div class="blog-card-body">
+        <div class="bc-date">
+          <span>2026-07-08</span>
+          <span class="bc-tag">AI 工具</span>
+        </div>
+        <h3>国内使用 Claude Code 完整指南：CCSwitch 接入国产大模型</h3>
+        <p class="bc-desc">从零开始，通过 CCSwitch 将 Claude Code 接入 DeepSeek、Kimi、智谱等国产模型，无需特殊网络环境。</p>
+        <span class="bc-more">阅读全文 <span class="bc-arrow">→</span></span>
+      </div>
+    </article>
+    <article class="blog-card">
+      <div class="blog-card-body">
+        <div class="bc-date">
+          <span>2026-07-08</span>
+          <span class="bc-tag">AI 工具</span>
+        </div>
+        <h3>Codex 国内使用指南：中转 API + Helper 工具全方案</h3>
+        <p class="bc-desc">OpenAI Codex CLI/Desktop 的国内接入教程，覆盖中转站配置、codex-helper 使用及常见坑点。</p>
+        <span class="bc-more">阅读全文 <span class="bc-arrow">→</span></span>
+      </div>
+    </article>
     <article class="blog-card">
       <div class="blog-card-body">
         <div class="bc-date">
@@ -647,7 +964,7 @@
         </div>
         <h3>YOLOv11 在边缘设备上的部署实践</h3>
         <p class="bc-desc">从模型训练、ONNX 导出到 Orange Pi 端侧推理的完整流程，包含性能优化与常见问题解决方案。</p>
-        <span class="bc-more">阅读全文 <span style="font-size:12px">→</span></span>
+        <span class="bc-more">阅读全文 <span class="bc-arrow">→</span></span>
       </div>
     </article>
     <article class="blog-card">
@@ -658,7 +975,7 @@
         </div>
         <h3>VisionPro 工业视觉入门：从零搭建硬币检测系统</h3>
         <p class="bc-desc">详解 Cognex VisionPro 的 PMAlign 模板匹配与 Blob 分析工具，附调参经验与准确率优化思路。</p>
-        <span class="bc-more">阅读全文 <span style="font-size:12px">→</span></span>
+        <span class="bc-more">阅读全文 <span class="bc-arrow">→</span></span>
       </div>
     </article>
     <article class="blog-card">
@@ -669,7 +986,7 @@
         </div>
         <h3>AI 开发者必备的 Linux 命令行技巧</h3>
         <p class="bc-desc">文件操作、进程管理、GPU 监控、远程连接等 AI 开发场景下的高频命令整理与最佳实践。</p>
-        <span class="bc-more">阅读全文 <span style="font-size:12px">→</span></span>
+        <span class="bc-more">阅读全文 <span class="bc-arrow">→</span></span>
       </div>
     </article>
     <article class="blog-card">
@@ -680,16 +997,16 @@
         </div>
         <h3>MySQL 从入门到可以写在简历上</h3>
         <p class="bc-desc">面向应届生的 MySQL 核心知识梳理：CRUD、JOIN、索引、事务，覆盖面试高频考点。</p>
-        <span class="bc-more">阅读全文 <span style="font-size:12px">→</span></span>
+        <span class="bc-more">阅读全文 <span class="bc-arrow">→</span></span>
       </div>
     </article>
   </div>
 </section>
 
 <!-- ===== EDUCATION ===== -->
-<section class="section" id="education" style="padding-top: 32px; padding-bottom: 24px">
+<section class="section section--compact" id="education">
   <div class="section-header">
-    <h2>教育经历</h2>
+    <h2><span class="sec-num">02</span>教育经历</h2>
     <div class="section-desc">持续学习，不断成长</div>
   </div>
   <div class="timeline">
@@ -718,9 +1035,9 @@
 </section>
 
 <!-- ===== PROJECTS ===== -->
-<section class="section" id="projects" style="padding-top: 32px; padding-bottom: 24px">
+<section class="section section--compact" id="projects">
   <div class="section-header">
-    <h2>项目经历</h2>
+    <h2><span class="sec-num">03</span>项目经历</h2>
     <div class="section-desc">从传统视觉到 AI 视觉，从模型训练到边缘部署</div>
   </div>
   <div class="project-grid">
@@ -756,9 +1073,9 @@
 </section>
 
 <!-- ===== TECH STACK ===== -->
-<section class="section" id="techstack" style="padding-top: 32px">
+<section class="section section--top-only" id="techstack">
   <div class="section-header">
-    <h2>技术栈</h2>
+    <h2><span class="sec-num">04</span>技术栈</h2>
     <div class="section-desc">点击每个技术卡片，查看详细介绍与实用命令指南</div>
   </div>
   <div class="tech-grid" id="techGrid">
@@ -794,7 +1111,16 @@
 <button class="back-to-top" id="backToTop" aria-label="返回顶部" title="返回顶部">&uarr;</button>
 
 <footer>
-  &copy; 2026 程龙 · 个人博客 &nbsp;|&nbsp; 用技术连接世界
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="#home">首页</a>
+      <a href="#articles">文章</a>
+      <a href="mailto:cheng66da@163.com">联系我</a>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 程龙 · 用技术连接世界 &nbsp;|&nbsp; 最后更新: 2026-07-08
+    </div>
+  </div>
 </footer>
 
 <script>
@@ -874,9 +1200,253 @@
 // ==================== BLOG ARTICLE DATA ====================
 const blogArticles = [
   {
+    id: 1, date: "2026-07-08", tag: "AI 工具",
+    title: "国内使用 Claude Code 完整指南：CCSwitch 接入国产大模型",
+    summary: "从零开始，通过 CCSwitch 将 Claude Code 接入 DeepSeek、Kimi、智谱等国产模型，无需特殊网络环境。",
+    readTime: "10 分钟",
+    content: `<h2>为什么需要 CCSwitch？</h2>
+<p>Claude Code 是 Anthropic 推出的终端 AI 编程助手，能理解整个项目、直接修改代码、执行命令。但它默认绑定 Claude 官方模型，国内用户面临三大障碍：</p>
+<ul>
+  <li>需要国外手机号和特殊网络环境</li>
+  <li>API 费用较高（Claude Opus 约 $15/百万 token）</li>
+  <li>跨境支付不便</li>
+</ul>
+<p><b>好消息：</b>Claude Code 本质是一个 Agent 框架（外壳），不绑定特定模型。我们可以用 <b>CCSwitch</b> 这个工具给它换上国产模型的「大脑」，实现零门槛使用。</p>
+
+<h2>一、CCSwitch 是什么？</h2>
+<p>CCSwitch（Claude Code Switch）是一款跨平台图形化工具，核心功能是：<b>一键切换 Claude Code 使用的后端模型</b>。</p>
+<p>它本质上是一个<b>协议转换层 + 智能路由器</b>，运行在本地：</p>
+<div class="code-block"><pre><code># 数据流示意
+Claude Code (终端)
+   ↓ 发起 Anthropic 格式请求
+CCSwitch (本地监听 127.0.0.1:8899)
+   ├─ 解析请求头与 Body
+   ├─ 匹配路由规则 → 选择目标模型
+   ├─ 协议转换: Anthropic → OpenAI/国产格式
+   └─ 转发至国内 API 网关 → 返回响应</code></pre></div>
+
+<h2>二、环境准备</h2>
+<h3>2.1 安装 Git（必须）</h3>
+<div class="code-block"><pre><code># Windows PowerShell 中执行
+winget install Git.Git
+
+# 验证安装
+git --version</code></pre></div>
+
+<h3>2.2 安装 Claude Code</h3>
+<div class="code-block"><pre><code># 方式 A：有特殊网络条件
+irm https://claude.ai/install.ps1 | iex
+
+# 方式 B：winget 安装（推荐）
+winget install Anthropic.ClaudeCode
+
+# 验证安装
+claude --version</code></pre></div>
+
+<h3>2.3 安装 CCSwitch</h3>
+<p>下载地址：<a href="https://github.com/farion1231/cc-switch/releases" target="_blank">GitHub Releases</a></p>
+<p>双击安装包一路 Next 即可。安装后在开始菜单找到 <b>CC Switch</b> 并打开。</p>
+
+<h2>三、获取国产模型 API Key</h2>
+<p>以下是国内常用的几个选择（注册即送免费额度）：</p>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+<tr style="background:#f5f5f5;"><th style="padding:8px;text-align:left;">模型平台</th><th style="padding:8px;text-align:left;">免费额度</th><th style="padding:8px;text-align:left;">特点</th></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #eee;">DeepSeek</td><td style="padding:8px;border-bottom:1px solid #eee;">新用户赠送</td><td style="padding:8px;border-bottom:1px solid #eee;">性价比高，代码能力强</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #eee;">Kimi（月之暗面）</td><td style="padding:8px;border-bottom:1px solid #eee;">15 元</td><td style="padding:8px;border-bottom:1px solid #eee;">长文本能力突出</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #eee;">硅基流动 SiliconFlow</td><td style="padding:8px;border-bottom:1px solid #eee;">16 元</td><td style="padding:8px;border-bottom:1px solid #eee;">模型多、响应快</td></tr>
+<tr><td style="padding:8px;">智谱 GLM</td><td style="padding:8px;">新用户赠送</td><td style="padding:8px;">官方提供 coding-helper 一键接入</td></tr>
+</table>
+<p><b>以 DeepSeek 为例获取 Key：</b></p>
+<ol>
+  <li>访问 <a href="https://platform.deepseek.com" target="_blank">platform.deepseek.com</a> 注册登录</li>
+  <li>进入「API Keys」页面，点击「创建 API Key」</li>
+  <li>复制生成的 Key（形如 sk-xxxxxxxx）备用</li>
+</ol>
+
+<h2>四、在 CCSwitch 中配置</h2>
+<ol>
+  <li>打开 CC Switch 应用，点击右上角「+」→ 新增模型配置</li>
+  <li>选择你要用的国产模型（如 DeepSeek）</li>
+  <li>粘贴 API Key，选择对应模型版本</li>
+  <li>点击「添加」，然后在主界面启用该模型</li>
+</ol>
+<p>至此模型已接入完毕。如果遇到 <b>400 报错（thinking type 错误）</b>，需在通用配置中添加：</p>
+<div class="code-block"><pre><code>// CCSwitch 通用配置中添加：
+{
+  "env": {
+    "claude_code_disable_adaptive_thinking": "1"
+  }
+}</code></pre></div>
+
+<h2>五、启动 Claude Code</h2>
+<p><b>重要：</b>不要在系统根目录启动！先创建项目文件夹再 cd 进去。</p>
+<div class="code-block"><pre><code># 1. 创建工作目录
+mkdir D:\\MyCode && cd D:\\MyCode
+
+# 2. 启动 Claude Code
+claude
+
+# 出现小螃蟹图标 🦀 即启动成功</code></pre></div>
+<p>在 Claude Code 对话中输入 <code>/model</code> 可以查看和切换已配置的模型。</p>
+
+<h2>六、配置 CLAUDE.md（推荐）</h2>
+<p>CLAUDE.md 是 Claude Code 的协作规则文件。创建全局规则让 AI 更懂你的习惯：</p>
+<div class="code-block"><pre><code># 创建目录
+mkdir $env:USERPROFILE\\.claude -Force
+
+# 编辑全局配置文件
+notepad $env:USERPROFILE\\.claude\\CLAUDE.md</code></pre></div>
+<p>模板内容：</p>
+<div class="code-block"><pre><code>## 关于我
+应届毕业生，主要做 AI 视觉方向开发
+
+## 沟通风格
+- 使用中文交流，代码和命令用英文
+- 直接给答案，不要废话
+- 如果我的想法有问题，直接指出来
+
+## 红线（必须问我）
+- 删除任何文件或文件夹
+- 修改 .env、密钥、token
+- git push、强制重置代码
+- 安装全局依赖
+
+## 工程习惯
+- 改动代码后自动运行测试验证
+- 不要把密钥写进代码里
+- 大改动之前先给我方案确认</code></pre></div>
+
+<h2>七、避坑清单</h2>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+<tr style="background:#fff3cd;"><th style="padding:8px;text-align:left;">问题</th><th style="padding:8px;text-align:left;">原因</th><th style="padding:8px;text-align:left;">解决方法</th></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #eee;">401 未授权</td><td style="padding:8px;border-bottom:1px solid #eee;">API Key 映射错误</td><td style="padding:8px;border-bottom:1px solid #eee;">检查 CCSwitch 路由中的 api_key 字段</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #eee;">400 thinking type 错误</td><td style="padding:8px;border-bottom:1px solid #eee;">新版 CC 默认发送 adaptive thinking</td><td style="padding:8px;border-bottom:1px solid #eee;">设置 claude_code_disable_adaptive_thinking=1</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #eee;">代码块格式错乱</td><td style="padding:8px;border-bottom:1px solid #eee;">模型未识别标记语法</td><td style="padding:8px;border-bottom:1px solid #eee;">在 system_prompt_suffix 中强化格式约束</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #eee;">频繁断连</td><td style="padding:8px;border-bottom:1px solid #eee;">网关超时或网络抖动</td><td style="padding:8px;border-bottom:1px solid #eee;">调高 timeout 至 120s，开启 keep-alive</td></tr>
+<tr><td style="padding:8px;">响应慢/分析变差</td><td style="padding:8px;">根目录启动导致上下文污染</td><td style="padding:8px;">务必在项目文件夹内启动 claude</td></tr>
+</table>
+
+<h2>八、总结</h2>
+<p>CCSwitch + 国产模型的组合，让你在不翻墙、不花外汇的前提下，完整体验 Claude Code 的强大能力。核心就三步：<b>装 Claude Code → 装 CCSwitch → 填 API Key</b>。建议先用免费额度跑通流程，确认效果满意后再按需充值。</p>`
+  },
+  {
+    id: 2, date: "2026-07-08", tag: "AI 工具",
+    title: "Codex 国内使用指南：中转 API + Helper 工具全方案",
+    summary: "OpenAI Codex CLI/Desktop 的国内接入教程，覆盖中转站配置、codex-helper 使用及常见坑点。",
+    readTime: "9 分钟",
+    content: `<h2>什么是 Codex？</h2>
+<p>Codex 是 OpenAI 于 2026 年推出的终端 AI 编程智能体（GitHub 83,200+ ⭐，Apache-2.0 协议），集代码生成、解释、调试、重构于一体。支持三种使用方式：</p>
+<ul>
+  <li><b>Codex CLI</b> — 命令行版本，适合终端党</li>
+  <li><b>Codex Desktop</b> — 桌面 GUI 版本，更直观</li>
+  <li><b>IDE 插件</b> — VSCode/JetBrains 内嵌使用</li>
+</ul>
+<p>但官方仅支持 OpenAI 接口，国内无法直接调用。本文介绍两种主流解决方案。</p>
+
+<h2>方案一：中转站 API 直接配置（无需额外工具）</h2>
+<h3>步骤 1：注册中转站并获取 API Key</h3>
+<p>中转站充当「代理中间人」角色——你向它发请求，它转发给 OpenAI/Claude 再返回结果。国内有多家中转服务商可选：</p>
+<ul>
+  <li>注册后通常赠送试用额度（约 $10~20）</li>
+  <li>同时支持 Claude 和 GPT 系列模型</li>
+  <li>API 格式兼容官方 SDK</li>
+</ul>
+<p>注册后在控制台创建两个密钥：<b>一个用于 Claude 分组</b>，<b>一个用于 Codex/GPT 分组</b>。</p>
+
+<h3>步骤 2：安装 Codex CLI</h3>
+<div class="code-block"><pre><code># npm 全局安装
+npm install -g @openai/codex
+
+# 验证安装
+codex --version</code></pre></div>
+
+<h3>步骤 3：配置 Codex CLI</h3>
+<p>编辑配置文件 <code>~/.codex/auth.json</code>（没有则手动创建）：</p>
+<div class="code-block"><pre><code>{
+  "OPENAI_API_KEY": "你的中转站Codex分组密钥"
+}</code></pre></div>
+<p>编辑 <code>~/.codex/config.toml</code>（<b>注意 URL 末尾必须加 /v1</b>）：</p>
+<div class="code-block"><pre><code>model_provider = "my_codex"
+model = "gpt-5.5"              # 或你希望用的其他模型
+model_reasoning_effort = "high"
+disable_response_storage = true
+
+[model_providers.my_codex]
+name = "my_codex"
+base_url = "https://你的中转站网址/v1"   # ⚠️ 末尾必须有 /v1
+wire_api = "responses"
+requires_openai_auth = true</code></pre></div>
+
+<h3>步骤 4：测试连接</h3>
+<div class="code-block"><pre><code>cd 你的项目目录
+codex
+# 输入「你好」，收到回复即成功 ✅</code></pre></div>
+
+<h2>方案二：codex-helper 图形化工具（更简单）</h2>
+<p>如果你不想手动改配置文件，可以用 <b>codex-helper</b> 这个开源小工具，图形界面一键配置。</p>
+
+<h3>步骤 1：安装 codex-helper</h3>
+<p>下载地址：<a href="https://github.com/xqnode/codex-helper" target="_blank">GitHub - xqnode/codex-helper</a></p>
+<p>下载安装包，双击安装即可。</p>
+
+<h3>步骤 2：配置 Base URL 和 API Key</h3>
+<ol>
+  <li>安装完成后右键托盘图标 → 点击「设置」</li>
+  <li>填写三项关键信息：
+    <ul>
+      <li><b>Base URL</b>：中转站提供的接口地址（如 <code>https://api.highwayapi.ai/openai/v1</code>）</li>
+      <li><b>模型 ID</b>：如 <code>gpt-5.5</code> 或 <code>claude-fable-5</code></li>
+      <li><b>API Key</b>：中转站的密钥</li>
+    </ul>
+  </li>
+  <li>上游协议选 <code>Chat Completions</code>；若用 GPT-5.5-R 等 Responses 专属模型则选「透传」</li>
+</ol>
+<div class="code-block"><pre><code># 典型配置值
+Base URL: https://api.highwayapi.ai/openai/v1
+模型: gpt-5.5
+API Key: sk-xxxxx...</code></pre></div>
+
+<h3>步骤 3：同步配置并重启</h3>
+<p>保存设置后点击 <b>「重新同步配置」</b>，然后<b>完全退出 Codex Desktop</b>（不只是关窗口，要从托盘退出），再重新打开即可生效。</p>
+<p>发送「你好」测试，底部显示模型编号即说明配置正确。</p>
+
+<h2>Claude Code 同样可用 helper 方案</h2>
+<p>配套的 <b>claude-code-helper</b> 工作原理完全一致：</p>
+<ol>
+  <li>安装 <a href="https://github.com/xqnode/claude-code-helper" target="_blank">claude-code-helper</a></li>
+  <li>托盘图标 → 设置 → 填 Base URL + 模型 + API Key</li>
+  <li>模型填 <code>claude-fable-5</code>（或中转站支持的 Claude 型号）</li>
+  <li>测试连接 → 重启 Claude Code</li>
+</ol>
+
+<h2>常见问题排查</h2>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+<tr style="background:#d4edda;"><th style="padding:8px;text-align:left;width:25%;">问题</th><th style="padding:8px;text-align:left;width:35%;">原因</th><th style="padding:8px;text-align:left;">解决方法</th></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #eee;">Codex 保存后没生效</td><td style="padding:8px;border-bottom:1px solid #eee;">只关了窗口没退出进程</td><td style="padding:8px;border-bottom:1px solid #eee;">托盘→重新同步→完全退出再重启</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #eee;">模型名显示不对</td><td style="padding:8px;border-bottom:1px solid #eee;">Helper 设置的首行模型名不匹配</td><td style="padding:8px;border-bottom:1px solid #eee;">检查模型列表首行，重启 Claude Code</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #eee;">连接失败 401/403</td><td style="padding:8px;border-bottom:1px solid #eee;">Key 错误或余额不足</td><td style="padding:8px;border-bottom:1px solid #eee;">检查 Key 是否复制完整，确认账户余额</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #eee;">连接失败但 Key 正确</td><td style="padding:8px;border-bottom:1px solid #eee;">Base URL 末尾缺少 /v1</td><td style="padding:8px;border-bottom:1px solid #eee;">Codex 必须带 /v1 后缀</td></tr>
+<tr><td style="padding:8px;">公司网络连不上</td><td style="padding:8px;">防火墙拦截</td><td style="padding:8px;">换手机热点排除网络问题</td></tr>
+</table>
+
+<h2>Claude Code vs Codex 怎么选？</h2>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+<tr style="background:#e8f4fd;"><th style="padding:10px;">对比项</th><th style="padding:10px;">Claude Code</th><th style="padding:10px;">Codex</th></tr>
+<tr><td style="padding:10px;border-bottom:1px solid #eee;"><b>出品方</b></td><td style="padding:10px;border-bottom:1px solid #eee;">Anthropic</td><td style="padding:10px;border-bottom:1px solid #eee;">OpenAI</td></tr>
+<tr><td style="padding:10px;border-bottom:1px solid #eee;"><b>协议</b></td><td style="padding:10px;border-bottom:1px solid #eee;">Apache-2.0（部分）</td><td style="padding:10px;border-bottom:1px solid #eee;">Apache-2.0（完全开源）</td></tr>
+<tr><td style="padding:10px;border-bottom:1px solid #eee;"><b>擅长场景</b></td><td style="padding:10px;border-bottom:1px solid #eee;">大型项目重构、复杂逻辑推理</td><td style="padding:10px;border-bottom:1px solid #eee;">快速原型、代码生成、Debug</td></tr>
+<tr><td style="padding:10px;border-bottom:1px solid #eee;"><b>上下文管理</b></td><td style="padding:10px;border-bottom:1px solid #eee;">更强（自动裁剪策略成熟）</td><td style="padding:10px;border-bottom:1px solid #eee;">优秀（200K context window）</td></tr>
+<tr><td style="padding:10px;"><b>国内接入难度</b></td><td style="padding:10px;">需 CCSwitch/helper 转换协议</td><td style="padding:10px;">兼容 OpenAI 格式，更易对接</td></tr>
+</table>
+
+<h2>总结</h2>
+<p>两种方案各有优劣：<b>中转站直配</b> 更灵活可控，适合喜欢折腾的开发者；<b>Helper 工具</b> 图形化操作更友好，新手首选。不管哪种方式，核心都是：<b>拿到可用的 API Key → 配置正确的 Base URL → 选对模型</b>。建议先利用免费额度跑通全流程，再决定是否长期付费使用。</p>`
+  },
+  {
     id: 1, date: "2026-06-15", tag: "计算机视觉",
     title: "YOLOv11 在边缘设备上的部署实践",
     summary: "从模型训练、ONNX 导出到 Orange Pi 端侧推理的完整流程，包含性能优化与常见问题解决方案。",
+    readTime: "8 分钟",
     content: `<h2>一、背景与目标</h2>
 <p>毕业设计中需要将 YOLO 模型部署到 Orange Pi 开发板实现实时人体检测。本文记录从云端训练到端侧推理的完整实践过程，希望能帮到有类似需求的同学。</p>
 <p>核心目标：将 YOLOv11n 模型导出为 ONNX 格式，在 Orange Pi AI Pro（ARM 架构）上部署，实现不低于 5 FPS 的实时推理。</p>
@@ -949,9 +1519,10 @@ while True:
 <p>从训练到部署的全流程走下来，最大感受是：模型训练是第一步，真正能跑在边缘设备上才是工程能力的体现。ONNX 作为中间格式极大地降低了跨平台部署的门槛，建议每个做 AI 应用的同学都掌握。</p>`
   },
   {
-    id: 2, date: "2026-05-20", tag: "视觉检测",
+    id: 3, date: "2026-05-20", tag: "视觉检测",
     title: "VisionPro 工业视觉入门：从零搭建硬币检测系统",
     summary: "详解 Cognex VisionPro 的 PMAlign 模板匹配与 Blob 分析工具，附调参经验与准确率优化思路。",
+    readTime: "6 分钟",
     content: `<h2>一、项目背景</h2>
 <p>实训课程要求使用康耐视 VisionPro 搭建一个工业视觉检测系统，我选择了硬币识别与计数这个经典场景——识别 1 元、5 角、1 角硬币并统计数量。</p>
 
@@ -1002,9 +1573,10 @@ while True:
 <p>VisionPro 上手比 OpenCV 快很多，但灵活性不如 OpenCV。PMAlign 的匹配鲁棒性确实强，光照变化、部分遮挡都能稳定识别。Blob 分析的关键在于前处理——图像预处理不到位，后面再好的算法也白搭。</p>`
   },
   {
-    id: 3, date: "2026-04-08", tag: "Linux",
+    id: 4, date: "2026-04-08", tag: "Linux",
     title: "AI 开发者必备的 Linux 命令行技巧",
     summary: "文件操作、进程管理、GPU 监控、远程连接等 AI 开发场景下的高频命令整理与最佳实践。",
+    readTime: "5 分钟",
     content: `<h2>一、为什么 AI 开发者要学好 Linux</h2>
 <p>训练模型在云服务器上跑、部署模型在边缘设备上跑、数据处理在 Linux 工作站上跑——可以不会 Windows，但不能不会 Linux。本文整理了 AI 开发中最高频的实用命令。</p>
 
@@ -1061,9 +1633,10 @@ tmux attach -t train         # 重新连接回会话</code></pre></div>
 <p>AI 开发者的日常工作 80% 在命令行里：连服务器、跑训练、看日志、传文件、查 GPU。以上命令熟练掌握后，效率至少翻倍。</p>`
   },
   {
-    id: 4, date: "2026-03-12", tag: "数据库",
+    id: 5, date: "2026-03-12", tag: "数据库",
     title: "MySQL 从入门到可以写在简历上",
     summary: "面向应届生的 MySQL 核心知识梳理：CRUD、JOIN、索引、事务，覆盖面试高频考点。",
+    readTime: "7 分钟",
     content: `<h2>一、写在前面</h2>
 <p>很多应届生把 MySQL 写在简历上，但被问到索引原理、事务隔离级别时就卡住了。本文梳理了真正需要掌握的核心知识点，帮你从"用过"到"能讲清楚"。</p>
 
@@ -1133,43 +1706,11 @@ UPDATE users SET age = 26 WHERE id = 1;</code></pre></div>
   const cards = document.querySelectorAll('.blog-card');
   cards.forEach((card, i) => {
     card.addEventListener('click', () => {
-      if (blogArticles[i]) openBlogModal(blogArticles[i]);
+      if (blogArticles[i]) window.BlogApp.openBlogModal(blogArticles[i]);
     });
     card.style.cursor = 'pointer';
   });
 })();
-
-// ==================== BLOG MODAL LOGIC ====================
-const blogOverlay = document.getElementById('blogModalOverlay');
-
-function openBlogModal(article) {
-  document.getElementById('blogModalTitle').innerHTML = article.title;
-  document.getElementById('blogModalBody').innerHTML =
-    '<div class="blog-article">' +
-    '<div class="article-meta">' +
-    '<span>&#128197; ' + article.date + '</span>' +
-    '<span>&#127991; ' + article.tag + '</span>' +
-    '</div>' +
-    article.content +
-    '</div>';
-  blogOverlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeBlogModal() {
-  blogOverlay.classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-blogOverlay.addEventListener('click', (e) => {
-  if (e.target === blogOverlay) closeBlogModal();
-});
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && blogOverlay.classList.contains('active')) {
-    closeBlogModal();
-  }
-});
 
 // ==================== LOAD TECH DATA & RENDER ====================
 const techStackData = [
@@ -1178,44 +1719,11 @@ const techStackData = [
     "name": "Linux",
     "icon": "🐧",
     "color": "#FCC624",
-    "desc": "Linux 是 AI 开发与部署的核心操作系统，熟悉 Bash 命令行操作、系统管理与应用部署。",
+    "desc": "AI 开发与部署的核心操作系统，掌握 Bash 命令行是日常开发的基础。",
     "sections": [
-      {
-        "title": "文件与目录操作",
-        "content": [
-          {
-            "type": "code",
-            "code": "ls -la              # 列出所有文件（含隐藏）\ncd /path/to/dir     # 切换目录\npwd                 # 显示当前路径\nmkdir new_folder    # 创建目录\nrm -rf folder       # 删除目录（谨慎！）\ncp -r src dst       # 复制目录\nmv old new          # 移动/重命名\nfind . -name '*.py'  # 查找文件\ncat file.txt        # 查看文件内容\ntail -f log.txt     # 实时查看日志\nhead -n 20 file.txt # 查看前20行"
-          }
-        ]
-      },
-      {
-        "title": "权限管理",
-        "content": [
-          {
-            "type": "code",
-            "code": "chmod 755 script.sh    # 设置可执行权限\nchmod -R 644 *.py     # 批量设置只读\nchown user:group file # 修改所有者\nls -l                 # 查看权限详情"
-          }
-        ]
-      },
-      {
-        "title": "进程管理",
-        "content": [
-          {
-            "type": "code",
-            "code": "ps aux              # 查看所有进程\nps aux | grep python  # 查找 Python 进程\nkill -9 PID          # 强制终止进程\ntop                  # 实时系统监控\nnohup python app.py &  # 后台运行\njobs                 # 查看后台任务\nctrl+z / bg          # 挂起/恢复后台"
-          }
-        ]
-      },
-      {
-        "title": "网络与磁盘",
-        "content": [
-          {
-            "type": "code",
-            "code": "ping baidu.com          # 测试网络\ncurl http://localhost:8080  # HTTP 请求\nwget https://example.com/file.zip  # 下载文件\ndf -h                 # 磁盘使用\ndu -sh *              # 目录大小\nfree -h               # 内存使用"
-          }
-        ]
-      }
+      { "title": "文件与目录", "content": [{ "type": "code", "code": "ls -la                  # 列出所有文件\ncd /path/to/dir         # 切换目录\npwd                     # 当前路径\nmkdir /tmp/test          # 创建目录\nrm -rf folder            # 删除目录\ncp -r src dst            # 复制\nmv old new               # 移动/重命名\nfind . -name '*.py'     # 查找文件\ntail -f app.log          # 实时日志" }] },
+      { "title": "进程与系统", "content": [{ "type": "code", "code": "ps aux | grep python   # 查找进程\nkill -9 PID              # 强制终止\ntop                     # 实时监控\nfree -h                  # 内存使用\ndf -h                    # 磁盘使用\nnvidia-smi               # GPU 状态\nnohup python app.py &    # 后台运行" }] },
+      { "title": "网络与环境", "content": [{ "type": "code", "code": "ping baidu.com          # 测试网络\ncurl http://localhost:8080  # HTTP 测试\nwget url -O file.zip     # 下载文件\nssh root@192.168.1.1     # 远程连接\nscp file user@host:/path  # 远程复制\nsource venv/bin/activate  # 激活环境\nexport PATH=$PATH:/usr/local/bin  # 设置环境变量" }] }
     ]
   },
   {
@@ -1223,127 +1731,12 @@ const techStackData = [
     "name": "MySQL",
     "icon": "🐬",
     "color": "#4479A1",
-    "desc": "关系型数据库，掌握核心 CRUD 操作、表设计与高级查询。",
+    "desc": "关系型数据库，掌握 CRUD、JOIN、索引和事务四大核心能力。",
     "sections": [
-      {
-        "title": "基础命令",
-        "content": [
-          {
-            "type": "p",
-            "text": "<b>安装</b>：Ubuntu/Debian 用 <code>sudo apt install mysql-server</code>；CentOS 用 <code>sudo yum install mysql-server</code>；Windows 从官网下载安装包。安装后运行 <code>sudo mysql_secure_installation</code> 进行安全配置。"
-          },
-          {
-            "type": "code",
-            "code": "# 启动 / 停止 / 重启 MySQL 服务\nsudo systemctl start mysql       # 启动\nsudo systemctl stop mysql        # 停止\nsudo systemctl restart mysql     # 重启\nsudo systemctl status mysql      # 查看状态\nsudo systemctl enable mysql      # 开机自启\n\n# 连接数据库\nmysql -u root -p                  # 以 root 用户连接（输入密码）\nmysql -u root -p -h 192.168.1.100  # 连接远程数据库\nmysql -u root -p mydb            # 直接指定数据库"
-          }
-        ]
-      },
-      {
-        "title": "库操作",
-        "content": [
-          {
-            "type": "code",
-            "code": "SHOW DATABASES;                  # 查看所有数据库\nCREATE DATABASE mydb;            # 创建数据库\nCREATE DATABASE mydb DEFAULT CHARSET utf8mb4;  # 指定字符集\nDROP DATABASE mydb;              # 删除数据库\nUSE mydb;                        # 切换 / 选择数据库\nSELECT DATABASE();               # 查看当前使用的数据库"
-          }
-        ]
-      },
-      {
-        "title": "表操作",
-        "content": [
-          {
-            "type": "code",
-            "code": "CREATE TABLE users (\n    id INT PRIMARY KEY AUTO_INCREMENT,\n    name VARCHAR(50) NOT NULL DEFAULT '',\n    email VARCHAR(100) UNIQUE,\n    age INT DEFAULT 0,\n    phone VARCHAR(20),\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP\n);"
-          },
-          {
-            "type": "code",
-            "code": "SHOW TABLES;                     # 查看所有表\nDESC users;                      # 查看表结构\nSHOW CREATE TABLE users;         # 查看建表语句\n\n# 修改表\nALTER TABLE users ADD address VARCHAR(200);     # 添加列\nALTER TABLE users MODIFY age TINYINT;           # 修改列类型\nALTER TABLE users CHANGE phone mobile VARCHAR(20);  # 重命名列\nALTER TABLE users DROP COLUMN address;          # 删除列\nRENAME TABLE users TO user_info;                # 重命名表\n\n# 删除表\nDROP TABLE users;                # 删除表\nDROP TABLE IF EXISTS users;      # 安全删除（存在才删）\nTRUNCATE TABLE users;            # 清空表数据（保留结构）"
-          }
-        ]
-      },
-      {
-        "title": "数据操作 — INSERT（增）",
-        "content": [
-          {
-            "type": "code",
-            "code": "# 插入单行\nINSERT INTO users (name, email, age)\nVALUES ('张三', 'zhang@example.com', 25);\n\n# 插入多行\nINSERT INTO users (name, email, age) VALUES\n('李四', 'li@example.com', 30),\n('王五', 'wang@example.com', 28),\n('赵六', 'zhao@example.com', 22);\n\n# 从查询结果插入\nINSERT INTO users_backup (name, email)\nSELECT name, email FROM users WHERE age > 25;\n\n# 插入或更新（存在则更新）\nINSERT INTO users (name, email) VALUES ('张三', 'new@xx.com')\nON DUPLICATE KEY UPDATE email = VALUES(email);"
-          }
-        ]
-      },
-      {
-        "title": "数据操作 — DELETE（删）",
-        "content": [
-          {
-            "type": "code",
-            "code": "# 删除指定行\nDELETE FROM users WHERE id = 10;\n\n# 按条件批量删除\nDELETE FROM users WHERE age < 18;\nDELETE FROM users WHERE created_at < '2024-01-01';\n\n# 删除所有行（谨慎！）\n-- DELETE FROM users;               # 逐行删除，可回滚\n-- TRUNCATE TABLE users;            # 快速清空，不可回滚\n\n# 安全删除建议——先用 SELECT 确认要删的数据\n-- SELECT * FROM users WHERE age < 18;\n-- 确认无误后执行 DELETE\n-- DELETE FROM users WHERE age < 18;"
-          }
-        ]
-      },
-      {
-        "title": "数据操作 — UPDATE（改）",
-        "content": [
-          {
-            "type": "code",
-            "code": "# 更新单行\nUPDATE users SET age = 26 WHERE id = 1;\n\n# 更新多列\nUPDATE users SET age = 27, email = 'new@xx.com' WHERE name = '张三';\n\n# 批量更新\nUPDATE users SET age = age + 1 WHERE age < 25;\nUPDATE users SET status = 'active' WHERE last_login > '2025-01-01';\n\n# 使用 CASE 条件更新\nUPDATE users SET level = CASE\n    WHEN age >= 30 THEN 'senior'\n    WHEN age >= 20 THEN 'junior'\n    ELSE 'beginner'\nEND;\n\n# 安全更新——先查看再操作，关闭安全模式\n-- SET SQL_SAFE_UPDATES = 0;\n-- UPDATE users SET age = age + 1 WHERE age < 25;\n-- SET SQL_SAFE_UPDATES = 1;"
-          }
-        ]
-      },
-      {
-        "title": "数据操作 — SELECT（查）",
-        "content": [
-          {
-            "type": "code",
-            "code": "# 基础查询\nSELECT * FROM users;\nSELECT name, email, age FROM users;\nSELECT DISTINCT city FROM users;      # 去重查询\n\n# 条件查询 (WHERE)\nSELECT * FROM users WHERE age > 25;\nSELECT * FROM users WHERE age BETWEEN 20 AND 30;\nSELECT * FROM users WHERE name LIKE '张%';      # 模糊匹配\nSELECT * FROM users WHERE email IS NULL;        # 空值判断\nSELECT * FROM users WHERE id IN (1, 3, 5);       # 集合匹配\nSELECT * FROM users WHERE age > 20 AND city = '北京';\nSELECT * FROM users WHERE age < 18 OR age > 60;"
-          },
-          {
-            "type": "code",
-            "code": "# 排序与分页 (ORDER BY + LIMIT)\nSELECT * FROM users ORDER BY age DESC;         # 降序\nSELECT * FROM users ORDER BY age ASC, name;    # 多字段排序\nSELECT * FROM users LIMIT 10;                  # 前10条\nSELECT * FROM users LIMIT 10 OFFSET 20;        # 跳过20条取10条\nSELECT * FROM users ORDER BY id DESC LIMIT 5;  # 最新5条\n\n# 聚合查询\nSELECT COUNT(*) FROM users;                    # 总行数\nSELECT COUNT(DISTINCT city) FROM users;        # 去重计数\nSELECT AVG(age) FROM users;                    # 平均年龄\nSELECT MAX(age), MIN(age) FROM users;          # 最大/最小\nSELECT SUM(salary) FROM users;                 # 求和\n\n# 分组统计\nSELECT city, COUNT(*) as cnt\nFROM users GROUP BY city;\nSELECT city, AVG(age) as avg_age\nFROM users GROUP BY city HAVING avg_age > 25;  # 分组后过滤"
-          }
-        ]
-      },
-      {
-        "title": "高级操作 — 联表查询 (JOIN)",
-        "content": [
-          {
-            "type": "code",
-            "code": "# 建关联表\nCREATE TABLE orders (\n    id INT PRIMARY KEY AUTO_INCREMENT,\n    user_id INT NOT NULL,\n    product VARCHAR(100),\n    amount DECIMAL(10,2),\n    FOREIGN KEY (user_id) REFERENCES users(id)\n);\n\n# INNER JOIN — 匹配双方都有的记录\nSELECT u.name, o.product, o.amount\nFROM users u\nINNER JOIN orders o ON u.id = o.user_id;\n\n# LEFT JOIN — 保留左表全部，右表无匹配填 NULL\nSELECT u.name, o.product\nFROM users u\nLEFT JOIN orders o ON u.id = o.user_id;\n\n# 多表联查\nSELECT u.name, o.product, p.category\nFROM users u\nINNER JOIN orders o ON u.id = o.user_id\nINNER JOIN products p ON o.product_id = p.id;\n\n# 自连接（同一张表连接自己）\nSELECT a.name AS employee, b.name AS manager\nFROM users a\nLEFT JOIN users b ON a.manager_id = b.id;"
-          }
-        ]
-      },
-      {
-        "title": "高级操作 — 索引",
-        "content": [
-          {
-            "type": "p",
-            "text": "<b>索引的作用</b>：加速查询，类似书的目录。没有索引时 MySQL 全表扫描，有索引后可直接定位。<br><b>代价</b>：占用存储空间，INSERT/UPDATE/DELETE 时需维护索引，多了反而拖慢写入。"
-          },
-          {
-            "type": "code",
-            "code": "# 创建索引\nCREATE INDEX idx_name ON users(name);           # 普通索引\nCREATE UNIQUE INDEX idx_email ON users(email);  # 唯一索引\nCREATE INDEX idx_age_city ON users(age, city);  # 复合索引（多列）\n\n# 建表时指定索引\nCREATE TABLE users (\n    id INT PRIMARY KEY,    # 主键自带索引\n    name VARCHAR(50),\n    INDEX idx_name (name),\n    UNIQUE (email)\n);\n\n# 查看索引\nSHOW INDEX FROM users;\nEXPLAIN SELECT * FROM users WHERE name = '张三';  # 看执行计划\n\n# 删除索引\nDROP INDEX idx_name ON users;"
-          }
-        ]
-      },
-      {
-        "title": "高级操作 — 事务",
-        "content": [
-          {
-            "type": "p",
-            "text": "<b>事务四特性 (ACID)</b>：原子性(Atomicity)、一致性(Consistency)、隔离性(Isolation)、持久性(Durability)。InnoDB 引擎支持事务，MyISAM 不支持。<br>适用场景：转账、下单（扣库存+生成订单必须一起成功或一起回滚）。"
-          },
-          {
-            "type": "code",
-            "code": "# 事务操作\nSTART TRANSACTION;              # 或 BEGIN;\n\nUPDATE accounts SET balance = balance - 100 WHERE user_id = 1;\nUPDATE accounts SET balance = balance + 100 WHERE user_id = 2;\n\n-- 检查无误后提交\nCOMMIT;                         # 提交，修改永久生效\n-- 或者发现问题回滚\nROLLBACK;                       # 回滚，撤销所有修改\n\n# 设置保存点\nSAVEPOINT sp1;\nUPDATE users SET age = 30 WHERE id = 1;\n-- 发现不对，回滚到保存点\nROLLBACK TO SAVEPOINT sp1;\nRELEASE SAVEPOINT sp1;          # 释放保存点\n\n# 查看当前是否在事务中\nSELECT @@autocommit;             # 1=自动提交, 0=手动提交\nSET autocommit = 0;             # 关闭自动提交"
-          }
-        ]
-      },
-      {
-        "title": "常用函数速查",
-        "content": [
-          {
-            "type": "code",
-            "code": "# 字符串函数\nSELECT CONCAT(name, ' - ', email) FROM users;   # 拼接\nSELECT UPPER(name), LOWER(email) FROM users;    # 大小写\nSELECT LENGTH(name), CHAR_LENGTH('你好') FROM users;  # 长度\nSELECT SUBSTRING(name, 1, 3) FROM users;        # 截取\nSELECT REPLACE(email, '@', '#') FROM users;     # 替换\nSELECT TRIM('  hello  ');                        # 去空格\n\n# 数学函数\nSELECT ROUND(3.1415, 2);            # 四舍五入 → 3.14\nSELECT CEIL(3.1), FLOOR(3.9);       # 向上/向下取整\nSELECT ABS(-10), MOD(10, 3);         # 绝对值 / 取模\nSELECT RAND();                       # 0~1 随机数\n\n# 日期函数\nSELECT NOW();                        # 当前时间\nSELECT CURDATE(), CURTIME();         # 当前日期 / 时间\nSELECT YEAR(NOW()), MONTH(NOW());    # 年 / 月\nSELECT DATEDIFF('2026-07-06', '2025-01-01');  # 日期差\nSELECT DATE_ADD(NOW(), INTERVAL 7 DAY);        # 7天后\n\n# 条件函数\nSELECT IF(age > 18, '成年', '未成年') FROM users;\nSELECT CASE WHEN score >= 90 THEN 'A'\n            WHEN score >= 80 THEN 'B'\n            ELSE 'C' END\nFROM grades;\n\n# NULL 处理\nSELECT IFNULL(email, '无邮箱') FROM users;     # NULL 替换\nSELECT COALESCE(phone, email, '无联系方式') FROM users;  # 返回第一个非 NULL"
-          }
-        ]
-      }
+      { "title": "库表操作", "content": [{ "type": "code", "code": "-- 显示所有数据库\nSHOW DATABASES;\n\n-- 创建数据库（指定 utf8mb4 字符集，支持中文和 emoji）\nCREATE DATABASE mydb DEFAULT CHARSET utf8mb4;\n\n-- 切换到指定数据库\nUSE mydb;\n\n-- 创建用户表\nCREATE TABLE users (\n    id INT PRIMARY KEY AUTO_INCREMENT,       -- 自增主键\n    name VARCHAR(50) NOT NULL,               -- 姓名，不允许为空\n    email VARCHAR(100) UNIQUE,               -- 邮箱，唯一不可重复\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP  -- 创建时间，默认当前时间\n);\n\n-- 查看表结构\nDESC users;\n\n-- 删除表（如果存在则删除）\nDROP TABLE IF EXISTS users;" }] },
+      { "title": "增删改 (CRUD)", "content": [{ "type": "code", "code": "-- 插入单条数据\nINSERT INTO users (name, email) VALUES ('张三', 'z@test.com');\n\n-- 查询：按条件筛选 + 排序 + 限制数量\nSELECT * FROM users WHERE age > 20 ORDER BY id DESC LIMIT 10;\n\n-- 聚合统计：按城市分组，计算人数和平均年龄\nSELECT COUNT(*), AVG(age) FROM users GROUP BY city;\n\n-- 更新：修改 id=1 的年龄\nUPDATE users SET age = 26 WHERE id = 1;\n\n-- 删除：删除 id=10 的记录\nDELETE FROM users WHERE id = 10;" }] },
+      { "title": "联表查询", "content": [{ "type": "code", "code": "-- 内连接：只返回两张表中匹配的记录\nSELECT u.name, o.product, o.amount\nFROM users u\nINNER JOIN orders o ON u.id = o.user_id;\n\n-- 左外连接：保留左表全部记录，右表无匹配则为 NULL\nSELECT u.name, o.product\nFROM users u\nLEFT JOIN orders o ON u.id = o.user_id;" }] },
+      { "title": "事务", "content": [{ "type": "code", "code": "-- 开启事务\nSTART TRANSACTION;\n\n-- 转账操作：A 扣 100\nUPDATE accounts SET balance = balance - 100 WHERE id = 1;\n-- B 加 100\nUPDATE accounts SET balance = balance + 100 WHERE id = 2;\n\nCOMMIT;    -- 提交事务（永久生效）\n-- ROLLBACK;  -- 或回滚事务（撤销所有操作）" }] }
     ]
   },
   {
@@ -1351,35 +1744,11 @@ const techStackData = [
     "name": "Git",
     "icon": "🔧",
     "color": "#F05032",
-    "desc": "分布式版本控制系统，代码管理与团队协作的基础工具。",
+    "desc": "版本控制工具，团队协作的基础。",
     "sections": [
-      {
-        "title": "基础命令",
-        "content": [
-          {
-            "type": "code",
-            "code": "git init                    # 初始化仓库\ngit clone <url>             # 克隆仓库\ngit status                  # 查看状态\ngit add .                   # 暂存所有更改\ngit commit -m 'message'     # 提交\ngit push origin main        # 推送到远程\ngit pull origin main        # 拉取最新代码\ngit log --oneline           # 查看提交历史\ngit diff                    # 查看差异\ngit reset --soft HEAD~1     # 撤销 commit（保留修改）"
-          }
-        ]
-      },
-      {
-        "title": "分支管理",
-        "content": [
-          {
-            "type": "code",
-            "code": "git branch                  # 查看分支\ngit branch feature-x        # 创建分支\ngit checkout feature-x      # 切换分支\ngit checkout -b feature-x   # 创建 + 切换\ngit merge feature-x         # 合并分支\ngit branch -d feature-x     # 删除分支\ngit stash                   # 暂存未提交修改\ngit stash pop               # 恢复暂存"
-          }
-        ]
-      },
-      {
-        "title": "远程仓库",
-        "content": [
-          {
-            "type": "code",
-            "code": "git remote -v               # 查看远程地址\ngit remote add origin <url> # 添加远程仓库\ngit fetch origin            # 拉取远程更新（不合并）\ngit rebase origin/main      # 变基到远程分支\ngit push -u origin main     # 首次推送并关联"
-          }
-        ]
-      }
+      { "title": "日常工作流", "content": [{ "type": "code", "code": "git status                 # 查看状态\ngit add .                  # 暂存所有\ngit commit -m 'feat: xxx'  # 提交\ngit push origin main        # 推送\ngit pull origin main        # 拉取\ngit log --oneline -5        # 最近提交\ngit diff                    # 查看差异" }] },
+      { "title": "分支管理", "content": [{ "type": "code", "code": "git branch                 # 查看分支\ngit checkout -b feature-x   # 创建并切换\ngit checkout main           # 切回主分支\ngit merge feature-x          # 合并分支\ngit branch -d feature-x     # 删除已合并分支" }] },
+      { "title": "紧急修复", "content": [{ "type": "code", "code": "git stash                   # 暂存当前修改\n# ... 切换分支修 bug ...\ngit stash pop               # 恢复暂存\n\ngit reset --soft HEAD~1     # 撤销 commit（保留修改）\ngit revert <commit-hash>    # 安全撤销（生成新 commit）" }] }
     ]
   },
   {
@@ -1387,48 +1756,26 @@ const techStackData = [
     "name": "Python",
     "icon": "🐍",
     "color": "#3776AB",
-    "desc": "最常用的编程语言，用于数据处理、AI 模型训练与脚本自动化开发。",
+    "desc": "AI 开发的首选语言，从数据处理到模型部署全栈覆盖。",
     "sections": [
-      {
-        "title": "基础语法速查",
-        "content": [
-          {
-            "type": "code",
-            "code": "# 变量与数据类型\nname = \"Hello\"          # 字符串\ncount = 42              # 整数\nprice = 19.9            # 浮点数\nis_active = True        # 布尔值\nitems = [1, 2, 3]       # 列表\ninfo = {\"key\": \"value\"} # 字典"
-          },
-          {
-            "type": "code",
-            "code": "# 函数与循环\ndef greet(name):\n    return f\"你好, {name}\"\n\nfor i in range(5):      # 循环 0~4\n    print(f\"第{i}次\")\n\nnums = [x*2 for x in range(5)]  # 列表推导式\nsquares = {x: x**2 for x in range(3)}  # 字典推导式"
-          }
-        ]
-      },
-      {
-        "title": "pip 包管理",
-        "content": [
-          {
-            "type": "code",
-            "code": "pip install numpy           # 安装包\npip install opencv-python==4.8.0  # 指定版本\npip list                    # 查看已安装列表\npip freeze > requirements.txt    # 导出依赖\npip install -r requirements.txt  # 批量安装\npip uninstall package_name       # 卸载"
-          }
-        ]
-      },
-      {
-        "title": "虚拟环境",
-        "content": [
-          {
-            "type": "code",
-            "code": "python -m venv myenv       # 创建虚拟环境\nsource myenv/bin/activate   # Linux/Mac 激活\nmyenv\\Scripts\\activate       # Windows 激活\ndeactivate                  # 退出虚拟环境"
-          }
-        ]
-      },
-      {
-        "title": "常用标准库",
-        "content": [
-          {
-            "type": "p",
-            "text": "<b>os</b> — 文件路径操作；<b>sys</b> — 系统参数；<b>json</b> — JSON 序列化；<b>datetime</b> — 时间处理；<b>subprocess</b> — 调用外部命令；<b>argparse</b> — 命令行参数解析。"
-          }
-        ]
-      }
+      { "title": "基础语法", "content": [
+        { "type": "code", "code": "# ===== 变量与数据类型 =====\nname, count, pi = 'Hello', 42, 3.14\nitems = [1, 2, 3]              # 列表（可变有序）\ninfo = {'name': '张三', 'age': 25} # 字典（键值对）\ns = {1, 2, 3}                   # 集合（去重）\nt = (4, 5, 6)                   # 元组（不可变）\n\n# ===== 列表常用操作 =====\nnums = [3, 1, 4, 1, 5]\nnums.append(9)          # 尾部添加 → [3,1,4,1,5,9]\nnums.insert(0, 0)       # 指定位置插入\nnums.pop()              # 弹出最后一个\nnums.remove(1)          # 删除第一个匹配值\nprint(nums[::2])         # 步长切片 → [0,4,5]\n\n# ===== 字典遍历 =====\nfor k, v in info.items():\n    print(f'{k}: {v}')\n\n# ===== 函数与类型提示 =====\ndef calc_area(radius: float) -> float:\n    \"\"\"计算圆面积，返回浮点数\"\"\"\n    return 3.14159 * radius ** 2" },
+        { "type": "code", "code": "# ===== 条件与循环 =====\ndata = [65, 90, 45, 82]\nfor score in data:\n    if score >= 85:\n        level = '优秀'\n    elif score >= 60:\n        level = '及格'\n    else:\n        level = '不及格'\n    print(f'分数: {score}, 等级: {level}')\n\n# ===== 列表推导式 & 字典推导式 =====\nevens = [x for x in range(10) if x % 2 == 0]   # [0,2,4,6,8]\nsquares = {x: x**2 for x in range(5)}         # {0:0, 1:1, 4:16, ...}\nnames = ['alice', 'bob', 'charlie']\ncapitalized = [n.title() for n in names]      # 首字母大写\n\n# ===== 异常处理 =====\ndef safe_divide(a, b):\n    try:\n        result = a / b\n    except ZeroDivisionError:\n        print('错误：除数不能为 0')\n        return None\n    except TypeError:\n        print('错误：请输入数字')\n        return None\n    else:\n        return round(result, 2)\n    finally:\n        print('计算完成')" },
+        { "type": "code", "code": "# ===== 类定义 =====\nclass Detector:\n    \"\"\"检测器基类\"\"\"\n    def __init__(self, model_path: str, threshold: float = 0.5):\n        self.model = model_path     # 实例属性\n        self.thresh = threshold\n        self.results = []           # 存储结果\n\n    def predict(self, image):\n        \"\"\"执行推理，返回检测结果\"\"\"\n        print(f'使用 {self.model} 进行检测...')\n        return [{'class': 'person', 'conf': 0.92}]\n\n    @staticmethod                     # 静态方法\n    def load_image(path: str):\n        import cv2\n        return cv2.imread(path)\n\n    @property                         # 属性装饰器\n    def info(self):\n        return f'Detector(model={self.model}, thresh={self.thresh})'\n\n# 使用\ndet = Detector('yolo11n.pt', 0.6)\nprint(det.info)            # 通过 @property 调用\nresults = det.predict('test.jpg')" }
+      ]},
+      { "title": "文件与 JSON", "content": [
+        { "type": "code", "code": "# ===== 文件读写 =====\n# 写入文件\nwith open('output.txt', 'w', encoding='utf-8') as f:\n    f.write('第一行\\n')\n    f.writelines(['第二行\\n', '第三行\\n'])\n\n# 读取文件\nwith open('data.txt', 'r', encoding='utf-8') as f:\n    content = f.read()             # 全部读取\nwith open('data.txt', 'r', encoding='utf-8') as f:\n    lines = f.readlines()          # 按行读取列表\nwith open('data.txt', 'r', encoding='utf-8') as f:\n    for line in f:                 # 逐行迭代（推荐，省内存）\n        line = line.strip()\n        if line: print(line)" },
+        { "type": "code", "code": "# ===== JSON 序列化/反序列化 =====\nimport json\n\n# Python 字典 → JSON 字符串\nuser = {'name': '张三', 'age': 25, 'skills': ['Python', 'OpenCV']}\njson_str = json.dumps(user, ensure_ascii=False, indent=2)\nprint(json_str)\n\n# JSON 字符串 → Python 字典\nparsed = json.loads(json_str)\nprint(parsed['name'], parsed['skills'][0])\n\n# 直接读写 JSON 文件\nwith open('config.json', 'w', encoding='utf-8') as f:\n    json.dump(user, f, ensure_ascii=False, indent=2)\n\nwith open('config.json', 'r', encoding='utf-8') as f:\n    config = json.load(f)" }
+      ]},
+      { "title": "NumPy + OpenCV 常用操作", "content": [
+        { "type": "code", "code": "import numpy as np\nimport cv2\n\n# ===== NumPy 核心操作 =====\narr = np.array([1, 2, 3, 4, 5])           # 一维数组\nmat = np.zeros((3, 3), dtype=np.float32)  # 3×3 零矩阵\nrand_mat = np.random.randn(2, 4)         # 随机矩阵\n\n# 形状变换\nimg_flat = rand_mat.flatten()            # 展平为一维\nreshaped = arr.reshape(1, -1)            # 转为行向量 (1, N)\ntransposed = rand_mat.T                  # 转置\nconcatenated = np.concatenate([mat, mat], axis=1)  # 水平拼接\n\n# 统计运算\nprint(rand_mat.mean(), rand_mat.std())    # 均值、标准差\nprint(np.argmax(rand_mat, axis=1))       # 每行最大值索引\n\n# 归一化（图像预处理常用）\nx_norm = (rand_mat - rand_mat.min()) / (rand_mat.max() - rand_mat.min())" },
+        { "type": "code", "code": "# ===== OpenCV 图像处理 =====\nimg = cv2.imread('photo.jpg')           # 读取图片\ngray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # 转灰度\nresized = cv2.resize(img, (640, 480))   # 缩放\nblurred = cv2.GaussianBlur(gray, (5,5), 0)  # 高斯模糊\nedges = cv2.Canny(blurred, 50, 150)      # 边缘检测\n\n# 画矩形框（目标检测结果标注）\ncv2.rectangle(img, (100, 200), (300, 400), (0,255,0), 2)\ncv2.putText(img, 'Person 92%', (100, 195),\n            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,255,0), 2)\n\n# 保存结果\ncv2.imwrite('result.jpg', img)\n\n# 视频读取\ncap = cv2.VideoCapture(0)               # 0 = 默认摄像头\nret, frame = cap.read()                # 读取一帧\ncap.release()" }
+      ]},
+      { "title": "ONNX Runtime 推理", "content": [
+        { "type": "code", "code": "import cv2\nimport numpy as np\nimport onnxruntime as ort\n\n# ===== 加载 ONNX 模型 =====\nsession = ort.InferenceSession('yolo11n.onnx', providers=['CPUExecutionProvider'])\ninput_name = session.get_inputs()[0].name\ninput_shape = session.get_inputs()[0].shape  # [1,3,640,640]\n\n# ===== 图片预处理 =====\nimg = cv2.imread('photo.jpg')\noriginal_shape = img.shape[:2]            # 保存原始尺寸 (h,w)\nblob = cv2.dnn.blobFromImage(img, 1/255.0, (640,640), swapRB=True)\n\n# ===== 执行推理 =====\noutputs = session.run(None, {input_name: blob})\nprediction = outputs[0][0]                # 取第一个输出\n\nprint(f'输出形状: {prediction.shape}')\nprint(f'推理成功！共 {len(prediction)} 个检测结果')\n\n# 后处理：过滤低置信度、NMS 去重...\n# 然后在原图上绘制检测框..." },
+        { "type": "p", "text": "<b>推理流程</b>：加载模型 → 预处理(resize/归一化/NCHW) → session.run() → 后处理(NMS/坐标还原)<br><b>providers</b>：<code>CPUExecutionProvider</code>(CPU) / <code>CUDAExecutionProvider</code>(NVIDIA GPU) / <code>CoreMLExecutionProvider</code>(macOS)" }
+      ]},
+      { "title": "环境管理", "content": [{ "type": "code", "code": "# ===== 虚拟环境 =====\npython -m venv myenv                    # 创建虚拟环境\nmyenv\\Scripts\\activate                 # Windows 激活\nsource myenv/bin/activate              # Linux/Mac 激活\ndeactivate                              # 退出环境\n\n# ===== pip 包管理 =====\npip install numpy opencv-python onnxruntime  # 安装包\npip install opencv-python==4.8.0.76        # 指定版本安装\npip list                                 # 查看已安装列表\npip show numpy                           # 查看包详情（路径、版本等）\npip freeze > requirements.txt             # 导出依赖清单\npip install -r requirements.txt           # 从清单批量安装\npip uninstall package_name -y              # 卸载包\n\n# ===== 常用标准库速查 =====\nimport os; os.listdir('.')                 # 列出目录文件\nimport sys; sys.path.append('/custom/path') # 添加模块搜索路径\nimport time; time.time()                   # 当前时间戳\nfrom datetime import datetime; datetime.now().strftime('%Y-%m-%d %H:%M:%S')\nfrom pathlib import Path; Path('data').mkdir(exist_ok=True)  # 创建目录" }] }
     ]
   },
   {
@@ -1436,61 +1783,11 @@ const techStackData = [
     "name": "YOLO",
     "icon": "🔍",
     "color": "#FF6B35",
-    "desc": "YOLO (You Only Look Once) 是目前最主流的一阶段目标检测算法，具备速度快、精度高的特点，适用于实时检测场景。",
+    "desc": "主流目标检测算法，从训练到部署一条龙。",
     "sections": [
-      {
-        "title": "安装",
-        "content": [
-          {
-            "type": "code",
-            "code": "pip install ultralytics\n\n# 验证安装\nimport ultralytics\nprint(ultralytics.__version__)"
-          },
-          {
-            "type": "p",
-            "text": "ultralytics 是 YOLOv5/v8/v11 的官方 Python 包，安装后可直接调用训练、推理、导出等功能。需 Python 3.8+，推荐配合 CUDA 使用 GPU 训练。"
-          }
-        ]
-      },
-      {
-        "title": "模型训练",
-        "content": [
-          {
-            "type": "code",
-            "code": "from ultralytics import YOLO\n\n# 加载预训练模型\nmodel = YOLO('yolo11n.pt')\n\n# 训练\nresults = model.train(\n    data='dataset/data.yaml',  # 数据集配置\n    epochs=100,                 # 训练轮数\n    imgsz=640,                  # 输入尺寸\n    batch=16,                   # 批次大小\n    device='cuda',              # GPU 训练（可选 0,1,2... 或 cpu）\n    lr0=0.01,                   # 初始学习率\n    patience=20,                # 早停轮数\n    name='my_train',            # 训练名称\n)"
-          },
-          {
-            "type": "p",
-            "text": "<b>数据集配置 data.yaml 示例：</b><br><code>path: ../datasets/mydata<br>train: images/train<br>val: images/val<br>names:<br>  0: person<br>  1: car</code>"
-          }
-        ]
-      },
-      {
-        "title": "模型推理",
-        "content": [
-          {
-            "type": "code",
-            "code": "# 图片推理\nresults = model('image.jpg')\nfor r in results:\n    boxes = r.boxes          # 检测框 (xyxy, conf, cls)\n    r.show()                 # 显示结果\n    r.save('output.jpg')     # 保存带标注的结果\n\n# 批量推理\nresults = model(['img1.jpg', 'img2.jpg'], stream=True)\n\n# 摄像头实时推理\nresults = model.predict(source=0, show=True)  # 0=默认摄像头\n\n# 视频文件推理\nresults = model.predict(source='video.mp4', save=True)"
-          }
-        ]
-      },
-      {
-        "title": "ONNX 导出与部署",
-        "content": [
-          {
-            "type": "code",
-            "code": "# 导出 ONNX\nmodel.export(format='onnx', imgsz=640, half=True)\n\n# 导出 TensorRT（NVIDIA GPU 加速）\nmodel.export(format='engine', imgsz=640, half=True)\n\n# ONNX Runtime 推理\nimport onnxruntime as ort\nsession = ort.InferenceSession('yolo11n.onnx')\ninput_name = session.get_inputs()[0].name\noutputs = session.run(None, {input_name: preprocessed_image})"
-          }
-        ]
-      },
-      {
-        "title": "常用技巧",
-        "content": [
-          {
-            "type": "p",
-            "text": "<b>数据增强</b>：YOLO 内置 Mosaic、MixUp、随机翻转、HSV 抖动等，训练时自动生效。<br><b>小目标检测</b>：增大 imgsz（如 1280），使用更小的 anchor。<br><b>模型选择</b>：n(纳秒级) → s(小) → m(中) → l(大) → x(超大)，精度递增但速度递减。<br><b>自定义数据集</b>：建议每类至少 100 张，多角度、多光照、多背景，标注格式支持 YOLO/COCO/VOC。<br><b>验证评估</b>：训练后查看 runs/train/xxx/results.png 获取 mAP、Loss 等曲线。"
-          }
-        ]
-      }
+      { "title": "快速上手", "content": [{ "type": "code", "code": "pip install ultralytics\n\nfrom ultralytics import YOLO\nmodel = YOLO('yolo11n.pt')     # 加载预训练模型\nresults = model('photo.jpg')  # 图片推理" }] },
+      { "title": "训练模型", "content": [{ "type": "code", "code": "from ultralytics import YOLO\nmodel = YOLO('yolo11n.pt')\nmodel.train(\n    data='dataset/data.yaml',\n    epochs=100, imgsz=640,\n    batch=16, device='cuda'\n)" }] },
+      { "title": "导出部署", "content": [{ "type": "code", "code": "# 导出 ONNX（用于边缘设备）\nmodel.export(format='onnx')\n\n# TensorRT 加速（NVIDIA GPU）\nmodel.export(format='engine')" }] }
     ]
   },
   {
@@ -1498,62 +1795,11 @@ const techStackData = [
     "name": "C++",
     "icon": "⚙️",
     "color": "#00599C",
-    "desc": "系统级编程语言，运行效率高，常用于 OpenCV 底层开发、算法实现与性能敏感场景。",
+    "desc": "高性能语言，OpenCV 底层开发与算法实现。",
     "sections": [
-      {
-        "title": "基础语法速查",
-        "content": [
-          {
-            "type": "code",
-            "code": "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n    // 变量与输入输出\n    int age = 22;\n    double score = 95.5;\n    string name = \"Cheng Long\";\n    cout << \"姓名: \" << name << \", 年龄: \" << age << endl;\n\n    // 条件判断\n    if (age >= 18) {\n        cout << \"成年\" << endl;\n    } else {\n        cout << \"未成年\" << endl;\n    }\n\n    // 循环\n    for (int i = 0; i < 5; i++) {\n        cout << \"第\" << i << \"次循环\" << endl;\n    }\n\n    // 容器\n    vector<int> nums = {1, 2, 3};\n    nums.push_back(4);\n    cout << \"容器大小: \" << nums.size() << endl;\n\n    return 0;\n}"
-          }
-        ]
-      },
-      {
-        "title": "编译与运行",
-        "content": [
-          {
-            "type": "code",
-            "code": "# 基础编译\ng++ main.cpp -o app\n./app\n\n# 指定 C++ 标准\ng++ -std=c++11 main.cpp -o app   # C++11\ng++ -std=c++17 main.cpp -o app   # C++17（推荐）\n\n# 优化级别\ng++ -O0 main.cpp -o app   # 无优化（调试用）\ng++ -O2 main.cpp -o app   # 标准优化（发布用）\ng++ -O3 main.cpp -o app   # 激进优化\n\n# 调试编译\ng++ -g main.cpp -o app    # 带调试符号\ngdb ./app                 # GDB 调试\n\n# 多文件编译\ng++ main.cpp utils.cpp -o app"
-          }
-        ]
-      },
-      {
-        "title": "指针与引用",
-        "content": [
-          {
-            "type": "code",
-            "code": "int a = 10;\nint* p = &a;         // 指针：存储地址\n*p = 20;             // 通过指针修改值\ncout << a;           // 输出 20\n\nint& ref = a;        // 引用：别名\nref = 30;            // 通过引用修改\ncout << a;           // 输出 30\n\n// 动态内存\nint* arr = new int[100];  // 堆上分配数组\ndelete[] arr;              // 必须手动释放！\n\n// 智能指针（C++11，自动管理内存）\n#include <memory>\nunique_ptr<int> up = make_unique<int>(42);\nshared_ptr<int> sp = make_shared<int>(100);"
-          }
-        ]
-      },
-      {
-        "title": "常用 STL 容器",
-        "content": [
-          {
-            "type": "code",
-            "code": "#include <vector>\nvector<int> v = {1, 2, 3};\nv.push_back(4);           // 尾部添加\nv.pop_back();             // 尾部删除\nv.insert(v.begin(), 0);   // 头部插入\nsort(v.begin(), v.end()); // 排序\n\n#include <map>\nmap<string, int> m;       // 有序键值对（红黑树）\nm[\"apple\"] = 5;\nfor (auto& [k, v] : m) {  // C++17 结构化绑定\n    cout << k << \": \" << v << endl;\n}\n\n#include <unordered_map>\nunordered_map<string, int> um;  // 哈希表（O(1) 查找）\n\n#include <set>\nset<int> s = {3, 1, 2};   // 自动排序：{1, 2, 3}\n\n#include <algorithm>\nauto it = find(v.begin(), v.end(), 3);  // 查找\nreverse(v.begin(), v.end());            // 反转"
-          }
-        ]
-      },
-      {
-        "title": "面向对象基础",
-        "content": [
-          {
-            "type": "code",
-            "code": "class Detector {\nprivate:\n    string modelPath;\n    float threshold;\n\npublic:\n    // 构造函数\n    Detector(string path, float thresh = 0.5)\n        : modelPath(path), threshold(thresh) {}\n\n    // 成员函数\n    bool load() {\n        cout << \"加载模型: \" << modelPath << endl;\n        return true;\n    }\n\n    void detect(const string& imagePath) {\n        cout << \"检测: \" << imagePath\n             << \", 阈值: \" << threshold << endl;\n    }\n};\n\n// 使用\nDetector det(\"yolo11n.onnx\", 0.6);\ndet.load();\ndet.detect(\"photo.jpg\");"
-          }
-        ]
-      },
-      {
-        "title": "OpenCV C++ 接口",
-        "content": [
-          {
-            "type": "code",
-            "code": "#include <opencv2/opencv.hpp>\nusing namespace cv;\n\nint main() {\n    // 读取图像\n    Mat img = imread(\"photo.jpg\");\n\n    // 预处理\n    cvtColor(img, img, COLOR_BGR2GRAY);\n    GaussianBlur(img, img, Size(5, 5), 0);\n\n    // 边缘检测\n    Mat edges;\n    Canny(img, edges, 50, 150);\n\n    // 显示\n    imshow(\"原图\", img);\n    imshow(\"边缘\", edges);\n    waitKey(0);\n    imwrite(\"output.jpg\", edges);\n\n    return 0;\n}\n\n// 编译（需安装 OpenCV）\ng++ main.cpp -o app $(pkg-config --cflags --libs opencv4)"
-          }
-        ]
-      }
+      { "title": "Hello World", "content": [{ "type": "code", "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<int> nums = {1, 2, 3};\n    nums.push_back(4);\n    for (auto& n : nums) cout << n << \" \";\n    return 0;\n}" }] },
+      { "title": "编译运行", "content": [{ "type": "code", "code": "g++ -std=c++17 -O2 main.cpp -o app  # 编译\n./app                                     # 运行\n\ng++ -g main.cpp -o app                 # 调试模式\ngdb ./app                               # GDB 调试" }] },
+      { "title": "OpenCV C++ 示例", "content": [{ "type": "code", "code": "#include <opencv2/opencv.hpp>\nusing namespace cv;\nint main() {\n    Mat img = imread(\"photo.jpg\");\n    Mat gray;\n    cvtColor(img, gray, COLOR_BGR2GRAY);\n    Mat edges;\n    Canny(gray, edges, 50, 150);\n    imwrite(\"output.jpg\", edges);\n}" }] }
     ]
   },
   {
@@ -1561,35 +1807,10 @@ const techStackData = [
     "name": "Docker",
     "icon": "🐳",
     "color": "#2496ED",
-    "desc": "容器化技术，用于环境隔离与一键部署，适合 AI 项目在不同设备间快速复现运行环境。",
+    "desc": "容器化部署，一次构建到处运行。",
     "sections": [
-      {
-        "title": "常用命令",
-        "content": [
-          {
-            "type": "code",
-            "code": "docker ps                    # 查看运行中的容器\ndocker images                # 查看本地镜像\ndocker pull python:3.11      # 拉取镜像\ndocker run -it python:3.11 bash  # 交互式运行\ndocker run -d -p 8080:80 nginx   # 后台运行 + 端口映射\ndocker stop <container_id>   # 停止容器\ndocker rm <container_id>     # 删除容器\ndocker rmi <image_id>        # 删除镜像\ndocker exec -it <id> bash    # 进入运行中的容器"
-          }
-        ]
-      },
-      {
-        "title": "Dockerfile 示例",
-        "content": [
-          {
-            "type": "code",
-            "code": "FROM python:3.11-slim\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install -r requirements.txt\nCOPY . .\nCMD [\"python\", \"app.py\"]"
-          }
-        ]
-      },
-      {
-        "title": "构建与运行",
-        "content": [
-          {
-            "type": "code",
-            "code": "docker build -t my-app .\ndocker run -d -p 5000:5000 --name app my-app\ndocker logs -f app           # 查看日志\ndocker-compose up -d         # Compose 启动\ndocker-compose down          # Compose 停止"
-          }
-        ]
-      }
+      { "title": "常用命令", "content": [{ "type": "code", "code": "docker ps                      # 运行中的容器\ndocker images                  # 本地镜像\ndocker run -d -p 8080:80 nginx  # 后台运行+端口映射\ndocker exec -it <id> bash       # 进入容器\ndocker logs -f <name>          # 实时日志\ndocker stop/rm <id>            # 停止/删除容器" }] },
+      { "title": "Dockerfile", "content": [{ "type": "code", "code": "FROM python:3.11-slim\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install -r requirements.txt\nCOPY . .\nCMD [\"python\", \"app.py\"]\n\n# 构建与运行\ndocker build -t my-app .\ndocker run -d -p 5000:5000 my-app" }] }
     ]
   },
   {
@@ -1597,149 +1818,215 @@ const techStackData = [
     "name": "香橙派",
     "icon": "🍊",
     "color": "#FF7F00",
-    "desc": "Orange Pi（香橙派）是一款国产 ARM 架构开发板，常用于边缘计算与 AI 推理部署。在毕业设计中用作 YOLO 模型的端侧推理平台。",
+    "desc": "ARM 边缘开发板，毕业设计中用于 YOLO 端侧推理。",
     "sections": [
-      {
-        "title": "硬件规格 (Orange Pi AI Pro)",
-        "content": [
-          {
-            "type": "p",
-            "text": "<b>处理器</b>：昇腾 AI 处理器，8 核 ARM CPU<br><b>NPU</b>：8/20 TOPS (INT8) 算力<br><b>内存</b>：8GB / 16GB LPDDR4X<br><b>存储</b>：支持 TF 卡、eMMC、M.2 SSD<br><b>接口</b>：千兆网口、USB 3.0、HDMI、40Pin GPIO<br><b>系统</b>：Ubuntu / openEuler (ARM 架构)"
-          }
-        ]
-      },
-      {
-        "title": "系统烧录与启动",
-        "content": [
-          {
-            "type": "code",
-            "code": "# 使用 balenaEtcher 或 dd 烧录镜像到 TF 卡\n# Linux 下烧录示例：\nsudo dd if=orangepi.img of=/dev/sdb bs=4M status=progress\n\n# 启动后 SSH 连接（默认用户/密码）\nssh root@192.168.x.x\n# 或\nssh HwHiAiUser@192.168.x.x"
-          }
-        ]
-      },
-      {
-        "title": "环境配置",
-        "content": [
-          {
-            "type": "code",
-            "code": "# 更新系统\nsudo apt update && sudo apt upgrade -y\n\n# 安装 Python 环境\nsudo apt install python3-pip -y\npip install numpy opencv-python onnxruntime\n\n# ARM 平台专用包\npip install onnxruntime     # 或 onnxruntime-arm\n\n# 安装 Conda (可选)\nwget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh\nbash Miniforge3-Linux-aarch64.sh"
-          }
-        ]
-      },
-      {
-        "title": "ONNX 模型部署",
-        "content": [
-          {
-            "type": "code",
-            "code": "import onnxruntime as ort\nimport numpy as np\nimport cv2\n\n# 加载 ONNX 模型\nsession = ort.InferenceSession('yolo11n.onnx')\ninput_name = session.get_inputs()[0].name\noutput_names = [o.name for o in session.get_outputs()]\n\n# 摄像头推理\ncap = cv2.VideoCapture(0)\nwhile True:\n    ret, frame = cap.read()\n    # 预处理\n    img = cv2.resize(frame, (640, 640))\n    img = img.transpose(2, 0, 1).astype(np.float32) / 255.0\n    img = np.expand_dims(img, 0)\n    # 推理\n    outputs = session.run(output_names, {input_name: img})\n    # 后处理 ..."
-          }
-        ]
-      },
-      {
-        "title": "常见问题与优化",
-        "content": [
-          {
-            "type": "p",
-            "text": "<b>散热</b>：高负载推理时建议加散热片或小风扇<br><b>供电</b>：使用 5V/4A 电源适配器，避免供电不足<br><b>存储</b>：推荐使用 Class 10 以上 TF 卡或 eMMC<br><b>性能优化</b>：模型量化 (INT8)、多线程推理、减少前后处理耗时<br><b>网络</b>：首次配置建议通过 HDMI+键鼠或串口登录，确认 IP 后改用 SSH"
-          }
-        ]
-      }
+      { "title": "环境搭建", "content": [{ "type": "code", "code": "# 更新系统 & 安装依赖\nsudo apt update && sudo apt upgrade -y\nsudo apt install python3-pip -y\npip install numpy opencv-python onnxruntime" }] },
+      { "title": "ONNX 推理示例", "content": [{ "type": "code", "code": "import cv2, numpy as np\nimport onnxruntime as ort\n\nsession = ort.InferenceSession('model.onnx')\ncap = cv2.VideoCapture(0)\nwhile True:\n    ret, frame = cap.read()\n    img = cv2.resize(frame, (640, 640))\n    blob = img.transpose(2,0,1)[np.newaxis].astype(np.float32)/255\n    out = session.run(None, {session.get_inputs()[0].name: blob})\n    # 后处理绘制检测框..." }] },
+      { "title": "优化要点", "content": [{ "type": "p", "text": "<b>量化</b>：导出时用 half=True 转 FP16，速度提升约 2x<br><b>散热</b>：高负载加散热片或小风扇<br><b>供电</b>：5V/4A 以上电源适配器，避免欠压降频<br><b>存储</b>：Class 10 以上 TF 卡或 eMMC" }] }
+    ]
+  },
+  {
+    "id": "xshell",
+    "name": "XShell",
+    "icon": "💻",
+    "color": "#0E8A16",
+    "desc": "Windows 下最常用的 SSH 终端工具，用于远程连接 WSL、云服务器等 Linux 环境。",
+    "sections": [
+      { "title": "连接 WSL2 步骤", "content": [
+        { "type": "p", "text": "<b>前提条件</b>：WSL 内已安装 openssh-server 并设为开机自启。以下步骤实现从 XShell 直连 WSL，体验和连接云服务器完全一致。" },
+        { "type": "code", "code": "# 第一步：在 WSL 中查看 IP 地址\nip addr\n# 找到 eth0 网卡下的 inet 地址（如 172.20.x.x），记录下来\n\n# 第二步：确认 SSH 服务运行状态\nsudo systemctl status ssh    # 看到 active (running) 即正常\nsudo systemctl start ssh     # 如果没启动则启动\nsudo systemctl enable ssh    # 设为开机自启" }
+      ]},
+      { "title": "新建 XShell 会话", "content": [
+        { "type": "code", "code": "# 第三步：打开 Xshell 新建会话\n#   文件 → 新建\n#   名称：随意填写（如 WSL-Ubuntu）\n#   协议：SSH\n#   主机：填入上一步查到的 WSL IP\n#   端口号：22\n#   点击「连接」" }
+      ]},
+      { "title": "登录与验证", "content": [
+        { "type": "p", "text": "弹出登录框后输入：<br><b>用户名</b>：WSL 登录用户名（小写）<br><b>密码</b>：WSL 设置的密码<br>点击确定即可连上。" },
+        { "type": "code", "code": "# 连接成功后可正常使用，和操作远程服务器一致\nwhoami          # 查看当前用户\nuname -a        # 查看系统信息\nls -la           # 浏览文件\ntop             # 实时监控进程" }
+      ]}
     ]
   }
 ];
 
-renderTechGrid(techStackData);
+// ==================== BLOG APP NAMESPACE ====================
+// 将全局函数封装到命名空间，减少全局污染
+window.BlogApp = (function() {
+  // ---- DOM 缓存 ----
+  const overlay = document.getElementById('modalOverlay');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalBody = document.getElementById('modalBody');
+  const blogOverlay = document.getElementById('blogModalOverlay');
 
-function renderTechGrid(data) {
-  const grid = document.getElementById('techGrid');
-  grid.innerHTML = '';
-  data.forEach((tech, i) => {
-    const chip = document.createElement('div');
-    chip.className = 'tech-chip';
-    chip.style.animationDelay = i * 0.05 + 's';
-    chip.style.animation = 'fadeInUp .4s ease both';
-    chip.innerHTML = '<div class="tc-icon" style="background:' + tech.color + '">' + tech.icon + '</div><span>' + tech.name + '</span>';
-    chip.addEventListener('click', () => openModal(tech));
-    grid.appendChild(chip);
-  });
-}
+  // ---- 技术栈弹窗 ----
+  function openModal(tech) {
+    modalTitle.textContent = tech.icon + ' ' + tech.name + ' — 命令速查手册';
 
-// ==================== MODAL LOGIC ====================
-const overlay = document.getElementById('modalOverlay');
-const modalTitle = document.getElementById('modalTitle');
-const modalBody = document.getElementById('modalBody');
+    const sectionCount = tech.sections.length;
+    let codeCount = 0;
+    tech.sections.forEach(s => s.content.forEach(c => { if (c.type === 'code') codeCount++; }));
 
-function openModal(tech) {
-  modalTitle.textContent = tech.icon + ' ' + tech.name + ' — 命令速查手册';
+    let html =
+      '<div class="ref-overview">' +
+      '<div class="ref-desc">' + tech.desc + '</div>' +
+      '<div class="ref-meta">' +
+      '<span>' + sectionCount + ' 个章节</span>' +
+      '<span>' + codeCount + ' 个代码示例</span>' +
+      '</div></div>';
 
-  const sectionCount = tech.sections.length;
-  let codeCount = 0;
-  tech.sections.forEach(s => s.content.forEach(c => { if (c.type === 'code') codeCount++; }));
-
-  let html =
-    '<div class="ref-overview">' +
-    '<div class="ref-desc">' + tech.desc + '</div>' +
-    '<div class="ref-meta">' +
-    '<span>' + sectionCount + ' 个章节</span>' +
-    '<span>' + codeCount + ' 个代码示例</span>' +
-    '</div></div>';
-
-  tech.sections.forEach((sec, i) => {
-    const num = String(i + 1).padStart(2, '0');
-    html += '<div class="ref-section"><h4><span class="ref-num">' + num + '</span>' + sec.title + '</h4>';
-    sec.content.forEach(item => {
-      if (item.type === 'code') {
-        const escaped = item.code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        html +=
-          '<div class="code-block">' +
-          '<button class="cb-copy" onclick="copyCode(this)">复制</button>' +
-          '<pre>' + highlightCode(escaped) + '</pre>' +
-          '</div>';
-      } else if (item.type === 'p') {
-        html += '<p>' + item.text + '</p>';
-      }
+    tech.sections.forEach((sec, i) => {
+      const num = String(i + 1).padStart(2, '0');
+      html += '<div class="ref-section"><h4><span class="ref-num">' + num + '</span>' + sec.title + '</h4>';
+      sec.content.forEach(item => {
+        if (item.type === 'code') {
+          const escaped = item.code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          let lang = detectLang(item.code);
+          html +=
+            '<div class="code-block">' +
+            '<span class="cb-lang">' + lang + '</span>' +
+            '<button class="cb-copy" onclick="BlogApp.copyCode(this)">复制</button>' +
+            '<pre>' + highlightCode(escaped) + '</pre>' +
+            '</div>';
+        } else if (item.type === 'p') {
+          html += '<p>' + item.text + '</p>';
+        }
+      });
+      html += '</div>';
     });
-    html += '</div>';
+
+    modalBody.innerHTML = html;
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // ---- 博客文章弹窗 ----
+  function openBlogModal(article) {
+    let contentWithLang = article.content;
+    contentWithLang = contentWithLang.replace(
+      /<div class="code-block">/g,
+      '<div class="code-block"><span class="cb-lang">Code</span>'
+    );
+
+    document.getElementById('blogModalTitle').innerHTML = article.title;
+    document.getElementById('blogModalBody').innerHTML =
+      '<div class="blog-article">' +
+      '<div class="article-meta">' +
+      '<span>&#128197; ' + article.date + '</span>' +
+      '<span>&#127991; ' + article.tag + '</span>' +
+      '<span>&#9202; ' + (article.readTime || '5 分钟') + '阅读</span>' +
+      '</div>' +
+      contentWithLang +
+      '<div class="share-row">' +
+      '<span class="share-label">分享:</span>' +
+      '<a class="share-btn" href="https://service.weibo.com/share/share.php?url=' + encodeURIComponent(location.href) + '&title=' + encodeURIComponent(article.title) + '" target="_blank" rel="noopener">微博</a>' +
+      '<a class="share-btn" href="https://twitter.com/intent/tweet?text=' + encodeURIComponent(article.title) + '%20' + encodeURIComponent(location.href) + '" target="_blank" rel="noopener">Twitter</a>' +
+      '<button class="share-btn" onclick="BlogApp.copyArticleLink()">复制链接</button>' +
+      '</div></div>';
+    blogOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeBlogModal() {
+    blogOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // ---- 工具函数 ----
+  function copyCode(btn) {
+    const pre = btn.parentElement.querySelector('pre');
+    navigator.clipboard.writeText(pre.textContent).then(() => {
+      btn.textContent = '已复制!';
+      setTimeout(() => { btn.textContent = '复制'; }, 1500);
+    }).catch(() => {
+      btn.textContent = '复制失败';
+      setTimeout(() => { btn.textContent = '复制'; }, 1500);
+    });
+  }
+
+  function copyArticleLink() {
+    navigator.clipboard.writeText(location.href).then(() => {
+      const btn = event.target;
+      const orig = btn.textContent;
+      btn.textContent = '已复制!';
+      setTimeout(() => { btn.textContent = orig; }, 1500);
+    });
+  }
+
+  // 代码语言自动检测
+  function detectLang(code) {
+    if (/^#include\b/m.test(code)) return 'C++';
+    if (/\b(git |git-)\b/.test(code) && !/\b(import|def )\b/.test(code)) return 'Git';
+    if (/\b(docker |docker-|FROM |RUN |CMD )\b/.test(code)) return 'Docker';
+    if (/\b(SELECT|CREATE TABLE|INSERT INTO|UPDATE |DELETE FROM|SHOW |USE |START |COMMIT|ROLLBACK)\b/i.test(code)) return 'SQL';
+    if (/(import |def |from \w+ import|pip install|sudo apt|# 模型训练)/m.test(code)) return 'Python';
+    if (/(sudo |apt |ssh |scp |nvidia|tmux|nohup|rsync)/m.test(code)) return 'Bash';
+    return 'Code';
+  }
+
+  function highlightCode(code) {
+    return code
+      .replace(/\b(SELECT|FROM|WHERE|INSERT|INTO|VALUES|UPDATE|SET|DELETE|CREATE|TABLE|ALTER|DROP|SHOW|USE|DESC|INNER|JOIN|ON|GROUP BY|ORDER BY|LIMIT|OFFSET|HAVING|COUNT|AVG|AS|AND|OR|LIKE|NOT NULL|PRIMARY KEY|AUTO_INCREMENT|UNIQUE|DEFAULT|TIMESTAMP|CURRENT_TIMESTAMP)\b/gi,
+        '<span class="keyword">$1</span>')
+      .replace(/(".*?"|'.*?')/g, '<span class="string">$1</span>')
+      .replace(/(--.*$)/gm, '<span class="comment">$1</span>')
+      .replace(/(#.*$)/gm, '<span class="comment">$1</span>');
+  }
+
+  // ---- 渲染技术栈网格（供外部调用）----
+  function renderTechGrid(data) {
+    const grid = document.getElementById('techGrid');
+    grid.innerHTML = '';
+    data.forEach((tech, i) => {
+      const chip = document.createElement('div');
+      chip.className = 'tech-chip';
+      chip.style.animationDelay = i * 0.05 + 's';
+      chip.style.animation = 'fadeInUp .4s ease both';
+      chip.innerHTML = '<div class="tc-icon" style="background:' + tech.color + '">' + tech.icon + '</div><span>' + tech.name + '</span>';
+      chip.addEventListener('click', () => openModal(tech));
+      grid.appendChild(chip);
+    });
+  }
+
+  // ---- 事件绑定 ----
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+  blogOverlay.addEventListener('click', (e) => {
+    if (e.target === blogOverlay) closeBlogModal();
   });
 
-  modalBody.innerHTML = html;
-  overlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
+  // ---- 暴露公共 API ----
+  return {
+    openModal: openModal,
+    closeModal: closeModal,
+    closeBlogModal: closeBlogModal,
+    openBlogModal: openBlogModal,
+    copyCode: copyCode,
+    copyArticleLink: copyArticleLink,
+    renderTechGrid: renderTechGrid
+  };
+})();
 
-function closeModal() {
-  overlay.classList.remove('active');
-  document.body.style.overflow = '';
-}
+// 兼容旧调用 — 全局快捷方式
+window.openModal = window.BlogApp.openModal;
+window.closeModal = window.BlogApp.closeModal;
+window.closeBlogModal = window.BlogApp.closeBlogModal;
+window.openBlogModal = window.BlogApp.openBlogModal;
+window.copyCode = window.BlogApp.copyCode;
+window.renderTechGrid = window.BlogApp.renderTechGrid;
 
-function copyCode(btn) {
-  const pre = btn.parentElement.querySelector('pre');
-  navigator.clipboard.writeText(pre.textContent).then(() => {
-    btn.textContent = '已复制!';
-    setTimeout(() => { btn.textContent = '复制'; }, 1500);
-  }).catch(() => {
-    btn.textContent = '复制失败';
-    setTimeout(() => { btn.textContent = '复制'; }, 1500);
-  });
-}
+// 初始化技术栈网格
+window.BlogApp.renderTechGrid(techStackData);
 
-function highlightCode(code) {
-  return code
-    .replace(/\b(SELECT|FROM|WHERE|INSERT|INTO|VALUES|UPDATE|SET|DELETE|CREATE|TABLE|ALTER|DROP|SHOW|USE|DESC|INNER|JOIN|ON|GROUP BY|ORDER BY|LIMIT|OFFSET|HAVING|COUNT|AVG|AS|AND|OR|LIKE|NOT NULL|PRIMARY KEY|AUTO_INCREMENT|UNIQUE|DEFAULT|TIMESTAMP|CURRENT_TIMESTAMP)\b/gi,
-      '<span class="keyword">$1</span>')
-    .replace(/(".*?"|'.*?')/g, '<span class="string">$1</span>')
-    .replace(/(--.*$)/gm, '<span class="comment">$1</span>')
-    .replace(/(#.*$)/gm, '<span class="comment">$1</span>');
-}
-
-// Modal overlay click
-overlay.addEventListener('click', (e) => {
-  if (e.target === overlay) closeModal();
-});
-
-// Escape key
+// Escape key — 同时处理两个弹窗
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Escape') {
+    window.BlogApp.closeModal();
+    window.BlogApp.closeBlogModal();
+  }
 });
 
 // ==================== BACK TO TOP ====================
@@ -1751,11 +2038,15 @@ backToTopBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// ==================== NAV ACTIVE STATE ====================
+// ==================== NAV ACTIVE STATE + SCROLL EFFECT ====================
 (function() {
+  const nav = document.querySelector('nav');
   const sections = document.querySelectorAll('section[id]');
   const navLinksAll = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
+    // 滚动状态 — 导航栏阴影
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+    // 当前 section 高亮
     let current = '';
     sections.forEach(s => {
       if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
