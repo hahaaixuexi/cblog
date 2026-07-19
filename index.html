@@ -548,10 +548,11 @@
     opacity: 0; transition: opacity .3s;
   }
   .tech-chip:hover::before { opacity: 1; }
-  .tech-chip:hover {
+  .tech-chip:hover, .tech-chip:focus-visible {
     border-color: var(--primary);
     box-shadow: var(--shadow-card-hover);
     transform: translateY(-6px);
+    outline: none;
   }
   .tech-chip .tc-icon {
     width: 52px; height: 52px; border-radius: var(--radius-sm);
@@ -565,19 +566,8 @@
   .tech-chip .tech-name {
     z-index: 1; position: relative;
   }
-  .tech-chip:hover {
-    border-color: var(--primary);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-4px);
-  }
-  .tech-chip .tc-icon {
-    width: 48px; height: 48px; border-radius: var(--radius);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px; color: #fff; flex-shrink: 0;
-    transition: transform .3s;
-  }
-  .tech-chip:hover .tc-icon { transform: scale(1.08) rotate(5deg); }
-  /* Tech card 差异化 hover 动效 */
+  /* 图标 hover 动效（差异化旋转） */
+  .tech-chip:hover .tc-icon { transform: scale(1.08); }
   .tech-chip:nth-child(3n+1):hover .tc-icon { transform: scale(1.1) rotate(-8deg); }
   .tech-chip:nth-child(3n+2):hover .tc-icon { transform: scale(1.06) rotate(10deg); }
   .tech-chip:nth-child(odd):hover .tc-icon { transform: scale(1.12) translateY(-2px); }
@@ -962,7 +952,7 @@
           <span>2026-06-15</span>
           <span class="bc-tag">计算机视觉</span>
         </div>
-        <h3>YOLOv11 在边缘设备上的部署实践</h3>
+        <h3>YOLO11 在边缘设备上的部署实践</h3>
         <p class="bc-desc">从模型训练、ONNX 导出到 Orange Pi 端侧推理的完整流程，包含性能优化与常见问题解决方案。</p>
         <span class="bc-more">阅读全文 <span class="bc-arrow">→</span></span>
       </div>
@@ -1118,7 +1108,7 @@
       <a href="mailto:cheng66da@163.com">联系我</a>
     </div>
     <div class="footer-bottom">
-      &copy; 2026 程龙 · 用技术连接世界 &nbsp;|&nbsp; 最后更新: 2026-07-08
+      &copy; 2026 程龙 · 用技术连接世界 &nbsp;|&nbsp; 最后更新: <span id="lastUpdate">2026-07-08</span>
     </div>
   </div>
 </footer>
@@ -1208,7 +1198,7 @@ const blogArticles = [
 <p>Claude Code 是 Anthropic 推出的终端 AI 编程助手，能理解整个项目、直接修改代码、执行命令。但它默认绑定 Claude 官方模型，国内用户面临三大障碍：</p>
 <ul>
   <li>需要国外手机号和特殊网络环境</li>
-  <li>API 费用较高（Claude Opus 约 $15/百万 token）</li>
+  <li>API 费用较高（Claude 最强模型输入约 $15/百万 token，输出约 $75/百万 token）</li>
   <li>跨境支付不便</li>
 </ul>
 <p><b>好消息：</b>Claude Code 本质是一个 Agent 框架（外壳），不绑定特定模型。我们可以用 <b>CCSwitch</b> 这个工具给它换上国产模型的「大脑」，实现零门槛使用。</p>
@@ -1237,20 +1227,23 @@ git --version</code></pre></div>
 <div class="code-block"><pre><code># 方式 A：有特殊网络条件
 irm https://claude.ai/install.ps1 | iex
 
-# 方式 B：winget 安装（推荐）
+# 方式 B：npm 安装（推荐，跨平台通用）
+npm install -g @anthropic-ai/claude-code
+
+# 方式 C：winget 安装（仅 Windows）
 winget install Anthropic.ClaudeCode
 
 # 验证安装
 claude --version</code></pre></div>
 
 <h3>2.3 安装 CCSwitch</h3>
-<p>下载地址：<a href="https://github.com/farion1231/cc-switch/releases" target="_blank">GitHub Releases</a></p>
+<p>下载地址：<a href="https://github.com/farion1231/cc-switch/releases" target="_blank" rel="noopener noreferrer">GitHub Releases</a></p>
 <p>双击安装包一路 Next 即可。安装后在开始菜单找到 <b>CC Switch</b> 并打开。</p>
 
 <h2>三、获取国产模型 API Key</h2>
 <p>以下是国内常用的几个选择（注册即送免费额度）：</p>
 <table style="width:100%;border-collapse:collapse;margin:16px 0;">
-<tr style="background:#f5f5f5;"><th style="padding:8px;text-align:left;">模型平台</th><th style="padding:8px;text-align:left;">免费额度</th><th style="padding:8px;text-align:left;">特点</th></tr>
+<tr style="background:#f5f5f5;color:#1D2129;"><th style="padding:8px;text-align:left;">模型平台</th><th style="padding:8px;text-align:left;">免费额度</th><th style="padding:8px;text-align:left;">特点</th></tr>
 <tr><td style="padding:8px;border-bottom:1px solid #eee;">DeepSeek</td><td style="padding:8px;border-bottom:1px solid #eee;">新用户赠送</td><td style="padding:8px;border-bottom:1px solid #eee;">性价比高，代码能力强</td></tr>
 <tr><td style="padding:8px;border-bottom:1px solid #eee;">Kimi（月之暗面）</td><td style="padding:8px;border-bottom:1px solid #eee;">15 元</td><td style="padding:8px;border-bottom:1px solid #eee;">长文本能力突出</td></tr>
 <tr><td style="padding:8px;border-bottom:1px solid #eee;">硅基流动 SiliconFlow</td><td style="padding:8px;border-bottom:1px solid #eee;">16 元</td><td style="padding:8px;border-bottom:1px solid #eee;">模型多、响应快</td></tr>
@@ -1258,7 +1251,7 @@ claude --version</code></pre></div>
 </table>
 <p><b>以 DeepSeek 为例获取 Key：</b></p>
 <ol>
-  <li>访问 <a href="https://platform.deepseek.com" target="_blank">platform.deepseek.com</a> 注册登录</li>
+  <li>访问 <a href="https://platform.deepseek.com" target="_blank" rel="noopener noreferrer">platform.deepseek.com</a> 注册登录</li>
   <li>进入「API Keys」页面，点击「创建 API Key」</li>
   <li>复制生成的 Key（形如 sk-xxxxxxxx）备用</li>
 </ol>
@@ -1286,7 +1279,7 @@ mkdir D:\\MyCode && cd D:\\MyCode
 # 2. 启动 Claude Code
 claude
 
-# 出现小螃蟹图标 🦀 即启动成功</code></pre></div>
+# 看到交互式命令行界面即启动成功</code></pre></div>
 <p>在 Claude Code 对话中输入 <code>/model</code> 可以查看和切换已配置的模型。</p>
 
 <h2>六、配置 CLAUDE.md（推荐）</h2>
@@ -1318,7 +1311,7 @@ notepad $env:USERPROFILE\\.claude\\CLAUDE.md</code></pre></div>
 
 <h2>七、避坑清单</h2>
 <table style="width:100%;border-collapse:collapse;margin:16px 0;">
-<tr style="background:#fff3cd;"><th style="padding:8px;text-align:left;">问题</th><th style="padding:8px;text-align:left;">原因</th><th style="padding:8px;text-align:left;">解决方法</th></tr>
+<tr style="background:#fff3cd;color:#1D2129;"><th style="padding:8px;text-align:left;">问题</th><th style="padding:8px;text-align:left;">原因</th><th style="padding:8px;text-align:left;">解决方法</th></tr>
 <tr><td style="padding:8px;border-bottom:1px solid #eee;">401 未授权</td><td style="padding:8px;border-bottom:1px solid #eee;">API Key 映射错误</td><td style="padding:8px;border-bottom:1px solid #eee;">检查 CCSwitch 路由中的 api_key 字段</td></tr>
 <tr><td style="padding:8px;border-bottom:1px solid #eee;">400 thinking type 错误</td><td style="padding:8px;border-bottom:1px solid #eee;">新版 CC 默认发送 adaptive thinking</td><td style="padding:8px;border-bottom:1px solid #eee;">设置 claude_code_disable_adaptive_thinking=1</td></tr>
 <tr><td style="padding:8px;border-bottom:1px solid #eee;">代码块格式错乱</td><td style="padding:8px;border-bottom:1px solid #eee;">模型未识别标记语法</td><td style="padding:8px;border-bottom:1px solid #eee;">在 system_prompt_suffix 中强化格式约束</td></tr>
@@ -1335,7 +1328,7 @@ notepad $env:USERPROFILE\\.claude\\CLAUDE.md</code></pre></div>
     summary: "OpenAI Codex CLI/Desktop 的国内接入教程，覆盖中转站配置、codex-helper 使用及常见坑点。",
     readTime: "9 分钟",
     content: `<h2>什么是 Codex？</h2>
-<p>Codex 是 OpenAI 于 2026 年推出的终端 AI 编程智能体（GitHub 83,200+ ⭐，Apache-2.0 协议），集代码生成、解释、调试、重构于一体。支持三种使用方式：</p>
+<p>Codex 是 OpenAI 于 2025 年推出的终端 AI 编程智能体（开源社区高热度项目，Apache-2.0 协议），集代码生成、解释、调试、重构于一体。支持三种使用方式：</p>
 <ul>
   <li><b>Codex CLI</b> — 命令行版本，适合终端党</li>
   <li><b>Codex Desktop</b> — 桌面 GUI 版本，更直观</li>
@@ -1361,13 +1354,13 @@ npm install -g @openai/codex
 codex --version</code></pre></div>
 
 <h3>步骤 3：配置 Codex CLI</h3>
-<p>编辑配置文件 <code>~/.codex/auth.json</code>（没有则手动创建）：</p>
+<p>编辑配置文件 <code>~/.codex/auth.json</code>（Windows 对应 <code>%USERPROFILE%\.codex\auth.json</code>，没有则手动创建）：</p>
 <div class="code-block"><pre><code>{
   "OPENAI_API_KEY": "你的中转站Codex分组密钥"
 }</code></pre></div>
 <p>编辑 <code>~/.codex/config.toml</code>（<b>注意 URL 末尾必须加 /v1</b>）：</p>
 <div class="code-block"><pre><code>model_provider = "my_codex"
-model = "gpt-5.5"              # 或你希望用的其他模型
+model = "gpt-4o"              # 或你希望用的其他模型
 model_reasoning_effort = "high"
 disable_response_storage = true
 
@@ -1386,7 +1379,7 @@ codex
 <p>如果你不想手动改配置文件，可以用 <b>codex-helper</b> 这个开源小工具，图形界面一键配置。</p>
 
 <h3>步骤 1：安装 codex-helper</h3>
-<p>下载地址：<a href="https://github.com/xqnode/codex-helper" target="_blank">GitHub - xqnode/codex-helper</a></p>
+<p>下载地址：<a href="https://github.com/xqnode/codex-helper" target="_blank" rel="noopener noreferrer">GitHub - xqnode/codex-helper</a></p>
 <p>下载安装包，双击安装即可。</p>
 
 <h3>步骤 2：配置 Base URL 和 API Key</h3>
@@ -1394,16 +1387,16 @@ codex
   <li>安装完成后右键托盘图标 → 点击「设置」</li>
   <li>填写三项关键信息：
     <ul>
-      <li><b>Base URL</b>：中转站提供的接口地址（如 <code>https://api.highwayapi.ai/openai/v1</code>）</li>
-      <li><b>模型 ID</b>：如 <code>gpt-5.5</code> 或 <code>claude-fable-5</code></li>
+      <li><b>Base URL</b>：中转站提供的接口地址（如 <code>https://你的中转站地址/openai/v1</code>）</li>
+      <li><b>模型 ID</b>：如 <code>gpt-4o</code> 或 <code>claude-sonnet-4</code></li>
       <li><b>API Key</b>：中转站的密钥</li>
     </ul>
   </li>
-  <li>上游协议选 <code>Chat Completions</code>；若用 GPT-5.5-R 等 Responses 专属模型则选「透传」</li>
+  <li>上游协议选 <code>Chat Completions</code>；若用 Responses API 专属模型则选「透传」</li>
 </ol>
 <div class="code-block"><pre><code># 典型配置值
-Base URL: https://api.highwayapi.ai/openai/v1
-模型: gpt-5.5
+Base URL: https://你的中转站地址/openai/v1
+模型: gpt-4o
 API Key: sk-xxxxx...</code></pre></div>
 
 <h3>步骤 3：同步配置并重启</h3>
@@ -1413,15 +1406,15 @@ API Key: sk-xxxxx...</code></pre></div>
 <h2>Claude Code 同样可用 helper 方案</h2>
 <p>配套的 <b>claude-code-helper</b> 工作原理完全一致：</p>
 <ol>
-  <li>安装 <a href="https://github.com/xqnode/claude-code-helper" target="_blank">claude-code-helper</a></li>
+  <li>安装 <a href="https://github.com/xqnode/claude-code-helper" target="_blank" rel="noopener noreferrer">claude-code-helper</a></li>
   <li>托盘图标 → 设置 → 填 Base URL + 模型 + API Key</li>
-  <li>模型填 <code>claude-fable-5</code>（或中转站支持的 Claude 型号）</li>
+  <li>模型填 <code>claude-sonnet-4</code>（或中转站支持的 Claude 型号）</li>
   <li>测试连接 → 重启 Claude Code</li>
 </ol>
 
 <h2>常见问题排查</h2>
 <table style="width:100%;border-collapse:collapse;margin:16px 0;">
-<tr style="background:#d4edda;"><th style="padding:8px;text-align:left;width:25%;">问题</th><th style="padding:8px;text-align:left;width:35%;">原因</th><th style="padding:8px;text-align:left;">解决方法</th></tr>
+<tr style="background:#d4edda;color:#1D2129;"><th style="padding:8px;text-align:left;width:25%;">问题</th><th style="padding:8px;text-align:left;width:35%;">原因</th><th style="padding:8px;text-align:left;">解决方法</th></tr>
 <tr><td style="padding:8px;border-bottom:1px solid #eee;">Codex 保存后没生效</td><td style="padding:8px;border-bottom:1px solid #eee;">只关了窗口没退出进程</td><td style="padding:8px;border-bottom:1px solid #eee;">托盘→重新同步→完全退出再重启</td></tr>
 <tr><td style="padding:8px;border-bottom:1px solid #eee;">模型名显示不对</td><td style="padding:8px;border-bottom:1px solid #eee;">Helper 设置的首行模型名不匹配</td><td style="padding:8px;border-bottom:1px solid #eee;">检查模型列表首行，重启 Claude Code</td></tr>
 <tr><td style="padding:8px;border-bottom:1px solid #eee;">连接失败 401/403</td><td style="padding:8px;border-bottom:1px solid #eee;">Key 错误或余额不足</td><td style="padding:8px;border-bottom:1px solid #eee;">检查 Key 是否复制完整，确认账户余额</td></tr>
@@ -1431,7 +1424,7 @@ API Key: sk-xxxxx...</code></pre></div>
 
 <h2>Claude Code vs Codex 怎么选？</h2>
 <table style="width:100%;border-collapse:collapse;margin:16px 0;">
-<tr style="background:#e8f4fd;"><th style="padding:10px;">对比项</th><th style="padding:10px;">Claude Code</th><th style="padding:10px;">Codex</th></tr>
+<tr style="background:#e8f4fd;color:#1D2129;"><th style="padding:10px;">对比项</th><th style="padding:10px;">Claude Code</th><th style="padding:10px;">Codex</th></tr>
 <tr><td style="padding:10px;border-bottom:1px solid #eee;"><b>出品方</b></td><td style="padding:10px;border-bottom:1px solid #eee;">Anthropic</td><td style="padding:10px;border-bottom:1px solid #eee;">OpenAI</td></tr>
 <tr><td style="padding:10px;border-bottom:1px solid #eee;"><b>协议</b></td><td style="padding:10px;border-bottom:1px solid #eee;">Apache-2.0（部分）</td><td style="padding:10px;border-bottom:1px solid #eee;">Apache-2.0（完全开源）</td></tr>
 <tr><td style="padding:10px;border-bottom:1px solid #eee;"><b>擅长场景</b></td><td style="padding:10px;border-bottom:1px solid #eee;">大型项目重构、复杂逻辑推理</td><td style="padding:10px;border-bottom:1px solid #eee;">快速原型、代码生成、Debug</td></tr>
@@ -1443,18 +1436,18 @@ API Key: sk-xxxxx...</code></pre></div>
 <p>两种方案各有优劣：<b>中转站直配</b> 更灵活可控，适合喜欢折腾的开发者；<b>Helper 工具</b> 图形化操作更友好，新手首选。不管哪种方式，核心都是：<b>拿到可用的 API Key → 配置正确的 Base URL → 选对模型</b>。建议先利用免费额度跑通全流程，再决定是否长期付费使用。</p>`
   },
   {
-    id: 1, date: "2026-06-15", tag: "计算机视觉",
-    title: "YOLOv11 在边缘设备上的部署实践",
+    id: 3, date: "2026-06-15", tag: "计算机视觉",
+    title: "YOLO11 在边缘设备上的部署实践",
     summary: "从模型训练、ONNX 导出到 Orange Pi 端侧推理的完整流程，包含性能优化与常见问题解决方案。",
     readTime: "8 分钟",
     content: `<h2>一、背景与目标</h2>
 <p>毕业设计中需要将 YOLO 模型部署到 Orange Pi 开发板实现实时人体检测。本文记录从云端训练到端侧推理的完整实践过程，希望能帮到有类似需求的同学。</p>
-<p>核心目标：将 YOLOv11n 模型导出为 ONNX 格式，在 Orange Pi AI Pro（ARM 架构）上部署，实现不低于 5 FPS 的实时推理。</p>
+<p>核心目标：将 YOLO11n 模型导出为 ONNX 格式，在 Orange Pi AI Pro（ARM 架构）上部署，实现不低于 5 FPS 的实时推理。</p>
 
 <h2>二、开发环境</h2>
 <ul>
   <li><b>训练环境：</b>Ubuntu 22.04 + NVIDIA RTX 3060 + CUDA 12.1 + PyTorch 2.3</li>
-  <li><b>目标设备：</b>Orange Pi AI Pro（昇腾 AI 处理器，8GB LPDDR4X）</li>
+  <li><b>目标设备：</b>Orange Pi AI Pro（瑞芯微 RK3588 NPU，8GB LPDDR4X）</li>
   <li><b>关键依赖：</b>ultralytics 8.x、onnxruntime、opencv-python</li>
 </ul>
 
@@ -1476,8 +1469,8 @@ results = model.train(
 
 <h2>四、ONNX 模型导出</h2>
 <p>使用 ultralytics 内置的 export 功能，一行代码即可导出 ONNX：</p>
-<div class="code-block"><pre><code>model.export(format='onnx', imgsz=640, half=False)</code></pre></div>
-<p>注意：Orange Pi 的 NPU 不支持 FP16，此处用 FP32 导出。导出后得到 yolo11n.onnx（约 10.8MB）。</p>
+<div class="code-block"><pre><code>model.export(format='onnx', imgsz=640, half=False, opset=17)</code></pre></div>
+<p>注意：RK3588 的 NPU 加速需使用 RKNN 工具链转换，ONNX 先用 FP32 导出以便 CPU 回退推理。导出后得到 yolo11n.onnx（约 6.2MB）。</p>
 
 <h2>五、边缘端部署</h2>
 <h3>5.1 环境配置</h3>
@@ -1503,15 +1496,15 @@ while True:
 
 <h2>六、性能优化经验</h2>
 <div class="highlight-box">
-<b>实测数据：</b>推理耗时约 120ms/帧（约 8 FPS）；预处理 15ms；后处理 20ms。<br>
-<b>优化方向：</b>① 模型量化 INT8 → NPU 加速；② 多线程分离采集与推理；③ 降低输入分辨率到 416；④ 使用 TensorRT 替换 ONNX Runtime
+<b>实测数据：</b>ONNX CPU 推理耗时约 120ms/帧（约 8 FPS）；预处理 15ms；后处理 20ms。<br>
+<b>优化方向：</b>① 使用 RKNN 工具链量化 INT8 → NPU 加速（预期 3-4x 提升）；② 多线程分离采集与推理；③ 降低输入分辨率到 416；④ 使用 ncnn 等轻量推理框架
 </div>
 
 <h2>七、踩坑记录</h2>
 <ul>
-  <li><b>坑1：</b>Orange Pi 不支持 CUDA，必须用 CPU EP 或昇腾 NPU。启动时显式指定 providers。</li>
+  <li><b>坑1：</b>Orange Pi 不支持 CUDA，必须用 CPU EP 推理。NPU 加速需额外使用 RKNN 工具链转换模型。</li>
   <li><b>坑2：</b>OpenCV 的 VideoCapture 在 ARM 平台可能用不了 V4L2，需确认摄像头驱动。</li>
-  <li><b>坑3：</b>ONNX 的 opset 版本与 onnxruntime 版本需匹配。建议导出时指定 opset=12。</li>
+  <li><b>坑3：</b>ONNX 的 opset 版本与 onnxruntime 版本需匹配。ultralytics 默认导出 opset=17，手动指定更保险。</li>
   <li><b>坑4：</b>供电不足导致推理卡顿 —— 务必用 5V/4A 适配器。</li>
 </ul>
 
@@ -1519,7 +1512,7 @@ while True:
 <p>从训练到部署的全流程走下来，最大感受是：模型训练是第一步，真正能跑在边缘设备上才是工程能力的体现。ONNX 作为中间格式极大地降低了跨平台部署的门槛，建议每个做 AI 应用的同学都掌握。</p>`
   },
   {
-    id: 3, date: "2026-05-20", tag: "视觉检测",
+    id: 4, date: "2026-05-20", tag: "视觉检测",
     title: "VisionPro 工业视觉入门：从零搭建硬币检测系统",
     summary: "详解 Cognex VisionPro 的 PMAlign 模板匹配与 Blob 分析工具，附调参经验与准确率优化思路。",
     readTime: "6 分钟",
@@ -1573,7 +1566,7 @@ while True:
 <p>VisionPro 上手比 OpenCV 快很多，但灵活性不如 OpenCV。PMAlign 的匹配鲁棒性确实强，光照变化、部分遮挡都能稳定识别。Blob 分析的关键在于前处理——图像预处理不到位，后面再好的算法也白搭。</p>`
   },
   {
-    id: 4, date: "2026-04-08", tag: "Linux",
+    id: 5, date: "2026-04-08", tag: "Linux",
     title: "AI 开发者必备的 Linux 命令行技巧",
     summary: "文件操作、进程管理、GPU 监控、远程连接等 AI 开发场景下的高频命令整理与最佳实践。",
     readTime: "5 分钟",
@@ -1633,7 +1626,7 @@ tmux attach -t train         # 重新连接回会话</code></pre></div>
 <p>AI 开发者的日常工作 80% 在命令行里：连服务器、跑训练、看日志、传文件、查 GPU。以上命令熟练掌握后，效率至少翻倍。</p>`
   },
   {
-    id: 5, date: "2026-03-12", tag: "数据库",
+    id: 6, date: "2026-03-12", tag: "数据库",
     title: "MySQL 从入门到可以写在简历上",
     summary: "面向应届生的 MySQL 核心知识梳理：CRUD、JOIN、索引、事务，覆盖面试高频考点。",
     readTime: "7 分钟",
@@ -1647,8 +1640,8 @@ INSERT INTO users (name, age) VALUES
 ('张三', 25), ('李四', 30), ('王五', 28);
 
 -- DELETE vs TRUNCATE 的区别
-DELETE FROM users WHERE id = 1;   -- 可回滚，触发 trigger
-TRUNCATE TABLE users;             -- 不可回滚，重置自增 ID
+DELETE FROM users WHERE id = 1;   -- DML 操作，可回滚，触发 trigger
+TRUNCATE TABLE users;             -- DDL 操作，隐式提交不可回滚，重置自增 ID
 
 -- UPDATE：WHERE 条件一定要写！
 UPDATE users SET age = 26 WHERE id = 1;</code></pre></div>
@@ -1928,9 +1921,9 @@ window.BlogApp = (function() {
       contentWithLang +
       '<div class="share-row">' +
       '<span class="share-label">分享:</span>' +
-      '<a class="share-btn" href="https://service.weibo.com/share/share.php?url=' + encodeURIComponent(location.href) + '&title=' + encodeURIComponent(article.title) + '" target="_blank" rel="noopener">微博</a>' +
-      '<a class="share-btn" href="https://twitter.com/intent/tweet?text=' + encodeURIComponent(article.title) + '%20' + encodeURIComponent(location.href) + '" target="_blank" rel="noopener">Twitter</a>' +
-      '<button class="share-btn" onclick="BlogApp.copyArticleLink()">复制链接</button>' +
+      '<a class="share-btn" href="https://service.weibo.com/share/share.php?url=' + encodeURIComponent(location.href) + '&title=' + encodeURIComponent(article.title) + '" target="_blank" rel="noopener noreferrer">微博</a>' +
+      '<a class="share-btn" href="https://twitter.com/intent/tweet?text=' + encodeURIComponent(article.title) + '%20' + encodeURIComponent(location.href) + '" target="_blank" rel="noopener noreferrer">Twitter</a>' +
+      '<button class="share-btn" onclick="BlogApp.copyArticleLink(event)">复制链接</button>' +
       '</div></div>';
     blogOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -1953,11 +1946,14 @@ window.BlogApp = (function() {
     });
   }
 
-  function copyArticleLink() {
+  function copyArticleLink(e) {
+    const btn = e.target;
     navigator.clipboard.writeText(location.href).then(() => {
-      const btn = event.target;
       const orig = btn.textContent;
       btn.textContent = '已复制!';
+      setTimeout(() => { btn.textContent = orig; }, 1500);
+    }).catch(() => {
+      btn.textContent = '复制失败';
       setTimeout(() => { btn.textContent = orig; }, 1500);
     });
   }
@@ -1989,10 +1985,18 @@ window.BlogApp = (function() {
     data.forEach((tech, i) => {
       const chip = document.createElement('div');
       chip.className = 'tech-chip';
+      chip.setAttribute('tabindex', '0');
+      chip.setAttribute('role', 'button');
       chip.style.animationDelay = i * 0.05 + 's';
       chip.style.animation = 'fadeInUp .4s ease both';
       chip.innerHTML = '<div class="tc-icon" style="background:' + tech.color + '">' + tech.icon + '</div><span>' + tech.name + '</span>';
       chip.addEventListener('click', () => openModal(tech));
+      chip.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModal(tech);
+        }
+      });
       grid.appendChild(chip);
     });
   }
@@ -2068,19 +2072,34 @@ backToTopBtn.addEventListener('click', () => {
 (function() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) e.target.style.opacity = '1';
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
     });
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.section').forEach(s => {
-    s.style.transition = 'opacity .6s ease';
+    s.style.transition = 'opacity .6s ease, transform .6s ease';
     s.style.opacity = '0';
+    s.style.transform = 'translateY(24px)';
     observer.observe(s);
   });
 
   setTimeout(() => {
-    document.querySelectorAll('.section').forEach(s => s.style.opacity = '1');
+    document.querySelectorAll('.section').forEach(s => {
+      s.style.opacity = '1';
+      s.style.transform = 'translateY(0)';
+    });
   }, 100);
+})();
+
+// ==================== DYNAMIC FOOTER DATE ====================
+(function() {
+  if (typeof blogArticles !== 'undefined' && blogArticles.length) {
+    const dates = blogArticles.map(a => a.date).sort().reverse();
+    document.getElementById('lastUpdate').textContent = dates[0];
+  }
 })();
 </script>
 
