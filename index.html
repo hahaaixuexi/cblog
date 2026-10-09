@@ -905,8 +905,8 @@
     <h1>程 龙</h1>
     <div class="subtitle">人工智能专业 · 26届毕业生</div>
     <div class="desc">
-      专注于计算机视觉与 AI 应用，具备从模型训练到边缘部署的完整工程能力。
-      熟悉 OpenCV、YOLO、Python，掌握 Linux 系统操作与 ONNX 模型部署。
+      专注机器视觉和 AI 应用方向，用 OpenCV、YOLO、VisionPro 做过视觉检测项目。
+      系统学过 C#，继续在 VisionPro 联合开发方向积累。
     </div>
     <div class="contact-row">
       <span class="contact-item">
@@ -927,22 +927,22 @@
     <article class="blog-card">
       <div class="blog-card-body">
         <div class="bc-date">
-          <span>2026-07-08</span>
+          <span>2026-10-09</span>
           <span class="bc-tag">AI 工具</span>
         </div>
-        <h3>国内使用 Claude Code 完整指南：CCSwitch 接入国产大模型</h3>
-        <p class="bc-desc">从零开始，通过 CCSwitch 将 Claude Code 接入 DeepSeek、Kimi、智谱等国产模型，无需特殊网络环境。</p>
+        <h3>主流 Agent 工具介绍</h3>
+        <p class="bc-desc">介绍 Claude Code、Codex、Cursor、Copilot 和通义灵码、豆包 MarsCode 等国内外 Agent 编程工具，附选型建议。</p>
         <span class="bc-more">阅读全文 <span class="bc-arrow">→</span></span>
       </div>
     </article>
     <article class="blog-card">
       <div class="blog-card-body">
         <div class="bc-date">
-          <span>2026-07-08</span>
-          <span class="bc-tag">AI 工具</span>
+          <span>2026-10-09</span>
+          <span class="bc-tag">大模型</span>
         </div>
-        <h3>Codex 国内使用指南：中转 API + Helper 工具全方案</h3>
-        <p class="bc-desc">OpenAI Codex CLI/Desktop 的国内接入教程，覆盖中转站配置、codex-helper 使用及常见坑点。</p>
+        <h3>国内外主流大模型介绍</h3>
+        <p class="bc-desc">一文了解 GPT、Claude、Gemini、Llama 和 DeepSeek、通义、Kimi、GLM，附按需求选型建议。</p>
         <span class="bc-more">阅读全文 <span class="bc-arrow">→</span></span>
       </div>
     </article>
@@ -963,8 +963,8 @@
           <span>2026-05-20</span>
           <span class="bc-tag">视觉检测</span>
         </div>
-        <h3>VisionPro 工业视觉入门：从零搭建硬币检测系统</h3>
-        <p class="bc-desc">详解 Cognex VisionPro 的 PMAlign 模板匹配与 Blob 分析工具，附调参经验与准确率优化思路。</p>
+        <h3>VisionPro 新手入门：从零搭建硬币检测系统</h3>
+        <p class="bc-desc">面向零基础新手，从拖拽控件到 PMAlign 模板匹配、Blob 分析，一步步搭建第一个硬币检测系统。</p>
         <span class="bc-more">阅读全文 <span class="bc-arrow">→</span></span>
       </div>
     </article>
@@ -985,8 +985,8 @@
           <span>2026-03-12</span>
           <span class="bc-tag">数据库</span>
         </div>
-        <h3>MySQL 从入门到可以写在简历上</h3>
-        <p class="bc-desc">面向应届生的 MySQL 核心知识梳理：CRUD、JOIN、索引、事务，覆盖面试高频考点。</p>
+        <h3>MySQL 实用速查：数据类型、常用语句与增删改查</h3>
+        <p class="bc-desc">新手向速查：数据类型有哪些、常用 SQL 语句、增删改查命令行，附索引与事务两个面试高频点。</p>
         <span class="bc-more">阅读全文 <span class="bc-arrow">→</span></span>
       </div>
     </article>
@@ -1036,13 +1036,13 @@
       <h3>VisionPro 硬币识别与计数系统</h3>
       <p class="pc-desc">基于康耐视 VisionPro 搭建工业视觉检测流程，实现 1元/5角/1角 硬币的自动识别、定位与数量统计。</p>
       <ul class="pc-highlights">
-        <li>PMAlign 模板匹配，鲁棒旋转+尺度变化</li>
-        <li>Blob 分析提取连通域，目标分类</li>
-        <li>通过调参将识别准确率从 85% 提升至 98%</li>
-        <li>HMI 界面联动，实时计数与状态显示</li>
+        <li>精通 VisionPro 拖拽控件，ToolBlock 可视化搭建检测流程</li>
+        <li>熟练开发高级脚本，C#/VB.NET 自定义检测逻辑</li>
+        <li>VP 联合开发，.NET API 集成上位机与 HMI 实时联动</li>
+        <li>PMAlign 模板匹配 + Blob 分析，准确率 85%→98%</li>
       </ul>
       <div class="pc-tags">
-        <span>VisionPro</span><span>PMAlign</span><span>Blob分析</span><span>工业视觉</span>
+        <span>VisionPro</span><span>拖拽控件</span><span>高级脚本</span><span>联合开发</span><span>PMAlign</span><span>Blob分析</span>
       </div>
     </div>
     <div class="project-card">
@@ -1190,250 +1190,79 @@
 // ==================== BLOG ARTICLE DATA ====================
 const blogArticles = [
   {
-    id: 1, date: "2026-07-08", tag: "AI 工具",
-    title: "国内使用 Claude Code 完整指南：CCSwitch 接入国产大模型",
-    summary: "从零开始，通过 CCSwitch 将 Claude Code 接入 DeepSeek、Kimi、智谱等国产模型，无需特殊网络环境。",
-    readTime: "10 分钟",
-    content: `<h2>为什么需要 CCSwitch？</h2>
-<p>Claude Code 是 Anthropic 推出的终端 AI 编程助手，能理解整个项目、直接修改代码、执行命令。但它默认绑定 Claude 官方模型，国内用户面临三大障碍：</p>
+    id: 1, date: "2026-10-09", tag: "AI 工具",
+    title: "主流 Agent 工具介绍",
+    summary: "介绍 Claude Code、Codex、Cursor、Copilot 和通义灵码、豆包 MarsCode 等国内外 Agent 编程工具，附选型建议。",
+    readTime: "7 分钟",
+    content: `<h2>一、Agent 工具是什么</h2>
+<p>Agent 工具可以理解成「会自己干活的 AI 编程助手」。普通问答 AI 只给你建议，Agent 工具能直接读你的代码、改文件、跑命令、看报错再修，一套下来帮你把活干完。</p>
+<p>核心区别就一句：<b>问答 AI 告诉你该怎么做，Agent 工具直接帮你做。</b></p>
+
+<h2>二、国外主流 Agent 工具</h2>
 <ul>
-  <li>需要国外手机号和特殊网络环境</li>
-  <li>API 费用较高（Claude 最强模型输入约 $15/百万 token，输出约 $75/百万 token）</li>
-  <li>跨境支付不便</li>
+  <li><b>Claude Code（Anthropic）：</b>终端里的编程 Agent，理解整个项目、直接改代码，编程能力强，国内用要特殊网络</li>
+  <li><b>Codex（OpenAI）：</b>终端 + 桌面版，代码生成和调试快，同样需要特殊网络</li>
+  <li><b>Cursor：</b>基于 VS Code 的 AI 编辑器，内置 Agent 模式，交互最顺滑，需订阅</li>
+  <li><b>GitHub Copilot：</b>编辑器插件，代码补全为主，也支持 Agent 模式</li>
+  <li><b>Windsurf：</b>AI 原生编辑器，上手简单</li>
 </ul>
-<p><b>好消息：</b>Claude Code 本质是一个 Agent 框架（外壳），不绑定特定模型。我们可以用 <b>CCSwitch</b> 这个工具给它换上国产模型的「大脑」，实现零门槛使用。</p>
 
-<h2>一、CCSwitch 是什么？</h2>
-<p>CCSwitch（Claude Code Switch）是一款跨平台图形化工具，核心功能是：<b>一键切换 Claude Code 使用的后端模型</b>。</p>
-<p>它本质上是一个<b>协议转换层 + 智能路由器</b>，运行在本地：</p>
-<div class="code-block"><pre><code># 数据流示意
-Claude Code (终端)
-   ↓ 发起 Anthropic 格式请求
-CCSwitch (本地监听 127.0.0.1:8899)
-   ├─ 解析请求头与 Body
-   ├─ 匹配路由规则 → 选择目标模型
-   ├─ 协议转换: Anthropic → OpenAI/国产格式
-   └─ 转发至国内 API 网关 → 返回响应</code></pre></div>
+<h2>三、国内主流 Agent 工具</h2>
+<p>国内工具的优势是免费额度多、不用特殊网络：</p>
+<ul>
+  <li><b>通义灵码（阿里）：</b>VS Code / JetBrains 插件，补全 + 问答 + Agent 都有</li>
+  <li><b>豆包 MarsCode（字节）：</b>免费额度大方，有独立 IDE 也有插件</li>
+  <li><b>Trae（字节）：</b>AI IDE，海外版口碑不错</li>
+  <li><b>腾讯 CodeBuddy：</b>腾讯的 AI 编程助手，插件形态</li>
+  <li><b>智谱 CodeGeeX：</b>老牌国产 AI 编程插件</li>
+</ul>
 
-<h2>二、环境准备</h2>
-<h3>2.1 安装 Git（必须）</h3>
-<div class="code-block"><pre><code># Windows PowerShell 中执行
-winget install Git.Git
+<h2>四、怎么选</h2>
+<div class="highlight-box">
+<b>新手 / 预算有限：</b>通义灵码、豆包 MarsCode、CodeGeeX（免费、不用特殊网络）<br>
+<b>深度开发 / 重活：</b>Claude Code、Codex、Cursor<br>
+<b>编辑器里顺手补全：</b>Copilot、通义灵码
+</div>
 
-# 验证安装
-git --version</code></pre></div>
-
-<h3>2.2 安装 Claude Code</h3>
-<div class="code-block"><pre><code># 方式 A：有特殊网络条件
-irm https://claude.ai/install.ps1 | iex
-
-# 方式 B：npm 安装（推荐，跨平台通用）
-npm install -g @anthropic-ai/claude-code
-
-# 方式 C：winget 安装（仅 Windows）
-winget install Anthropic.ClaudeCode
-
-# 验证安装
-claude --version</code></pre></div>
-
-<h3>2.3 安装 CCSwitch</h3>
-<p>下载地址：<a href="https://github.com/farion1231/cc-switch/releases" target="_blank" rel="noopener noreferrer">GitHub Releases</a></p>
-<p>双击安装包一路 Next 即可。安装后在开始菜单找到 <b>CC Switch</b> 并打开。</p>
-
-<h2>三、获取国产模型 API Key</h2>
-<p>以下是国内常用的几个选择（注册即送免费额度）：</p>
-<table style="width:100%;border-collapse:collapse;margin:16px 0;">
-<tr style="background:#f5f5f5;color:#1D2129;"><th style="padding:8px;text-align:left;">模型平台</th><th style="padding:8px;text-align:left;">免费额度</th><th style="padding:8px;text-align:left;">特点</th></tr>
-<tr><td style="padding:8px;border-bottom:1px solid #eee;">DeepSeek</td><td style="padding:8px;border-bottom:1px solid #eee;">新用户赠送</td><td style="padding:8px;border-bottom:1px solid #eee;">性价比高，代码能力强</td></tr>
-<tr><td style="padding:8px;border-bottom:1px solid #eee;">Kimi（月之暗面）</td><td style="padding:8px;border-bottom:1px solid #eee;">15 元</td><td style="padding:8px;border-bottom:1px solid #eee;">长文本能力突出</td></tr>
-<tr><td style="padding:8px;border-bottom:1px solid #eee;">硅基流动 SiliconFlow</td><td style="padding:8px;border-bottom:1px solid #eee;">16 元</td><td style="padding:8px;border-bottom:1px solid #eee;">模型多、响应快</td></tr>
-<tr><td style="padding:8px;">智谱 GLM</td><td style="padding:8px;">新用户赠送</td><td style="padding:8px;">官方提供 coding-helper 一键接入</td></tr>
-</table>
-<p><b>以 DeepSeek 为例获取 Key：</b></p>
-<ol>
-  <li>访问 <a href="https://platform.deepseek.com" target="_blank" rel="noopener noreferrer">platform.deepseek.com</a> 注册登录</li>
-  <li>进入「API Keys」页面，点击「创建 API Key」</li>
-  <li>复制生成的 Key（形如 sk-xxxxxxxx）备用</li>
-</ol>
-
-<h2>四、在 CCSwitch 中配置</h2>
-<ol>
-  <li>打开 CC Switch 应用，点击右上角「+」→ 新增模型配置</li>
-  <li>选择你要用的国产模型（如 DeepSeek）</li>
-  <li>粘贴 API Key，选择对应模型版本</li>
-  <li>点击「添加」，然后在主界面启用该模型</li>
-</ol>
-<p>至此模型已接入完毕。如果遇到 <b>400 报错（thinking type 错误）</b>，需在通用配置中添加：</p>
-<div class="code-block"><pre><code>// CCSwitch 通用配置中添加：
-{
-  "env": {
-    "claude_code_disable_adaptive_thinking": "1"
-  }
-}</code></pre></div>
-
-<h2>五、启动 Claude Code</h2>
-<p><b>重要：</b>不要在系统根目录启动！先创建项目文件夹再 cd 进去。</p>
-<div class="code-block"><pre><code># 1. 创建工作目录
-mkdir D:\\MyCode && cd D:\\MyCode
-
-# 2. 启动 Claude Code
-claude
-
-# 看到交互式命令行界面即启动成功</code></pre></div>
-<p>在 Claude Code 对话中输入 <code>/model</code> 可以查看和切换已配置的模型。</p>
-
-<h2>六、配置 CLAUDE.md（推荐）</h2>
-<p>CLAUDE.md 是 Claude Code 的协作规则文件。创建全局规则让 AI 更懂你的习惯：</p>
-<div class="code-block"><pre><code># 创建目录
-mkdir $env:USERPROFILE\\.claude -Force
-
-# 编辑全局配置文件
-notepad $env:USERPROFILE\\.claude\\CLAUDE.md</code></pre></div>
-<p>模板内容：</p>
-<div class="code-block"><pre><code>## 关于我
-应届毕业生，主要做 AI 视觉方向开发
-
-## 沟通风格
-- 使用中文交流，代码和命令用英文
-- 直接给答案，不要废话
-- 如果我的想法有问题，直接指出来
-
-## 红线（必须问我）
-- 删除任何文件或文件夹
-- 修改 .env、密钥、token
-- git push、强制重置代码
-- 安装全局依赖
-
-## 工程习惯
-- 改动代码后自动运行测试验证
-- 不要把密钥写进代码里
-- 大改动之前先给我方案确认</code></pre></div>
-
-<h2>七、避坑清单</h2>
-<table style="width:100%;border-collapse:collapse;margin:16px 0;">
-<tr style="background:#fff3cd;color:#1D2129;"><th style="padding:8px;text-align:left;">问题</th><th style="padding:8px;text-align:left;">原因</th><th style="padding:8px;text-align:left;">解决方法</th></tr>
-<tr><td style="padding:8px;border-bottom:1px solid #eee;">401 未授权</td><td style="padding:8px;border-bottom:1px solid #eee;">API Key 映射错误</td><td style="padding:8px;border-bottom:1px solid #eee;">检查 CCSwitch 路由中的 api_key 字段</td></tr>
-<tr><td style="padding:8px;border-bottom:1px solid #eee;">400 thinking type 错误</td><td style="padding:8px;border-bottom:1px solid #eee;">新版 CC 默认发送 adaptive thinking</td><td style="padding:8px;border-bottom:1px solid #eee;">设置 claude_code_disable_adaptive_thinking=1</td></tr>
-<tr><td style="padding:8px;border-bottom:1px solid #eee;">代码块格式错乱</td><td style="padding:8px;border-bottom:1px solid #eee;">模型未识别标记语法</td><td style="padding:8px;border-bottom:1px solid #eee;">在 system_prompt_suffix 中强化格式约束</td></tr>
-<tr><td style="padding:8px;border-bottom:1px solid #eee;">频繁断连</td><td style="padding:8px;border-bottom:1px solid #eee;">网关超时或网络抖动</td><td style="padding:8px;border-bottom:1px solid #eee;">调高 timeout 至 120s，开启 keep-alive</td></tr>
-<tr><td style="padding:8px;">响应慢/分析变差</td><td style="padding:8px;">根目录启动导致上下文污染</td><td style="padding:8px;">务必在项目文件夹内启动 claude</td></tr>
-</table>
-
-<h2>八、总结</h2>
-<p>CCSwitch + 国产模型的组合，让你在不翻墙、不花外汇的前提下，完整体验 Claude Code 的强大能力。核心就三步：<b>装 Claude Code → 装 CCSwitch → 填 API Key</b>。建议先用免费额度跑通流程，确认效果满意后再按需充值。</p>`
+<h2>五、总结</h2>
+<p>国内 Agent 工具已经够日常用了，新手从通义灵码或豆包 MarsCode 起步最省心。想追求更强的编程体验，再上 Claude Code、Cursor 这类付费/海外的工具。核心思路：先用免费的把流程跑熟，再按需升级。</p>`
   },
   {
-    id: 2, date: "2026-07-08", tag: "AI 工具",
-    title: "Codex 国内使用指南：中转 API + Helper 工具全方案",
-    summary: "OpenAI Codex CLI/Desktop 的国内接入教程，覆盖中转站配置、codex-helper 使用及常见坑点。",
-    readTime: "9 分钟",
-    content: `<h2>什么是 Codex？</h2>
-<p>Codex 是 OpenAI 于 2025 年推出的终端 AI 编程智能体（开源社区高热度项目，Apache-2.0 协议），集代码生成、解释、调试、重构于一体。支持三种使用方式：</p>
+    id: 2, date: "2026-10-09", tag: "大模型",
+    title: "国内外主流大模型介绍",
+    summary: "一文了解 GPT、Claude、Gemini、Llama 和 DeepSeek、通义、Kimi、GLM，附按需求选型建议。",
+    readTime: "8 分钟",
+    content: `<h2>一、国外主流模型</h2>
+<p>国外的头部大模型主要来自这几家公司，各有各的强项：</p>
 <ul>
-  <li><b>Codex CLI</b> — 命令行版本，适合终端党</li>
-  <li><b>Codex Desktop</b> — 桌面 GUI 版本，更直观</li>
-  <li><b>IDE 插件</b> — VSCode/JetBrains 内嵌使用</li>
+  <li><b>OpenAI GPT 系列：</b>综合能力标杆，GPT-4o 支持多模态，写文章、问答、写代码都均衡，但国内用需要特殊网络</li>
+  <li><b>Anthropic Claude 系列：</b>分 Sonnet / Opus 两档，写代码和长文本理解是公认强项</li>
+  <li><b>Google Gemini 系列：</b>多模态主打，跟谷歌搜索、办公生态结合紧</li>
+  <li><b>Meta Llama 系列：</b>开源代表，可本地部署，很多国产模型基于它微调</li>
 </ul>
-<p>但官方仅支持 OpenAI 接口，国内无法直接调用。本文介绍两种主流解决方案。</p>
 
-<h2>方案一：中转站 API 直接配置（无需额外工具）</h2>
-<h3>步骤 1：注册中转站并获取 API Key</h3>
-<p>中转站充当「代理中间人」角色——你向它发请求，它转发给 OpenAI/Claude 再返回结果。国内有多家中转服务商可选：</p>
+<h2>二、国内主流模型</h2>
+<p>国内这几年模型进步很快，日常使用不输国外，而且不用特殊网络：</p>
 <ul>
-  <li>注册后通常赠送试用额度（约 $10~20）</li>
-  <li>同时支持 Claude 和 GPT 系列模型</li>
-  <li>API 格式兼容官方 SDK</li>
+  <li><b>DeepSeek：</b>开源、性价比极高，代码能力强，推理模型 R1 出圈后全球爆火</li>
+  <li><b>通义千问（Qwen，阿里）：</b>开源，型号最全，生态好，多模态版本多</li>
+  <li><b>Kimi（月之暗面）：</b>长文本是招牌，处理长文档、长对话有优势</li>
+  <li><b>智谱 GLM：</b>国产老牌，开源，学术和工程都用得多</li>
+  <li><b>文心一言（百度）：</b>中文理解好，跟百度搜索生态绑定</li>
+  <li><b>豆包（字节）：</b>多模态和语音交互不错，免费额度大方</li>
 </ul>
-<p>注册后在控制台创建两个密钥：<b>一个用于 Claude 分组</b>，<b>一个用于 Codex/GPT 分组</b>。</p>
 
-<h3>步骤 2：安装 Codex CLI</h3>
-<div class="code-block"><pre><code># npm 全局安装
-npm install -g @openai/codex
+<h2>三、按需求怎么选</h2>
+<p>选模型不用纠结，按场景对号入座就行：</p>
+<div class="highlight-box">
+<b>写代码：</b>Claude、DeepSeek<br>
+<b>日常对话 / 中文写作：</b>通义、Kimi、文心一言<br>
+<b>想本地部署 / 省钱：</b>Llama、Qwen、DeepSeek、GLM 的开源版<br>
+<b>追求综合最强：</b>GPT、Claude、Gemini
+</div>
 
-# 验证安装
-codex --version</code></pre></div>
-
-<h3>步骤 3：配置 Codex CLI</h3>
-<p>编辑配置文件 <code>~/.codex/auth.json</code>（Windows 对应 <code>%USERPROFILE%\.codex\auth.json</code>，没有则手动创建）：</p>
-<div class="code-block"><pre><code>{
-  "OPENAI_API_KEY": "你的中转站Codex分组密钥"
-}</code></pre></div>
-<p>编辑 <code>~/.codex/config.toml</code>（<b>注意 URL 末尾必须加 /v1</b>）：</p>
-<div class="code-block"><pre><code>model_provider = "my_codex"
-model = "gpt-4o"              # 或你希望用的其他模型
-model_reasoning_effort = "high"
-disable_response_storage = true
-
-[model_providers.my_codex]
-name = "my_codex"
-base_url = "https://你的中转站网址/v1"   # ⚠️ 末尾必须有 /v1
-wire_api = "responses"
-requires_openai_auth = true</code></pre></div>
-
-<h3>步骤 4：测试连接</h3>
-<div class="code-block"><pre><code>cd 你的项目目录
-codex
-# 输入「你好」，收到回复即成功 ✅</code></pre></div>
-
-<h2>方案二：codex-helper 图形化工具（更简单）</h2>
-<p>如果你不想手动改配置文件，可以用 <b>codex-helper</b> 这个开源小工具，图形界面一键配置。</p>
-
-<h3>步骤 1：安装 codex-helper</h3>
-<p>下载地址：<a href="https://github.com/xqnode/codex-helper" target="_blank" rel="noopener noreferrer">GitHub - xqnode/codex-helper</a></p>
-<p>下载安装包，双击安装即可。</p>
-
-<h3>步骤 2：配置 Base URL 和 API Key</h3>
-<ol>
-  <li>安装完成后右键托盘图标 → 点击「设置」</li>
-  <li>填写三项关键信息：
-    <ul>
-      <li><b>Base URL</b>：中转站提供的接口地址（如 <code>https://你的中转站地址/openai/v1</code>）</li>
-      <li><b>模型 ID</b>：如 <code>gpt-4o</code> 或 <code>claude-sonnet-4</code></li>
-      <li><b>API Key</b>：中转站的密钥</li>
-    </ul>
-  </li>
-  <li>上游协议选 <code>Chat Completions</code>；若用 Responses API 专属模型则选「透传」</li>
-</ol>
-<div class="code-block"><pre><code># 典型配置值
-Base URL: https://你的中转站地址/openai/v1
-模型: gpt-4o
-API Key: sk-xxxxx...</code></pre></div>
-
-<h3>步骤 3：同步配置并重启</h3>
-<p>保存设置后点击 <b>「重新同步配置」</b>，然后<b>完全退出 Codex Desktop</b>（不只是关窗口，要从托盘退出），再重新打开即可生效。</p>
-<p>发送「你好」测试，底部显示模型编号即说明配置正确。</p>
-
-<h2>Claude Code 同样可用 helper 方案</h2>
-<p>配套的 <b>claude-code-helper</b> 工作原理完全一致：</p>
-<ol>
-  <li>安装 <a href="https://github.com/xqnode/claude-code-helper" target="_blank" rel="noopener noreferrer">claude-code-helper</a></li>
-  <li>托盘图标 → 设置 → 填 Base URL + 模型 + API Key</li>
-  <li>模型填 <code>claude-sonnet-4</code>（或中转站支持的 Claude 型号）</li>
-  <li>测试连接 → 重启 Claude Code</li>
-</ol>
-
-<h2>常见问题排查</h2>
-<table style="width:100%;border-collapse:collapse;margin:16px 0;">
-<tr style="background:#d4edda;color:#1D2129;"><th style="padding:8px;text-align:left;width:25%;">问题</th><th style="padding:8px;text-align:left;width:35%;">原因</th><th style="padding:8px;text-align:left;">解决方法</th></tr>
-<tr><td style="padding:8px;border-bottom:1px solid #eee;">Codex 保存后没生效</td><td style="padding:8px;border-bottom:1px solid #eee;">只关了窗口没退出进程</td><td style="padding:8px;border-bottom:1px solid #eee;">托盘→重新同步→完全退出再重启</td></tr>
-<tr><td style="padding:8px;border-bottom:1px solid #eee;">模型名显示不对</td><td style="padding:8px;border-bottom:1px solid #eee;">Helper 设置的首行模型名不匹配</td><td style="padding:8px;border-bottom:1px solid #eee;">检查模型列表首行，重启 Claude Code</td></tr>
-<tr><td style="padding:8px;border-bottom:1px solid #eee;">连接失败 401/403</td><td style="padding:8px;border-bottom:1px solid #eee;">Key 错误或余额不足</td><td style="padding:8px;border-bottom:1px solid #eee;">检查 Key 是否复制完整，确认账户余额</td></tr>
-<tr><td style="padding:8px;border-bottom:1px solid #eee;">连接失败但 Key 正确</td><td style="padding:8px;border-bottom:1px solid #eee;">Base URL 末尾缺少 /v1</td><td style="padding:8px;border-bottom:1px solid #eee;">Codex 必须带 /v1 后缀</td></tr>
-<tr><td style="padding:8px;">公司网络连不上</td><td style="padding:8px;">防火墙拦截</td><td style="padding:8px;">换手机热点排除网络问题</td></tr>
-</table>
-
-<h2>Claude Code vs Codex 怎么选？</h2>
-<table style="width:100%;border-collapse:collapse;margin:16px 0;">
-<tr style="background:#e8f4fd;color:#1D2129;"><th style="padding:10px;">对比项</th><th style="padding:10px;">Claude Code</th><th style="padding:10px;">Codex</th></tr>
-<tr><td style="padding:10px;border-bottom:1px solid #eee;"><b>出品方</b></td><td style="padding:10px;border-bottom:1px solid #eee;">Anthropic</td><td style="padding:10px;border-bottom:1px solid #eee;">OpenAI</td></tr>
-<tr><td style="padding:10px;border-bottom:1px solid #eee;"><b>协议</b></td><td style="padding:10px;border-bottom:1px solid #eee;">Apache-2.0（部分）</td><td style="padding:10px;border-bottom:1px solid #eee;">Apache-2.0（完全开源）</td></tr>
-<tr><td style="padding:10px;border-bottom:1px solid #eee;"><b>擅长场景</b></td><td style="padding:10px;border-bottom:1px solid #eee;">大型项目重构、复杂逻辑推理</td><td style="padding:10px;border-bottom:1px solid #eee;">快速原型、代码生成、Debug</td></tr>
-<tr><td style="padding:10px;border-bottom:1px solid #eee;"><b>上下文管理</b></td><td style="padding:10px;border-bottom:1px solid #eee;">更强（自动裁剪策略成熟）</td><td style="padding:10px;border-bottom:1px solid #eee;">优秀（200K context window）</td></tr>
-<tr><td style="padding:10px;"><b>国内接入难度</b></td><td style="padding:10px;">需 CCSwitch/helper 转换协议</td><td style="padding:10px;">兼容 OpenAI 格式，更易对接</td></tr>
-</table>
-
-<h2>总结</h2>
-<p>两种方案各有优劣：<b>中转站直配</b> 更灵活可控，适合喜欢折腾的开发者；<b>Helper 工具</b> 图形化操作更友好，新手首选。不管哪种方式，核心都是：<b>拿到可用的 API Key → 配置正确的 Base URL → 选对模型</b>。建议先利用免费额度跑通全流程，再决定是否长期付费使用。</p>`
+<h2>四、总结</h2>
+<p>国外模型（GPT、Claude、Gemini、Llama）是标杆，国内模型（DeepSeek、通义、Kimi、GLM、文心、豆包）已经能覆盖绝大多数日常场景，免费额度多、不用特殊网络。普通用户从国内模型入门完全够用，写代码可以优先试 DeepSeek 或 Claude。</p>`
   },
   {
     id: 3, date: "2026-06-15", tag: "计算机视觉",
@@ -1442,7 +1271,7 @@ API Key: sk-xxxxx...</code></pre></div>
     readTime: "8 分钟",
     content: `<h2>一、背景与目标</h2>
 <p>毕业设计中需要将 YOLO 模型部署到 Orange Pi 开发板实现实时人体检测。本文记录从云端训练到端侧推理的完整实践过程，希望能帮到有类似需求的同学。</p>
-<p>核心目标：将 YOLO11n 模型导出为 ONNX 格式，在 Orange Pi AI Pro（ARM 架构）上部署，实现不低于 5 FPS 的实时推理。</p>
+<p>核心目标：将 YOLO11n 模型导出为 ONNX 格式，在 Orange Pi AI Pro（ARM 架构）上部署，实现不低于 30 FPS 的实时推理。</p>
 
 <h2>二、开发环境</h2>
 <ul>
@@ -1513,57 +1342,59 @@ while True:
   },
   {
     id: 4, date: "2026-05-20", tag: "视觉检测",
-    title: "VisionPro 工业视觉入门：从零搭建硬币检测系统",
-    summary: "详解 Cognex VisionPro 的 PMAlign 模板匹配与 Blob 分析工具，附调参经验与准确率优化思路。",
+    title: "VisionPro 新手入门：从零搭建硬币检测系统",
+    summary: "面向零基础新手，从拖拽控件到 PMAlign 模板匹配、Blob 分析，一步步搭建第一个硬币检测系统。",
     readTime: "6 分钟",
-    content: `<h2>一、项目背景</h2>
-<p>实训课程要求使用康耐视 VisionPro 搭建一个工业视觉检测系统，我选择了硬币识别与计数这个经典场景——识别 1 元、5 角、1 角硬币并统计数量。</p>
+    content: `<h2>一、写给新手：怎么上手 VisionPro</h2>
+<p>这篇文章写给完全没接触过工业视觉的同学。如果你和我一样，刚装上 VisionPro 不知道从哪下手，跟着这篇文章把硬币识别计数系统跑起来，就能摸清它最基本的玩法。</p>
+<p>全程只用到两个最核心的工具：<b>PMAlign</b>（负责「找到硬币在哪」）和 <b>Blob</b>（负责「数出有几个、是哪一种」）。别被英文名吓到，用起来就是拖控件、连线、调几个参数，不用写代码。</p>
 
-<h2>二、VisionPro 基础概念</h2>
-<p>VisionPro 是康耐视公司的工业视觉软件平台，核心特点：</p>
+<h2>二、VisionPro 是什么</h2>
+<p>VisionPro 是康耐视（Cognex）的工业视觉软件，最大特点就是<b>拖拽式编程</b>——把工具拖进流程、连上线就能跑，新手友好度比 OpenCV 高很多。</p>
 <ul>
-  <li><b>拖拽式编程：</b>无需写代码，通过 ToolBlock + 连线构建视觉流程</li>
-  <li><b>丰富的工具库：</b>PMAlign（定位）、Blob（分割）、Caliper（测量）等 30+ 工具</li>
-  <li><b>工业级可靠性：</b>支持 GigE Vision、USB3 Vision 等多种工业相机协议</li>
+  <li><b>拖拽式编程：</b>通过 ToolBlock 把工具串起来，像搭积木</li>
+  <li><b>工具库丰富：</b>PMAlign（定位）、Blob（分割）、Caliper（测量）等，每个工具解决一类问题</li>
+  <li><b>工业场景稳定：</b>支持 GigE Vision、USB3 Vision 等工业相机</li>
 </ul>
 
-<h2>三、系统方案设计</h2>
-<p>视觉检测流程分四步：</p>
+<h2>三、新手第一步：先把流程搭起来</h2>
+<p>整个检测流程分四步，新手照着顺序搭就行：</p>
 <ol>
-  <li><b>图像采集：</b>使用 Basler 工业相机，500 万像素，环形光源正面打光</li>
-  <li><b>模板定位（PMAlign）：</b>为每种硬币创建模板，实现旋转/缩放不变匹配</li>
-  <li><b>连通域分析（Blob）：</b>分割硬币区域，计算面积和圆形度进行分类</li>
-  <li><b>结果输出：</b>通过 HMI 界面显示实时计数和合格/不合格状态</li>
+  <li><b>图像采集：</b>用相机拍一张硬币的图（练习阶段先拍静态照片即可）</li>
+  <li><b>模板定位（PMAlign）：</b>为每种硬币各建一个模板，告诉软件「长这样」</li>
+  <li><b>连通域分析（Blob）：</b>把硬币从背景里抠出来，按面积和圆形度分类</li>
+  <li><b>结果输出：</b>在界面上显示实时计数</li>
 </ol>
 
-<h2>四、PMAlign 模板匹配调参</h2>
-<p>PMAlign 是 VisionPro 的核心定位工具，关键参数：</p>
+<h2>四、PMAlign 调参：新手最常卡的地方</h2>
+<p>PMAlign 就是「模板匹配」——你先给软件看一枚硬币的模板，它再去图里找长得像的位置。四个参数新手先记住：</p>
 <div class="highlight-box">
-<b>Angle Tolerance：</b>设置为 180°，允许硬币任意旋转<br>
-<b>Scale Tolerance：</b>0.85-1.15，允许 15% 的尺寸变化<br>
-<b>Accept Threshold：</b>0.75，低于此分数的匹配被丢弃<br>
-<b>Contrast Threshold：</b>50，低于此值不计算边缘
+<b>Angle Tolerance：</b>允许目标转多少度，硬币反正能滚，设 180°<br>
+<b>Scale Tolerance：</b>允许目标大小变化多少，设 0.85-1.15（±15%）<br>
+<b>Accept Threshold：</b>匹配分数门槛，低于 0.75 就认为没找到<br>
+<b>Contrast Threshold：</b>边缘对比度门槛，低于 50 的边缘不算
 </div>
 
-<h2>五、Blob 分析实现分类</h2>
-<p>三种硬币通过面积和圆形度进行区分：</p>
+<h2>五、Blob 分析：靠面积和圆形度分类</h2>
+<p>Blob 就是把图里连成一片的像素团抠出来。硬币是圆的，所以用「面积 + 圆形度」两个指标就能区分三种硬币：</p>
 <ul>
   <li><b>1 元硬币：</b>面积最大（约 25000 像素²），圆形度 > 0.92</li>
   <li><b>5 角硬币：</b>面积中等（约 17000 像素²），圆形度 > 0.90</li>
   <li><b>1 角硬币：</b>面积最小（约 12000 像素²），圆形度 > 0.88</li>
 </ul>
+<p>新手提示：这些面积数值跟相机距离、分辨率有关，别照抄，先实测你图里的值再填。</p>
 
-<h2>六、准确率优化历程</h2>
-<p>初始版本准确率只有 85%，经过以下优化提升到 98%：</p>
+<h2>六、从 85% 到 98%：新手也能做的优化</h2>
+<p>我第一版准确率只有 85%，很多硬币识别错。后来一步步调到 98%，方法新手都能照着做：</p>
 <ol>
-  <li><b>光源改进：</b>从环形光源改为低角度环形光，减少硬币表面反光</li>
-  <li><b>预处理：</b>添加高斯滤波（σ=1.5）+ 自适应阈值，增强边缘</li>
-  <li><b>形态学处理：</b>开运算消除小噪点，闭运算填充孔洞</li>
-  <li><b>重叠检测：</b>当 Blob 面积异常大时，判定为多枚硬币重叠，触发报警</li>
+  <li><b>光源改进：</b>换成低角度环形光，减少硬币反光（光源往往比算法更关键）</li>
+  <li><b>预处理：</b>高斯滤波（σ=1.5）去噪 + 自适应阈值增强边缘</li>
+  <li><b>形态学处理：</b>开运算去小噪点，闭运算填孔洞</li>
+  <li><b>重叠检测：</b>Blob 面积异常大时判定为多枚硬币叠一起，触发报警</li>
 </ol>
 
 <h2>七、总结</h2>
-<p>VisionPro 上手比 OpenCV 快很多，但灵活性不如 OpenCV。PMAlign 的匹配鲁棒性确实强，光照变化、部分遮挡都能稳定识别。Blob 分析的关键在于前处理——图像预处理不到位，后面再好的算法也白搭。</p>`
+<p>对新手来说，VisionPro 比 OpenCV 好上手太多——拖控件、连线、调参，不用写代码就能出结果。先把硬币识别跑通，把 PMAlign 和 Blob 玩熟，工业视觉就算入门了。记住一条：图像预处理没做好，后面算法再强也白搭。</p>`
   },
   {
     id: 5, date: "2026-04-08", tag: "Linux",
@@ -1627,70 +1458,83 @@ tmux attach -t train         # 重新连接回会话</code></pre></div>
   },
   {
     id: 6, date: "2026-03-12", tag: "数据库",
-    title: "MySQL 从入门到可以写在简历上",
-    summary: "面向应届生的 MySQL 核心知识梳理：CRUD、JOIN、索引、事务，覆盖面试高频考点。",
+    title: "MySQL 实用速查：数据类型、常用语句与增删改查",
+    summary: "新手向速查：数据类型有哪些、常用 SQL 语句、增删改查命令行，附索引与事务两个面试高频点。",
     readTime: "7 分钟",
-    content: `<h2>一、写在前面</h2>
-<p>很多应届生把 MySQL 写在简历上，但被问到索引原理、事务隔离级别时就卡住了。本文梳理了真正需要掌握的核心知识点，帮你从"用过"到"能讲清楚"。</p>
+    content: `<h2>一、MySQL 的数据类型有哪些</h2>
+<p>建表之前先想清楚每列要存什么，类型选对了后面少踩坑。新手常用的就这几类：</p>
+<div class="highlight-box">
+<b>数值：</b>INT（整数）、BIGINT（大整数）、DECIMAL(M,D)（精确小数，钱用这个）、FLOAT/DOUBLE（近似小数）<br>
+<b>字符串：</b>VARCHAR(n)（变长，最常用）、CHAR(n)（定长）、TEXT（长文本）<br>
+<b>日期时间：</b>DATE（年月日）、DATETIME（到秒）、TIMESTAMP（时间戳，可自动更新）<br>
+<b>其他：</b>TINYINT(1)（当布尔用）、ENUM（枚举）、JSON（存 JSON 数据）
+</div>
+<p>新手提示：金额、价格别用 FLOAT，有精度问题，要用 DECIMAL；用户名、标题这种长度不定的，默认 VARCHAR 就对了。</p>
 
-<h2>二、必备 CRUD 操作</h2>
-<p>增删改查是基础，但面试官更关心你对细节的理解：</p>
-<div class="code-block"><pre><code>-- INSERT：批量插入 vs 逐条插入，性能差 10 倍以上
-INSERT INTO users (name, age) VALUES
-('张三', 25), ('李四', 30), ('王五', 28);
+<h2>二、常用的 SQL 语句有什么</h2>
+<p>SQL 语句大致分三类，日常 90% 的场景就靠它们：</p>
+<ul>
+  <li><b>DDL（定义结构）：</b>CREATE DATABASE / CREATE TABLE / ALTER TABLE / DROP</li>
+  <li><b>DML（操作数据）：</b>INSERT / UPDATE / DELETE</li>
+  <li><b>DQL（查询数据）：</b>SELECT + WHERE / ORDER BY / GROUP BY / LIMIT / JOIN</li>
+</ul>
 
--- DELETE vs TRUNCATE 的区别
-DELETE FROM users WHERE id = 1;   -- DML 操作，可回滚，触发 trigger
-TRUNCATE TABLE users;             -- DDL 操作，隐式提交不可回滚，重置自增 ID
+<h2>三、常用的增删改查命令行</h2>
+<h3>3.1 插入 INSERT</h3>
+<div class="code-block"><pre><code>-- 单条插入
+INSERT INTO users (name, email) VALUES ('张三', 'z@test.com');
 
--- UPDATE：WHERE 条件一定要写！
+-- 批量插入（比逐条快很多，推荐）
+INSERT INTO users (name, email) VALUES
+('张三', 'z@test.com'),
+('李四', 'l@test.com'),
+('王五', 'w@test.com');</code></pre></div>
+
+<h3>3.2 查询 SELECT</h3>
+<div class="code-block"><pre><code>-- 条件 + 排序 + 分页
+SELECT * FROM users WHERE age > 20 ORDER BY id DESC LIMIT 10;
+
+-- 聚合统计
+SELECT COUNT(*), AVG(age) FROM users GROUP BY city;
+
+-- 联表查询（LEFT JOIN 最常用）
+SELECT u.name, o.product
+FROM users u
+LEFT JOIN orders o ON u.id = o.user_id;</code></pre></div>
+
+<h3>3.3 更新 UPDATE</h3>
+<div class="code-block"><pre><code>-- 一定要带 WHERE！否则整张表都会被改
 UPDATE users SET age = 26 WHERE id = 1;</code></pre></div>
 
-<h2>三、联表查询 JOIN</h2>
-<p>JOIN 是面试必考题：</p>
-<div class="highlight-box">
-<b>INNER JOIN：</b>返回两表匹配的数据<br>
-<b>LEFT JOIN：</b>左表全部保留，右表无匹配填 NULL（最常用）<br>
-<b>RIGHT JOIN：</b>右表全部保留（几乎不用，都可以用 LEFT 实现）<br>
-<b>自连接：</b>同一张表连自己，适合树形结构查询</div>
+<h3>3.4 删除 DELETE</h3>
+<div class="code-block"><pre><code>-- 按条件删除（DML，可回滚）
+DELETE FROM users WHERE id = 10;
 
-<h2>四、索引——加速查询的核心</h2>
-<h3>4.1 索引原理</h3>
-<p>MySQL InnoDB 用 B+ 树存储索引。查询时从根节点二分查找，O(log n) 复杂度，而不是全表扫描的 O(n)。</p>
-<h3>4.2 什么时候创建索引</h3>
-<ul>
-  <li>WHERE 条件中的列</li>
-  <li>JOIN 关联的列</li>
-  <li>ORDER BY 和 GROUP BY 的列</li>
-  <li>频繁查询但很少更新的列</li>
-</ul>
-<h3>4.3 常见索引失效场景（面试重点）</h3>
+-- 清空整表（DDL，隐式提交不可回滚，自增 ID 重置）
+TRUNCATE TABLE users;</code></pre></div>
+
+<h2>四、面试前再记两个点</h2>
+<p>上面这些够日常用了，但面试经常追问两个：</p>
+<h3>4.1 索引</h3>
+<p>InnoDB 用 B+ 树存索引，查询是 O(log n) 而不是全表扫描的 O(n)。WHERE、JOIN、ORDER BY、GROUP BY 用到的列都值得加索引。</p>
 <div class="highlight-box">
-① LIKE '%关键字' 前缀模糊匹配失效<br>
-② WHERE 中对列进行运算或函数调用失效<br>
-③ 复合索引不满足最左前缀原则失效<br>
-④ OR 条件中有一个列没有索引，全表扫描<br>
-⑤ 数据量太小，优化器认为全表扫描更快
+这几个写法会让索引失效：<br>
+① <code>LIKE '%关键字'</code> 前缀模糊匹配<br>
+② 对列做函数或运算，如 <code>WHERE YEAR(created_at) = 2026</code><br>
+③ 复合索引不满足最左前缀<br>
+④ OR 条件里有一列没索引，全表扫描
 </div>
-
-<h2>五、事务——ACID 与隔离级别</h2>
-<h3>5.1 事务四特性</h3>
-<ul>
-  <li><b>原子性（Atomicity）：</b>要么全做，要么全不做</li>
-  <li><b>一致性（Consistency）：</b>事务前后数据状态一致</li>
-  <li><b>隔离性（Isolation）：</b>并发事务互不干扰</li>
-  <li><b>持久性（Durability）：</b>提交后永久保存</li>
-</ul>
-<h3>5.2 四种隔离级别</h3>
+<h3>4.2 事务</h3>
+<p>四个特性 ACID：原子性、一致性、隔离性、持久性。四种隔离级别从低到高：</p>
 <div class="highlight-box">
-<b>READ UNCOMMITTED：</b>最低级别，可能出现脏读<br>
+<b>READ UNCOMMITTED：</b>可能脏读<br>
 <b>READ COMMITTED：</b>避免脏读（Oracle 默认）<br>
-<b>REPEATABLE READ：</b>避免脏读 + 不可重复读（MySQL 默认）<br>
-<b>SERIALIZABLE：</b>最高级别，避免所有并发问题，性能最差
+<b>REPEATABLE READ：</b>避免脏读+不可重复读（MySQL 默认）<br>
+<b>SERIALIZABLE：</b>最严格，性能最差
 </div>
 
-<h2>六、总结</h2>
-<p>简历上写 MySQL 没问题，但要能回答三个核心问题：① JOIN 的几种类型和区别 ② 索引的原理和失效场景 ③ 事务隔离级别。把这三块吃透，MySQL 在简历上就不虚了。</p>`
+<h2>五、总结</h2>
+<p>MySQL 日常就三件事：建表选对类型 → 用增删改查操作数据 → 查得慢就加索引。把数据类型、常用语句、增删改查这三块吃透，再补上索引和事务两个概念，面试问到 MySQL 就不会慌了。</p>`
   }
 ];
 
