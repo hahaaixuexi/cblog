@@ -43,7 +43,7 @@
 - **技术文章板块** — 6 篇文章卡片，点击展开完整内容（含代码示例）
 - **教育经历时间线** — 可视化时间轴展示学历信息
 - **项目经历** — 左侧彩色装饰条的项目卡片
-- **技术栈网格** — 10 个技术卡片，点击弹窗查看命令速查手册
+- **技术栈网格** — 9 个技术卡片，点击弹窗查看命令速查手册
 - **导航栏** — 毛玻璃效果 + 滚动时阴影变化 + 自动高亮当前位置
 - **阅读进度条** — 页面顶部显示当前阅读进度
 
@@ -56,27 +56,31 @@
 - 🔤 代码块语法高亮（One Dark 配色方案）
 - 🔗 社交分享按钮（微博 / Twitter / 复制链接）
 - ↩️ 返回顶部按钮（滚动后出现）
-- ♿ 无障碍支持（Skip-link 键盘跳转）
+- ♿ 无障碍支持（Skip-link 键盘跳转、文章卡片可 Tab 聚焦 + 回车打开、弹窗关闭后不残留焦点）
+- 🎯 文章卡片按 `data-article-id` 绑定内容，不再依赖 DOM 顺序
 
 ### SEO 与性能
 
 - ✅ Semantic HTML 语义化标签
 - ✅ Open Graph + Twitter Card 元数据
 - ✅ 内联 SVG Favicon（零请求）
-- ✅ Canonical URL
+- ✅ Canonical URL（指向真实可访问的 GitHub Pages 地址）
 - ✅ JSON-LD 结构化数据（Person Schema）
-- ✅ 移除无效的 Google Fonts 加载
-- ✅ 系统字体栈，无需网络字体请求
+- ✅ robots.txt + sitemap.xml
+- ✅ 系统字体栈，无需网络字体请求（零外部字体请求）
 
 ## 📂 目录结构
 
 ```
 cblog/
-├── index.html          # 博客主文件（单文件，所有代码在此）
+├── index.html          # 博客主文件（单文件：HTML + CSS + JS 全在里面）
+├── og-cover.png        # 社交分享封面（1200×630，Open Graph 用）
+├── robots.txt          # 搜索引擎抓取规则
+├── sitemap.xml         # 站点地图
 └── README.md           # 本文件
 ```
 
-是的，就两个文件。整个博客是一个自包含的单 HTML 文件。
+主体仍然是单个自包含的 `index.html`，其余三个是部署用的静态资源，不参与页面渲染逻辑。
 
 ## 🚀 本地运行
 
@@ -130,14 +134,16 @@ git push origin main
 
 ## 📝 文章列表
 
+单页博客，点文章卡片即可在弹窗中阅读全文（下方链接跳到站内「技术文章」区块）。
+
 | # | 日期 | 分类 | 标题 |
 |---|:----:|:----:|------|
-| 1 | 2026-07-08 | AI 工具 | [国内使用 Claude Code 完整指南：CCSwitch 接入国产大模型](https://hahaaixuexuexi.github.io/cblog/#articles) |
-| 2 | 2026-07-08 | AI 工具 | [Codex 国内使用指南：中转 API + Helper 工具全方案](https://hahaaixuexuexi.github.io/cblog/#articles) |
-| 3 | 2026-06-15 | 计算机视觉 | [YOLOv11 在边缘设备上的部署实践](https://hahaaixuexuexi.github.io/cblog/#articles) |
-| 4 | 2026-05-20 | 视觉检测 | [VisionPro 工业视觉入门：从零搭建硬币检测系统](https://hahaaixuexuexi.github.io/clog/#articles) |
-| 5 | 2026-04-08 | Linux | [AI 开发者必备的 Linux 命令行技巧](https://hahaaixuexuexi.github.io/cblog/#articles) |
-| 6 | 2026-03-12 | 数据库 | [MySQL 从入门到可以写在简历上](https://hahaaixuexuexi.github.io/cblog/#articles) |
+| 1 | 2026-10-09 | AI 工具 | [主流 Agent 工具介绍](#articles) |
+| 2 | 2026-10-09 | 大模型 | [国内外主流大模型介绍](#articles) |
+| 3 | 2026-06-15 | 计算机视觉 | [YOLO11 在边缘设备上的部署实践](#articles) |
+| 4 | 2026-05-20 | 视觉检测 | [VisionPro 新手入门：从零搭建硬币检测系统](#articles) |
+| 5 | 2026-04-08 | Linux | [AI 开发者必备的 Linux 命令行技巧](#articles) |
+| 6 | 2026-03-12 | 数据库 | [MySQL 实用速查：数据类型、常用语句与增删改查](#articles) |
 
 ## 👤 关于作者
 
