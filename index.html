@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>程龙 - 个人博客 | AI & 计算机视觉</title>
-<meta name="description" content="程龙的个人技术博客，专注于计算机视觉、AI 应用与边缘部署。分享 YOLO、OpenCV、Python、Linux 等技术实践与学习心得。">
-<meta name="keywords" content="程龙,AI,计算机视觉,YOLO,Python,OpenCV,机器学习,边缘计算,个人博客">
+<meta name="description" content="程龙的个人技术博客，专注于计算机视觉、AI 应用与视觉软件二次开发。分享 VisionPro 二开、Halcon 算子、YOLO、OpenCV、Python、Linux 等技术实践与学习心得。">
+<meta name="keywords" content="程龙,AI,计算机视觉,YOLO,Python,OpenCV,VisionPro,Halcon,C#,机器视觉,视觉软件二次开发,边缘计算,个人博客">
 <meta name="author" content="程龙">
 
 <!-- Open Graph -->
 <meta property="og:title" content="程龙 - 个人博客 | AI & 计算机视觉">
-<meta property="og:description" content="专注于计算机视觉与 AI 应用，具备从模型训练到边缘部署的完整工程能力。">
+<meta property="og:description" content="专注于计算机视觉与 AI 应用，具备从模型训练到边缘部署，再到视觉软件二次开发与上位机集成的完整工程能力。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hahaaixuexi.github.io/cblog/">
 <meta property="og:locale" content="zh_CN">
@@ -46,8 +46,8 @@
     { "@type": "CollegeOrUniversity", "name": "河南工学院" },
     { "@type": "CollegeOrUniversity", "name": "河南应用技术职业学院" }
   ],
-  "knowsAbout": ["计算机视觉","人工智能","YOLO","Python","OpenCV","Linux","边缘计算"],
-  "description": "人工智能专业学生，专注于计算机视觉与AI应用开发。"
+  "knowsAbout": ["计算机视觉","人工智能","YOLO","Python","OpenCV","Linux","边缘计算","VisionPro","Halcon","C#"],
+  "description": "人工智能专业学生，专注于计算机视觉与AI应用开发，掌握 VisionPro 二次开发与 Halcon 常用算子。"
 }
 </script>
 
@@ -535,9 +535,9 @@
   /* ==================== 技术栈卡片网格 ==================== */
   .tech-grid {
     display: grid;
-    /* 9 个技术卡片：3×3 刚好铺满，用 4 列会剩一个孤零零掉到第四行 */
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-md); max-width: 780px; margin: 0 auto;
+    /* 12 个技术卡片：4 列正好 3 行；平板 3 列、手机 2 列也都能整除 */
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md); max-width: 900px; margin: 0 auto;
   }
   .tech-chip {
     display: flex; flex-direction: column; align-items: center; gap: 14px;
@@ -841,6 +841,10 @@
     nav { padding: 0 16px; }
     nav .logo { font-size: 16px; }
 
+    /* Hero 装饰层左右各溢出 15%，窄屏会多出约 37px 横向滚动（390px 下 scrollWidth=427），
+       这里在手机上收回到容器内，视觉几乎无差、滚动条消失 */
+    .hero::before, .hero::after { left: 0; right: 0; }
+
     .hamburger { display: flex; }
 
     /* Mobile menu */
@@ -924,8 +928,8 @@
     <h1>程 龙</h1>
     <div class="subtitle">人工智能专业 · 26届毕业生</div>
     <div class="desc">
-      专注机器视觉和 AI 应用方向，用 OpenCV、YOLO、VisionPro 做过视觉检测项目。
-      系统学过 C#，继续在 VisionPro 联合开发方向积累。
+      专注机器视觉和 AI 应用方向，用 OpenCV、YOLO、VisionPro 做过视觉检测项目；
+      已完成 VisionPro 二次开发与 Halcon 常用算子实践，继续在视觉算法落地与上位机联调方向积累。
     </div>
     <div class="contact-row">
       <span class="contact-item">
@@ -943,6 +947,28 @@
     <div class="section-desc">记录学习过程中的思考与实践</div>
   </div>
   <div class="blog-grid">
+    <article class="blog-card" data-article-id="7">
+      <div class="blog-card-body">
+        <div class="bc-date">
+          <span>2026-10-26</span>
+          <span class="bc-tag">机器视觉</span>
+        </div>
+        <h3>Halcon 常用算子速查：从 Blob 分析到模板匹配</h3>
+        <p class="bc-desc">按用途归类 HDevelop 高频算子：读取显示、预处理、Blob、形态学、形状匹配，附 C# 调用方式。</p>
+        <span class="bc-more">阅读全文 <span class="bc-arrow">→</span></span>
+      </div>
+    </article>
+    <article class="blog-card" data-article-id="8">
+      <div class="blog-card-body">
+        <div class="bc-date">
+          <span>2026-10-22</span>
+          <span class="bc-tag">视觉检测</span>
+        </div>
+        <h3>VisionPro 二次开发入门：ToolBlock 脚本与 .NET 上位机</h3>
+        <p class="bc-desc">从 ToolBlock 高级脚本到 C# 加载 .vpp、读写输入输出，再到上位机与 HMI 通信的完整路线。</p>
+        <span class="bc-more">阅读全文 <span class="bc-arrow">→</span></span>
+      </div>
+    </article>
     <article class="blog-card" data-article-id="1">
       <div class="blog-card-body">
         <div class="bc-date">
@@ -1056,12 +1082,12 @@
       <p class="pc-desc">基于康耐视 VisionPro 搭建工业视觉检测流程，实现 1元/5角/1角 硬币的自动识别、定位与数量统计。</p>
       <ul class="pc-highlights">
         <li>精通 VisionPro 拖拽控件，ToolBlock 可视化搭建检测流程</li>
-        <li>熟练开发高级脚本，C#/VB.NET 自定义检测逻辑</li>
-        <li>VP 联合开发，.NET API 集成上位机与 HMI 实时联动</li>
+        <li>熟练编写 ToolBlock 高级脚本，C#/VB.NET 自定义检测逻辑</li>
+        <li>VisionPro 二次开发（.NET API），集成上位机与 HMI 实时联动</li>
         <li>PMAlign 模板匹配 + Blob 分析，准确率 85%→98%</li>
       </ul>
       <div class="pc-tags">
-        <span>VisionPro</span><span>拖拽控件</span><span>高级脚本</span><span>联合开发</span><span>PMAlign</span><span>Blob分析</span>
+        <span>VisionPro</span><span>拖拽控件</span><span>高级脚本</span><span>二次开发</span><span>PMAlign</span><span>Blob分析</span>
       </div>
     </div>
     <div class="project-card">
@@ -1128,7 +1154,7 @@
       <a href="mailto:cheng66da@163.com">联系我</a>
     </div>
     <div class="footer-bottom">
-      &copy; 2026 程龙 · 用技术连接世界 &nbsp;|&nbsp; 最后更新: <span id="lastUpdate">2026-07-08</span>
+      &copy; 2026 程龙 · 用技术连接世界 &nbsp;|&nbsp; 最后更新: <span id="lastUpdate">2026-10-26</span>
     </div>
   </div>
 </footer>
@@ -1209,6 +1235,226 @@
 
 // ==================== BLOG ARTICLE DATA ====================
 const blogArticles = [
+  {
+    id: 7, date: "2026-10-26", tag: "机器视觉",
+    title: "Halcon 常用算子速查：从 Blob 分析到模板匹配",
+    summary: "把 HDevelop 里最常用的算子按用途归类：读取显示、预处理、Blob 分析、形态学、形状匹配，最后附 C# 调用方式。",
+    readTime: "10 分钟",
+    content: `<h2>一、先搞清楚 Halcon 的三种用法</h2>
+<p>HDevelop 里写算子只是第一步，真正落地有三种形态：</p>
+<ul>
+  <li><b>HDevelop 流程：</b>图形化调试，算子即写即跑，最适合验证算法</li>
+  <li><b>导出程序：</b>把流程导出成 C# / C++ 代码，嵌到自己的工程里</li>
+  <li><b>HalconDotNet：</b>C# 直接引用 HalconDotNet.dll，用 HOperatorSet 调算子，和 VisionPro 二开是同一套思路</li>
+</ul>
+<p>下面这些算子都在 HDevelop 里验证过。先记住一个新手最容易踩的坑：<b>HDevelop 的注释符是行首的 <code>*</code></b>，不是 Python 的 <code>#</code>，写错会直接报语法错误。</p>
+
+<h2>二、读取与显示</h2>
+<div class="code-block"><pre><code>* 读取图像（相对路径以当前工程目录为基准）
+read_image (Image, 'part_01.png')
+get_image_size (Image, Width, Height)
+
+* 打开窗口并显示
+dev_open_window (0, 0, Width, Height, 'black', WindowHandle)
+dev_display (Image)
+
+* 显示设置：边框绘制、绿色线条、线宽 2
+dev_set_draw ('margin')
+dev_set_color ('green')
+dev_set_line_width (2)</code></pre></div>
+<p>窗口尺寸建议和图像尺寸保持一致，否则 <code>dev_display</code> 出来的图会被拉伸或裁掉，量尺寸的时候容易看错。</p>
+
+<h2>三、预处理与 Blob 分析</h2>
+<p>Blob 是 Halcon 里最常用的一类分析：先二值化，再连通，最后按特征筛选。</p>
+<div class="code-block"><pre><code>* 1. 高斯滤波去噪（尺寸取奇数，5 或 7）
+gauss_filter (Image, ImageGauss, 5)
+
+* 2. 二值化：灰度在 [80, 255] 之间算目标
+threshold (ImageGauss, Region, 80, 255)
+
+* 3. 连通域：把粘连的像素拆成一个个独立区域
+connection (Region, ConnectedRegions)
+
+* 4. 按特征筛选：面积 500~50000 且圆形度 &gt; 0.85
+select_shape (ConnectedRegions, SelectedRegions, ['area','circularity'], 'and', [500,0.85], [50000,1.0])
+
+* 5. 统计个数与中心坐标
+count_obj (SelectedRegions, Number)
+area_center (SelectedRegions, Area, Row, Column)</code></pre></div>
+<p>三个新手常问的点：<b>threshold 的两个阈值写反了不会报错</b>，只会得到空区域；<b>select_shape 的区间是闭区间</b>，上下限都要填；<b>数量要用 count_obj 拿</b>，别用 area_center 的数组长度去猜。</p>
+
+<h2>四、形态学与 ROI</h2>
+<div class="code-block"><pre><code>* 开运算去小噪点，闭运算填孔洞（半径按像素算）
+opening_circle (Region, RegionOpening, 3.5)
+closing_circle (RegionOpening, RegionClosing, 5.5)
+
+* 只保留 ROI 内的区域，后续算子只在 ROI 内计算，速度更快
+gen_rectangle1 (ROI, 100, 100, 500, 600)
+reduce_domain (Image, ROI, ImageReduced)
+threshold (ImageReduced, RegionROI, 80, 255)
+
+* 多个区域合并
+union1 (RegionROI, RegionUnion)
+
+* 最小外接矩形：中心、角度、半宽半高（定位常用）
+smallest_rectangle2 (RegionUnion, Row1, Column1, Phi, Length1, Length2)</code></pre></div>
+<p><b>reduce_domain 是提速的关键</b>：整图跑 threshold 和只在 ROI 内跑，耗时差好几倍。产线上相机分辨率一高，这一步往往比换算法更有效。</p>
+
+<h2>五、形状匹配</h2>
+<p>Halcon 的模板匹配分「建模板」和「找模板」两步，思路和 VisionPro 的 PMAlign 一致，只是参数换成了算子参数。</p>
+<div class="code-block"><pre><code>* 1. 框一块 ROI 当模板
+gen_rectangle1 (ModelROI, 120, 150, 320, 380)
+reduce_domain (Image, ModelROI, TemplateImage)
+
+* 2. 创建形状模板
+*    NumLevels 'auto' 让 Halcon 自己选金字塔层数
+*    AngleStart/Extent 角度范围（弧度），这里约 ±30°
+create_shape_model (TemplateImage, 'auto', -0.52, 1.05, 'auto', 'auto', 'use_polarity', 30, 10, ModelID)
+
+* 3. 在待测图里找：MinScore 0.7，最多 10 个，重叠不超过 50%
+find_shape_model (Image, ModelID, -0.52, 1.05, 0.7, 10, 0.5, 'least_squares', 0, 0.7, Row, Column, Angle, Score)
+
+* 4. 用匹配位姿把模板轮廓摆过去，方便肉眼核对
+gen_contour_region_xld (ModelROI, ModelContour, 'border')
+vector_angle_to_rigid (0, 0, 0, Row, Column, Angle, HomMat2D)
+affine_trans_contour_xld (ModelContour, ContourTrans, HomMat2D)
+dev_display (ContourTrans)</code></pre></div>
+<p>调参优先级：<b>MinScore</b> 先降到 0.6 确认能找得到，再慢慢往上抬；<b>Greediness</b> 越大越快但越容易漏，0.7~0.9 是常用区间；<b>NumLevels</b> 设 0 表示沿用建模时的层数，设 1 只用最底层（最稳但最慢），调试阶段先设 1。</p>
+
+<h2>六、在 C# 里调用</h2>
+<p>和 VisionPro 一样，Halcon 也能被 .NET 程序直接调用，核心是 HalconDotNet 里的 <code>HObject</code> 和 <code>HTuple</code> 两个类型。</p>
+<div class="code-block"><pre><code>using HalconDotNet;
+
+// 读取图像
+HOperatorSet.ReadImage(out HObject image, "part_01.png");
+HOperatorSet.GetImageSize(image, out HTuple width, out HTuple height);
+
+// 二值化 + 连通 + 筛选
+HOperatorSet.Threshold(image, out HObject region, 80, 255);
+HOperatorSet.Connection(region, out HObject connected);
+HOperatorSet.SelectShape(connected, out HObject selected, "area", "and", 500, 50000);
+
+// 统计
+HOperatorSet.CountObj(selected, out HTuple count);
+HOperatorSet.AreaCenter(selected, out HTuple area, out HTuple row, out HTuple col);
+Console.WriteLine($"找到 {count} 个目标，第一个中心 ({row[0]}, {col[0]})");</code></pre></div>
+<p>注意 <code>HObject</code> 是非托管资源，用完要 <code>Dispose()</code>，或者用 using 包起来；连续拍照的场景里漏释放，跑几个小时内存就涨上去了。</p>
+
+<h2>七、学习顺序建议</h2>
+<ol>
+  <li><b>先跑通一条完整流程：</b>读取 → 滤波 → 二值化 → Blob → 显示结果，别一上来就啃模板匹配</li>
+  <li><b>再补形态学和特征筛选：</b>select_shape 的常用特征名（area / circularity / rectangularity / width）要熟</li>
+  <li><b>最后上形状匹配和标定：</b>形状匹配 + 仿射变换是工业定位的标准组合</li>
+  <li><b>同时练 C#：</b>HDevelop 里写通只说明会算子，能嵌进上位机才算能干活</li>
+</ol>
+<p>Halcon 的算子有上千个，日常检测真正用到的就是这二十来个。把这一套吃透，换到 VisionPro 或 OpenCV 也能举一反三——算法思想是通的，不同的只是 API 长什么样。</p>`
+  },
+  {
+    id: 8, date: "2026-10-22", tag: "视觉检测",
+    title: "VisionPro 二次开发入门：ToolBlock 脚本与 .NET 上位机",
+    summary: "从在 ToolBlock 里写高级脚本，到用 C# 加载 .vpp、读写输入输出终端，再到和上位机/HMI 通信的完整二开路线。",
+    readTime: "9 分钟",
+    content: `<h2>一、二开到底在做什么</h2>
+<p>VisionPro 自带的 QuickBuild 图形界面能搭出大部分检测流程，剩下那些必须写代码的地方，就是「二次开发」。实际工作里常见三种形态：</p>
+<ul>
+  <li><b>ToolBlock 高级脚本：</b>在工具块里写 C#，访问内部工具、动态定义输入输出终端、自定义判级逻辑</li>
+  <li><b>引用 VisionPro 程序集：</b>新建 WinForms/WPF 工程，引用 Cognex.VisionPro*.dll，加载 .vpp 并调用 Run()</li>
+  <li><b>与产线通信：</b>把检测结果通过 Modbus TCP / 西门子 S7 / OPC UA 发给 PLC 或 HMI</li>
+</ul>
+<p>这三种不是三选一，而是一条线上的三段：<b>脚本</b>负责检测逻辑，<b>程序集</b>负责界面与流程，<b>通信</b>负责把结果送出去。</p>
+
+<h2>二、ToolBlock 高级脚本</h2>
+<p>在 ToolBlock 编辑器里切到「脚本」页，语言选 C#，会生成一个继承 <code>CogToolBlockAdvancedScriptBase</code> 的类。高级脚本比简单脚本多两个能力：<b>动态定义输入输出终端</b>、<b>直接访问块内工具的所有属性</b>，所以推荐直接用高级脚本。</p>
+<div class="code-block"><pre><code>using System;
+using Cognex.VisionPro;
+using Cognex.VisionPro.ToolBlock;
+
+public class CogToolBlockAdvancedScript : CogToolBlockAdvancedScriptBase
+{
+    private CogToolBlock mToolBlock;
+
+    public override void Initialize(CogToolBlock host)
+    {
+        base.Initialize(host);
+        mToolBlock = host;      // 拿到当前工具块，后面访问终端都靠它
+    }
+
+    public override bool GroupRun(ref string message, ref CogToolResultConstants result)
+    {
+        // 默认逻辑：按顺序跑块内所有工具
+        foreach (ICogTool tool in mToolBlock.Tools)
+            RunTool(tool, ref message, ref result);
+
+        return false;           // false = 不让系统再跑一遍
+    }
+}</code></pre></div>
+<p><code>GroupRun</code> 是入口：返回 <code>true</code> 表示交给系统按默认顺序继续执行，返回 <code>false</code> 表示执行权完全归你，适合要跳工具、改顺序、加判级的场合。</p>
+
+<h2>三、读写输入输出终端</h2>
+<p>工具块对外暴露的所有东西都在 <code>Inputs</code> / <code>Outputs</code> 集合里，按名字索引即可。脚本里读输入、算完写输出，外部的 C# 程序就只跟这几根「端子」打交道，不用关心内部有几个工具。</p>
+<div class="code-block"><pre><code>// 读输入：图像、阈值参数
+var image = (CogImage8Grey)mToolBlock.Inputs["InputImage"].Value;
+double thr = (double)mToolBlock.Inputs["Threshold"].Value;
+
+// 跑块内的 PMAlign 工具
+var pm = (CogPMAlignTool)mToolBlock.Tools["CogPMAlignTool1"];
+pm.Run();
+
+// 取匹配结果
+int count = pm.Results.Count;
+double score = count &gt; 0 ? pm.Results[0].Score : 0;
+
+// 写输出：数量、分数、OK/NG 判定
+mToolBlock.Outputs["Count"].Value = count;
+mToolBlock.Outputs["Score"].Value = score;
+mToolBlock.Outputs["IsOK"].Value = (count == 1 &amp;&amp; score &gt;= thr);
+
+message = $"count={count}, score={score:F3}";</code></pre></div>
+<p>新手最容易卡的两点：<b>输出终端要先在编辑器的「输入/输出」面板建好并选类型</b>，脚本里写 <code>Outputs["Count"]</code> 才不会报「找不到终端」；<b>类型必须对得上</b>，int 和 double 混着写会在运行时抛异常。</p>
+
+<h2>四、用 C# 加载 .vpp 并运行</h2>
+<p>搭好的流程存成 <code>.vpp</code> 文件，C# 工程里引用 <code>Cognex.VisionPro.dll</code>、<code>Cognex.VisionPro.ToolBlock.dll</code> 等程序集，就能在代码里加载、喂图、取结果。</p>
+<div class="code-block"><pre><code>using Cognex.VisionPro;
+using Cognex.VisionPro.ToolBlock;
+
+// 1. 加载视觉文件（.vpp 本质是序列化后的对象）
+var toolBlock = (CogToolBlock)CogSerializer.LoadObjectFromFile("coin.vpp");
+
+// 2. 喂图：终端名必须和 .vpp 里定义的一致
+toolBlock.Inputs["InputImage"].Value = image;
+
+// 3. 执行
+toolBlock.Run();
+
+// 4. 取结果
+int count = Convert.ToInt32(toolBlock.Outputs["Count"].Value);
+bool isOk = Convert.ToBoolean(toolBlock.Outputs["IsOK"].Value);
+
+// 5. 保存（改完终端或参数后）
+CogSerializer.SaveObjectToFile(toolBlock, "coin_v2.vpp");</code></pre></div>
+<p>两个工程实践：<b>一个进程只加载一次 .vpp</b>，每帧都 Load 会明显掉帧；<b>多相机或多线程共用同一个 toolBlock 必须加锁</b>，VisionPro 的工具不是线程安全的，两个线程同时 Run 会拿到互相污染的结果。</p>
+
+<h2>五、把结果送到上位机 / HMI</h2>
+<p>检测完只是「自己知道」，产线要知道。常见三条路：</p>
+<ul>
+  <li><b>Modbus TCP：</b>最通用，把 OK/NG、计数写到保持寄存器，PLC 直接读</li>
+  <li><b>西门子 S7：</b>用 S7.Net 之类的库读写 DB 块，适合西门子产线</li>
+  <li><b>OPC UA：</b>标准化程度最高，跨品牌设备互通，适合整线集成</li>
+</ul>
+<p>约定好比协议更重要：<b>谁触发拍照</b>（PLC 给触发位）、<b>结果什么时候有效</b>（用握手位，别只写数据）、<b>NG 怎么处理</b>（报警 + 停机 + 记录，不要静默丢弃）。这三件事在项目前期就写进接口文档，后期能省掉一半联调时间。</p>
+
+<h2>六、踩坑记录</h2>
+<ol>
+  <li><b>框架版本：</b>VisionPro 的程序集是 .NET Framework 4.x，建 .NET 6/8 工程去引用会直接报「未能加载程序集」</li>
+  <li><b>位数一致：</b>VisionPro 是 64 位，工程平台必须设 x64，Any CPU 在部分机器上会挂</li>
+  <li><b>许可证：</b>开发机装了 VisionPro 才能跑，部署机要装 Runtime 并配好加密狗/USB 授权</li>
+  <li><b>脚本编译：</b>ToolBlock 脚本改完要在编辑器里重新编译，只保存 .vpp 不编译，跑的还是旧逻辑</li>
+  <li><b>结果缓存：</b>工具没 Run 时 Results 是上一次的，别拿旧结果当新结果判级</li>
+</ol>
+
+<h2>七、总结</h2>
+<p>VisionPro 二开的核心就一句话：<b>把图形化流程封装成工具块，用脚本补上判断逻辑，再用 C# 把它接进自己的软件</b>。脚本里会读输入写输出，程序里会 Load / Run / 取结果，这套骨架搭起来，换成 Halcon 的 HalconDotNet 也是同样的结构。</p>`
+  },
   {
     id: 1, date: "2026-10-09", tag: "AI 工具",
     title: "主流 Agent 工具介绍",
@@ -1671,6 +1917,64 @@ const techStackData = [
     ]
   },
   {
+    "id": "visionpro",
+    "name": "VisionPro",
+    "icon": "👁️",
+    "color": "#D22630",
+    "desc": "康耐视工业视觉软件，从拖拽搭流程到 C# 二次开发。",
+    "sections": [
+      { "title": "二开的三种形态", "content": [
+        { "type": "p", "text": "QuickBuild 的图形界面能搭出大部分流程，剩下要写代码的地方就是「二次开发」，实际工作里是这三种：<br><b>① ToolBlock 高级脚本</b>：在工具块里写 C#，访问内部工具、动态定义输入输出终端、自定义判级逻辑<br><b>② 引用程序集</b>：新建 WinForms/WPF 工程，引用 <code>Cognex.VisionPro*.dll</code>，加载 .vpp 调 Run()<br><b>③ 与产线通信</b>：把结果通过 Modbus TCP / 西门子 S7 / OPC UA 送到 PLC 或 HMI<br>三者不是三选一，而是一条线上的三段：脚本管检测逻辑，程序集管界面流程，通信管把结果送出去。" }
+      ] },
+      { "title": "ToolBlock 高级脚本", "content": [
+        { "type": "code", "code": "using System;\nusing Cognex.VisionPro;\nusing Cognex.VisionPro.ToolBlock;\n\npublic class CogToolBlockAdvancedScript : CogToolBlockAdvancedScriptBase\n{\n    private CogToolBlock mToolBlock;\n\n    public override void Initialize(CogToolBlock host)\n    {\n        base.Initialize(host);\n        mToolBlock = host;      // 拿到当前工具块，后面访问终端都靠它\n    }\n\n    public override bool GroupRun(ref string message, ref CogToolResultConstants result)\n    {\n        // 默认逻辑：按顺序跑块内所有工具\n        foreach (ICogTool tool in mToolBlock.Tools)\n            RunTool(tool, ref message, ref result);\n\n        return false;           // false = 不让系统再跑一遍\n    }\n}" },
+        { "type": "p", "text": "<b>高级脚本 vs 简单脚本</b>：高级脚本多两个能力——能动态定义输入输出终端、能直接访问块内工具的所有属性。所以推荐直接用 <code>CogToolBlockAdvancedScript</code>，简单脚本只适合「跑完就完事」的场景。<br><b>GroupRun 的返回值</b>：返回 true 表示交给系统按默认顺序继续执行；返回 false 表示执行权完全归你，适合要跳工具、改顺序、加判级的场合。" }
+      ] },
+      { "title": "读写输入输出终端", "content": [
+        { "type": "code", "code": "// 读输入：图像、阈值参数\nvar image = (CogImage8Grey)mToolBlock.Inputs[\"InputImage\"].Value;\ndouble thr = (double)mToolBlock.Inputs[\"Threshold\"].Value;\n\n// 跑块内的 PMAlign 工具\nvar pm = (CogPMAlignTool)mToolBlock.Tools[\"CogPMAlignTool1\"];\npm.Run();\n\n// 取匹配结果\nint count = pm.Results.Count;\ndouble score = count > 0 ? pm.Results[0].Score : 0;\n\n// 写输出：数量、分数、OK/NG 判定\nmToolBlock.Outputs[\"Count\"].Value = count;\nmToolBlock.Outputs[\"Score\"].Value = score;\nmToolBlock.Outputs[\"IsOK\"].Value = (count == 1 && score >= thr);\n\nmessage = $\"count={count}, score={score:F3}\";" },
+        { "type": "p", "text": "<b>新手最容易卡的两点</b>：<br>① 输出终端要先在编辑器的「输入/输出」面板建好并选类型，脚本里写 <code>Outputs[\"Count\"]</code> 才不会报「找不到终端」；<br>② 类型必须对得上，int 和 double 混写会在运行时抛异常。" }
+      ] },
+      { "title": "C# 加载 .vpp 并运行", "content": [
+        { "type": "code", "code": "using Cognex.VisionPro;\nusing Cognex.VisionPro.ToolBlock;\n\n// 1. 加载视觉文件（.vpp 本质是序列化后的对象）\nvar toolBlock = (CogToolBlock)CogSerializer.LoadObjectFromFile(\"coin.vpp\");\n\n// 2. 喂图：终端名必须和 .vpp 里定义的一致\ntoolBlock.Inputs[\"InputImage\"].Value = image;\n\n// 3. 执行\ntoolBlock.Run();\n\n// 4. 取结果\nint count = Convert.ToInt32(toolBlock.Outputs[\"Count\"].Value);\nbool isOk = Convert.ToBoolean(toolBlock.Outputs[\"IsOK\"].Value);\n\n// 5. 保存（改完终端或参数后）\nCogSerializer.SaveObjectToFile(toolBlock, \"coin_v2.vpp\");" },
+        { "type": "p", "text": "<b>两个工程实践</b>：一个进程只加载一次 .vpp，每帧都 Load 会明显掉帧；多相机或多线程共用同一个 toolBlock 必须加锁，VisionPro 的工具不是线程安全的，同时 Run 会拿到互相污染的结果。" }
+      ] },
+      { "title": "踩坑清单", "content": [
+        { "type": "p", "text": "<b>框架版本</b>：VisionPro 的程序集是 .NET Framework 4.x，建 .NET 6/8 工程会直接报「未能加载程序集」。<br><b>位数一致</b>：VisionPro 是 64 位，工程平台要设 x64，Any CPU 在部分机器上会挂。<br><b>许可证</b>：开发机装了 VisionPro 才能跑，部署机要装 Runtime 并配好加密狗。<br><b>脚本编译</b>：ToolBlock 脚本改完要在编辑器里重新编译，只保存 .vpp 不编译，跑的还是旧逻辑。<br><b>结果缓存</b>：工具没 Run 时 Results 是上一次的，别拿旧结果当新结果判级。" }
+      ] }
+    ]
+  },
+  {
+    "id": "halcon",
+    "name": "Halcon",
+    "icon": "🔬",
+    "color": "#1E7BB8",
+    "desc": "德国 MVTec 的工业视觉算法库，算子覆盖采集、Blob、匹配、测量、标定。",
+    "sections": [
+      { "title": "读取与显示", "content": [
+        { "type": "code", "code": "* 读取图像（相对路径以当前工程目录为基准）\nread_image (Image, 'part_01.png')\nget_image_size (Image, Width, Height)\n\n* 打开窗口并显示\ndev_open_window (0, 0, Width, Height, 'black', WindowHandle)\ndev_display (Image)\n\n* 显示设置：边框绘制、绿色线条、线宽 2\ndev_set_draw ('margin')\ndev_set_color ('green')\ndev_set_line_width (2)" },
+        { "type": "p", "text": "HDevelop 的注释符是行首的 <code>*</code>，不是 Python 的 <code>#</code>；写 <code>#</code> 会直接报语法错误。" }
+      ] },
+      { "title": "Blob 分析", "content": [
+        { "type": "code", "code": "* 1. 高斯滤波去噪（尺寸取奇数，5 或 7）\ngauss_filter (Image, ImageGauss, 5)\n\n* 2. 二值化：灰度在 [80, 255] 之间算目标\nthreshold (ImageGauss, Region, 80, 255)\n\n* 3. 连通域：把粘连的像素拆成一个个独立区域\nconnection (Region, ConnectedRegions)\n\n* 4. 按特征筛选：面积 500~50000 且圆形度 > 0.85\nselect_shape (ConnectedRegions, SelectedRegions, ['area','circularity'], 'and', [500,0.85], [50000,1.0])\n\n* 5. 统计个数与中心坐标\ncount_obj (SelectedRegions, Number)\narea_center (SelectedRegions, Area, Row, Column)" },
+        { "type": "p", "text": "<b>三个新手常问的点</b>：threshold 的两个阈值写反了不会报错，只会得到空区域；select_shape 的区间是闭区间，上下限都要填；数量要用 <code>count_obj</code> 拿，别用 area_center 的数组长度去猜。" }
+      ] },
+      { "title": "形态学与 ROI", "content": [
+        { "type": "code", "code": "* 开运算去小噪点，闭运算填孔洞（半径按像素算）\nopening_circle (Region, RegionOpening, 3.5)\nclosing_circle (RegionOpening, RegionClosing, 5.5)\n\n* 只保留 ROI 内的区域，后续算子只在 ROI 内计算，速度更快\ngen_rectangle1 (ROI, 100, 100, 500, 600)\nreduce_domain (Image, ROI, ImageReduced)\nthreshold (ImageReduced, RegionROI, 80, 255)\n\n* 多个区域合并\nunion1 (RegionROI, RegionUnion)\n\n* 最小外接矩形：中心、角度、半宽半高（定位常用）\nsmallest_rectangle2 (RegionUnion, Row1, Column1, Phi, Length1, Length2)" }
+      ] },
+      { "title": "形状匹配", "content": [
+        { "type": "code", "code": "* 1. 框一块 ROI 当模板\ngen_rectangle1 (ModelROI, 120, 150, 320, 380)\nreduce_domain (Image, ModelROI, TemplateImage)\n\n* 2. 创建形状模板\n*    NumLevels 'auto' 让 Halcon 自己选金字塔层数\n*    AngleStart/Extent 角度范围（弧度），这里约 ±30°\ncreate_shape_model (TemplateImage, 'auto', -0.52, 1.05, 'auto', 'auto', 'use_polarity', 30, 10, ModelID)\n\n* 3. 在待测图里找：MinScore 0.7，最多 10 个，重叠不超过 50%\nfind_shape_model (Image, ModelID, -0.52, 1.05, 0.7, 10, 0.5, 'least_squares', 0, 0.7, Row, Column, Angle, Score)\n\n* 4. 用匹配位姿把模板轮廓摆过去，方便肉眼核对\ngen_contour_region_xld (ModelROI, ModelContour, 'border')\nvector_angle_to_rigid (0, 0, 0, Row, Column, Angle, HomMat2D)\naffine_trans_contour_xld (ModelContour, ContourTrans, HomMat2D)\ndev_display (ContourTrans)" },
+        { "type": "p", "text": "<b>调参优先级</b>：MinScore 先降到 0.6 确认能找得到，再慢慢往上抬；Greediness 越大越快但越容易漏，0.7~0.9 常用；NumLevels 设 0 表示沿用建模时的层数，设 1 只用最底层（最稳但最慢），调试阶段先设 1。" }
+      ] },
+      { "title": "C# 调用", "content": [
+        { "type": "code", "code": "using HalconDotNet;\n\n// 读取图像\nHOperatorSet.ReadImage(out HObject image, \"part_01.png\");\nHOperatorSet.GetImageSize(image, out HTuple width, out HTuple height);\n\n// 二值化 + 连通 + 筛选\nHOperatorSet.Threshold(image, out HObject region, 80, 255);\nHOperatorSet.Connection(region, out HObject connected);\nHOperatorSet.SelectShape(connected, out HObject selected, \"area\", \"and\", 500, 50000);\n\n// 统计\nHOperatorSet.CountObj(selected, out HTuple count);\nHOperatorSet.AreaCenter(selected, out HTuple area, out HTuple row, out HTuple col);\nConsole.WriteLine($\"找到 {count} 个目标，第一个中心 ({row[0]}, {col[0]})\");" },
+        { "type": "p", "text": "<b>资源释放</b>：<code>HObject</code> 是非托管资源，用完要 <code>Dispose()</code> 或用 using 包起来；连续拍照的场景漏释放，跑几小时内存就涨上去了。" }
+      ] },
+      { "title": "算子速记", "content": [
+        { "type": "p", "text": "<b>读取</b> read_image / get_image_size<br><b>预处理</b> gauss_filter / mean_image / median_image<br><b>分割</b> threshold / fast_threshold / connection / select_shape<br><b>形态学</b> opening_circle / closing_circle / erosion_circle / dilation_circle<br><b>几何</b> area_center / smallest_rectangle2 / orientation_region<br><b>匹配</b> create_shape_model / find_shape_model / vector_angle_to_rigid / affine_trans_contour_xld<br><b>显示</b> dev_display / dev_set_color / dev_set_draw / disp_message" }
+      ] }
+    ]
+  },
+  {
     "id": "cpp",
     "name": "C++",
     "icon": "⚙️",
@@ -1680,6 +1984,32 @@ const techStackData = [
       { "title": "Hello World", "content": [{ "type": "code", "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<int> nums = {1, 2, 3};\n    nums.push_back(4);\n    for (auto& n : nums) cout << n << \" \";\n    return 0;\n}" }] },
       { "title": "编译运行", "content": [{ "type": "code", "code": "g++ -std=c++17 -O2 main.cpp -o app  # 编译\n./app                                     # 运行\n\ng++ -g main.cpp -o app                 # 调试模式\ngdb ./app                               # GDB 调试" }] },
       { "title": "OpenCV C++ 示例", "content": [{ "type": "code", "code": "#include <opencv2/opencv.hpp>\nusing namespace cv;\nint main() {\n    Mat img = imread(\"photo.jpg\");\n    Mat gray;\n    cvtColor(img, gray, COLOR_BGR2GRAY);\n    Mat edges;\n    Canny(gray, edges, 50, 150);\n    imwrite(\"output.jpg\", edges);\n}" }] }
+    ]
+  },
+  {
+    "id": "csharp",
+    "name": "C#",
+    "icon": "🔷",
+    "color": "#68217A",
+    "desc": "上位机开发主力语言，VisionPro 脚本与 HalconDotNet 都靠它落地。",
+    "sections": [
+      { "title": "基础语法", "content": [
+        { "type": "code", "code": "// 变量与类型推断\nint count = 0;\ndouble score = 0.923;\nstring name = \"coin\";\nbool isOk = true;\n\n// 集合初始化\nvar labels = new List<string> { \"1元\", \"5角\", \"1角\" };\n\n// 条件与循环\nforeach (var label in labels)\n{\n    if (label == \"1元\") count++;\n}\n\nfor (int i = 0; i < labels.Count; i++)\n{\n    Console.WriteLine($\"{i}: {labels[i]}\");\n}\n\n// 字符串插值：{变量:F3} 表示保留 3 位小数\nConsole.WriteLine($\"共 {count} 枚，分数 {score:F3}\");" },
+        { "type": "p", "text": "<b>和 Python 最大的区别</b>：C# 是静态类型，变量声明时必须写类型（或 var 推断），编译期就能查出一批错误；`$` 开头的字符串可以直接插值，比 Python 的 f-string 少一层花括号。" }
+      ] },
+      { "title": "面向对象", "content": [
+        { "type": "code", "code": "public class Detector\n{\n    // 属性 + 构造函数\n    public string Name { get; set; }\n    public double Threshold { get; set; }\n\n    public Detector(string name, double threshold = 0.8)\n    {\n        Name = name;\n        Threshold = threshold;\n    }\n\n    // 虚方法：子类可重写\n    public virtual bool Run(CogImage8Grey image)\n    {\n        return true;\n    }\n}\n\n// 继承与重写\npublic class CoinDetector : Detector\n{\n    public CoinDetector() : base(\"coin\", 0.85) { }\n\n    public override bool Run(CogImage8Grey image)\n    {\n        return base.Run(image);\n    }\n}\n\n// 使用\nvar detector = new CoinDetector();\nConsole.WriteLine($\"{detector.Name}, {detector.Threshold}\");" }
+      ] },
+      { "title": "LINQ 与异步", "content": [
+        { "type": "code", "code": "using System.Linq;\nusing System.Threading.Tasks;\n\n// LINQ：像写 SQL 一样筛集合\nvar scores = new List<double> { 0.92, 0.45, 0.88, 0.61 };\nvar passed = scores.Where(s => s >= 0.8).OrderByDescending(s => s).ToList();\nvar avg = scores.Average();                 // 0.715\nvar okCount = scores.Count(s => s >= 0.8);  // 2\n\n// 异步：UI 线程不卡死\nprivate async Task<bool> InspectAsync(string path)\n{\n    var image = await LoadImageAsync(path);   // 不阻塞界面\n    return await Task.Run(() => Detect(image));\n}" },
+        { "type": "p", "text": "<b>上位机里的用处</b>：<code>async/await</code> 把「采集 → 推理 → 通信」放到后台线程，界面继续保持响应；<b>注意</b> VisionPro 的工具对象不能在多线程里同时 Run，异步里也要加锁。" }
+      ] },
+      { "title": "串口与网络通信", "content": [
+        { "type": "code", "code": "using System.IO.Ports;\nusing System.Net.Sockets;\n\n// 串口：扫码枪、光源控制器、老 PLC 常见\nvar port = new SerialPort(\"COM3\", 9600, Parity.None, 8, StopBits.One);\nport.DataReceived += (s, e) =>\n{\n    string line = port.ReadLine();\n    Console.WriteLine(\"收到: \" + line);\n};\nport.Open();\nport.WriteLine(\"TRIG\");     // 触发一次检测\n\n// TCP：和上位机/机器人通信\nvar client = new TcpClient(\"192.168.1.10\", 502);\nvar stream = client.GetStream();\nbyte[] cmd = System.Text.Encoding.ASCII.GetBytes(\"RUN\\n\");\nstream.Write(cmd, 0, cmd.Length);" }
+      ] },
+      { "title": "写上位机的几条经验", "content": [
+        { "type": "p", "text": "<b>① 别在 UI 线程里跑视觉</b>：一帧 100ms 就够界面卡成幻灯片，检测放后台线程，结果用 <code>Invoke</code> 回 UI。<br><b>② 参数全部外置</b>：阈值、ROI、模板路径写成配置文件，改参数不用重新编译。<br><b>③ 日志要能定位问题</b>：记录时间戳、图像路径、检测结果和耗时，现场出问题第一时间能查。<br><b>④ 异常别吞</b>：相机掉线、通信断开要弹提示并进入安全状态，静默失败比报错更可怕。" }
+      ] }
     ]
   },
   {
@@ -1763,7 +2093,7 @@ window.BlogApp = (function() {
             '<div class="code-block">' +
             '<span class="cb-lang">' + lang + '</span>' +
             '<button class="cb-copy" onclick="BlogApp.copyCode(this)">复制</button>' +
-            '<pre>' + highlightCode(escaped) + '</pre>' +
+            '<pre>' + highlightCode(escaped, lang) + '</pre>' +
             '</div>';
         } else if (item.type === 'p') {
           html += '<p>' + item.text + '</p>';
@@ -1797,7 +2127,7 @@ window.BlogApp = (function() {
         return '<div class="code-block">' +
           '<span class="cb-lang">' + lang + '</span>' +
           '<button class="cb-copy" onclick="BlogApp.copyCode(this)">复制</button>' +
-          '<pre>' + highlightCode(escaped) + '</pre>' +
+          '<pre>' + highlightCode(escaped, lang) + '</pre>' +
           '</div>';
       }
     );
@@ -1861,7 +2191,14 @@ window.BlogApp = (function() {
   // 永远匹配不上，所以 Docker/SQL 常被判错；这里改成行首锚定 + 词边界。
   function detectLang(code) {
     if (/^#include\b/m.test(code) || /\bstd::|\bcout\s<</.test(code)) return 'C++';
+    // C# 必须先于 Python：脚本里的 public class X : Y 会被 Python 的 class 规则误判
+    if (/^\s*using\s+(System|Cognex\.|HalconDotNet)\b/m.test(code) ||
+        /\bConsole\.|\bCog[A-Z]\w*|\bHOperatorSet\./.test(code) ||
+        /^\s*(public|private|protected)\s+(static\s+)?(class|void|bool|int|string|double)\b/m.test(code) ||
+        /\bvar\s+\w+\s*=\s*new\b|\bnew\s+(List|Dictionary)\b/.test(code)) return 'C#';
     if (/^\s*git\s+(clone|init|status|add|commit|push|pull|branch|checkout|merge|log|reset|stash|remote|config|revert|restore|diff|fetch)\b/m.test(code)) return 'Git';
+    // Halcon：算子是小写 + 下划线，和 SQL 的大写关键字不会打架
+    if (/^\s*(read_image|write_image|get_image_size|gauss_filter|threshold|connection|select_shape|area_center|count_obj|reduce_domain|opening_circle|closing_circle|create_shape_model|find_shape_model|vector_angle_to_rigid|affine_trans_\w+|gen_\w+|dev_\w+)\s*\(/m.test(code)) return 'Halcon';
     // SQL 先于 Dockerfile：SQL 的 FROM users u 与 Dockerfile 的 FROM python:3.11 形状不同
     if (/^\s*(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|SHOW|USE|DESC|START\s+TRANSACTION|COMMIT|ROLLBACK)\b/im.test(code)) return 'SQL';
     if (/^\s*(FROM|RUN|COPY|WORKDIR|ENTRYPOINT|EXPOSE)\s+\S+.*$/m.test(code) && /\bFROM\s+\S+[:@/]/.test(code)) return 'Docker';
@@ -1874,30 +2211,52 @@ window.BlogApp = (function() {
     return 'Code';
   }
 
-  function highlightCode(code) {
+  // 各语言关键字表：没列出来的语言（Code）只做字符串/注释着色
+  const KW_SRC = {
+    SQL: 'SELECT|FROM|WHERE|INSERT|INTO|VALUES|UPDATE|SET|DELETE|CREATE|TABLE|ALTER|DROP|SHOW|USE|DESC|INNER|LEFT|RIGHT|JOIN|ON|GROUP BY|ORDER BY|LIMIT|OFFSET|HAVING|COUNT|AVG|AS|AND|OR|LIKE|NOT NULL|PRIMARY KEY|AUTO_INCREMENT|UNIQUE|DEFAULT|TIMESTAMP|CURRENT_TIMESTAMP|START TRANSACTION|COMMIT|ROLLBACK',
+    'C#': 'using|namespace|public|private|protected|internal|class|struct|interface|enum|static|void|int|double|float|bool|string|char|object|var|new|return|if|else|for|foreach|while|switch|case|break|continue|try|catch|finally|throw|null|true|false|this|base|override|virtual|abstract|sealed|async|await|out|ref|params|get|set|readonly|const|Convert|Console|Math|lock|is|as|Task',
+    'C++': 'include|define|using|namespace|int|void|double|float|bool|char|string|class|struct|public|private|protected|static|const|return|if|else|for|while|switch|case|break|continue|new|delete|auto|vector|std|cout|cin|endl|main',
+    Halcon: 'read_image|write_image|get_image_size|dev_open_window|dev_close_window|dev_display|dev_set_draw|dev_set_color|dev_set_line_width|disp_message|threshold|fast_threshold|connection|select_shape|select_shape_std|area_center|count_obj|union1|union2|complement|reduce_domain|gen_rectangle1|gen_rectangle2|gen_circle|opening_circle|closing_circle|erosion_circle|dilation_circle|gauss_filter|mean_image|median_image|edges_sub_pix|gen_contour_region_xld|fit_circle_contour_xld|fit_line_contour_xld|smallest_rectangle2|orientation_region|region_features|create_shape_model|find_shape_model|vector_angle_to_rigid|affine_trans_contour_xld|affine_trans_image|HObject|HTuple|if|then|else|endif|for|fori|endfor|while|endwhile|and|or|not|true|false',
+    Python: 'def|class|import|from|return|if|elif|else|for|while|in|not|and|or|try|except|finally|with|as|lambda|yield|pass|True|False|None|print|len|range|open|int|str|float|list|dict|set|tuple|self|super',
+    Bash: 'sudo|apt|apt-get|pip|python|python3|cd|ls|cp|mv|rm|mkdir|chmod|chown|export|source|ssh|scp|rsync|curl|wget|find|tail|head|ps|kill|pkill|free|df|du|top|htop|nvidia-smi|grep|cat|echo|nohup|systemctl|uname|whoami|which',
+    Git: 'git|clone|init|status|add|commit|push|pull|branch|checkout|merge|log|reset|stash|remote|config|revert|restore|diff|fetch|rebase|amend',
+    Docker: 'FROM|RUN|CMD|COPY|WORKDIR|EXPOSE|ENTRYPOINT|ENV|ARG|docker|build|ps|images|exec|logs|stop|rm|compose|up|down|pull|push'
+  };
+
+  // 注释符：SQL 用 --，C#/C++ 用 //，Halcon 用行首 *，其余用 #
+  const TOKEN_RE = {
+    dash:  /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(--[^\n]*)/g,
+    slash: /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(\/\/[^\n]*|\/\*[\s\S]*?\*\/)/g,
+    star:  /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(^[ \t]*\*[^\n]*)/gm,
+    hash:  /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(#[^\n]*)/g
+  };
+  const COMMENT_OF = { SQL: 'dash', 'C#': 'slash', 'C++': 'slash', Halcon: 'star' };
+
+  function highlightCode(code, lang) {
     // code 传进来时已完成 HTML 转义（& < >），这里只做「标记化 + 一次性输出」，
     // 不再用链式正则替换——否则后一轮正则会匹配到前一轮插入的 class="keyword" 里的引号，
     // 把标记啃坏（线上表现为代码块里出现 <span class="<span">"keyword"</span>> 字样）。
-    const KW = /\b(SELECT|FROM|WHERE|INSERT|INTO|VALUES|UPDATE|SET|DELETE|CREATE|TABLE|ALTER|DROP|SHOW|USE|DESC|INNER|JOIN|ON|GROUP BY|ORDER BY|LIMIT|OFFSET|HAVING|COUNT|AVG|AS|AND|OR|LIKE|NOT NULL|PRIMARY KEY|AUTO_INCREMENT|UNIQUE|DEFAULT|TIMESTAMP|CURRENT_TIMESTAMP)\b/g;
-    const token = /(&quot;(?:[^&]|&(?!quot;))*?&quot;|"(?:[^"\\]|\\.)*?")|(&#39;(?:[^&]|&(?!39;))*?&#39;|'(?:[^'\\]|\\.)*?')|(--[^\n]*)|(#[^\n]*)/g;
+    const key = KW_SRC[lang] ? lang : '';
+    const kwRe = key ? new RegExp('\\b(' + KW_SRC[key] + ')\\b', 'g') : null;
+    const re = TOKEN_RE[COMMENT_OF[key] || 'hash'];
+    re.lastIndex = 0;
 
     let out = '';
     let last = 0;
     let m;
 
     // 先按「字符串 / 注释」切段，未命中的片段才做关键字着色，互不干扰
-    while ((m = token.exec(code)) !== null) {
-      out += paintKeywords(code.slice(last, m.index));
-      const cls = m[1] || m[2] ? 'string' : 'comment';
-      out += '<span class="' + cls + '">' + m[0] + '</span>';
+    while ((m = re.exec(code)) !== null) {
+      out += paint(code.slice(last, m.index));
+      out += '<span class="' + (m[1] ? 'string' : 'comment') + '">' + m[0] + '</span>';
       last = m.index + m[0].length;
     }
-    out += paintKeywords(code.slice(last));
+    out += paint(code.slice(last));
 
     return out;
 
-    function paintKeywords(seg) {
-      return seg.replace(KW, '<span class="keyword">$1</span>');
+    function paint(seg) {
+      return kwRe ? seg.replace(kwRe, '<span class="keyword">$1</span>') : seg;
     }
   }
 
