@@ -1,0 +1,2140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小功率太阳能入门 · 从一块板子到一盏灯</title>
+<style>
+:root{
+  --bg:#f7f8fa;
+  --panel:#ffffff;
+  --ink:#12263a;
+  --ink-2:#2f4358;
+  --muted:#69788a;
+  --line:#e4e9ef;
+  --line-2:#eff3f7;
+  --amber:#e8890c;
+  --amber-l:#fff6e8;
+  --teal:#0f766e;
+  --teal-l:#e9f7f5;
+  --blue:#1d4ed8;
+  --blue-l:#eef3ff;
+  --violet:#6d28d9;
+  --violet-l:#f4efff;
+  --red:#c0392b;
+  --red-l:#fdf1ef;
+  --green:#15803d;
+  --green-l:#effaf2;
+  --shadow:0 1px 2px rgba(18,38,58,.04),0 8px 24px rgba(18,38,58,.05);
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Consolas,Menlo,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:17px;line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:#ffe1b3}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0;z-index:120;
+  background:linear-gradient(90deg,#f0a13c,#e8890c 60%,#c2410c);transition:width .1s linear}
+
+/* ---------- sidebar ---------- */
+#side{
+  position:fixed;top:0;left:0;bottom:0;width:268px;z-index:100;
+  background:#fff;border-right:1px solid var(--line);
+  display:flex;flex-direction:column;
+}
+.brand{padding:24px 22px 16px;border-bottom:1px solid var(--line-2)}
+.brand .k{font-size:11px;letter-spacing:.2em;color:var(--amber);font-weight:700}
+.brand h1{font-size:17px;margin:5px 0 3px;letter-spacing:-.01em;line-height:1.4}
+.brand p{margin:0;font-size:12px;color:var(--muted)}
+#toc{overflow-y:auto;padding:12px 10px 26px;flex:1}
+#toc a{
+  display:flex;gap:10px;align-items:baseline;
+  padding:6px 12px;margin:1px 0;border-radius:8px;
+  color:var(--ink-2);text-decoration:none;font-size:13.5px;
+  border-left:2px solid transparent;transition:.15s;
+}
+#toc a:hover{background:#f8fafc;color:var(--ink)}
+#toc a .n{font-family:var(--mono);font-size:11px;color:#9aa8b8;min-width:16px}
+#toc a.on{background:var(--amber-l);color:#a55a00;font-weight:600;border-left-color:var(--amber)}
+#toc a.on .n{color:var(--amber)}
+#toc .new{font-size:10px;padding:1px 5px;border-radius:4px;background:var(--amber);color:#fff;margin-left:auto;font-weight:700}
+
+main{margin-left:268px;padding:0 0 90px}
+.wrap{max-width:880px;margin:0 auto;padding:0 42px}
+
+/* ---------- hero ---------- */
+.hero{padding:70px 0 50px;border-bottom:1px solid var(--line)}
+.hero .eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:700;letter-spacing:.12em;color:#a55a00;
+  background:var(--amber-l);border:1px solid #f6ddb4;
+  padding:5px 12px;border-radius:99px;margin-bottom:20px;
+}
+.hero h2{
+  font-size:clamp(30px,4.1vw,44px);line-height:1.22;margin:0 0 18px;
+  letter-spacing:-.025em;font-weight:750;
+}
+.hero h2 em{font-style:normal;color:var(--amber);position:relative;white-space:nowrap}
+.hero h2 em::after{
+  content:"";position:absolute;left:0;right:0;bottom:2px;height:8px;
+  background:#fde8c4;z-index:-1;border-radius:2px;
+}
+.hero .lede{font-size:18px;color:var(--ink-2);max-width:640px;margin:0 0 28px;line-height:1.8}
+.hero .meta{display:flex;flex-wrap:wrap;gap:28px;font-size:12.5px;color:var(--muted)}
+.hero .meta b{display:block;color:var(--ink);font-size:19px;font-weight:700;font-family:var(--mono);letter-spacing:-.02em}
+
+/* ---------- section ---------- */
+section{padding:56px 0 12px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+.sec-num{
+  font-family:var(--mono);font-size:12px;font-weight:700;color:var(--amber);
+  letter-spacing:.16em;display:block;margin-bottom:10px;
+}
+h3{font-size:clamp(23px,2.7vw,29px);margin:0 0 18px;letter-spacing:-.02em;font-weight:720;line-height:1.32}
+h4{font-size:19px;margin:38px 0 12px;letter-spacing:-.01em;font-weight:680;color:var(--ink)}
+h5{font-size:15.5px;margin:24px 0 8px;font-weight:680;color:var(--ink-2)}
+p{margin:0 0 16px}
+ul,ol{margin:0 0 18px;padding-left:22px}
+li{margin:7px 0}
+li::marker{color:#9aa8b8}
+b,strong{font-weight:680;color:var(--ink)}
+code{
+  font-family:var(--mono);font-size:.86em;background:#f1f4f8;
+  padding:2px 6px;border-radius:4px;color:#b03a2e;border:1px solid #e7ecf2;
+}
+
+/* ---------- 一句话总结 ---------- */
+.lead{
+  font-size:20px;line-height:1.75;color:#1c3b55;
+  border-left:3px solid var(--amber);
+  padding:2px 0 2px 18px;margin:0 0 26px;font-weight:500;
+}
+.lead b{color:#8f4e00;font-weight:700}
+
+/* ---------- cards ---------- */
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;
+  padding:24px 26px;box-shadow:var(--shadow);margin:20px 0;
+}
+.card.tight{padding:18px 20px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1100px){.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+/* ---------- callout ---------- */
+.callout{
+  border-radius:12px;padding:17px 20px;margin:22px 0;
+  border:1px solid;display:flex;gap:13px;align-items:flex-start;
+}
+.callout .ico{
+  flex:0 0 24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  font-size:13px;font-weight:800;color:#fff;margin-top:3px;
+}
+.callout .bd{flex:1;min-width:0}
+.callout .t{font-weight:700;font-size:15px;margin-bottom:4px}
+.callout p,.callout li{font-size:15px;line-height:1.75}
+.callout p:last-child,.callout ul:last-child,.callout ol:last-child{margin-bottom:0}
+.callout ul,.callout ol{padding-left:20px}
+.note{background:var(--blue-l);border-color:#cfdcfb}
+.note .ico{background:var(--blue)}
+.note .t{color:#173fa8}
+.warn{background:var(--red-l);border-color:#f6cfc8}
+.warn .ico{background:var(--red)}
+.warn .t{color:#9c2f22}
+.tip{background:var(--green-l);border-color:#c6ecd2}
+.tip .ico{background:var(--green)}
+.tip .t{color:#12652f}
+.key{background:var(--amber-l);border-color:#f7dfb8}
+.key .ico{background:var(--amber)}
+.key .t{color:#8f4e00}
+
+/* ---------- 比喻框 ---------- */
+.analogy{
+  background:linear-gradient(180deg,#fbfdff,#f6fafc);
+  border:1px dashed #c8dbe8;border-radius:14px;
+  padding:22px 22px 18px;margin:26px 0 22px;position:relative;
+}
+.analogy::before{
+  content:"打个比方";position:absolute;top:-10px;left:18px;
+  background:#fff;padding:0 8px;font-size:11px;letter-spacing:.1em;
+  color:#5b8ba8;font-weight:700;border:1px dashed #c8dbe8;border-radius:4px;
+}
+.analogy p{font-size:15.5px;line-height:1.8;margin:0;color:#24425c}
+.analogy p+p{margin-top:8px}
+.analogy b{color:#0f5f7a}
+
+/* ---------- 本章记住 ---------- */
+.tldr{
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:20px 24px;margin:30px 0 6px;box-shadow:var(--shadow);
+  border-top:3px solid var(--amber);
+}
+.tldr h5{margin:0 0 10px;font-size:13px;letter-spacing:.1em;color:var(--amber);font-weight:700}
+.tldr ul{margin:0;padding-left:20px}
+.tldr li{font-size:15.5px;margin:6px 0;color:var(--ink-2)}
+.tldr li b{color:var(--ink)}
+
+/* ---------- 公式 ---------- */
+.formula{
+  background:#0f2136;color:#e8eef6;border-radius:12px;
+  padding:20px 24px;margin:20px 0;font-family:var(--mono);
+  font-size:14.5px;line-height:2;overflow-x:auto;position:relative;
+}
+.formula .lbl{
+  position:absolute;top:0;right:0;font-size:10px;letter-spacing:.14em;
+  color:#7d93ab;background:#1a2f47;padding:3px 10px;border-radius:0 12px 0 8px;
+}
+.formula em{color:#ffc46b;font-style:normal}
+.formula .c{color:#8ea7c0;font-size:13px}
+
+/* ---------- 人话翻译 ---------- */
+.plain{
+  background:#f7fbf9;border:1px solid #d6eee4;border-radius:10px;
+  padding:13px 18px;margin:-6px 0 22px;font-size:15px;color:#1c5c4a;line-height:1.75;
+}
+.plain b{color:#0f766e}
+.plain span{font-weight:700;color:#0f766e;margin-right:6px}
+
+/* ---------- table ---------- */
+.tw{overflow-x:auto;margin:20px 0;border-radius:12px;border:1px solid var(--line);background:#fff}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:500px}
+th{
+  background:#f3f6f9;text-align:left;padding:12px 16px;
+  font-weight:680;font-size:12.5px;letter-spacing:.04em;color:#3c5268;
+  border-bottom:1px solid var(--line);white-space:nowrap;
+}
+td{padding:13px 16px;border-bottom:1px solid var(--line-2);vertical-align:top;line-height:1.7}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#fafbfc}
+td.num{font-family:var(--mono);font-size:14px;white-space:nowrap}
+
+.b{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11.5px;font-weight:650;
+  border:1px solid;line-height:1.7;white-space:nowrap}
+.b.amber{background:var(--amber-l);color:#a55a00;border-color:#f6ddb4}
+.b.teal{background:var(--teal-l);color:#0b5f59;border-color:#bfe6e2}
+.b.blue{background:var(--blue-l);color:#173fa8;border-color:#cfdcfb}
+.b.red{background:var(--red-l);color:#9c2f22;border-color:#f6cfc8}
+.b.gray{background:#f4f6f8;color:#4a5f74;border-color:#e0e6ec}
+.b.violet{background:var(--violet-l);color:#5b21b6;border-color:#d9c9f7}
+
+/* ---------- figure ---------- */
+figure{margin:26px 0}
+.fig{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 18px;box-shadow:var(--shadow)}
+figcaption{font-size:13.5px;color:var(--muted);margin-top:12px;text-align:center;line-height:1.65}
+figcaption b{color:var(--ink-2)}
+
+/* ---------- calc ---------- */
+.calc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);margin:26px 0}
+.calc-h{padding:16px 22px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px;background:#fcfdfe}
+.calc-h .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px var(--teal-l)}
+.calc-h h5{margin:0;font-size:14.5px}
+.calc-h span{margin-left:auto;font-size:11px;color:var(--muted);letter-spacing:.08em}
+.calc-b{padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.calc-b>*{min-width:0}
+@media(max-width:760px){.calc-b{grid-template-columns:1fr}}
+.fields{display:grid;gap:12px}
+.f{display:grid;grid-template-columns:1fr 112px;gap:12px;align-items:center}
+.f label{font-size:14px;color:var(--ink-2);line-height:1.45}
+.f label small{display:block;color:var(--muted);font-size:11.5px;line-height:1.4}
+.f input,.f select{
+  width:100%;min-width:0;padding:8px 10px;border:1px solid #d9e1ea;border-radius:8px;
+  font-family:var(--mono);font-size:14px;color:var(--ink);background:#fbfcfd;transition:.15s;
+}
+.f input:focus,.f select:focus{outline:none;border-color:var(--teal);background:#fff;box-shadow:0 0 0 3px rgba(15,118,110,.1)}
+.out{background:#0f2136;border-radius:12px;padding:18px;color:#e8eef6;display:flex;flex-direction:column}
+.out .row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid #1e3450}
+.out .row:last-of-type{border-bottom:none}
+.out .row .l{font-size:12.5px;color:#93a9c0}
+.out .row .v{font-family:var(--mono);font-size:17px;font-weight:600;color:#fff}
+.out .row .u{font-size:12px;color:#93a9c0;margin-left:3px}
+.out .verdict{margin-top:10px;padding:10px 12px;border-radius:8px;font-size:12.5px;line-height:1.65;background:#1a2f47;color:#bccddf}
+.out .verdict.ok{background:#0d3a30;color:#8ee6c8}
+.out .verdict.bad{background:#3d1a17;color:#f4b3a8}
+.out .verdict b,.out .verdict strong{color:#fff;font-weight:700}
+.out .verdict.ok b,.out .verdict.ok strong{color:#d6fff2}
+.out .verdict.bad b,.out .verdict.bad strong{color:#ffd9d1}
+
+/* ---------- steps ---------- */
+.steps{counter-reset:s;list-style:none;padding:0;margin:24px 0}
+.steps>li{counter-increment:s;position:relative;padding:0 0 26px 52px;border-left:2px solid var(--line);margin-left:15px}
+.steps>li:last-child{border-left-color:transparent;padding-bottom:0}
+.steps>li::before{
+  content:counter(s);position:absolute;left:-16px;top:-1px;width:31px;height:31px;
+  border-radius:50%;background:#fff;border:2px solid var(--amber);color:#a55a00;
+  display:grid;place-items:center;font-family:var(--mono);font-size:13px;font-weight:700;
+}
+.steps>li h5{margin:0 0 6px;font-size:16px;color:var(--ink)}
+.steps>li p{margin:0 0 8px;font-size:15.5px;color:var(--ink-2)}
+.steps>li p:last-child{margin-bottom:0}
+
+/* ---------- accordion ---------- */
+.acc{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;margin:22px 0}
+.acc details{border-bottom:1px solid var(--line-2)}
+.acc details:last-child{border-bottom:none}
+.acc summary{
+  padding:16px 20px;cursor:pointer;font-weight:640;font-size:15.5px;
+  list-style:none;display:flex;align-items:center;gap:12px;color:var(--ink-2);transition:.15s;
+}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::before{
+  content:"+";font-family:var(--mono);font-weight:400;font-size:18px;color:var(--amber);
+  width:16px;flex:0 0 16px;transition:.2s;line-height:1;
+}
+.acc details[open] summary::before{content:"–"}
+.acc summary:hover{background:#fafbfc}
+.acc details[open] summary{color:var(--ink);background:#fcfdfe}
+.acc .abody{padding:0 20px 20px 48px;font-size:15px;color:var(--ink-2)}
+.acc .abody p:last-child,.acc .abody ul:last-child{margin-bottom:0}
+
+/* ---------- checklist ---------- */
+.check{background:#fff;border:1px solid var(--line);border-radius:14px;padding:4px 24px;box-shadow:var(--shadow);margin:22px 0}
+.check .item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line-2);align-items:flex-start}
+.check .item:last-child{border-bottom:none}
+.check .item .box{flex:0 0 16px;width:16px;height:16px;border:1.5px solid #c2ccd8;border-radius:4px;margin-top:5px}
+.check .item .tx{font-size:15px;line-height:1.75}
+.check .item .tx b{display:block;font-size:15px}
+.check .item .tx span{color:var(--muted);font-size:14px}
+
+/* ---------- glossary ---------- */
+.gloss{display:grid;grid-template-columns:170px 1fr;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.gloss dt{padding:13px 18px;background:#f8fafc;font-weight:650;font-size:13.5px;border-bottom:1px solid var(--line-2);font-family:var(--mono);color:#1e3a52}
+.gloss dd{padding:13px 18px;margin:0;font-size:14px;border-bottom:1px solid var(--line-2);color:var(--ink-2);line-height:1.7}
+@media(max-width:640px){.gloss{grid-template-columns:1fr}.gloss dt{border-bottom:none;padding-bottom:2px}}
+
+/* ---------- big numbers ---------- */
+.bignums{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}
+.bignum{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow)}
+.bignum .v{font-family:var(--mono);font-size:25px;font-weight:700;letter-spacing:-.03em;color:var(--amber);line-height:1.25}
+.bignum .l{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.55}
+@media(max-width:760px){.bignums{grid-template-columns:1fr}}
+
+footer{margin-left:268px;padding:36px 42px 66px;border-top:1px solid var(--line);background:#fff}
+footer .in{max-width:880px;margin:0 auto;font-size:13px;color:var(--muted);line-height:1.9}
+footer b{color:var(--ink-2)}
+
+@media(max-width:980px){
+  #side{position:sticky;top:0;width:auto;max-width:100vw;height:auto;flex-direction:row;align-items:center;overflow-x:auto;overflow-y:hidden}
+  .brand{border-bottom:none;border-right:1px solid var(--line-2);padding:12px 16px;white-space:nowrap;flex:0 0 auto}
+  .brand h1{font-size:15px;margin:0}.brand p,.brand .k{display:none}
+  #toc{display:flex;padding:8px;overflow-x:auto;flex:1 1 0;min-width:0}
+  #toc a{white-space:nowrap;border-left:none;padding:6px 10px;font-size:12.5px;flex:0 0 auto}
+  #toc a .n,#toc .new{display:none}
+  main,footer{margin-left:0}
+  .wrap{padding:0 22px}
+  footer{padding:28px 22px 60px}
+  .hero{padding:40px 0 34px}
+  .hero h2 em{white-space:normal}
+  section{padding:40px 0 10px}
+  .lead{font-size:18px}
+}
+@media(max-width:560px){
+  .hero .meta{display:grid;grid-template-columns:1fr 1fr;gap:16px 18px}
+}
+@media(max-width:700px){
+  body{font-size:16px}
+  .fig{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .fig svg{min-width:600px}
+  .formula{font-size:13px;padding:16px 18px}
+  .card{padding:18px 18px}
+  .calc-b{padding:16px}
+  .gloss{grid-template-columns:1fr}
+  .gloss dt{border-bottom:none;padding-bottom:2px;background:#f8fafc}
+}
+@media print{
+  #side,#prog{display:none}main,footer{margin-left:0}
+  .card,.fig,.calc,.tldr{box-shadow:none;break-inside:avoid}
+  body{background:#fff;font-size:12pt}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<aside id="side">
+  <div class="brand">
+    <div class="k">SOLAR 101</div>
+    <h1>小功率太阳能入门</h1>
+    <p>从一块板子到一盏灯</p>
+  </div>
+  <nav id="toc">
+    <a href="#overview"><span class="n">01</span>这套东西怎么用</a>
+    <a href="#panel"><span class="n">02</span>太阳能板</a>
+    <a href="#series"><span class="n">03</span>串联和并联</a>
+    <a href="#controller"><span class="n">04</span>控制器</a>
+    <a href="#battery"><span class="n">05</span>蓄电池<span class="new">重点</span></a>
+    <a href="#inverter"><span class="n">06</span>逆变器</a>
+    <a href="#output"><span class="n">07</span>电线和插座</a>
+    <a href="#design"><span class="n">08</span>300W 实战</a>
+    <a href="#safety"><span class="n">09</span>安全注意</a>
+    <a href="#faq"><span class="n">10</span>常见问题</a>
+    <a href="#glossary"><span class="n">11</span>名词速查</a>
+  </nav>
+</aside>
+
+<main>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">写 给 第 一 次 动 手 的 人</div>
+    <h2>三百瓦，<br>够<em>点亮一间小屋</em></h2>
+    <p class="lede">
+      不用懂电工，也不用买一堆昂贵设备。一套小功率系统只有四个部件，
+      接对了就能给灯、路由器、手机、小风扇供电。这份指南按小系统的思路讲，
+      每个数字都算给你看。
+    </p>
+    <div class="meta">
+      <div><b>100–500W</b>适合入门的功率段</div>
+      <div><b>4 个</b>部件，接线不复杂</div>
+      <div><b>3 个</b>计算器，输入就有答案</div>
+      <div><b>0</b>基础要求</div>
+    </div>
+  </div>
+</header>
+
+<section id="overview">
+  <div class="wrap">
+    <span class="sec-num">01 / 先看全貌</span>
+    <h3>这套东西，到底是干嘛的</h3>
+
+    <p class="lead">
+      太阳能板白天发电，<b>电池把电存起来</b>，晚上再放出来用。
+      中间那个"管家"叫控制器，负责别把电池充坏。
+      如果你要插普通电器，最后再加一个逆变器。
+    </p>
+
+    <figure>
+      <div class="fig">
+        <svg viewBox="0 0 880 345" style="width:100%;height:auto;display:block" role="img" aria-label="小功率太阳能系统组成">
+          <defs>
+            <marker id="arw" markerWidth="10" markerHeight="10" refX="7.5" refY="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+            </marker>
+          </defs>
+
+          <!-- sun -->
+          <g>
+            <circle cx="76" cy="40" r="13" fill="#fbbf24"/>
+            <g stroke="#f59e0b" stroke-width="2" stroke-linecap="round">
+              <line x1="76" y1="14" x2="76" y2="20"/><line x1="76" y1="60" x2="76" y2="66"/>
+              <line x1="50" y1="40" x2="56" y2="40"/><line x1="96" y1="40" x2="102" y2="40"/>
+              <line x1="58" y1="22" x2="63" y2="27"/><line x1="89" y1="53" x2="94" y2="58"/>
+              <line x1="58" y1="58" x2="63" y2="53"/><line x1="89" y1="27" x2="94" y2="22"/>
+            </g>
+            <line x1="76" y1="68" x2="76" y2="86" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 3"/>
+          </g>
+
+          <!-- panel -->
+          <rect x="16" y="96" width="128" height="92" rx="10" fill="#fff8ec" stroke="#e0a75a" stroke-width="1.5"/>
+          <g stroke="#e8890c" stroke-width="1.1" opacity=".5">
+            <line x1="32" y1="112" x2="128" y2="112"/><line x1="32" y1="128" x2="128" y2="128"/>
+            <line x1="32" y1="144" x2="128" y2="144"/><line x1="32" y1="160" x2="128" y2="160"/>
+            <line x1="48" y1="104" x2="48" y2="178"/><line x1="72" y1="104" x2="72" y2="178"/>
+            <line x1="96" y1="104" x2="96" y2="178"/><line x1="120" y1="104" x2="120" y2="178"/>
+          </g>
+          <text x="80" y="214" text-anchor="middle" font-size="13.5" font-weight="700" fill="#a55a00" font-family="sans-serif">太阳能板</text>
+          <text x="80" y="231" text-anchor="middle" font-size="11.5" fill="#8a6b45" font-family="sans-serif">100W ~ 300W</text>
+
+          <!-- controller -->
+          <rect x="204" y="96" width="128" height="92" rx="10" fill="#e9f7f5" stroke="#5fb3aa" stroke-width="1.5"/>
+          <circle cx="268" cy="120" r="14" fill="none" stroke="#0f766e" stroke-width="1.5"/>
+          <path d="M268 112 L268 126 M263 120 L268 128 L273 120" stroke="#0f766e" stroke-width="1.5" fill="none"/>
+          <text x="268" y="152" text-anchor="middle" font-size="9.5" fill="#0b5f59" font-family="monospace">MPPT / PWM</text>
+          <text x="268" y="171" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0b5f59" font-family="sans-serif">控制器</text>
+
+          <!-- battery -->
+          <rect x="204" y="238" width="128" height="86" rx="10" fill="#eef3ff" stroke="#93b0ed" stroke-width="1.5"/>
+          <rect x="236" y="254" width="58" height="30" rx="4" fill="none" stroke="#1d4ed8" stroke-width="1.8"/>
+          <rect x="294" y="263" width="5" height="12" rx="2" fill="#1d4ed8"/>
+          <path d="M252 269 L264 269 M258 263 L258 275" stroke="#1d4ed8" stroke-width="1.5"/>
+          <path d="M274 263 L274 275 M280 263 L280 275" stroke="#1d4ed8" stroke-width="1.5"/>
+          <text x="268" y="308" text-anchor="middle" font-size="11.5" font-weight="700" fill="#173fa8" font-family="sans-serif">蓄电池</text>
+
+          <!-- inverter -->
+          <rect x="588" y="96" width="128" height="92" rx="10" fill="#f4efff" stroke="#b49ae8" stroke-width="1.5"/>
+          <path d="M618 144 q9 -24 18 0 q9 24 18 0 q9 -24 18 0" fill="none" stroke="#6d28d9" stroke-width="2" stroke-linecap="round"/>
+          <text x="652" y="168" text-anchor="middle" font-size="9" fill="#5b21b6" font-family="monospace">DC → AC</text>
+          <text x="652" y="214" text-anchor="middle" font-size="13.5" font-weight="700" fill="#5b21b6" font-family="sans-serif">逆变器</text>
+          <text x="652" y="231" text-anchor="middle" font-size="11" fill="#7c66a8" font-family="sans-serif">可选 · 要插 220V 才买</text>
+
+          <!-- load -->
+          <rect x="768" y="96" width="96" height="92" rx="10" fill="#f6f8fa" stroke="#c3ced9" stroke-width="1.5"/>
+          <path d="M798 126 a13 13 0 1 1 26 0 a13 13 0 1 1 -26 0" fill="none" stroke="#334155" stroke-width="1.6"/>
+          <path d="M804 124 L812 120 M820 124 L812 120" stroke="#334155" stroke-width="1.4"/>
+          <text x="816" y="166" text-anchor="middle" font-size="10" fill="#475569" font-family="monospace">220V</text>
+          <text x="816" y="214" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1e293b" font-family="sans-serif">电器</text>
+
+          <!-- wires -->
+          <line x1="144" y1="142" x2="198" y2="142" stroke="#64748b" stroke-width="1.8" marker-end="url(#arw)"/>
+          <line x1="332" y1="142" x2="582" y2="142" stroke="#64748b" stroke-width="1.8" marker-end="url(#arw)"/>
+          <line x1="268" y1="192" x2="268" y2="232" stroke="#64748b" stroke-width="1.8" marker-start="url(#arw)" marker-end="url(#arw)"/>
+          <line x1="724" y1="142" x2="762" y2="142" stroke="#64748b" stroke-width="1.8" marker-end="url(#arw)"/>
+
+          <text x="171" y="133" text-anchor="middle" font-size="10.5" fill="#64748b" font-family="monospace">DC</text>
+          <text x="457" y="133" text-anchor="middle" font-size="10.5" fill="#64748b" font-family="monospace">DC 12V</text>
+          <text x="340" y="222" font-size="10.5" fill="#64748b" font-family="monospace">充 / 放</text>
+          <text x="742" y="133" text-anchor="middle" font-size="10.5" fill="#64748b" font-family="monospace">AC</text>
+
+          <!-- direct dc branch -->
+          <path d="M332 282 L386 282" stroke="#0f766e" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/>
+          <circle cx="388" cy="282" r="3.2" fill="#0f766e"/>
+          <text x="400" y="268" font-size="11.5" fill="#0f766e" font-family="sans-serif">直流设备可直接接电池</text>
+          <text x="400" y="288" font-size="11.5" fill="#0f766e" font-family="sans-serif">省掉逆变器，少一道损耗</text>
+        </svg>
+      </div>
+      <figcaption><b>小系统的基本结构。</b>那条绿色虚线是"省掉逆变器"的走法：灯、路由器、手机充电本来就是直流电，直接接电池更省事，也更省电。</figcaption>
+    </figure>
+
+    <div class="analogy">
+      <p>把电想成<b>水</b>：太阳能板是<span>屋顶的接雨板</span>，电池是<span>水缸</span>，控制器是<span>水龙头上的阀门</span>——水满了关小一点，快见底了提醒你。</p>
+      <p>逆变器则像<span>装瓶的机器</span>：缸里的水本来能直接浇花（直流电器），但你想用标准瓶装水（220V 电器），就得多一道工序，还得洒掉一点。</p>
+    </div>
+
+    <h4>你要做的，其实只有四步</h4>
+    <ol class="steps">
+      <li>
+        <h5>算清楚一天用多少电</h5>
+        <p>把想带的电器列出来，功率 × 小时数，加起来。比如一盏 10W 的灯开 5 小时，就是 50Wh。</p>
+      </li>
+      <li>
+        <h5>按用电量选板子和电池</h5>
+        <p>板子决定"一天能发多少"，电池决定"没太阳时能撑多久"。小系统常见是 100~300W 板配 12V 50~100Ah 电池。</p>
+      </li>
+      <li>
+        <h5>选控制器和逆变器</h5>
+        <p>控制器按板子的电流选，逆变器按你要插的电器功率选。宁可大一点，但别大太多。</p>
+      </li>
+      <li>
+        <h5>接线、检查、通电</h5>
+        <p>顺序很重要：<b>先接电池，再接板子，最后接负载</b>。反了可能烧控制器。</p>
+      </li>
+    </ol>
+
+    <h4>为什么建议从小功率开始</h4>
+    <div class="grid g3">
+      <div class="card tight">
+        <div class="b amber">便宜</div>
+        <p style="font-size:14.5px;color:var(--muted);margin:8px 0 0">300W 一套（板 + 控制器 + 电池 + 逆变器）两千到四千元，主要差在电池：铅酸便宜但寿命短，磷酸铁锂贵一倍以上（详见后文实战清单），试错成本仍远低于并网系统。</p>
+      </div>
+      <div class="card tight">
+        <div class="b teal">安全</div>
+        <p style="font-size:14.5px;color:var(--muted);margin:8px 0 0">12V 系统电压低，触电风险远小于几百伏的高压组串。</p>
+      </div>
+      <div class="card tight">
+        <div class="b blue">学得快</div>
+        <p style="font-size:14.5px;color:var(--muted);margin:8px 0 0">接线一目了然，出问题容易查。搞懂了再放大，思路完全一样。</p>
+      </div>
+    </div>
+
+    <div class="callout key">
+      <div class="ico">!</div>
+      <div class="bd">
+        <div class="t">先记住一个换算，后面全靠它</div>
+        <p><b>功率（W）× 时间（h）= 电量（Wh）</b>。1000Wh 就是常说的"1 度电"。<br>
+        反过来：<b>电量 ÷ 电压 = 容量（Ah）</b>。12V 电池标 100Ah，就是 12 × 100 = 1200Wh ≈ 1.2 度电。</p>
+      </div>
+    </div>
+
+    <div class="tldr">
+      <h5>本章记住这一句</h5>
+      <ul>
+        <li>四个部件：<b>板子发电、控制器管家、电池存电、逆变器变压</b>。</li>
+        <li>小系统可以不买逆变器，<b>全用直流电器</b>最省电。</li>
+        <li>所有容量计算，都从"一天用多少 Wh"开始。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="panel">
+  <div class="wrap">
+    <span class="sec-num">02 / 太阳能板</span>
+    <h3>一块玻璃板，凭什么能发电</h3>
+
+    <p class="lead">
+      阳光打到板子里的硅片上，电子被"撞"出来跑动，就有了电。
+      你不需要懂原理，但<b>必须看懂板子背面那张标签</b>，上面的 5 个数字决定了后面所有选择。
+    </p>
+
+    <div class="analogy">
+      <p>板子的发电能力，看的是<span>光的强度</span>，不是<span>天气热不热</span>。</p>
+      <p>所以大热天正午，板子晒得烫手，发电反而会<b>打折扣</b>——太热了它也会"中暑"，效率下降。</p>
+    </div>
+
+    <h4>拆开看，就四层东西</h4>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:130px">层次</th><th>作用</th><th style="width:180px">坏了会怎样</th></tr></thead>
+        <tbody>
+          <tr><td><b>钢化玻璃</b></td><td>透光、挡雨挡冰雹，最外面那层</td><td>裂了会进水，整块板报废</td></tr>
+          <tr><td><b>电池片</b></td><td>真正发电的部分，一片片蓝色/黑色小方块</td><td>隐裂、热斑，发电量悄悄下降</td></tr>
+          <tr><td><b>背板</b></td><td>绝缘、防潮，背面那层白色或黑色膜</td><td>起皮进水，漏电</td></tr>
+          <tr><td><b>接线盒</b></td><td>引出正负极，里面还有保护用的二极管</td><td>进水氧化，接触不良发热</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout tip">
+      <div class="ico">✓</div>
+      <div class="bd">
+        <div class="t">搬板子的正确姿势</div>
+        <p>两只手抬<b>边框</b>，不要单手拎接线盒，也不要让板子中间受力。更不能踩上去——哪怕只是轻轻踩一下，里面的电池片可能已经裂了，外表完全看不出来，但发电量会掉一大截。</p>
+      </div>
+    </div>
+
+    <h4>标签上这 5 个数，必须认识</h4>
+    <p>以一块常见的 <b>100W 单晶板</b>为例，背面标签大概是这样：</p>
+
+    <div class="bignums">
+      <div class="bignum">
+        <div class="v">100W</div>
+        <div class="l">峰值功率 Pmax<br>标准条件下的最大出力</div>
+      </div>
+      <div class="bignum">
+        <div class="v">21.6V</div>
+        <div class="l">开路电压 Voc<br>不接东西时两端电压</div>
+      </div>
+      <div class="bignum">
+        <div class="v">5.8A</div>
+        <div class="l">短路电流 Isc<br>两端直接短接时的电流</div>
+      </div>
+    </div>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:110px">参数</th><th style="width:95px">这块板</th><th>什么意思</th><th style="width:170px">你拿它干什么</th></tr></thead>
+        <tbody>
+          <tr><td><b>Pmax</b></td><td class="num">100 W</td><td>标准测试下的最大功率，就是"100 瓦板"的由来。</td><td>算总装机容量</td></tr>
+          <tr><td><b>Voc</b></td><td class="num">21.6 V</td><td>不接负载时的最高电压，比工作电压高一些。</td><td><b>算能串几块</b>，别超控制器耐压</td></tr>
+          <tr><td><b>Vmp</b></td><td class="num">18.2 V</td><td>真正干活时的电压，约为 Voc 的 84%。</td><td>看控制器能不能带得动</td></tr>
+          <tr><td><b>Imp</b></td><td class="num">5.5 A</td><td>真正干活时的电流。</td><td>Vmp × Imp ≈ 100W</td></tr>
+          <tr><td><b>Isc</b></td><td class="num">5.8 A</td><td>两端短接时的最大电流，比 Imp 略高。</td><td><b>选线、选保险、选控制器</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="plain">
+      <span>说人话</span>工作时大约是 <b>18V × 5.5A = 100W</b>。Voc 和 Isc 是"极端值"，平时用不到，但选设备时得按它们来，因为极端情况真的会发生。
+    </div>
+
+    <h4>为什么"12V 的板"标着 18V？</h4>
+    <p>这是新手最容易被绕晕的地方。</p>
+    <p>你买一块给 12V 电池用的板，标签上写着 Vmp 18V 左右，看着完全不匹配。原因是：</p>
+    <ul>
+      <li>给电池充电，电压必须<b>比电池高</b>，水才往高处流；</li>
+      <li>板子一发热、一阴天，电压就往下掉，18V 掉到 14V 很常见；</li>
+      <li>线路上还有损耗，到控制器又掉一点。</li>
+    </ul>
+    <p>所以行业里把 Vmp 在 <b>18V 左右</b>的板叫"12V 系统专用板"，把 Vmp 在 <b>36V 左右</b>的叫"24V 系统专用板"。<b>这个 12V 指的是电池，不是板子。</b></p>
+
+    <div class="callout warn">
+      <div class="ico">!</div>
+      <div class="bd">
+        <div class="t">千万别买错电压等级</div>
+        <p>把 36V 的板直接接在 12V 的 PWM 控制器上，发的电会白白浪费一大半（PWM 只能把电压硬拉到电池电压）。<br>
+        要么买 18V 的"12V 专用板"配 PWM，要么<b>买 36V 板 + MPPT 控制器</b>。这两条路都行，混着来就不行。</p>
+      </div>
+    </div>
+
+    <h4>遮挡：小系统最容易忽略的坑</h4>
+    <p>板子内部是<b>串联</b>的，电流处处相等。所以只要有一小块被挡住，整块板的电流都会被拉到最低水平。</p>
+    <div class="grid g3">
+      <div class="card tight">
+        <div class="b red">最糟</div>
+        <p style="font-size:14.5px;color:var(--muted);margin:8px 0 0">电线杆的细长影子横穿板面——可能让输出掉 <b>70%</b>。</p>
+      </div>
+      <div class="card tight">
+        <div class="b amber">常见</div>
+        <p style="font-size:14.5px;color:var(--muted);margin:8px 0 0">一片树叶、一坨鸟粪——输出掉 <b>20%~40%</b>。</p>
+      </div>
+      <div class="card tight">
+        <div class="b gray">可接受</div>
+        <p style="font-size:14.5px;color:var(--muted);margin:8px 0 0">均匀的一层薄灰——掉 <b>5%~10%</b>，擦一擦就好。</p>
+      </div>
+    </div>
+    <p>所以安装位置要挑：<b>上午 9 点到下午 3 点之间，板面上不能有任何影子</b>。屋檐、树、烟囱、甚至板子自己的支架，都要提前想一遍。</p>
+
+    <h4>买板子看什么</h4>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:120px">类型</th><th style="width:100px">效率</th><th>特点</th><th style="width:150px">适合</th></tr></thead>
+        <tbody>
+          <tr><td><b>单晶硅</b></td><td class="num">21%~23%</td><td>主流，黑色，同样面积发电多，价格已经不高。</td><td>绝大多数场景，首选</td></tr>
+          <tr><td><b>多晶硅</b></td><td class="num">17%~19%</td><td>蓝色，有花纹，便宜但占地大，已逐渐淘汰。</td><td>预算极紧、地方够大</td></tr>
+          <tr><td><b>柔性板</b></td><td class="num">18%~22%</td><td>可弯曲、很轻，但怕折、寿命短、价格高。</td><td>房车顶、船顶、曲面</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout tip">
+      <div class="ico">✓</div>
+      <div class="bd">
+        <div class="t">小功率选购的三个实用建议</div>
+        <ul style="margin-bottom:0">
+          <li>优先买<b>带接线盒和 MC4 接头</b>的成品板，省得自己焊；</li>
+          <li>100W 左右建议买<b>两块 50W 或两块 100W</b>，而不是一整块 200W——搬运方便，坏一块不至于全停；</li>
+          <li>问清 <b>Vmp 是多少</b>，18V 还是 36V。这一条比瓦数重要得多。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tldr">
+      <h5>本章记住这一句</h5>
+      <ul>
+        <li>板子怕<b>遮挡</b>，不怕阴天（阴天只是少发，遮挡是断崖式下跌）。</li>
+        <li>"12V 板"指的是<b>配 12V 电池</b>，它的 Vmp 其实是 18V 左右。</li>
+        <li>买之前确认 <b>Vmp 18V 还是 36V</b>，这决定你配 PWM 还是 MPPT。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="series">
+  <div class="wrap">
+    <span class="sec-num">03 / 串联和并联</span>
+    <h3>两块板接一起，电压电流怎么变</h3>
+
+    <p class="lead">
+      记住八个字：<b>串联升压，并联升流</b>。
+      串联是把板子"接成一串"（正接负），并联是把板子"并成一排"（正接正、负接负）。
+      两种接法总功率一样，只是电压和电流的分配不同。
+    </p>
+
+    <figure>
+      <div class="fig">
+        <svg viewBox="0 0 880 560" style="width:100%;height:auto;display:block" role="img" aria-label="两块太阳能板串联与并联对比">
+          <!-- ===== series ===== -->
+          <text x="24" y="28" font-size="12.5" font-weight="700" fill="#a55a00" font-family="sans-serif" letter-spacing="1">串联 · 正接负，接成一串</text>
+          <text x="24" y="48" font-size="11.5" fill="#8a6b45" font-family="sans-serif">电压相加，电流不变</text>
+
+          <!-- panel 1 -->
+          <rect x="40" y="74" width="118" height="78" rx="6" fill="#fff8ec" stroke="#e0a75a" stroke-width="1.8"/>
+          <g stroke="#e8890c" stroke-width="1.1" opacity=".5">
+            <line x1="58" y1="92" x2="140" y2="92"/><line x1="58" y1="110" x2="140" y2="110"/><line x1="58" y1="128" x2="140" y2="128"/>
+            <line x1="80" y1="86" x2="80" y2="140"/><line x1="104" y1="86" x2="104" y2="140"/><line x1="128" y1="86" x2="128" y2="140"/>
+          </g>
+          <text x="99" y="170" text-anchor="middle" font-size="11" fill="#a55a00" font-family="monospace">18V · 5.5A</text>
+
+          <!-- panel 2 -->
+          <rect x="222" y="74" width="118" height="78" rx="6" fill="#fff8ec" stroke="#e0a75a" stroke-width="1.8"/>
+          <g stroke="#e8890c" stroke-width="1.1" opacity=".5">
+            <line x1="240" y1="92" x2="322" y2="92"/><line x1="240" y1="110" x2="322" y2="110"/><line x1="240" y1="128" x2="322" y2="128"/>
+            <line x1="262" y1="86" x2="262" y2="140"/><line x1="286" y1="86" x2="286" y2="140"/><line x1="310" y1="86" x2="310" y2="140"/>
+          </g>
+          <text x="281" y="170" text-anchor="middle" font-size="11" fill="#a55a00" font-family="monospace">18V · 5.5A</text>
+
+          <!-- wire -->
+          <path d="M158 113 L222 113" stroke="#334155" stroke-width="2.6"/>
+          <circle cx="40" cy="113" r="4" fill="#c0392b"/>
+          <circle cx="340" cy="113" r="4" fill="#334155"/>
+          <text x="34" y="100" font-size="12" font-weight="700" fill="#c0392b" font-family="monospace">+</text>
+          <text x="346" y="100" font-size="12" font-weight="700" fill="#334155" font-family="monospace">−</text>
+
+          <path d="M340 113 L418 113" stroke="#334155" stroke-width="2.4"/>
+          <polygon points="418,107 430,113 418,119" fill="#334155"/>
+
+          <rect x="430" y="74" width="184" height="78" rx="6" fill="#0f2136"/>
+          <text x="522" y="98" text-anchor="middle" font-size="10" fill="#8aa3bd" font-family="monospace">总输出</text>
+          <text x="522" y="124" text-anchor="middle" font-size="20" font-weight="700" fill="#ffc46b" font-family="monospace">36V · 5.5A</text>
+          <text x="522" y="142" text-anchor="middle" font-size="10.5" fill="#93a9c0" font-family="monospace">≈ 200W</text>
+
+          <text x="632" y="106" font-size="12.5" fill="#64748b" font-family="sans-serif">电压变成 2 倍</text>
+          <text x="632" y="126" font-size="12.5" fill="#64748b" font-family="sans-serif">电流不变</text>
+
+          <!-- ===== parallel ===== -->
+          <line x1="24" y1="206" x2="856" y2="206" stroke="#e4e9ef" stroke-width="1.4" stroke-dasharray="6 6"/>
+
+          <text x="24" y="242" font-size="12.5" font-weight="700" fill="#0b5f59" font-family="sans-serif" letter-spacing="1">并联 · 正接正，负接负</text>
+          <text x="24" y="262" font-size="11.5" fill="#4a8a84" font-family="sans-serif">电流相加，电压不变</text>
+
+          <!-- bus -->
+          <line x1="40" y1="304" x2="400" y2="304" stroke="#c0392b" stroke-width="2.4"/>
+          <line x1="40" y1="452" x2="400" y2="452" stroke="#334155" stroke-width="2.4"/>
+
+          <!-- panels -->
+          <rect x="66" y="336" width="118" height="78" rx="6" fill="#e9f7f5" stroke="#5fb3aa" stroke-width="1.8"/>
+          <g stroke="#0f766e" stroke-width="1.1" opacity=".45">
+            <line x1="84" y1="354" x2="166" y2="354"/><line x1="84" y1="372" x2="166" y2="372"/><line x1="84" y1="390" x2="166" y2="390"/>
+            <line x1="106" y1="348" x2="106" y2="402"/><line x1="130" y1="348" x2="130" y2="402"/><line x1="154" y1="348" x2="154" y2="402"/>
+          </g>
+          <text x="125" y="432" text-anchor="middle" font-size="11" fill="#0b5f59" font-family="monospace">18V · 5.5A</text>
+
+          <rect x="256" y="336" width="118" height="78" rx="6" fill="#e9f7f5" stroke="#5fb3aa" stroke-width="1.8"/>
+          <g stroke="#0f766e" stroke-width="1.1" opacity=".45">
+            <line x1="274" y1="354" x2="356" y2="354"/><line x1="274" y1="372" x2="356" y2="372"/><line x1="274" y1="390" x2="356" y2="390"/>
+            <line x1="296" y1="348" x2="296" y2="402"/><line x1="320" y1="348" x2="320" y2="402"/><line x1="344" y1="348" x2="344" y2="402"/>
+          </g>
+          <text x="315" y="432" text-anchor="middle" font-size="11" fill="#0b5f59" font-family="monospace">18V · 5.5A</text>
+
+          <!-- taps -->
+          <g stroke="#c0392b" stroke-width="2">
+            <line x1="125" y1="304" x2="125" y2="336"/><line x1="315" y1="304" x2="315" y2="336"/>
+          </g>
+          <g stroke="#334155" stroke-width="2">
+            <line x1="125" y1="414" x2="125" y2="452"/><line x1="315" y1="414" x2="315" y2="452"/>
+          </g>
+          <g fill="#c0392b"><circle cx="125" cy="304" r="3.6"/><circle cx="315" cy="304" r="3.6"/></g>
+          <g fill="#334155"><circle cx="125" cy="452" r="3.6"/><circle cx="315" cy="452" r="3.6"/></g>
+
+          <text x="32" y="297" font-size="12" font-weight="700" fill="#c0392b" font-family="monospace">+</text>
+          <text x="32" y="464" font-size="12" font-weight="700" fill="#334155" font-family="monospace">−</text>
+
+          <!-- to result -->
+          <line x1="400" y1="304" x2="430" y2="304" stroke="#c0392b" stroke-width="2.4"/>
+          <line x1="400" y1="452" x2="430" y2="452" stroke="#334155" stroke-width="2.4"/>
+
+          <rect x="430" y="286" width="184" height="184" rx="6" fill="#0f2136"/>
+          <text x="442" y="300" font-size="12" font-weight="700" fill="#e0705e" font-family="monospace">+</text>
+          <text x="442" y="472" font-size="12" font-weight="700" fill="#7f93a8" font-family="monospace">−</text>
+          <text x="522" y="360" text-anchor="middle" font-size="10" fill="#8aa3bd" font-family="monospace">总输出</text>
+          <text x="522" y="390" text-anchor="middle" font-size="20" font-weight="700" fill="#7ee0c8" font-family="monospace">18V · 11A</text>
+          <text x="522" y="410" text-anchor="middle" font-size="10.5" fill="#93a9c0" font-family="monospace">≈ 200W</text>
+
+          <text x="632" y="368" font-size="12.5" fill="#64748b" font-family="sans-serif">电压不变</text>
+          <text x="632" y="388" font-size="12.5" fill="#64748b" font-family="sans-serif">电流变成 2 倍</text>
+
+          <text x="24" y="504" font-size="12.5" fill="#69788a" font-family="sans-serif">两种接法总功率都是 200W。串联不会让电变多，并联也不会，改变的只是"电压高、电流小"还是"电压低、电流大"。</text>
+          <text x="24" y="528" font-size="12.5" fill="#69788a" font-family="sans-serif">小系统里：配 PWM 控制器就并联；配 MPPT 控制器可以串联，线可以拉得更长、更细。</text>
+        </svg>
+      </div>
+      <figcaption><b>两块 100W 板，两种接法。</b>串联后是 36V/5.5A，并联后是 18V/11A，功率都是 200W。选哪种，取决于你的控制器。</figcaption>
+    </figure>
+
+    <h4>串并联怎么选？看控制器</h4>
+    <div class="grid g2">
+      <div class="card">
+        <div class="b gray">配 PWM 控制器</div>
+        <h5 style="margin:10px 0 8px">板子要<b>并联</b></h5>
+        <p style="font-size:15px;color:var(--ink-2);margin-bottom:8px">PWM 只会把电压硬拉到电池电压，所以板子的电压必须"刚刚好"——18V 左右。</p>
+        <p style="font-size:14.5px;color:var(--muted);margin:0">两块 18V 板串联成 36V 接 PWM，等于把多出来的 18V 白白扔掉，功率直接砍半。</p>
+      </div>
+      <div class="card">
+        <div class="b teal">配 MPPT 控制器</div>
+        <h5 style="margin:10px 0 8px">串联并联都行，<b>推荐串联</b></h5>
+        <p style="font-size:15px;color:var(--ink-2);margin-bottom:8px">MPPT 会把高压降下来、电流升上去，不浪费。串联后电压高、电流小，线损更小。</p>
+        <p style="font-size:14.5px;color:var(--muted);margin:0">两块串联 36V 进 MPPT，出 12V 给电池，效率 95% 以上。线还能用细一点。</p>
+      </div>
+    </div>
+
+    <div class="callout note">
+      <div class="ico">i</div>
+      <div class="bd">
+        <div class="t">小功率场景的实际建议</div>
+        <p>如果你只有 <b>1~2 块板</b>、线不长（3 米以内），最省事的组合是：<b>18V 板 + PWM 控制器 + 12V 电池</b>，便宜、够用、不容易错。<br>
+        如果板子有 <b>3 块以上</b>，或者板子离电池很远（比如屋顶到屋里 10 米），改用 <b>MPPT + 串联</b>，线损能省下不少。</p>
+      </div>
+    </div>
+
+    <h4>四条规矩，记住就不会接错</h4>
+    <div class="check">
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>串联：正接负，一块接一块</b><span>总电压 = 各块电压相加；总电流 = 最小的那一块。所以串联的板子必须<b>电流参数一致</b>。</span></div>
+      </div>
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>并联：正接正，负接负</b><span>总电流 = 各块电流相加；总电压 = 最小的那一块。所以并联的板子必须<b>电压参数一致</b>。</span></div>
+      </div>
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>不同规格的板子，不要硬接在一起</b><span>一块 100W 和一块 50W 串联，50W 那块会被"拖着走"，还可能发热烧坏。要接就各接各的控制器。</span></div>
+      </div>
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>串联数量受控制器耐压限制</b><span>算的时候用<b>冬天最冷时</b>的电压：Voc × 块数 × 1.1，必须小于控制器标的最大输入电压。</span></div>
+      </div>
+    </div>
+
+    <div class="callout key">
+      <div class="ico">!</div>
+      <div class="bd">
+        <div class="t">为什么冬天要特别小心</div>
+        <p>电池片有个特性：<b>越冷电压越高</b>。标签上的 Voc 是 25°C 时测的，到了 -10°C 的清晨，同样一块板会高出约 <b>10%</b>。<br>
+        两块串联：21.6 × 2 = 43.2V，冬天可能变成 <b>47.5V</b>。如果控制器最大只标 50V，余量就很小了。选控制器时，宁可买 100V 耐压的，贵不了多少。</p>
+      </div>
+    </div>
+
+    <h4>动手算一下</h4>
+    <p>输入你手上板子的参数，下面会算出串并联后的总电压、总电流，并检查冬天会不会超过控制器上限。</p>
+
+    <div class="calc">
+      <div class="calc-h"><span class="dot"></span><h5>串并联计算器</h5><span>输入 → 结果</span></div>
+      <div class="calc-b">
+        <div class="fields">
+          <div class="f"><label>单块功率 <small>W</small></label><input id="c1p" type="number" value="100" step="10"></div>
+          <div class="f"><label>开路电压 Voc <small>V，标签上找</small></label><input id="c1voc" type="number" value="21.6" step="0.1"></div>
+          <div class="f"><label>工作电压 Vmp <small>V</small></label><input id="c1vmp" type="number" value="18.2" step="0.1"></div>
+          <div class="f"><label>工作电流 Imp <small>A</small></label><input id="c1imp" type="number" value="5.5" step="0.1"></div>
+          <div class="f"><label>短路电流 Isc <small>A</small></label><input id="c1isc" type="number" value="5.8" step="0.1"></div>
+          <div class="f"><label>串联几块 <small>一条线上接几块</small></label><input id="c1ns" type="number" value="2" step="1" min="1"></div>
+          <div class="f"><label>并联几路 <small>几条这样的线并起来</small></label><input id="c1np" type="number" value="1" step="1" min="1"></div>
+          <div class="f"><label>当地最低温 <small>°C，冬天清晨</small></label><input id="c1t" type="number" value="-10" step="1"></div>
+          <div class="f"><label>控制器耐压 <small>V，最大输入电压</small></label><input id="c1lim" type="number" value="100" step="10"></div>
+        </div>
+        <div class="out">
+          <div class="row"><span class="l">总功率</span><span><span class="v" id="o1p">—</span><span class="u">W</span></span></div>
+          <div class="row"><span class="l">工作电压</span><span><span class="v" id="o1vmp">—</span><span class="u">V</span></span></div>
+          <div class="row"><span class="l">工作电流</span><span><span class="v" id="o1imp">—</span><span class="u">A</span></span></div>
+          <div class="row"><span class="l">冬天最高电压</span><span><span class="v" id="o1voc">—</span><span class="u">V</span></span></div>
+          <div class="row"><span class="l">最大电流 Isc</span><span><span class="v" id="o1isc">—</span><span class="u">A</span></span></div>
+          <div class="verdict" id="o1v">输入参数后自动计算</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tldr">
+      <h5>本章记住这一句</h5>
+      <ul>
+        <li><b>串联升压、并联升流</b>，总功率都不变。</li>
+        <li>PWM 配<b>并联</b>，MPPT 可<b>串联</b>（更推荐）。</li>
+        <li>同串要电流一致，同并要电压一致，<b>不同规格别混</b>。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="controller">
+  <div class="wrap">
+    <span class="sec-num">04 / 控制器</span>
+    <h3>控制器：电池的充电管家</h3>
+
+    <p class="lead">
+      它夹在板子和电池中间，干三件事：<b>该充的时候充、充满了就停、快没电了断电保护</b>。
+      几十块到几百块的东西，却是唯一能防止电池被充坏的部件。
+    </p>
+
+    <div class="analogy">
+      <p>给电池充电，跟<b>往水缸里放水</b>一样。一直猛放，水会溢出来（过充，电池鼓包）；</p>
+      <p>放到见底还继续抽，缸就干了（过放，电池报废）。控制器就是那个<b>看着水位的人</b>。</p>
+    </div>
+
+    <h4>两种控制器，差别在哪</h4>
+    <div class="grid g2">
+      <div class="card tight">
+        <div class="b gray">PWM</div>
+        <h5 style="margin:10px 0 8px">简单粗暴，够用</h5>
+        <p style="font-size:15px;color:var(--ink-2);margin-bottom:8px">把板子的电压直接"按"到电池电压。多出来的电压，就浪费了。</p>
+        <p style="font-size:14px;color:var(--muted);margin:0">
+          <b>价格：</b>30~80 元<br>
+          <b>适合：</b>100~200W 小系统，18V 板配 12V 电池
+        </p>
+      </div>
+      <div class="card tight">
+        <div class="b teal">MPPT</div>
+        <h5 style="margin:10px 0 8px">会"降压升流"，多榨一点</h5>
+        <p style="font-size:15px;color:var(--ink-2);margin-bottom:8px">先找到板子最能出力的那个点，再把电压降下来、电流升上去，功率基本不损失。</p>
+        <p style="font-size:14px;color:var(--muted);margin:0">
+          <b>价格：</b>150~500 元<br>
+          <b>适合：</b>200W 以上，或板子电压比电池高很多
+        </p>
+      </div>
+    </div>
+
+    <div class="formula">
+      <span class="lbl">差多少</span>
+      一块 100W 板，Vmp 18V，Imp 5.5A，给 12V 电池充电<br>
+      <span class="c">// PWM：板子被拉低到电池电压，13.8V × 5.5A ≈ <em>76W</em> → 少榨 24W（约四分之一）</span><br>
+      <span class="c">// MPPT：100W × 96% ÷ 13.8V ≈ <em>7A</em>，约 96W，基本不浪费</span><br><br>
+      <span class="c">// 板子电压和电池电压差得越多，MPPT 越值</span>
+    </div>
+
+    <div class="callout tip">
+      <div class="ico">✓</div>
+      <div class="bd">
+        <div class="t">小系统怎么选，一句话</div>
+        <p><b>1~2 块 18V 板 + 12V 电池</b>：PWM 就够，便宜省事。<br>
+        <b>3 块以上，或用了 36V 板</b>：直接上 MPPT，不然浪费的电比省下的钱多。</p>
+      </div>
+    </div>
+
+    <h4>买多大？算一个数就行</h4>
+    <p>控制器的规格只有一个关键数：<b>额定电流</b>（多少安）。算法是：</p>
+
+    <div class="formula">
+      <span class="lbl">选型公式</span>
+      控制器电流 = 板子总功率 ÷ <em>电池电压</em> × 1.25（余量）<br><br>
+      <span class="c">// 例：2 块 100W 并联，配 12V 电池</span><br>
+      <span class="c">// 200 ÷ 12 × 1.25 = 20.8A → 买 <em>30A</em> 的</span><br><br>
+      <span class="c">// 注意：除的是电池电压 12V，不是板子电压 18V！</span>
+    </div>
+
+    <div class="plain">
+      <span>为什么除 12V</span>因为电最后都要进电池。板子发出的 200W，落到 12V 电池上，电流就是 200 ÷ 12 ≈ 16.7A，再留 25% 余量，约 21A。买 30A 的控制器，留足空间，不容易发热。
+    </div>
+
+    <div class="callout warn">
+      <div class="ico">!</div>
+      <div class="bd">
+        <div class="t">新手最容易算错的地方</div>
+        <p>很多人拿 200W ÷ 18V = 11A，然后买 10A 控制器，结果一满发就发烫保护。<b>一定要除以电池电压 12V</b>，因为控制器输出侧的电流是按电池电压算的。</p>
+      </div>
+    </div>
+
+    <h4>还要看两个数</h4>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:160px">参数</th><th>看什么</th><th style="width:190px">小系统常见值</th></tr></thead>
+        <tbody>
+          <tr><td><b>最大输入电压</b></td><td>板子串联后的<b>冬天电压</b>不能超过它</td><td class="num">50V / 100V</td></tr>
+          <tr><td><b>系统电压</b></td><td>要能自动识别或手动选 12V</td><td class="num">12V / 24V 自适应</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>接线顺序，错了会烧</h4>
+    <div class="grid g2">
+      <div class="card tight">
+        <div class="b red">正确顺序</div>
+        <p style="font-size:15px;color:var(--ink-2);margin:10px 0 0;line-height:2">
+          <b>通电：</b>电池 → 板子 → 负载<br>
+          <b>断电：</b>负载 → 板子 → 电池
+        </p>
+      </div>
+      <div class="card tight">
+        <div class="b gray">为什么</div>
+        <p style="font-size:14.5px;color:var(--muted);margin:10px 0 0">控制器要先"看到"电池，才知道你是 12V 还是 24V 系统。先接板子，它可能误判，把 12V 电池当 24V 充，直接充坏。</p>
+      </div>
+    </div>
+
+    <div class="callout note">
+      <div class="ico">i</div>
+      <div class="bd">
+        <div class="t">控制器上通常有 3 组端子，别接反</div>
+        <p><b>太阳能板</b>（有的标 PV 或 ☀）→ 接板子正负极<br>
+        <b>电池</b>（BAT）→ 接电池正负极<br>
+        <b>负载</b>（LOAD）→ 接灯之类的直流设备，可以不接<br><br>
+        三组都是<b>红正黑负</b>。接反了轻则不工作，重则冒烟。接之前用万用表确认一下极性，只花十秒钟。</p>
+      </div>
+    </div>
+
+    <h4>它自带哪些保护</h4>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:140px">保护</th><th>作用</th></tr></thead>
+        <tbody>
+          <tr><td><b>过充保护</b></td><td>电池充满就停止或转浮充，防止鼓包、失水。</td></tr>
+          <tr><td><b>过放保护</b></td><td>电压太低时切断负载，防止电池被放干（铅酸会硫化，锂电会永久损伤）。</td></tr>
+          <tr><td><b>反接保护</b></td><td>正负极接反时不烧机，好一点的控制器都有。</td></tr>
+          <tr><td><b>过载 / 短路</b></td><td>负载侧短路时自动断开，故障排除后恢复。</td></tr>
+          <tr><td><b>过温保护</b></td><td>温度太高时降低功率或停机，防止烧毁。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>买的时候看一眼说明书，这五项有没有写全。没有的，别买。</p>
+
+    <div class="tldr">
+      <h5>本章记住这一句</h5>
+      <ul>
+        <li>控制器 = <b>充电管家</b>，防止过充和过放。</li>
+        <li>电流按 <b>总功率 ÷ 电池电压 × 1.25</b> 算。</li>
+        <li>接线永远<b>先接电池</b>，断电最后断电池。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="battery">
+  <div class="wrap">
+    <span class="sec-num">05 / 蓄电池 · 本章是重点</span>
+    <h3>蓄电池：整套系统里最贵、也最容易用坏的东西</h3>
+
+    <p class="lead">
+      板子可以便宜，控制器可以凑合，但电池一旦选错或用错，
+      <b>轻则一年就废，重则鼓包起火</b>。这一章把小系统最常用的三种电池讲透，
+      顺便把"要买多大"算清楚。
+    </p>
+
+    <div class="analogy">
+      <p>太阳能板是<span>水龙头</span>，只在白天出水；电池是<span>水缸</span>，晚上和阴天全靠它。</p>
+      <p>水缸太小，白天接的水装不下，浪费；水缸太大，花了很多钱却总也装不满，也是浪费。<b>合适，比大更重要。</b></p>
+    </div>
+
+    <h4>先搞懂三个词</h4>
+    <div class="grid g3">
+      <div class="card tight">
+        <div class="b blue">容量 Ah</div>
+        <p style="font-size:14.5px;color:var(--ink-2);margin:8px 0 0">电池能装多少电。12V 100Ah = <b>1.2 度电</b>。<br><span style="color:var(--muted)">算法：电压 × 安时 = 瓦时</span></p>
+      </div>
+      <div class="card tight">
+        <div class="b amber">电压 V</div>
+        <p style="font-size:14.5px;color:var(--ink-2);margin:8px 0 0">小系统几乎都是 <b>12V</b>。超过 1000W 才考虑 24V。<br><span style="color:var(--muted)">电压越高，同样功率下电流越小</span></p>
+      </div>
+      <div class="card tight">
+        <div class="b teal">放电深度 DOD</div>
+        <p style="font-size:14.5px;color:var(--ink-2);margin:8px 0 0">能放掉多少百分比。铅酸只能放 <b>50%</b>，锂电可以放 <b>80%</b>。<br><span style="color:var(--muted)">放得越深，寿命越短</span></p>
+      </div>
+    </div>
+
+    <div class="callout key">
+      <div class="ico">!</div>
+      <div class="bd">
+        <div class="t">这三个词怎么连起来</div>
+        <p><b>12V 100Ah 的铅酸电池</b>，标称 1.2 度电，但只能放出 50%，实际可用 <b>0.6 度</b>。<br>
+        <b>12V 100Ah 的磷酸铁锂</b>，同样标称 1.2 度电，能放出 80%，实际可用 <b>0.96 度</b>。<br>
+        差了 60%——这就是为什么锂电贵，却不一定更花钱。</p>
+      </div>
+    </div>
+
+    <h4>三种电池，怎么选</h4>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr><th style="width:120px">类型</th><th style="width:110px">价格（12V 100Ah）</th><th style="width:100px">循环寿命</th><th style="width:90px">可用深度</th><th>特点</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>铅酸</b><br><span class="b gray">加水维护</span></td>
+            <td class="num">400~600 元</td><td class="num">300~500 次</td><td class="num">50%</td>
+            <td>最便宜，但重（约 30kg）、要加水、怕亏电。放干了基本就废了。</td>
+          </tr>
+          <tr>
+            <td><b>胶体 / AGM</b><br><span class="b gray">免维护</span></td>
+            <td class="num">600~900 元</td><td class="num">400~700 次</td><td class="num">50%</td>
+            <td>不用加水，可以侧放，低温性能比普通铅酸好一点。性价比一般。</td>
+          </tr>
+          <tr>
+            <td><b>磷酸铁锂</b><br><span class="b teal">推荐</span></td>
+            <td class="num">1200~2000 元</td><td class="num">2000~5000 次</td><td class="num">80%~90%</td>
+            <td>轻（约 12kg）、寿命长、能放得深、自带 BMS 保护。贵在前期，省在长期。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout tip">
+      <div class="ico">✓</div>
+      <div class="bd">
+        <div class="t">算一笔账，你就知道该买哪个</div>
+        <p>假设每天要用 0.6 度电，用 5 年：<br>
+        <b>铅酸</b>：需要 12V 100Ah（可用 0.6 度），但深放一次算一个循环，循环 400 次左右就要换——每天一放，5 年下来要换 <b>4~5 块</b>，总花费约 2000~2500 元，还得记着加水。<br>
+        <b>锂电</b>：同样 12V 100Ah，可用 0.96 度，容量还有富余，5 年基本不用换，总花费约 1500~2000 元，<b>不用维护</b>。<br>
+        价格差不多，但锂电更轻、更省心、还能多存 60% 的电。</p>
+      </div>
+    </div>
+
+    <p>结论很简单：<b>预算允许就买磷酸铁锂</b>。除非你只是做个临时实验，或者冬天特别冷又没保温条件（锂电 0°C 以下不能充电，见下文）。</p>
+
+    <h4>要买多大？三步算出来</h4>
+    <div class="formula">
+      <span class="lbl">容量计算</span>
+      ① 算出一天用多少电：Wh = 电器功率 × 使用小时（全部加起来）<br>
+      ② 需要存几天：小系统一般 <em>2~3 天</em>（应对连续阴雨）<br>
+      ③ 容量 Ah = 日用电 × 天数 ÷ 放电深度 ÷ 电池电压<br><br>
+      <span class="c">// 例：一天用 600Wh，撑 2 天，磷酸铁锂（0.8），12V</span><br>
+      <span class="c">// 600 × 2 ÷ 0.8 ÷ 12 = <em>125Ah</em> → 买 12V 120Ah 或 150Ah</span><br><br>
+      <span class="c">// 同样条件换成铅酸（0.5）：600 × 2 ÷ 0.5 ÷ 12 = 200Ah，要大一倍</span>
+    </div>
+
+    <div class="plain">
+      <span>说人话</span>先算"一天吃多少"，再乘"要撑几天"，最后除以"能放多深"。锂电除以 0.8，铅酸除以 0.5，数字越大，买得越大。
+    </div>
+
+    <div class="bignums">
+      <div class="bignum"><div class="v">50Ah</div><div class="l">≈ 0.6 度电<br>适合只带灯、路由器、手机</div></div>
+      <div class="bignum"><div class="v">100Ah</div><div class="l">≈ 1.2 度电<br>适合小屋、房车基础用电</div></div>
+      <div class="bignum"><div class="v">200Ah</div><div class="l">≈ 2.4 度电<br>适合带小冰箱、风扇、笔记本</div></div>
+    </div>
+    <p style="font-size:14px;color:var(--muted)">上表按 12V 磷酸铁锂、可放 80% 估算的<b>可用电量</b>。实际购买时按你的日用电量套公式，别直接照抄。</p>
+
+    <h4>电池也能串并联</h4>
+    <p>和太阳能板一样：<b>串联升压，并联升容</b>。</p>
+    <div class="grid g2">
+      <div class="card tight">
+        <div class="b amber">串联</div>
+        <p style="font-size:15px;color:var(--ink-2);margin:10px 0 0">两块 12V 100Ah 串起来 = <b>24V 100Ah</b><br>电压翻倍，容量不变。<br><span style="color:var(--muted);font-size:14px">小系统一般用不到，除非升到 24V。</span></p>
+      </div>
+      <div class="card tight">
+        <div class="b teal">并联</div>
+        <p style="font-size:15px;color:var(--ink-2);margin:10px 0 0">两块 12V 100Ah 并起来 = <b>12V 200Ah</b><br>容量翻倍，电压不变。<br><span style="color:var(--muted);font-size:14px">小系统扩容最常用的方式。</span></p>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <div class="ico">!</div>
+      <div class="bd">
+        <div class="t">并联扩容的三个前提</div>
+        <ul style="margin-bottom:0">
+          <li><b>同型号、同容量、同批次</b>。新旧混用，旧的那块会把新的拖死。</li>
+          <li>并联前测电压，两块差值 <b>小于 0.1V</b> 再并，否则会有大电流互冲。</li>
+          <li>每块电池的正极各串一个<b>保险丝</b>，再汇流。一块短路时，另一块不会把全部电流灌进去。</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4>充电分三段，看懂就不会充坏</h4>
+    <figure>
+      <div class="fig">
+        <svg viewBox="0 0 640 320" style="width:100%;height:auto;display:block" role="img" aria-label="蓄电池三阶段充电曲线">
+          <rect x="70" y="50" width="150" height="210" fill="#fff8ec"/>
+          <rect x="220" y="50" width="200" height="210" fill="#eef3ff"/>
+          <rect x="420" y="50" width="160" height="210" fill="#effaf2"/>
+
+          <g stroke="#e4e9ef" stroke-width="1">
+            <line x1="70" y1="50" x2="580" y2="50"/><line x1="70" y1="103" x2="580" y2="103"/>
+            <line x1="70" y1="156" x2="580" y2="156"/><line x1="70" y1="209" x2="580" y2="209"/>
+          </g>
+          <line x1="70" y1="50" x2="70" y2="260" stroke="#94a3b8" stroke-width="1.4"/>
+          <line x1="70" y1="260" x2="592" y2="260" stroke="#94a3b8" stroke-width="1.4"/>
+          <line x1="220" y1="50" x2="220" y2="260" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="420" y1="50" x2="420" y2="260" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+
+          <path d="M70,196 L205,84 L400,84 L440,112 L580,112"
+                fill="none" stroke="#e8890c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M70,72 L205,72 C255,72 275,170 340,208 C380,230 430,236 580,238"
+                fill="none" stroke="#1d4ed8" stroke-width="2.6" stroke-dasharray="7 4" stroke-linecap="round"/>
+
+          <text x="145" y="32" text-anchor="middle" font-size="11" font-weight="700" fill="#a55a00" font-family="sans-serif">① 猛充</text>
+          <text x="145" y="46" text-anchor="middle" font-size="9.5" fill="#8a6b45" font-family="monospace">全电流灌入</text>
+
+          <text x="310" y="32" text-anchor="middle" font-size="11" font-weight="700" fill="#173fa8" font-family="sans-serif">② 慢充</text>
+          <text x="310" y="46" text-anchor="middle" font-size="9.5" fill="#4a6ba8" font-family="monospace">电压锁住，电流渐小</text>
+
+          <text x="500" y="32" text-anchor="middle" font-size="11" font-weight="700" fill="#12652f" font-family="sans-serif">③ 维持</text>
+          <text x="500" y="46" text-anchor="middle" font-size="9.5" fill="#3a7a52" font-family="monospace">小电流补自放电</text>
+
+          <text x="62" y="200" text-anchor="end" font-size="10" fill="#64748b" font-family="monospace">12.0V</text>
+          <text x="62" y="88" text-anchor="end" font-size="10" fill="#64748b" font-family="monospace">14.4V</text>
+          <text x="62" y="116" text-anchor="end" font-size="10" fill="#64748b" font-family="monospace">13.6V</text>
+          <text x="62" y="76" text-anchor="end" font-size="10" fill="#1d4ed8" font-family="monospace">大电流</text>
+          <text x="575" y="278" font-size="10" fill="#64748b" font-family="monospace">时间 →</text>
+
+          <g font-family="sans-serif" font-size="10.5">
+            <line x1="70" y1="300" x2="92" y2="300" stroke="#e8890c" stroke-width="3"/>
+            <text x="98" y="304" fill="#8a5a10">电池电压</text>
+            <line x1="176" y1="300" x2="198" y2="300" stroke="#1d4ed8" stroke-width="2.6" stroke-dasharray="7 4"/>
+            <text x="204" y="304" fill="#173fa8">充电电流</text>
+            <text x="330" y="304" fill="#94a3b8" font-family="monospace">以 12V 铅酸为例，锂电点位略低</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption><b>三段式充电。</b>前段猛充（电流大、电压爬升），中段慢充（电压到顶后电流自己降下来），后段维持（保持满电又不伤害电池）。控制器自动帮你切换，你只要把参数设对。</figcaption>
+    </figure>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:110px">阶段</th><th style="width:120px">12V 铅酸电压</th><th>在干什么</th><th style="width:150px">为什么重要</th></tr></thead>
+        <tbody>
+          <tr><td><b>猛充</b></td><td class="num">11.5 → 14.4V</td><td>能塞多少塞多少，电压一路往上爬。</td><td>决定多久能充满</td></tr>
+          <tr><td><b>慢充</b></td><td class="num">14.4V 保持</td><td>电压不动，电流越来越小，把最后 20% 塞进去。</td><td>不充满会硫化、容量变小</td></tr>
+          <tr><td><b>维持</b></td><td class="num">13.6V 保持</td><td>用小电流抵消电池自己跑掉的电。</td><td>长期放着也不会亏电</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout note">
+      <div class="ico">i</div>
+      <div class="bd">
+        <div class="t">锂电的电压不一样，别照抄铅酸的数</div>
+        <p>磷酸铁锂（4 串）通常是：充电上限 <b>14.2~14.6V</b>，浮充 <b>13.6V</b>，低压保护 <b>11.0~11.5V</b>。<br>
+        买控制器时选"锂电池模式"，或者手动把参数改成厂家给的数值。<b>用铅酸模式充锂电，容易充出问题。</b></p>
+      </div>
+    </div>
+
+    <h4>温度：电池最怕的两件事</h4>
+    <div class="grid g2">
+      <div class="card">
+        <div class="b blue">怕冷</div>
+        <p style="font-size:15px;color:var(--ink-2);margin:10px 0 8px">铅酸在 0°C 时容量只剩 <b>70%</b>，-10°C 剩 <b>60%</b>。冬天感觉"电不够用"，很多时候不是板子的问题。</p>
+        <p style="font-size:14.5px;color:var(--muted);margin:0">磷酸铁锂更严格：<b>0°C 以下禁止充电</b>。低温充电会在内部析出金属锂，造成永久损伤，严重时短路起火。</p>
+      </div>
+      <div class="card">
+        <div class="b red">怕热</div>
+        <p style="font-size:15px;color:var(--ink-2);margin:10px 0 8px">温度每高 10°C，铅酸寿命大约<b>减半</b>。放在暴晒的铁皮屋里，一年就可能报废。</p>
+        <p style="font-size:14.5px;color:var(--muted);margin:0">锂电高于 45°C 也会加速老化，且增加热失控风险。电池要放在<b>阴凉、通风</b>的位置。</p>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <div class="ico">✓</div>
+      <div class="bd">
+        <div class="t">北方用户的实用做法</div>
+        <p>把电池放在<b>室内或保温箱</b>里，不要直接放在室外。如果必须放室外，选带<b>低温保护</b>的锂电池（BMS 会在 0°C 以下自动禁止充电），或者加装加热片。<br>
+        冬天容量下降是正常现象，按 0.7 倍估算需求即可，不必为此买大一倍的电池。</p>
+      </div>
+    </div>
+
+    <h4>BMS 是什么，为什么必须有</h4>
+    <p>磷酸铁锂电池包里都有一块小电路板，叫 <b>BMS（电池管理系统）</b>。它盯着每一串电芯，负责：</p>
+    <ul>
+      <li><b>过充保护</b>——任何一串到顶就切断充电；</li>
+      <li><b>过放保护</b>——电压太低就切断输出；</li>
+      <li><b>过流 / 短路保护</b>——电流异常立刻断开；</li>
+      <li><b>温度保护</b>——太冷禁止充电，太热限制电流；</li>
+      <li><b>均衡</b>——让每串电芯电压保持一致，不然会"一串拖累全包"。</li>
+    </ul>
+    <div class="callout warn">
+      <div class="ico">!</div>
+      <div class="bd">
+        <div class="t">BMS 不能代替控制器</div>
+        <p>BMS 是<b>最后一道保险</b>，它动作的时候，说明已经到极限了。日常的充放电管理还是要靠控制器。两者都要有，不能省掉任何一个。</p>
+      </div>
+    </div>
+
+    <h4>五个把电池用废的常见操作</h4>
+    <div class="check">
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>① 把电放干了存着</b><span>铅酸放干两周就硫化，再也充不回来。长期不用要<b>充满电</b>再存，并且每 2~3 个月补一次电。</span></div>
+      </div>
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>② 新旧电池混用</b><span>旧电池内阻大，充电先到顶、放电先到底，新电池跟着遭殃。要换就整组换。</span></div>
+      </div>
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>③ 0°C 以下给锂电充电</b><span>会析锂，不可逆。有低温保护的 BMS 会自动拒绝，没有的就靠你自己记住。</span></div>
+      </div>
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>④ 放在密闭柜子里</b><span>铅酸充电会析出氢气，密闭空间里积聚到一定浓度，一个电火花就爆燃。<b>必须通风。</b></span></div>
+      </div>
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>⑤ 用扳手同时碰到正负极</b><span>12V 100Ah 电池短路电流可达上千安，扳手瞬间烧红、熔化飞溅。<b>操作时摘掉戒指手表，工具手柄包绝缘。</b></span></div>
+      </div>
+    </div>
+
+    <div class="tldr">
+      <h5>本章记住这一句</h5>
+      <ul>
+        <li>容量算法：<b>日用电 × 天数 ÷ 放电深度 ÷ 电压</b>。</li>
+        <li>铅酸只能放一半，锂电能放八成，<b>锂电长期更划算</b>。</li>
+        <li>锂电<b>怕冷怕热</b>，0°C 以下不充电，放阴凉通风处。</li>
+        <li>电池<b>不能亏电存放</b>，长期不用要充满。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="inverter">
+  <div class="wrap">
+    <span class="sec-num">06 / 逆变器</span>
+    <h3>逆变器：把 12V 变成 220V</h3>
+
+    <p class="lead">
+      电池里是 12V 直流电，墙上的插座要 220V 交流电。逆变器就是中间的翻译。
+      <b>但小系统不一定需要它</b>——很多设备本来就用直流，跳过它反而更省电。
+    </p>
+
+    <div class="callout key">
+      <div class="ico">!</div>
+      <div class="bd">
+        <div class="t">先问自己一句：我真的需要 220V 吗</div>
+        <p>灯、路由器、手机、充电宝、摄像头、小风扇——这些都有 <b>12V 或 5V 直流版本</b>，直接接电池就行，中间少一道转换，能省 <b>10%~15%</b> 的电。<br>
+        只有当你要用<b>笔记本、电饭锅、电动工具</b>这类只有 220V 插头的设备时，才需要买逆变器。</p>
+      </div>
+    </div>
+
+    <h4>两种波形，差别很大</h4>
+    <figure>
+      <div class="fig">
+        <svg viewBox="0 0 640 280" style="width:100%;height:auto;display:block" role="img" aria-label="纯正弦波与修正波对比">
+          <text x="30" y="26" font-size="12" font-weight="700" fill="#0b5f59" font-family="sans-serif">纯正弦波 · 和家里插座一样</text>
+          <line x1="60" y1="88" x2="590" y2="88" stroke="#e4e9ef" stroke-width="1"/>
+          <path d="M60,88 Q95,36 130,88 Q165,140 200,88 Q235,36 270,88 Q305,140 340,88 Q375,36 410,88 Q445,140 480,88 Q515,36 550,88"
+                fill="none" stroke="#0f766e" stroke-width="2.6" stroke-linecap="round"/>
+          <text x="556" y="116" font-size="10" fill="#64748b" font-family="monospace">失真 &lt;3%</text>
+
+          <text x="30" y="180" font-size="12" font-weight="700" fill="#9c2f22" font-family="sans-serif">修正波 · 方形台阶</text>
+          <line x1="60" y1="232" x2="590" y2="232" stroke="#e4e9ef" stroke-width="1"/>
+          <path d="M60,232 L60,190 L130,190 L130,274 L200,274 L200,190 L270,190 L270,274 L340,274 L340,190 L410,190 L410,274 L480,274 L480,190 L550,190 L550,232"
+                fill="none" stroke="#c0392b" stroke-width="2.4" stroke-linejoin="miter"/>
+          <text x="556" y="260" font-size="10" fill="#64748b" font-family="monospace">失真 30%+</text>
+        </svg>
+      </div>
+      <figcaption><b>上：纯正弦波，和市电几乎一样。下：修正波，用方形台阶拼出来的。</b>修正波带电阻性负载（白炽灯、电热丝）没问题，但带电机和精密电子会出问题。</figcaption>
+    </figure>
+
+    <div class="callout warn">
+      <div class="ico">!</div>
+      <div class="bd">
+        <div class="t">这几种电器，别用修正波逆变器</div>
+        <ul style="margin-bottom:0">
+          <li><b>带电机的东西</b>：风扇、水泵、冰箱、小空调——启动无力、发热、噪音大，久了会烧；</li>
+          <li><b>笔记本、电视、充电器</b>：里面的开关电源会发热，电容加速老化；</li>
+          <li><b>音响、医疗设备</b>：直接能听出杂音，或者读数不准。</li>
+        </ul>
+        <p style="margin:8px 0 0">修正波唯一的合理用途：只带白炽灯、电热毯、简单电钻，且预算真的很紧。<b>差 100 块钱，建议直接上纯正弦波。</b></p>
+      </div>
+    </div>
+
+    <h4>买多大？看"峰值"不是"额定"</h4>
+    <p>逆变器上一般标两个数：<b>额定功率</b>（能一直带）和<b>峰值功率</b>（只能撑几秒）。</p>
+    <p>电机类电器启动的一瞬间，电流是正常运行的 <b>3~7 倍</b>。这个冲击必须由峰值扛住，否则一开机就保护关机。</p>
+
+    <div class="formula">
+      <span class="lbl">选型</span>
+      灯泡、电热毯这类：<span class="c">额定功率 ≥ 总功率 × 1.2</span><br>
+      风扇、水泵这类：<span class="c">峰值功率 ≥ 电机功率 × 3~5</span><br><br>
+      <span class="c">// 例：笔记本 60W + 风扇 25W + 灯 15W = 100W</span><br>
+      <span class="c">// 风扇启动约 75W，合计峰值约 150W</span><br>
+      <span class="c">// 买 <em>300W</em> 纯正弦波，余量足够</span>
+    </div>
+
+    <h4>小系统特别要注意：空载损耗</h4>
+    <p>逆变器只要开着，即使什么都不插，也在耗电。这个数叫<b>空载损耗</b>，小系统里它可能比你想带的电器还费电。</p>
+
+    <div class="bignums">
+      <div class="bignum"><div class="v">8W</div><div class="l">空载损耗<br>一天白耗 192Wh</div></div>
+      <div class="bignum"><div class="v">192Wh</div><div class="l">相当于<br>一盏 10W 灯亮 19 小时</div></div>
+      <div class="bignum"><div class="v">1/3</div><div class="l">可能占掉<br>小系统一天发电量的三分之一</div></div>
+    </div>
+
+    <p>所以小系统用逆变器，两个习惯很重要：</p>
+    <ul>
+      <li>买<b>空载损耗 ≤10W</b> 的机型，商品页一般会写；</li>
+      <li><b>不用就关掉</b>，别让它 24 小时空转。或者买带"节能模式"的，检测到没负载自动休眠。</li>
+    </ul>
+
+    <h4>买之前对照这张表</h4>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:150px">参数</th><th>看什么</th><th style="width:170px">小系统参考</th></tr></thead>
+        <tbody>
+          <tr><td><b>额定功率</b></td><td>能一直带的功率</td><td class="num">300~500W</td></tr>
+          <tr><td><b>峰值功率</b></td><td>能扛几秒的冲击</td><td class="num">600~1000W</td></tr>
+          <tr><td><b>输入电压</b></td><td>必须和电池一致</td><td class="num">12V</td></tr>
+          <tr><td><b>空载损耗</b></td><td>越小越省电</td><td class="num">≤10W</td></tr>
+          <tr><td><b>输出波形</b></td><td>带电机必须纯正弦</td><td class="num">纯正弦波</td></tr>
+          <tr><td><b>保护功能</b></td><td>过压、欠压、过载、过温</td><td class="num">四项齐全</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout note">
+      <div class="ico">i</div>
+      <div class="bd">
+        <div class="t">接线和散热</div>
+        <p>逆变器到电池的线要<b>短而粗</b>（小系统也建议<b>不小于 10mm²</b>），因为 12V 侧电流大，线细了会发热、压降大。<br>
+        逆变器要竖放、周围留 10cm 空间散热，别塞在密闭箱子里。外壳要接地。</p>
+      </div>
+    </div>
+
+    <div class="tldr">
+      <h5>本章记住这一句</h5>
+      <ul>
+        <li>能用直流就别用逆变器，<b>省一道转换就省 10% 的电</b>。</li>
+        <li>带电机要买<b>纯正弦波</b>，按峰值功率选。</li>
+        <li>小系统盯紧<b>空载损耗</b>，不用就关。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="output">
+  <div class="wrap">
+    <span class="sec-num">07 / 电线和插座</span>
+    <h3>最后一段线，最容易出事</h3>
+
+    <p class="lead">
+      前面的设备选得再对，线细了照样发热、起火、电压掉。
+      小系统的麻烦在于：<b>电压只有 12V，同样的功率，电流是家里的 18 倍</b>，
+      所以线必须比你想的更粗。
+    </p>
+
+    <div class="analogy">
+      <p>电流像<span>水流</span>，电线像<span>水管</span>。压力低（12V）还想送同样的水，管子就得粗；</p>
+      <p>管子太细，水流不过去，末端就没水压（电压掉了），管子还会发烫。</p>
+    </div>
+
+    <h4>12V 系统，电流有多大</h4>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:170px">电器</th><th style="width:110px">功率</th><th style="width:130px">220V 时电流</th><th style="width:130px">12V 时电流</th></tr></thead>
+        <tbody>
+          <tr><td>LED 灯</td><td class="num">20W</td><td class="num">0.09A</td><td class="num">1.7A</td></tr>
+          <tr><td>笔记本</td><td class="num">60W</td><td class="num">0.27A</td><td class="num">5A</td></tr>
+          <tr><td>小风扇</td><td class="num">30W</td><td class="num">0.14A</td><td class="num">2.5A</td></tr>
+          <tr><td>电饭锅</td><td class="num">600W</td><td class="num">2.7A</td><td class="num"><b>50A</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>看到没？同样 600W，在 12V 系统里是 50A，普通电线根本扛不住。所以小系统一般<b>不带大功率电器</b>，这也是它"小"的意义。</p>
+
+    <h4>线径怎么选</h4>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:120px">铜线截面</th><th style="width:120px">安全电流</th><th style="width:140px">配多大保险</th><th>用在哪</th></tr></thead>
+        <tbody>
+          <tr><td class="num">2.5 mm²</td><td class="num">20 A</td><td class="num">15 A</td><td>板子到控制器（短距离）</td></tr>
+          <tr><td class="num">4 mm²</td><td class="num">27 A</td><td class="num">20 A</td><td>板子主线、30A 以内</td></tr>
+          <tr><td class="num">6 mm²</td><td class="num">34 A</td><td class="num">30 A</td><td>控制器到电池</td></tr>
+          <tr><td class="num">10 mm²</td><td class="num">46 A</td><td class="num">40 A</td><td>电池到逆变器</td></tr>
+          <tr><td class="num">16 mm²</td><td class="num">62 A</td><td class="num">50 A</td><td>大电流母线、电池总汇流</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:14px;color:var(--muted)">表中为常温、空气中敷设的参考值。穿管、多根并行、高温环境要降额使用。长距离还要按压降再核算一遍。</p>
+
+    <div class="formula">
+      <span class="lbl">压降计算</span>
+      压降 = 2 × 线长 × 电流 × 0.0175 ÷ 截面积<br>
+      <span class="c">// 线长是"单程"，2 表示来回两根线</span><br><br>
+      <span class="c">// 例：12V 系统，20A，单程 5m，用 4mm²</span><br>
+      <span class="c">// 2 × 5 × 20 × 0.0175 ÷ 4 = <em>0.875V</em> → 压降 7.3%，太高</span><br>
+      <span class="c">// 换 10mm²：0.35V → 2.9%，合格</span>
+    </div>
+
+    <div class="callout warn">
+      <div class="ico">!</div>
+      <div class="bd">
+        <div class="t">12V 系统对线径特别敏感</div>
+        <p>同样是 3% 的压降，220V 系统可以掉 6.6V，12V 系统只能掉 <b>0.36V</b>。所以小系统的线要按<b>压降</b>算，不能只看"能不能过电流"。<br>
+        <b>经验值：12V 系统，10A 以内用 4mm²，20A 用 6~10mm²，尽量把线控制在 3 米内。</b></p>
+      </div>
+    </div>
+
+    <h4>三样东西不能省</h4>
+    <div class="check">
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>保险丝 / 断路器</b><span>装在<b>电池正极</b>出来的第一段。它是整套系统最后一道防线：一旦短路，宁可烧保险，不能烧线。额定电流取工作电流的 1.25~1.5 倍。</span></div>
+      </div>
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>直流专用开关</b><span>不能用普通的墙壁开关切直流。直流电弧不会自己熄灭，会把触点烧熔。要买标了 <b>DC</b> 的开关或断路器。</span></div>
+      </div>
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>接地</b><span>板子边框、支架、逆变器外壳都要接地。屋顶系统接地还能防雷。接地线用黄绿双色线，别和零线混用。</span></div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <div class="ico">✓</div>
+      <div class="bd">
+        <div class="t">给线做标记，以后会感谢自己</div>
+        <p>正极贴红标、负极贴黑标，每根线两端写清楚"板子+""电池−""负载"。半年后你自己都记不清哪根是哪根，更别说别人来修。</p>
+      </div>
+    </div>
+
+    <h4>算一下你的线够不够</h4>
+    <p>输入电流和线长，下面会告诉你压降了多少、要不要加粗。</p>
+
+    <div class="calc">
+      <div class="calc-h"><span class="dot"></span><h5>线径压降计算器</h5><span>12V 系统建议 ≤3%</span></div>
+      <div class="calc-b">
+        <div class="fields">
+          <div class="f"><label>电流 <small>A，负载功率 ÷ 12V</small></label><input id="c3i" type="number" value="20" step="1"></div>
+          <div class="f"><label>单程线长 <small>m，不是来回总长</small></label><input id="c3l" type="number" value="5" step="0.5"></div>
+          <div class="f"><label>线的截面积 <small>mm²，铜线</small></label><input id="c3s" type="number" value="4" step="0.5"></div>
+          <div class="f"><label>系统电压 <small>V</small></label><input id="c3v" type="number" value="12" step="1"></div>
+        </div>
+        <div class="out">
+          <div class="row"><span class="l">压降</span><span><span class="v" id="o3d">—</span><span class="u">V</span></span></div>
+          <div class="row"><span class="l">掉了百分之多少</span><span><span class="v" id="o3p">—</span><span class="u">%</span></span></div>
+          <div class="row"><span class="l">末端还剩</span><span><span class="v" id="o3e">—</span><span class="u">V</span></span></div>
+          <div class="row"><span class="l">线上白烧的功率</span><span><span class="v" id="o3w">—</span><span class="u">W</span></span></div>
+          <div class="verdict" id="o3v">输入参数后自动计算</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tldr">
+      <h5>本章记住这一句</h5>
+      <ul>
+        <li>12V 系统电流大，<b>线要粗、要短</b>。</li>
+        <li>压降控制在 <b>3% 以内</b>，12V 系统只剩 0.36V 可用。</li>
+        <li>电池正极出来<b>第一件事就是装保险</b>。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="design">
+  <div class="wrap">
+    <span class="sec-num">08 / 实战</span>
+    <h3>配一套 300W 的小屋系统</h3>
+
+    <p class="lead">
+      假设你有一间 20 平米的小屋，想解决<b>照明、上网、手机充电、夏天小风扇</b>。
+      下面从数电器开始，一步步算到买什么，你可以照着自己的情况换数字。
+    </p>
+
+    <h4>第 0 步：列出你要带的东西</h4>
+    <div class="tw">
+      <table>
+        <thead><tr><th>电器</th><th style="width:100px">功率</th><th style="width:110px">每天用几小时</th><th style="width:110px">日耗电</th></tr></thead>
+        <tbody>
+          <tr><td>LED 灯 ×3</td><td class="num">15W</td><td class="num">5 h</td><td class="num">75 Wh</td></tr>
+          <tr><td>路由器</td><td class="num">10W</td><td class="num">24 h</td><td class="num">240 Wh</td></tr>
+          <tr><td>手机 + 充电宝</td><td class="num">20W</td><td class="num">4 h</td><td class="num">80 Wh</td></tr>
+          <tr><td>笔记本</td><td class="num">60W</td><td class="num">3 h</td><td class="num">180 Wh</td></tr>
+          <tr><td>小风扇（夏天）</td><td class="num">25W</td><td class="num">6 h</td><td class="num">150 Wh</td></tr>
+          <tr style="background:#f8fafc"><td><b>合计</b></td><td class="num">—</td><td class="num">—</td><td class="num"><b>725 Wh</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>一天大约 <b>0.7 度电</b>。路由器看着不起眼，因为 24 小时开着，反而是最费电的一个。</p>
+
+    <h4>第 1 步：定系统电压</h4>
+    <p><b>12V。</b>总功率不到 500W、逆变器不超过 500W，12V 就够，也最便宜。超过 1000W 再考虑 24V。</p>
+
+    <h4>第 2 步：算板子要多大</h4>
+    <div class="formula">
+      <span class="lbl">组件容量</span>
+      板子功率 = 日用电 ÷ 系统效率 ÷ 峰值日照 × 余量<br><br>
+      <span class="c">// 725 ÷ 0.7 ÷ 4 × 1.2 = <em>311W</em></span><br>
+      <span class="c">// 系统效率 0.7：逆变器、线损、电池充放都要吃掉一部分</span><br>
+      <span class="c">// 峰值日照 4h：大部分地区全年平均</span><br>
+      <span class="c">// 买 <em>2 块 150W</em>，共 300W</span>
+    </div>
+    <p>如果你在西北（日照 5~6h），250W 就够；在四川盆地（日照 3h 左右），要买 400W。</p>
+
+    <h4>第 3 步：算电池要多大</h4>
+    <div class="formula">
+      <span class="lbl">电池容量</span>
+      容量 = 日用电 × 阴雨天数 ÷ 放电深度 ÷ 电压<br><br>
+      <span class="c">// 725 × 2 ÷ 0.8 ÷ 12 = <em>151Ah</em></span><br>
+      <span class="c">// 磷酸铁锂，可放 80%，撑 2 个阴雨天</span><br>
+      <span class="c">// 买 <em>12V 150Ah</em></span>
+    </div>
+    <p>想省钱可以只撑 1 天：<code>725 × 1 ÷ 0.8 ÷ 12 = 76Ah</code>，买 100Ah。但要接受连续阴天就得省着用。</p>
+
+    <h4>第 4 步：选控制器</h4>
+    <div class="formula">
+      <span class="lbl">控制器电流</span>
+      300W ÷ 12V × 1.25 = <em>31A</em> → 买 <em>40A</em>（或 30A 也要确认能扛住）<br><br>
+      <span class="c">// 板子 2 块串联成 36V，配 MPPT 更划算</span><br>
+      <span class="c">// 冬天最高电压：21.6 × 2 × 1.1 ≈ 48V，选耐压 100V 的</span>
+    </div>
+
+    <h4>第 5 步：选逆变器</h4>
+    <p>同时开的最大负载：笔记本 60 + 风扇 25 + 灯 15 = <b>100W</b>。风扇启动按 3 倍算，峰值约 <b>150W</b>。<br>
+    买 <b>300W 纯正弦波</b>，空载损耗 ≤8W 的机型。</p>
+    <p>如果你能接受"灯用 12V、手机用 USB 直接接电池"，只给笔记本留逆变器，甚至可以买 <b>150W</b> 的小逆变器，更省电。</p>
+
+    <h4>第 6 步：配线和保护</h4>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:200px">这一段</th><th style="width:120px">电流</th><th style="width:110px">线径</th><th>保护</th></tr></thead>
+        <tbody>
+          <tr><td>板子 → 控制器</td><td class="num">≈9A</td><td class="num">2.5 mm²</td><td>15A 直流保险</td></tr>
+          <tr><td>控制器 → 电池</td><td class="num">≤31A</td><td class="num">6 mm²</td><td>40A 直流断路器</td></tr>
+          <tr><td>电池 → 逆变器</td><td class="num">≤25A</td><td class="num">10 mm²</td><td>40A 保险（靠近电池）</td></tr>
+          <tr><td>逆变器 → 插座</td><td class="num">≤1.4A</td><td class="num">1.5 mm²</td><td>5A 空开 + 漏电保护</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>第 7 步：算算要花多少钱</h4>
+    <div class="tw">
+      <table>
+        <thead><tr><th>项目</th><th style="width:150px">参考价</th><th style="width:100px">占比</th></tr></thead>
+        <tbody>
+          <tr><td>2 × 150W 单晶板</td><td class="num">600 元</td><td class="num">16%</td></tr>
+          <tr><td>40A MPPT 控制器</td><td class="num">300 元</td><td class="num">8%</td></tr>
+          <tr><td>12V 150Ah 磷酸铁锂</td><td class="num">2400 元</td><td class="num"><b>63%</b></td></tr>
+          <tr><td>300W 纯正弦波逆变器</td><td class="num">300 元</td><td class="num">8%</td></tr>
+          <tr><td>线材、保险、接头</td><td class="num">200 元</td><td class="num">5%</td></tr>
+          <tr style="background:#f8fafc"><td><b>合计</b></td><td class="num"><b>约 3800 元</b></td><td class="num">100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout key">
+      <div class="ico">!</div>
+      <div class="bd">
+        <div class="t">看懂这张表，就知道钱该花在哪</div>
+        <p><b>电池占六成</b>。所以"省电"比"省钱买设备"更有效——把路由器换成低功耗的、灯全用 LED，电池就能小一档，直接省几百块。<br>
+        反过来，<b>板子和控制器别省</b>，它们决定了每天能发多少电，而且用十几年不会坏。</p>
+      </div>
+    </div>
+
+    <h4>更便宜的入门版：只带灯和路由器</h4>
+    <p>如果你的需求只是"晚上有灯、路由不断网"，可以砍到这样：</p>
+    <div class="grid g4">
+      <div class="card tight"><div class="b amber">板子</div><p style="margin:8px 0 0;font-size:14.5px">1 × 150W<br><span style="color:var(--muted)">约 450 元</span></p></div>
+      <div class="card tight"><div class="b teal">控制器</div><p style="margin:8px 0 0;font-size:14.5px">20A PWM<br><span style="color:var(--muted)">约 60 元</span></p></div>
+      <div class="card tight"><div class="b blue">电池</div><p style="margin:8px 0 0;font-size:14.5px">12V 50Ah 锂电<br><span style="color:var(--muted)">约 800 元</span></p></div>
+      <div class="card tight"><div class="b violet">逆变器</div><p style="margin:8px 0 0;font-size:14.5px">不买，全用直流<br><span style="color:var(--muted)">0 元</span></p></div>
+    </div>
+    <p style="margin-top:14px">总共 <b>1300 元左右</b>，能带 3 盏 5W 的灯（每晚 5 小时）+ 一个路由器（约 10W，24 小时）。<br>
+    算一下日耗：3 × 5W × 5h + 10W × 24h = 75 + 240 = <b>315 Wh</b>。按本文公式 315 ÷ 0.7 ÷ 4 × 1.2 ≈ 135W，所以板子要 150W——<b>只买 100W 是不够的</b>（一天只发约 280 Wh，路由器一个人就吃掉 240 Wh）。<br>
+    电池 50Ah 锂电可放约 480 Wh，够一天多，阴天一天扛得住。这是最适合"先试试看"的方案。</p>
+
+    <div class="callout note">
+      <div class="ico">i</div>
+      <div class="bd">
+        <div class="t">同样的思路，换个场景</div>
+        <p><b>房车</b>：把"峰值日照"按 4h 算，电池按 1~2 天算，板子可以装在车顶，注意行驶时的风阻和固定。<br>
+        <b>监控摄像头</b>：负载很小（5~10W）但要求 24 小时不断，重点是电池留足 3~5 天余量。<br>
+        <b>露营</b>：便携板 + 移动电源，不用接线，即插即用。</p>
+      </div>
+    </div>
+
+    <h4>换成你自己的数字</h4>
+    <p>下面这个估算器把上面几步合在一起。改一下日用电量和日照小时，马上得到四个设备的建议值。</p>
+
+    <div class="calc">
+      <div class="calc-h"><span class="dot"></span><h5>整套系统估算器</h5><span>输入 → 建议配置</span></div>
+      <div class="calc-b">
+        <div class="fields">
+          <div class="f"><label>一天用多少电 <small>Wh，参考第 0 步</small></label><input id="c2e" type="number" value="725" step="25"></div>
+          <div class="f"><label>当地日照几小时 <small>h，3~5.5 之间</small></label><input id="c2h" type="number" value="4" step="0.1"></div>
+          <div class="f"><label>系统电压 <small>V</small></label>
+            <select id="c2v"><option value="12" selected>12 V</option><option value="24">24 V</option><option value="48">48 V</option></select>
+          </div>
+          <div class="f"><label>要撑几个阴雨天 <small>天</small></label><input id="c2d" type="number" value="2" step="1" min="1"></div>
+          <div class="f"><label>放电深度 <small>锂电 0.8，铅酸 0.5</small></label><input id="c2dod" type="number" value="0.8" step="0.05" min="0.3" max="0.95"></div>
+          <div class="f"><label>同时开的电器总功率 <small>W，带电机按启动功率填</small></label><input id="c2load" type="number" value="100" step="10"></div>
+        </div>
+        <div class="out">
+          <div class="row"><span class="l">板子要多大</span><span><span class="v" id="o2pv">—</span><span class="u">W</span></span></div>
+          <div class="row"><span class="l">电池要多大</span><span><span class="v" id="o2bat">—</span><span class="u">Ah</span></span></div>
+          <div class="row"><span class="l">控制器多少安</span><span><span class="v" id="o2ctl">—</span><span class="u">A</span></span></div>
+          <div class="row"><span class="l">逆变器多大</span><span><span class="v" id="o2inv">—</span><span class="u">W</span></span></div>
+          <div class="row"><span class="l">一天能发多少电</span><span><span class="v" id="o2gen">—</span><span class="u">Wh</span></span></div>
+          <div class="verdict" id="o2v">按系统效率 0.7、板子余量 1.2 估算</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tldr">
+      <h5>本章记住这一句</h5>
+      <ul>
+        <li>四步顺序：<b>数电器 → 定电压 → 算板子 → 算电池</b>。</li>
+        <li>电池通常占总花费<b>一半以上</b>，省电比省钱更重要。</li>
+        <li>先做最便宜的版本跑起来，比一次买齐更靠谱。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="safety">
+  <div class="wrap">
+    <span class="sec-num">09 / 安全注意</span>
+    <h3>小系统电压低，但这三件事照样能出事</h3>
+
+    <p class="lead">
+      12V 摸上去不会电人，这是小系统的最大优势。
+      但<b>电池短路、接反极性、密闭空间析氢</b>，这三件事和电压高低没关系，
+      每年都有人栽在上面。
+    </p>
+
+    <div class="callout warn">
+      <div class="ico">!</div>
+      <div class="bd">
+        <div class="t">先纠正一个错觉：12V 安全，但电池很危险</div>
+        <p>12V 的电压确实电不到人。但一块 12V 100Ah 的电池，正负极直接短路时，瞬间电流可以到 <b>上千安培</b>——足以让一把扳手瞬间烧红、熔化、飞溅。<br><br>
+        所以：<b>电压低 ≠ 没有危险。</b>危险的不是电压，是电流。</p>
+      </div>
+    </div>
+
+    <h4>A · 电池操作</h4>
+    <div class="check">
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>摘掉戒指、手表、金属手链</b><span>这些东西搭在正负极之间，就是一个短路环。金属会瞬间烧红并粘在皮肤上，取不下来。</span></div>
+      </div>
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>工具手柄包绝缘胶带</b><span>扳手掉在电池端子上，是最常见的短路事故。用完的工具立刻拿走，不要搁在电池上。</span></div>
+      </div>
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>先接正极，再接负极；拆的时候反过来</b><span>这样即使工具碰到附近金属，也不会形成回路。</span></div>
+      </div>
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>铅酸电池必须通风</b><span>充电时会析出氢气。放在密闭柜、床底、后备箱里，积聚到一定浓度，一个电火花就会爆燃。<b>一定要有通风口。</b></span></div>
+      </div>
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>锂电不要放在高温处</b><span>夏天暴晒的车厢内可达 60°C 以上，会加速老化，也有热失控风险。放在阴凉、干燥、儿童碰不到的地方。</span></div>
+      </div>
+      <div class="item">
+        <div class="box"></div>
+        <div class="tx"><b>电池周围不要堆杂物</b><span>尤其是金属工具、铁丝、金属网。留出至少 10cm 空间，既散热也防短路。</span></div>
+      </div>
+    </div>
+
+    <h4>B · 接线</h4>
+    <div class="grid g2">
+      <div class="card">
+        <h5 style="margin-top:0">顺序错了会烧控制器</h5>
+        <p style="font-size:15px;color:var(--ink-2);margin-bottom:8px"><b>通电：</b>电池 → 板子 → 负载<br><b>断电：</b>负载 → 板子 → 电池</p>
+        <p style="font-size:14.5px;color:var(--muted);margin:0">控制器要先识别电池电压，才知道该怎么充。</p>
+      </div>
+      <div class="card">
+        <h5 style="margin-top:0">极性接反会烧设备</h5>
+        <p style="font-size:15px;color:var(--ink-2);margin-bottom:8px">红正黑负，接之前用万用表量一下。</p>
+        <p style="font-size:14.5px;color:var(--muted);margin:0">板子接反只损失发电；<b>电池接反会瞬间烧控制器和逆变器</b>，且不保修。</p>
+      </div>
+      <div class="card">
+        <h5 style="margin-top:0">保险丝必须装在电池侧</h5>
+        <p style="font-size:15px;color:var(--ink-2);margin-bottom:8px">位置在电池正极出来的<b>第一段线</b>上，越近越好。</p>
+        <p style="font-size:14.5px;color:var(--muted);margin:0">装错位置等于没装。短路时，保险丝要能在电线烧起来之前断掉。</p>
+      </div>
+      <div class="card">
+        <h5 style="margin-top:0">不能用交流开关切直流</h5>
+        <p style="font-size:15px;color:var(--ink-2);margin-bottom:8px">要用标了 <b>DC</b> 的开关或断路器。</p>
+        <p style="font-size:14.5px;color:var(--muted);margin:0">直流电弧不会自己熄灭，普通开关会被烧熔、粘住，切不断。</p>
+      </div>
+    </div>
+
+    <h4>C · 安装与使用</h4>
+    <ul>
+      <li><b>板子别装在会积水的地方。</b>边框下沿要留排水间隙，长期泡水会进水、漏电。</li>
+      <li><b>屋顶作业系安全带。</b>小系统也常装在屋顶，跌落比触电更常见。避开雨天、大风、结霜的清晨。</li>
+      <li><b>板子背面留 10cm 散热空间。</b>贴着屋面装，夏天温度能到 80°C，发电量掉一大截。</li>
+      <li><b>逆变器不要装在密闭箱里。</b>它发热明显，需要空气流通。</li>
+      <li><b>不要私自把逆变器接到家里的电路上。</b>这叫"反送电"，会危及电网检修人员，也属于违规。想接入家庭电路，必须用并网逆变器并报装。</li>
+      <li><b>打雷时断开板子。</b>如果板子线拉得很长（超过 10 米），建议加装直流浪涌保护器。</li>
+    </ul>
+
+    <h4>通电前的三步检查</h4>
+    <ol class="steps">
+      <li>
+        <h5>用万用表测极性</h5>
+        <p>红表笔接"以为的正极"，黑表笔接"以为的负极"，读数<b>为正</b>说明接对了。读数为负，说明接反了。</p>
+      </li>
+      <li>
+        <h5>测板子空载电压</h5>
+        <p>白天测板子两端，应该在 Voc 的 80%~100% 之间。比如 21.6V 的板，实测 18~22V 都正常。显示 0 或者很低，检查接头和遮挡。</p>
+      </li>
+      <li>
+        <h5>先空载通电，再插负载</h5>
+        <p>接上电池和板子后，先看控制器屏幕/指示灯是否正常，确认显示了正确的电池电压，再插负载。不要一上来就带满载。</p>
+      </li>
+    </ol>
+
+    <div class="callout tip">
+      <div class="ico">✓</div>
+      <div class="bd">
+        <div class="t">出现这些情况，立刻断电检查</div>
+        <p>接头<b>发烫或变色</b>（接触不良，是起火前兆）· 闻到<b>焦糊味</b> · 电池<b>鼓包</b> · 控制器<b>反复重启</b> · 线皮<b>变软</b><br>
+        不要"再观察一下"，直接断开电池，排查完再通电。</p>
+      </div>
+    </div>
+
+    <div class="callout warn" style="border-color:#f0c9c1;background:#fffbfa">
+      <div class="ico" style="background:#a93226">✕</div>
+      <div class="bd">
+        <div class="t" style="color:#9c2f22">六件绝对不要做的事</div>
+        <ul style="margin-bottom:0">
+          <li>把电池正负极用导线或金属工具直接短接"试有没有电"</li>
+          <li>在电池旁边吸烟、动火，或在密闭空间给铅酸充电</li>
+          <li>用胶带缠一缠代替保险丝（有人真的这么干）</li>
+          <li>把不同容量、不同新旧程度的电池并联在一起</li>
+          <li>把逆变器输出插进家里的墙壁插座</li>
+          <li>下雨天在屋顶接线，或湿手操作电池</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <span class="sec-num">10 / 常见问题</span>
+    <h3>新手最常问的 10 个问题</h3>
+
+    <p class="lead">这些答案，大多和直觉相反。</p>
+
+    <div class="acc">
+      <details open>
+        <summary>阴天还能发电吗？能发多少？</summary>
+        <div class="abody">
+          <p>能，但少很多。多云天大约是晴天的 <b>20%~40%</b>，阴雨天只有 <b>5%~15%</b>。</p>
+          <p>注意：板子靠的是光，不是热。所以阴天虽然凉快，发电量照样低。这也是为什么电池要按"连续阴雨天数"配，而不是按平均值。</p>
+        </div>
+      </details>
+      <details>
+        <summary>100W 的板，能带冰箱吗？</summary>
+        <div class="abody">
+          <p><b>家用 220V 冰箱不行。</b>一台普通冰箱一天要 0.8~1.2 度电，100W 板在日照 4 小时的地区一天只能发 0.3~0.4 度，差得远。</p>
+          <p><b>12V 车载小冰箱可以试试。</b>那种 40W 左右、带压缩机的，一天约 0.4~0.5 度电，配 200W 板 + 100Ah 电池勉强够。但要注意启动电流。</p>
+        </div>
+      </details>
+      <details>
+        <summary>电池可以放在室内吗？</summary>
+        <div class="abody">
+          <p><b>铅酸不建议</b>，充电会析出氢气，还有酸雾。要放在通风的独立空间或室外电池箱。</p>
+          <p><b>磷酸铁锂可以放室内</b>，没有析氢问题，但要避开卧室、热源，且环境温度最好在 0~35°C。不管哪种，都要放在儿童碰不到的地方。</p>
+        </div>
+      </details>
+      <details>
+        <summary>能不能一边充电一边用电？</summary>
+        <div class="abody">
+          <p>可以。控制器会优先给负载供电，剩下的再充进电池。这是离网系统的正常工作方式。</p>
+          <p>但要注意：如果负载很大，电池可能一直充不满。比如白天开着逆变器带大功率设备，板子发的电全被吃掉了。</p>
+        </div>
+      </details>
+      <details>
+        <summary>控制器摸上去烫手，正常吗？</summary>
+        <div class="abody">
+          <p><b>温热是正常的</b>（40~50°C），满载工作时外壳发热属于正常现象。</p>
+          <p><b>烫到不敢碰（70°C 以上）就不正常了</b>，通常是：控制器选小了、散热空间不够、接线端子没拧紧导致接触电阻大。先断电检查端子，再考虑换大一号。</p>
+        </div>
+      </details>
+      <details>
+        <summary>逆变器一直"嗡嗡"响，会坏吗？</summary>
+        <div class="abody">
+          <p>轻微的高频嗡嗡声是变压器和电感在振动，<b>正常</b>。</p>
+          <p>但如果声音很大、伴随发热、或者带载时突然变调，可能是风扇积灰、元件老化，或者负载超过了额定。小系统建议留 30% 余量。</p>
+        </div>
+      </details>
+      <details>
+        <summary>冬天发电少，是板子坏了吗？</summary>
+        <div class="abody">
+          <p>不一定。冬天<b>日照时间短、太阳角度低</b>，发电量本来就会下降 30%~50%（视纬度而定）。</p>
+          <p>有意思的是，低温反而对板子"有利"——电压会略微升高，效率更好。所以冬天真正的问题不是温度，是<b>光照不足和积雪遮挡</b>。</p>
+        </div>
+      </details>
+      <details>
+        <summary>电池一般能用几年？</summary>
+        <div class="abody">
+          <p>铅酸 <b>2~4 年</b>，胶体/AGM <b>3~5 年</b>，磷酸铁锂 <b>6~10 年</b>（按每天一次循环算）。</p>
+          <p>但实际寿命差别极大：铅酸经常放到 20% 以下，一年就废；锂电长期高温或经常 0°C 以下充电，也会大幅缩短。使用习惯比品牌更重要。</p>
+        </div>
+      </details>
+      <details>
+        <summary>能不能把逆变器接到家里的插座上，给全家供电？</summary>
+        <div class="abody">
+          <p><b>绝对不行。</b>逆变器的输出会"反送"到电网，这叫孤岛效应。电网检修时线路本应无电，却因为你家逆变器带着电，会直接威胁检修人员生命。</p>
+          <p>而且家用线路的容量、保护配置都不匹配，极易过载起火。想接入家庭电路，必须用专门的并网逆变器，并向供电部门申请。</p>
+        </div>
+      </details>
+      <details>
+        <summary>板子要经常擦吗？</summary>
+        <div class="abody">
+          <p>看环境。多雨地区靠雨水自洁，每季度擦一次就够；干燥多尘、工地附近、沿海盐雾地区建议每月一次。</p>
+          <p>擦的时候用清水加软布/软毛刷，<b>清晨或傍晚</b>进行（正午玻璃很烫，冷水一激可能炸裂），不要用高压水枪直冲接线盒。</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <div class="wrap">
+    <span class="sec-num">11 / 名词速查</span>
+    <h3>看不懂的参数，来这里查</h3>
+
+    <dl class="gloss">
+      <dt>W（瓦）</dt><dd>功率，表示"一瞬间有多大力"。灯泡 10W、笔记本 60W。</dd>
+      <dt>Wh（瓦时）</dt><dd>电量，表示"用了多少"。10W 的灯亮 10 小时 = 100Wh。1000Wh = 1 度电。</dd>
+      <dt>Ah（安时）</dt><dd>电池容量。12V 100Ah = 1200Wh ≈ 1.2 度电。</dd>
+      <dt>Pmax</dt><dd>板子的峰值功率，就是"100W 板"的那个 100。标准条件下测的，实际达不到。</dd>
+      <dt>Voc</dt><dd>开路电压。不接东西时的最高电压，算"能串几块"要用它，还要按冬天修正。</dd>
+      <dt>Isc</dt><dd>短路电流。两头直接短接时的电流，选线、选保险、选控制器要用它。</dd>
+      <dt>Vmp / Imp</dt><dd>真正干活时的电压和电流，两者相乘约等于 Pmax。</dd>
+      <dt>STC</dt><dd>标准测试条件：光强 1000W/m²、温度 25°C。铭牌上的数都是在这个条件下测的。</dd>
+      <dt>DOD</dt><dd>放电深度。能放掉多少百分比。铅酸 50%，锂电 80%。</dd>
+      <dt>SOC</dt><dd>剩余电量，可以理解为"电池的油表"。</dd>
+      <dt>BMS</dt><dd>电池管理系统。锂电池里的保护板，管过充、过放、过流、温度和均衡。</dd>
+      <dt>MPPT</dt><dd>一种控制器，会"降压升流"，比 PWM 多榨 10%~30% 的电。</dd>
+      <dt>PWM</dt><dd>一种控制器，结构简单便宜，但会浪费板子高于电池的那部分电压。</dd>
+      <dt>纯正弦波</dt><dd>和家里插座一样的波形。带电机、笔记本必须用这种。</dd>
+      <dt>修正波</dt><dd>方形台阶拼出来的波形，便宜，但只能带灯泡、电热丝这类简单负载。</dd>
+      <dt>峰值日照</dt><dd>把一天的阳光折算成"满功率照几小时"。中国多在 3~5.5 小时。</dd>
+      <dt>压降</dt><dd>电从电线这头到那头，电压掉了一点。12V 系统要求掉不超过 3%（0.36V）。</dd>
+      <dt>串联 / 并联</dt><dd>串联升压、电流不变；并联升流、电压不变。总功率都不变。</dd>
+    </dl>
+
+    <div class="callout note" style="margin-top:32px">
+      <div class="ico">i</div>
+      <div class="bd">
+        <div class="t">准备动手了？按这个顺序来</div>
+        <p style="margin-bottom:6px"><b>① 数电器</b>（列出功率和小时数）→ <b>② 算出日用电 Wh</b> → <b>③ 定 12V 还是 24V</b> → <b>④ 算板子、电池、控制器、逆变器</b> → <b>⑤ 画一张接线图</b> → <b>⑥ 买齐保险和线</b> → <b>⑦ 先空载通电测试</b>。</p>
+        <p style="margin-bottom:0">第 ⑤ 步别跳过。把"哪根线接哪个端子"画在纸上，比对着实物瞎试安全得多。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer>
+  <div class="in">
+    <b>说明</b> · 这是一份写给新手的入门材料，数字按常见市售产品估算。真正接线前，请以设备铭牌和说明书为准；涉及市电、蓄电池、屋顶作业的部分，建议找持证电工。<br><br>
+    <b>一句话复习</b> · 板子看电压电流，电池看容量和放电深度，控制器看电流，逆变器看峰值功率。
+  </div>
+</footer>
+
+<script>
+/* ---------- 阅读进度 + 目录高亮 ---------- */
+(function(){
+  var prog = document.getElementById('prog');
+  var secs = Array.prototype.slice.call(document.querySelectorAll('main section'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+  function tick(){
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var p = max > 0 ? (window.scrollY / max) * 100 : 0;
+    prog.style.width = Math.min(100, Math.max(0, p)) + '%';
+    var idx = 0;
+    for (var i = 0; i < secs.length; i++){
+      if (secs[i].getBoundingClientRect().top <= 150) idx = i;
+    }
+    for (var j = 0; j < links.length; j++){
+      links[j].classList.toggle('on', j === idx);
+    }
+  }
+  window.addEventListener('scroll', tick, {passive:true});
+  window.addEventListener('resize', tick);
+  tick();
+})();
+
+/* ---------- 工具 ---------- */
+function val(id, def){
+  var el = document.getElementById(id);
+  if (!el) return def;
+  var n = parseFloat(el.value);
+  return isFinite(n) ? n : def;
+}
+function fmt(x, d){
+  d = (d === undefined) ? 1 : d;
+  if (!isFinite(x)) return '—';
+  return x.toLocaleString('zh-CN', {minimumFractionDigits:d, maximumFractionDigits:d});
+}
+function pickUp(v, arr){
+  for (var i = 0; i < arr.length; i++){ if (arr[i] >= v) return arr[i]; }
+  return arr[arr.length - 1];
+}
+var STD_AMP = [10,15,20,30,40,50,60,80,100,120,150,200];
+var STD_INV = [150,300,500,800,1000,1500,2000,3000];
+
+/* ---------- 1. 串并联 ---------- */
+function calcString(){
+  var p   = val('c1p', 100);
+  var voc = val('c1voc', 21.6);
+  var vmp = val('c1vmp', 18.2);
+  var imp = val('c1imp', 5.5);
+  var isc = val('c1isc', 5.8);
+  var ns  = Math.max(1, Math.round(val('c1ns', 2)));
+  var np  = Math.max(1, Math.round(val('c1np', 1)));
+  var t   = val('c1t', -10);
+  var lim = Math.max(1, val('c1lim', 100));
+
+  var beta = -0.0029;
+  var k    = 1 + beta * (t - 25);
+  var pTot = p * ns * np;
+  var vmpT = vmp * ns;
+  var impT = imp * np;
+  var iscT = isc * np;
+  var vocT = voc * ns * k;
+  var nsMax = Math.floor(lim / (voc * k));
+
+  document.getElementById('o1p').textContent   = fmt(pTot, 0);
+  document.getElementById('o1vmp').textContent = fmt(vmpT, 1);
+  document.getElementById('o1imp').textContent = fmt(impT, 1);
+  document.getElementById('o1voc').textContent = fmt(vocT, 1);
+  document.getElementById('o1isc').textContent = fmt(iscT, 1);
+
+  var box = document.getElementById('o1v');
+  if (nsMax < 1){
+    box.className = 'verdict bad';
+    box.innerHTML = '单块板在 ' + fmt(t,0) + '°C 时电压已达 ' + fmt(vocT,1) + 'V，超过控制器上限 ' + fmt(lim,0) + 'V，不能串联使用。';
+  } else if (vocT > lim){
+    box.className = 'verdict bad';
+    box.innerHTML = '<b>电压超了。</b>冬天最高 ' + fmt(vocT,1) + 'V，超过控制器上限 ' + fmt(lim,0) + 'V。这台控制器最多串 <b>' + nsMax + ' 块</b>，你现在接了 ' + ns + ' 块。';
+  } else if (vocT > lim * 0.95){
+    box.className = 'verdict';
+    box.innerHTML = '<b>余量偏小。</b>冬天最高 ' + fmt(vocT,1) + 'V，占上限的 ' + fmt(vocT/lim*100,0) + '%。建议减到 ' + Math.max(1,nsMax) + ' 块以内。';
+  } else {
+    box.className = 'verdict ok';
+    box.innerHTML = '<b>没问题。</b>冬天最高 ' + fmt(vocT,1) + 'V，只占上限的 ' + fmt(vocT/lim*100,0) + '%。这台控制器最多能串 ' + nsMax + ' 块。';
+  }
+}
+
+/* ---------- 2. 系统容量 ---------- */
+function calcSystem(){
+  var e    = Math.max(1, val('c2e', 725));
+  var h    = Math.max(0.5, val('c2h', 4));
+  var v    = parseFloat(document.getElementById('c2v').value) || 12;
+  var d    = Math.max(1, val('c2d', 2));
+  var dod  = Math.min(0.95, Math.max(0.3, val('c2dod', 0.8)));
+  var load = Math.max(5, val('c2load', 100));
+
+  var pv   = (e / 0.7 / h) * 1.2;
+  var batt = (e * d) / dod / v;
+  var ctl  = (pv / v) * 1.25;
+  var inv  = load * 1.8;
+  var gen  = pv * h * 0.7;
+
+  document.getElementById('o2pv').textContent  = fmt(pv, 0);
+  document.getElementById('o2bat').textContent = fmt(batt, 0);
+  document.getElementById('o2ctl').textContent = fmt(pickUp(ctl, STD_AMP), 0);
+  document.getElementById('o2inv').textContent = fmt(pickUp(inv, STD_INV), 0);
+  document.getElementById('o2gen').textContent = fmt(gen, 0);
+
+  var msg = '建议：板子 <b>' + fmt(pv,0) + 'W</b>（可买 2 块凑整），控制器 <b>' +
+            pickUp(ctl, STD_AMP) + 'A</b>，电池 <b>' + v + 'V ' + fmt(batt,0) +
+            'Ah</b>，逆变器 <b>' + pickUp(inv, STD_INV) + 'W</b>。';
+  var cls = 'verdict';
+
+  if (pv / v > 60){
+    msg += '<br>提示：电流已经不小（' + fmt(pv/v,0) + 'A），线要用 6mm² 以上，控制器也容易发热。';
+    cls = 'verdict bad';
+  }
+  if (batt > 300){
+    msg += '<br>提示：这个电池容量已经偏大，先确认是不是"天数"设太多了。';
+  }
+  if (load > 500 && v === 12){
+    msg += '<br>提示：逆变器超过 500W 时，12V 侧电流会超过 40A，建议升到 24V 系统。';
+    cls = 'verdict bad';
+  }
+
+  var box = document.getElementById('o2v');
+  box.className = cls;
+  box.innerHTML = msg;
+}
+
+/* ---------- 3. 压降 ---------- */
+function calcDrop(){
+  var i  = Math.max(0.1, val('c3i', 20));
+  var l  = Math.max(0.1, val('c3l', 5));
+  var s  = Math.max(0.5, val('c3s', 4));
+  var v  = Math.max(1, val('c3v', 12));
+
+  var rho = 0.0175;
+  var r   = (2 * l * rho) / s;
+  var dU  = i * r;
+  var pct = (dU / v) * 100;
+  var end = v - dU;
+  var loss = i * i * r;
+
+  document.getElementById('o3d').textContent = fmt(dU, 2);
+  document.getElementById('o3p').textContent = fmt(pct, 2);
+  document.getElementById('o3e').textContent = fmt(end, 2);
+  document.getElementById('o3w').textContent = fmt(loss, 1);
+
+  var box = document.getElementById('o3v');
+  if (pct <= 2){
+    box.className = 'verdict ok';
+    box.innerHTML = '<b>很好。</b>只掉 ' + fmt(pct,1) + '%，线损 ' + fmt(loss,1) + 'W，可以放心用。';
+  } else if (pct <= 3){
+    box.className = 'verdict ok';
+    box.innerHTML = '<b>合格。</b>压降 ' + fmt(pct,1) + '%，在 3% 以内。';
+  } else if (pct <= 5){
+    box.className = 'verdict';
+    box.innerHTML = '<b>偏大。</b>压降 ' + fmt(pct,1) + '%，末端只剩 ' + fmt(end,1) + 'V。建议加粗到 ' + fmt(s * 1.6, 0) + 'mm²，或把线缩短。';
+  } else {
+    box.className = 'verdict bad';
+    box.innerHTML = '<b>不合格。</b>掉了 ' + fmt(pct,1) + '%（' + fmt(dU,2) + 'V），线损 ' + fmt(loss,1) + 'W，线会明显发热。至少换成 <b>' + fmt(s * pct / 2.5, 0) + 'mm²</b> 的线，或者提高系统电压。';
+  }
+}
+
+/* ---------- 绑定 ---------- */
+(function(){
+  var g1 = ['c1p','c1voc','c1vmp','c1imp','c1isc','c1ns','c1np','c1t','c1lim'];
+  var g2 = ['c2e','c2h','c2d','c2dod','c2load'];
+  var g3 = ['c3i','c3l','c3s','c3v'];
+  g1.forEach(function(id){ var el = document.getElementById(id); if (el) el.addEventListener('input', calcString); });
+  g2.forEach(function(id){ var el = document.getElementById(id); if (el) el.addEventListener('input', calcSystem); });
+  g3.forEach(function(id){ var el = document.getElementById(id); if (el) el.addEventListener('input', calcDrop); });
+  var sel = document.getElementById('c2v');
+  if (sel) sel.addEventListener('change', calcSystem);
+  calcString(); calcSystem(); calcDrop();
+})();
+</script>
+</body>
+</html>

@@ -431,6 +431,69 @@
   .blog-empty svg { width: 48px; height: 48px; margin-bottom: 12px; opacity: .4; }
   .blog-empty p { font-size: 14px; }
 
+  /* ==================== 生活指南（独立页面入口） ==================== */
+  /* 这 5 篇是完整的独立 HTML（自带样式与交互），所以这里只做入口卡片，
+     点击在新标签页打开，不会把单文件博客的 DOM 撑大。 */
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+    gap: var(--space-md);
+    max-width: 960px; margin: 0 auto;
+  }
+  .guide-card {
+    display: flex; flex-direction: column; gap: 10px;
+    padding: var(--space-lg) var(--space-lg) var(--space-lg) 26px;
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    text-decoration: none; color: inherit;
+    position: relative; overflow: hidden;
+    transition: all .3s cubic-bezier(.25,.46,.45,.94);
+  }
+  /* 左侧色条：每张卡用 --guide-accent 区分主题 */
+  .guide-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    background: var(--guide-accent, var(--primary));
+    transition: width .3s;
+  }
+  .guide-card:hover {
+    transform: translateY(-4px); border-color: transparent;
+    box-shadow: var(--shadow-card-hover);
+  }
+  .guide-card:hover::before { width: 6px; }
+  .guide-card:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+  .guide-icon { font-size: 25px; line-height: 1; }
+  .guide-card h3 {
+    font-size: var(--fs-h3); font-weight: 700; color: var(--text);
+    line-height: 1.5; letter-spacing: -.2px;
+  }
+  .guide-card p {
+    font-size: var(--fs-small); color: var(--text-secondary);
+    line-height: 1.75; flex: 1;
+  }
+  .guide-meta {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: var(--space-sm); margin-top: 2px;
+  }
+  .guide-tag {
+    font-size: 11px; padding: 3px 11px; border-radius: 14px;
+    background: var(--primary-bg); color: var(--primary);
+    font-weight: 600; letter-spacing: .3px;
+  }
+  .guide-open {
+    font-size: 12px; font-weight: 600; color: var(--primary);
+    display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;
+  }
+  .guide-note {
+    text-align: center; font-size: var(--fs-mini); color: var(--text-muted);
+    margin-top: var(--space-lg);
+  }
+  @media (max-width: 640px) {
+    .guide-grid { grid-template-columns: 1fr; }
+    .guide-card { padding: var(--space-md) var(--space-md) var(--space-md) 22px; }
+  }
+
   /* ==================== 教育经历 — 时间线 ==================== */
   .timeline {
     position: relative; padding-left: 40px; max-width: 700px; margin: 0 auto;
@@ -911,6 +974,7 @@
         <li><a href="#education">教育经历</a></li>
         <li><a href="#projects">项目经历</a></li>
         <li><a href="#techstack">技术栈</a></li>
+        <li><a href="#guides">生活指南</a></li>
       </ul>
       <button class="theme-toggle" id="themeToggle" aria-label="切换暗色/亮色模式" title="切换主题">🌙</button>
       <button class="hamburger" id="hamburgerBtn" aria-label="菜单" aria-expanded="false">
@@ -1116,6 +1180,62 @@
   <div class="tech-grid" id="techGrid">
     <div class="tech-loading">加载中...</div>
   </div>
+</section>
+
+<!-- ===== 生活指南 ===== -->
+<section class="section section--top-only" id="guides">
+  <div class="section-header">
+    <h2><span class="sec-num">05</span>生活指南</h2>
+    <div class="section-desc">技术之外的一些实用手册，都是一页就能看完的长文</div>
+  </div>
+  <div class="guide-grid">
+    <a class="guide-card" href="guides/tax.html" target="_blank" rel="noopener" style="--guide-accent:#B23A2B">
+      <div class="guide-icon">🧾</div>
+      <h3>买东西要交多少税</h3>
+      <p>一件商品的含税价里到底藏了多少税：增值税、消费税、购置税、契税怎么算，附逐档税率表和随手可用的税费计算器。</p>
+      <div class="guide-meta">
+        <span class="guide-tag">生活 / 财税</span>
+        <span class="guide-open">打开 →</span>
+      </div>
+    </a>
+    <a class="guide-card" href="guides/health.html" target="_blank" rel="noopener" style="--guide-accent:#2563eb">
+      <div class="guide-icon">🧘</div>
+      <h3>日常健康指南</h3>
+      <p>180cm / 75kg 男生的日常健康基线：正确坐姿与桌椅高度、每日热量与营养素摄入参考、衣物换洗频率速查。</p>
+      <div class="guide-meta">
+        <span class="guide-tag">生活 / 健康</span>
+        <span class="guide-open">打开 →</span>
+      </div>
+    </a>
+    <a class="guide-card" href="guides/taidiao.html" target="_blank" rel="noopener" style="--guide-accent:#0f7b6c">
+      <div class="guide-icon">🎣</div>
+      <h3>台钓调漂指南</h3>
+      <p>把浮漂当成一台秤：从八个名词到灵钝坐标系，一套「调四钓二」七步法，附不同鱼情水情的调目钓目起点表。</p>
+      <div class="guide-meta">
+        <span class="guide-tag">生活 / 垂钓</span>
+        <span class="guide-open">打开 →</span>
+      </div>
+    </a>
+    <a class="guide-card" href="guides/solar.html" target="_blank" rel="noopener" style="--guide-accent:#e8890c">
+      <div class="guide-icon">☀️</div>
+      <h3>小功率太阳能入门</h3>
+      <p>从一块板子到一盏灯：太阳能板、控制器、蓄电池、逆变器怎么选怎么接，300W 一套的实战配置与安全注意事项。</p>
+      <div class="guide-meta">
+        <span class="guide-tag">生活 / 折腾</span>
+        <span class="guide-open">打开 →</span>
+      </div>
+    </a>
+    <a class="guide-card" href="guides/swim.html" target="_blank" rel="noopener" style="--guide-accent:#3ddbe8">
+      <div class="guide-icon">🏊</div>
+      <h3>游泳入门指南</h3>
+      <p>180cm / 80kg 从零开始的 12 周计划：先练水性再练滑行，主攻自由泳、保底蛙泳，每周 2–3 次的训练安排。</p>
+      <div class="guide-meta">
+        <span class="guide-tag">生活 / 运动</span>
+        <span class="guide-open">打开 →</span>
+      </div>
+    </a>
+  </div>
+  <div class="guide-note">以上 5 篇为独立页面，点击后在新标签页打开</div>
 </section>
 </main>
 

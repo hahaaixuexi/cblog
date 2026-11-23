@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>游泳入门指南 · 180cm / 80kg 男生的 12 周计划</title>
+<meta name="description" content="零基础学游泳：按水性、呼吸、滑行、配合四个阶段拆解，附 12 周训练表、动作要点、常见错误纠正与打卡清单。">
+<style>
+  :root{
+    --bg:#04101c;
+    --bg-soft:#071a29;
+    --card:rgba(255,255,255,.045);
+    --card-hi:rgba(255,255,255,.075);
+    --line:rgba(255,255,255,.09);
+    --line-hi:rgba(61,219,232,.35);
+    --text:#e9f5f9;
+    --muted:#9db4c3;
+    --dim:#6f8797;
+    --accent:#3ddbe8;
+    --accent-2:#7cf0c4;
+    --warm:#ffc46b;
+    --danger:#ff8f8f;
+    --radius:20px;
+    --maxw:1120px;
+    --font:"Inter","SF Pro Text",system-ui,-apple-system,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    --mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--font);
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:fixed;inset:0;z-index:-2;
+    background:
+      radial-gradient(1100px 760px at 12% -8%, #0f3f52 0%, transparent 62%),
+      radial-gradient(900px 680px at 102% 4%, #123449 0%, transparent 58%),
+      radial-gradient(900px 900px at 50% 120%, #08293a 0%, transparent 60%),
+      var(--bg);
+  }
+  body::after{
+    content:"";
+    position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.35;
+    background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:26px 26px;
+    mask-image:linear-gradient(to bottom, #000 0%, transparent 70%);
+    -webkit-mask-image:linear-gradient(to bottom, #000 0%, transparent 70%);
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:rgba(61,219,232,.3);color:#fff}
+
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .mono{font-family:var(--mono);letter-spacing:.08em}
+
+  /* ---------- 导航 ---------- */
+  .nav{
+    position:sticky;top:0;z-index:60;
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    background:rgba(4,16,28,.72);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;gap:28px;height:66px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:650;letter-spacing:.02em;white-space:nowrap}
+  .brand svg{width:26px;height:26px;flex:none}
+  .nav-links{display:flex;gap:6px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{
+    font-size:13.5px;color:var(--muted);padding:7px 12px;border-radius:999px;
+    white-space:nowrap;transition:.22s ease;
+  }
+  .nav-links a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+  .nav-links a.active{color:#04202a;background:linear-gradient(135deg,var(--accent),var(--accent-2));font-weight:600}
+  .nav-progress{
+    height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    width:0;transition:width .1s linear;
+  }
+
+  /* ---------- 首屏 ---------- */
+  .hero{position:relative;padding:clamp(64px,10vw,112px) 0 0;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  .badge{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:12.5px;letter-spacing:.06em;color:var(--accent-2);
+    border:1px solid rgba(124,240,196,.28);background:rgba(124,240,196,.07);
+    padding:7px 14px;border-radius:999px;margin-bottom:24px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 10px var(--accent-2);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  h1{
+    font-size:clamp(38px,6.2vw,66px);
+    line-height:1.12;letter-spacing:-.02em;font-weight:750;
+    margin-bottom:22px;
+  }
+  h1 .grad{
+    background:linear-gradient(115deg,#bff7ff 0%,var(--accent) 42%,var(--accent-2) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .lede{font-size:clamp(15px,1.5vw,17px);color:var(--muted);max-width:56ch;margin-bottom:32px}
+  .lede strong{color:var(--text);font-weight:600}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:13px 24px;border-radius:12px;font-size:14.5px;font-weight:600;
+    transition:.24s ease;border:1px solid transparent;cursor:pointer;
+    font-family:inherit;
+  }
+  .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#032029;box-shadow:0 10px 30px -12px rgba(61,219,232,.7)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 36px -14px rgba(61,219,232,.85)}
+  .btn-ghost{border-color:var(--line);color:var(--text);background:rgba(255,255,255,.03)}
+  .btn-ghost:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)}
+
+  .hero-figure{position:relative;aspect-ratio:1/1;display:grid;place-items:center}
+  .ring-deco{
+    position:absolute;inset:8%;border-radius:50%;
+    border:1px dashed rgba(61,219,232,.2);
+    animation:spin 44s linear infinite;
+  }
+  .ring-deco::after{
+    content:"";position:absolute;top:-4px;left:50%;width:8px;height:8px;border-radius:50%;
+    background:var(--accent);box-shadow:0 0 16px var(--accent);
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .gauge{
+    position:relative;width:74%;aspect-ratio:1;border-radius:50%;
+    background:radial-gradient(circle at 50% 35%, rgba(61,219,232,.22), rgba(4,16,28,.9) 68%);
+    border:1px solid rgba(61,219,232,.25);
+    display:grid;place-items:center;text-align:center;
+    box-shadow:inset 0 0 60px rgba(61,219,232,.12), 0 30px 80px -40px rgba(61,219,232,.5);
+  }
+  .gauge .num{font-size:clamp(46px,6vw,64px);font-weight:750;line-height:1;letter-spacing:-.03em;
+    background:linear-gradient(135deg,#fff,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .gauge .unit{font-size:13px;color:var(--muted);margin-top:8px;letter-spacing:.14em}
+  .gauge .cap{position:absolute;bottom:18%;font-size:11px;color:var(--dim);letter-spacing:.2em;text-transform:uppercase}
+  .float-tag{
+    position:absolute;padding:8px 14px;border-radius:10px;font-size:12.5px;
+    background:rgba(7,26,41,.9);border:1px solid var(--line);
+    backdrop-filter:blur(8px);white-space:nowrap;color:var(--muted);
+  }
+  .float-tag b{color:var(--accent-2);font-weight:650}
+  .float-tag.t1{top:6%;right:2%}
+  .float-tag.t2{bottom:12%;left:0}
+  .float-tag.t3{bottom:-2%;right:8%}
+
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:44px;
+    padding-top:26px;border-top:1px solid var(--line);
+  }
+  .chip{
+    font-size:12.5px;color:var(--muted);padding:6px 13px;border-radius:999px;
+    background:rgba(255,255,255,.04);border:1px solid var(--line);
+  }
+  .chip span{color:var(--accent);margin-right:6px}
+
+  .waves{position:relative;height:120px;margin-top:40px;overflow:hidden;opacity:.5}
+  .waves svg{position:absolute;width:200%;height:100%;left:0;bottom:0;animation:drift 18s linear infinite}
+  .waves svg:nth-child(2){animation-duration:26s;animation-direction:reverse;opacity:.5}
+  @keyframes drift{to{transform:translateX(-50%)}}
+
+  /* ---------- 通用版式 ---------- */
+  section{padding:clamp(58px,8vw,96px) 0;position:relative}
+  .sec-head{margin-bottom:clamp(30px,4vw,46px);max-width:74ch}
+  .kicker{
+    display:flex;align-items:center;gap:12px;
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;
+    color:var(--accent);text-transform:uppercase;margin-bottom:16px;
+  }
+  .kicker::before{content:"";width:28px;height:1px;background:var(--accent);opacity:.6}
+  h2{font-size:clamp(26px,3.6vw,38px);line-height:1.25;letter-spacing:-.02em;font-weight:700;margin-bottom:14px}
+  h2 em{font-style:normal;color:var(--accent)}
+  .sec-head p{color:var(--muted);font-size:15.5px}
+  .divider{height:1px;background:linear-gradient(90deg,var(--line),transparent);margin:0 auto;max-width:var(--maxw)}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px;transition:.28s ease;
+  }
+  .card:hover{background:var(--card-hi);border-color:rgba(255,255,255,.16);transform:translateY(-3px)}
+
+  /* ---------- 身体数据 ---------- */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .stat{position:relative;overflow:hidden}
+  .stat::after{
+    content:"";position:absolute;top:0;left:24px;right:24px;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(61,219,232,.55),transparent);
+  }
+  .stat .label{font-size:12px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;margin-bottom:12px}
+  .stat .value{font-size:34px;font-weight:720;letter-spacing:-.03em;line-height:1;margin-bottom:14px;
+    background:linear-gradient(135deg,#fff 20%,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat .value small{font-size:15px;font-weight:500;color:var(--muted);-webkit-text-fill-color:var(--muted);margin-left:4px}
+  .stat p{font-size:14px;color:var(--muted);line-height:1.7}
+  .stat b{color:var(--accent-2);font-weight:600}
+
+  .callout{
+    margin-top:18px;display:grid;grid-template-columns:auto 1fr;gap:18px;
+    padding:22px 24px;border-radius:16px;
+    background:linear-gradient(120deg,rgba(61,219,232,.1),rgba(124,240,196,.045));
+    border:1px solid rgba(61,219,232,.22);
+  }
+  .callout .icon{font-size:20px;line-height:1.4}
+  .callout p{font-size:14.5px;color:#cfe6ee}
+  .callout p+p{margin-top:8px}
+  .callout strong{color:#fff}
+
+  /* ---------- 三个认知 ---------- */
+  .beliefs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .belief{position:relative;padding-top:70px}
+  .belief .no{
+    position:absolute;top:22px;left:26px;
+    font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.2em;
+  }
+  .belief .glyph{
+    position:absolute;top:14px;right:22px;font-size:44px;font-weight:800;
+    color:rgba(255,255,255,.045);line-height:1;letter-spacing:-.04em;
+  }
+  .belief h3{font-size:17.5px;font-weight:650;margin-bottom:10px;letter-spacing:-.01em}
+  .belief p{font-size:14px;color:var(--muted)}
+  .belief .fix{
+    margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);
+    font-size:13.5px;color:var(--accent-2);
+  }
+
+  /* ---------- 阶段时间线 ---------- */
+  .timeline{position:relative;display:grid;gap:16px;padding-left:54px}
+  .timeline::before{
+    content:"";position:absolute;left:19px;top:14px;bottom:14px;width:1px;
+    background:linear-gradient(to bottom,var(--accent),rgba(61,219,232,.12) 55%,transparent);
+  }
+  .phase{position:relative}
+  .phase .node{
+    position:absolute;left:-54px;top:26px;width:38px;height:38px;border-radius:12px;
+    display:grid;place-items:center;
+    background:linear-gradient(145deg,rgba(61,219,232,.2),rgba(61,219,232,.05));
+    border:1px solid rgba(61,219,232,.4);
+    font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:600;
+    box-shadow:0 0 22px -6px rgba(61,219,232,.55);
+  }
+  .phase-body{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:start}
+  .phase h3{font-size:19px;font-weight:660;margin-bottom:6px;letter-spacing:-.01em}
+  .phase h3 span{font-size:12px;font-family:var(--mono);color:var(--accent);letter-spacing:.14em;margin-left:10px;vertical-align:2px}
+  .phase .goal{font-size:14px;color:var(--muted);margin-bottom:14px}
+  .phase ul{list-style:none;display:grid;gap:8px}
+  .phase li{font-size:14px;color:#c6dbe4;padding-left:20px;position:relative}
+  .phase li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.65}
+  .pass{
+    font-size:13px;color:var(--warm);background:rgba(255,196,107,.07);
+    border:1px solid rgba(255,196,107,.22);border-radius:12px;padding:12px 16px;
+  }
+  .pass b{display:block;font-size:11px;letter-spacing:.18em;color:rgba(255,196,107,.75);margin-bottom:6px;font-weight:600}
+
+  /* ---------- 课程结构条 ---------- */
+  .lesson{display:grid;grid-template-columns:.9fr 1.1fr;gap:32px;align-items:center;
+    padding:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius)}
+  .lesson h3{font-size:18px;margin-bottom:8px;font-weight:660}
+  .lesson p{font-size:14px;color:var(--muted)}
+  .bars{display:flex;height:52px;border-radius:12px;overflow:hidden;margin-bottom:14px;border:1px solid var(--line)}
+  .bars span{display:grid;place-items:center;font-size:11.5px;font-weight:600;color:#04202a;letter-spacing:.02em}
+  .bars .b1{background:linear-gradient(135deg,#7cf0c4,#9ff3d2);flex:5}
+  .bars .b2{background:linear-gradient(135deg,#3ddbe8,#6fe6ef);flex:5}
+  .bars .b3{background:linear-gradient(135deg,#ffc46b,#ffd89a);flex:30}
+  .bars .b4{background:linear-gradient(135deg,#8fb8ff,#b6d0ff);flex:10}
+  .bars .b5{background:rgba(255,255,255,.12);color:var(--muted);flex:10}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--muted)}
+  .legend i{display:inline-block;width:8px;height:8px;border-radius:3px;margin-right:6px}
+
+  /* ---------- 表格 ---------- */
+  .table-wrap{overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.02)}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  thead th{
+    text-align:left;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--dim);font-weight:600;padding:16px 20px;
+    background:rgba(255,255,255,.035);border-bottom:1px solid var(--line);white-space:nowrap;
+  }
+  tbody td{padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.055);vertical-align:top;color:#c9dde6}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr{transition:background .2s}
+  tbody tr:hover{background:rgba(61,219,232,.045)}
+  td.wk{white-space:nowrap;font-weight:650;color:var(--text)}
+  td.wk small{display:block;font-size:11.5px;color:var(--dim);font-weight:400;margin-top:3px}
+  td .tag{
+    display:inline-block;font-size:11px;padding:2px 9px;border-radius:999px;margin-right:6px;
+    background:rgba(61,219,232,.1);color:var(--accent);border:1px solid rgba(61,219,232,.2);
+  }
+  td .tag.warm{background:rgba(255,196,107,.09);color:var(--warm);border-color:rgba(255,196,107,.22)}
+
+  /* ---------- 技术标签页 ---------- */
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+  .tab{
+    font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);
+    background:rgba(255,255,255,.035);border:1px solid var(--line);
+    padding:10px 20px;border-radius:11px;cursor:pointer;transition:.22s;
+  }
+  .tab:hover{color:var(--text);background:rgba(255,255,255,.07)}
+  .tab[aria-selected="true"]{
+    color:#032029;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    border-color:transparent;box-shadow:0 8px 22px -12px rgba(61,219,232,.8);
+  }
+  .panel{display:none;animation:fade .35s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .steps{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .step{position:relative;padding:22px 24px 22px 62px}
+  .step .n{
+    position:absolute;left:22px;top:22px;width:26px;height:26px;border-radius:8px;
+    display:grid;place-items:center;font-family:var(--mono);font-size:12px;
+    background:rgba(61,219,232,.13);color:var(--accent);border:1px solid rgba(61,219,232,.25);
+  }
+  .step h4{font-size:15.5px;margin-bottom:6px;font-weight:650}
+  .step p{font-size:13.5px;color:var(--muted)}
+  .step .cue{
+    margin-top:10px;font-size:12.5px;color:var(--accent-2);
+    padding-left:12px;border-left:2px solid rgba(124,240,196,.4);
+  }
+  .rhyme{
+    margin-top:18px;padding:20px 24px;border-radius:14px;text-align:center;
+    background:linear-gradient(120deg,rgba(255,196,107,.08),rgba(255,196,107,.02));
+    border:1px dashed rgba(255,196,107,.3);
+    font-size:16px;letter-spacing:.06em;color:#ffe0ae;
+  }
+  .rhyme small{display:block;font-size:11.5px;letter-spacing:.2em;color:rgba(255,196,107,.6);margin-bottom:8px;font-family:var(--mono)}
+
+  /* ---------- 常见错误 ---------- */
+  .acc{display:grid;gap:10px}
+  details.err{
+    border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.028);
+    transition:.22s;overflow:hidden;
+  }
+  details.err[open]{border-color:rgba(61,219,232,.28);background:rgba(61,219,232,.045)}
+  details.err summary{
+    display:flex;align-items:center;gap:14px;cursor:pointer;
+    padding:17px 22px;font-size:15px;font-weight:600;list-style:none;
+  }
+  details.err summary::-webkit-details-marker{display:none}
+  details.err summary .idx{font-family:var(--mono);font-size:11.5px;color:var(--dim)}
+  details.err summary .arrow{
+    margin-left:auto;width:18px;height:18px;flex:none;transition:transform .25s;
+    color:var(--accent);
+  }
+  details.err[open] summary .arrow{transform:rotate(45deg)}
+  details.err .body{padding:0 22px 20px 58px;font-size:14px;color:var(--muted)}
+  details.err .body .row{display:grid;grid-template-columns:64px 1fr;gap:10px;padding:6px 0}
+  details.err .body .row b{font-size:12px;color:var(--dim);font-weight:600;letter-spacing:.06em;padding-top:2px}
+  details.err .body .row.fix b{color:var(--accent-2)}
+  details.err .body .row.fix span{color:#d6f5e9}
+
+  /* ---------- 装备 / 安全 ---------- */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .list-card h3{font-size:17px;margin-bottom:18px;display:flex;align-items:center;gap:10px;font-weight:650}
+  .list-card h3 .em{font-size:20px}
+  .items{list-style:none;display:grid;gap:12px}
+  .items li{display:grid;grid-template-columns:26px 1fr;gap:4px;font-size:14px;color:#c9dde6}
+  .items li .mark{color:var(--accent-2);font-weight:700;line-height:1.7}
+  .items li.no .mark{color:var(--danger)}
+  .items li small{display:block;color:var(--dim);font-size:12.5px;margin-top:2px}
+  .safety li .mark{color:var(--warm)}
+
+  /* ---------- 打卡 ---------- */
+  .check-shell{display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:start}
+  .progress-card{
+    position:sticky;top:86px;text-align:center;
+    background:linear-gradient(160deg,rgba(61,219,232,.11),rgba(255,255,255,.03));
+    border:1px solid rgba(61,219,232,.24);
+  }
+  .ring{position:relative;width:150px;height:150px;margin:0 auto 8px}
+  .ring svg{transform:rotate(-90deg)}
+  .ring circle{fill:none;stroke-width:8;stroke-linecap:round}
+  .ring .track{stroke:rgba(255,255,255,.08)}
+  .ring .fill{stroke:url(#ringGrad);transition:stroke-dashoffset .6s cubic-bezier(.22,1,.36,1)}
+  .ring .pct{
+    position:absolute;inset:0;display:grid;place-items:center;
+    font-size:30px;font-weight:750;letter-spacing:-.02em;
+  }
+  .ring .pct span{font-size:13px;color:var(--muted);margin-left:2px;font-weight:500}
+  .progress-card .count{font-size:13.5px;color:var(--muted);margin-bottom:18px}
+  .progress-card .count b{color:var(--accent-2);font-size:16px}
+  .reset{
+    width:100%;font-family:inherit;font-size:13px;padding:10px;border-radius:10px;cursor:pointer;
+    background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--muted);transition:.2s;
+  }
+  .reset:hover{color:var(--text);border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.09)}
+  .progress-card .tip{margin-top:14px;font-size:12px;color:var(--dim);line-height:1.6}
+
+  .tasks{display:grid;gap:8px}
+  .task{
+    display:grid;grid-template-columns:24px 1fr auto;gap:12px;align-items:center;
+    padding:14px 18px;border-radius:12px;cursor:pointer;
+    background:rgba(255,255,255,.028);border:1px solid var(--line);transition:.2s;
+  }
+  .task:hover{background:rgba(255,255,255,.06)}
+  .task input{position:absolute;opacity:0;pointer-events:none}
+  .box{
+    width:20px;height:20px;border-radius:6px;border:1.5px solid rgba(255,255,255,.28);
+    display:grid;place-items:center;transition:.2s;
+  }
+  .box svg{width:12px;height:12px;opacity:0;transform:scale(.5);transition:.2s;color:#032029}
+  .task.done{background:rgba(124,240,196,.07);border-color:rgba(124,240,196,.28)}
+  .task.done .box{background:linear-gradient(135deg,var(--accent),var(--accent-2));border-color:transparent}
+  .task.done .box svg{opacity:1;transform:scale(1)}
+  .task.done .title{color:var(--dim);text-decoration:line-through}
+  .task .title{font-size:14px;transition:.2s}
+  .task .stage{font-size:11px;color:var(--dim);font-family:var(--mono);letter-spacing:.1em;white-space:nowrap}
+
+  /* ---------- FAQ ---------- */
+  .faq{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+  details.qa{
+    border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.028);transition:.2s;
+  }
+  details.qa[open]{background:rgba(255,255,255,.05)}
+  details.qa summary{padding:16px 20px;font-size:14.5px;font-weight:600;cursor:pointer;list-style:none;display:flex;gap:10px;align-items:flex-start}
+  details.qa summary::-webkit-details-marker{display:none}
+  details.qa summary::before{content:"Q";font-family:var(--mono);font-size:12px;color:var(--accent);padding-top:3px}
+  details.qa .a{padding:0 20px 18px 42px;font-size:13.5px;color:var(--muted);line-height:1.8}
+
+  /* ---------- 页脚 ---------- */
+  footer{border-top:1px solid var(--line);padding:44px 0 60px;background:rgba(0,0,0,.18)}
+  .foot{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-start}
+  .foot p{font-size:12.8px;color:var(--dim);max-width:62ch;line-height:1.8}
+  .foot .sig{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:rgba(157,180,195,.5);text-transform:uppercase}
+
+  .to-top{
+    position:fixed;right:24px;bottom:26px;width:44px;height:44px;border-radius:12px;
+    display:grid;place-items:center;cursor:pointer;z-index:70;
+    background:rgba(7,26,41,.92);border:1px solid var(--line);color:var(--muted);
+    opacity:0;pointer-events:none;transition:.3s;backdrop-filter:blur(10px);
+  }
+  .to-top.show{opacity:1;pointer-events:auto}
+  .to-top:hover{color:var(--accent);border-color:var(--line-hi)}
+
+  /* 滚动出现 */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:960px){
+    .hero-grid{grid-template-columns:1fr;gap:36px}
+    .hero-figure{max-width:420px;margin:0 auto;width:100%}
+    .stats{grid-template-columns:1fr}
+    .beliefs{grid-template-columns:1fr}
+    .phase-body{grid-template-columns:1fr;gap:16px}
+    .lesson{grid-template-columns:1fr;gap:22px}
+    .two-col{grid-template-columns:1fr}
+    .check-shell{grid-template-columns:1fr}
+    .progress-card{position:static;display:grid;grid-template-columns:150px 1fr;gap:20px;text-align:left;align-items:center}
+    .progress-card .ring{margin:0}
+    .progress-card .tip{grid-column:1/-1}
+    .faq{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+  }
+  @media (max-width:760px){
+    .nav-links{display:none}
+    .nav-inner{justify-content:space-between}
+    .table-wrap{border:0;background:none;overflow:visible}
+    thead{display:none}
+    table,tbody,tr,td{display:block;width:100%}
+    tbody tr{
+      border:1px solid var(--line);border-radius:14px;margin-bottom:10px;
+      padding:16px 18px;background:rgba(255,255,255,.03);
+    }
+    tbody td{border:0;padding:7px 0;display:grid;grid-template-columns:86px 1fr;gap:12px;font-size:13.5px}
+    tbody td::before{
+      content:attr(data-label);font-size:11px;letter-spacing:.12em;color:var(--dim);
+      text-transform:uppercase;padding-top:3px;
+    }
+    td.wk{font-size:16px;padding-bottom:12px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+    td.wk::before{display:none}
+    td.wk small{display:inline;margin-left:8px}
+    .timeline{padding-left:46px}
+    .timeline::before{left:15px}
+    .phase .node{left:-46px;width:32px;height:32px;top:22px;font-size:12px}
+    .card{padding:22px}
+    .hero-meta{gap:8px}
+    .float-tag.t2{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="回到顶部">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2 14c2.5 0 2.5 2 5 2s2.5-2 5-2 2.5 2 5 2 2.5-2 5-2" stroke="#3ddbe8" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M2 9c2.5 0 2.5 2 5 2s2.5-2 5-2 2.5 2 5 2 2.5-2 5-2" stroke="#7cf0c4" stroke-width="1.8" stroke-linecap="round" opacity=".65"/>
+        <circle cx="17.5" cy="4.5" r="1.6" fill="#ffc46b"/>
+      </svg>
+      游泳入门
+    </a>
+    <nav class="nav-links" aria-label="页面导航">
+      <a href="#body">你的条件</a>
+      <a href="#mind">先想明白</a>
+      <a href="#route">四阶段</a>
+      <a href="#plan">12 周计划</a>
+      <a href="#drill">动作要点</a>
+      <a href="#mistake">常见错误</a>
+      <a href="#gear">装备安全</a>
+      <a href="#check">打卡</a>
+    </nav>
+  </div>
+  <div class="nav-progress" id="navProgress"></div>
+</div>
+
+<main id="top">
+
+  <!-- ============ 首屏 ============ -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="badge"><span class="dot"></span>为 180 cm / 80 kg 男生写的零基础方案</div>
+          <h1>从怕水到<br><span class="grad">连续游 200 米</span></h1>
+          <p class="lede">
+            新手学不会游泳，很少是"力气不够"。真正卡住人的只有三件事：
+            <strong>不会在水里呼气</strong>、<strong>身体不肯水平</strong>、<strong>动作顺序反了</strong>。
+            这份方案把顺序固定成"水性 → 呼吸 → 滑行 → 配合"，每周 2–3 次、每次 60 分钟，12 周给出可验证的结果。
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#route">看四阶段路线
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="#check">打开打卡清单</a>
+          </div>
+          <div class="hero-meta">
+            <span class="chip"><span>●</span>零基础可执行</span>
+            <span class="chip"><span>●</span>每周 2–3 次</span>
+            <span class="chip"><span>●</span>自带浮板即可</span>
+            <span class="chip"><span>●</span>不依赖私教起步</span>
+          </div>
+        </div>
+
+        <div class="hero-figure" aria-hidden="true">
+          <div class="ring-deco"></div>
+          <div class="gauge">
+            <div>
+              <div class="num">24.7</div>
+              <div class="unit">BMI · 超重区间</div>
+            </div>
+            <div class="cap">Start from here</div>
+          </div>
+          <div class="float-tag t1">臂展优势 <b>+长行程</b></div>
+          <div class="float-tag t2">水中承重 <b>≈ 0</b></div>
+          <div class="float-tag t3">目标 <b>12 周</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="waves" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0 60 C 180 10, 360 110, 540 60 S 900 10, 1080 60 S 1440 110, 1620 60 L 1620 120 L 0 120 Z" fill="rgba(61,219,232,.14)"/>
+      </svg>
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0 80 C 200 40, 380 120, 560 80 S 920 40, 1100 80 S 1440 120, 1620 80 L 1620 120 L 0 120 Z" fill="rgba(124,240,196,.09)"/>
+      </svg>
+    </div>
+  </header>
+
+  <!-- ============ 身体条件 ============ -->
+  <section id="body">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="kicker">01 / Baseline</div>
+        <h2>先看清你的<em>身体条件</em></h2>
+        <p>180 cm、80 kg 是一个对游泳很友好的起点：不长不短的杠杆、够用的浮力、不夸张的体重。你的优势在"长"，短板只在"水里不熟悉"。</p>
+      </div>
+
+      <div class="stats">
+        <div class="card stat reveal">
+          <div class="label">BMI</div>
+          <div class="value">24.7 <small>超重</small></div>
+          <p>80 ÷ 1.8² ≈ 24.69。按《体重管理指导原则（2024 年版）》与 WS/T 428—2013：18.5 ≤ BMI &lt; 24 为正常，24 ≤ BMI &lt; 28 为超重——所以 24.7 属于<b>超重</b>（接近正常边界），多出来的往往是肌肉。即便如此，<b>水下不需要"先减重再学"</b>，体重不会让你下沉。</p>
+        </div>
+        <div class="card stat reveal">
+          <div class="label">身高 180 cm</div>
+          <div class="value">≥ 1.8 m <small>臂展</small></div>
+          <p>成年人臂展通常接近甚至大于身高，所以划水的有效行程天然更长。<b>你用"长"占便宜，而不是用"猛"</b>——同样的频率，你的推进距离更远。</p>
+        </div>
+        <div class="card stat reveal">
+          <div class="label">体重 80 kg</div>
+          <div class="value">≈ 8 kg <small>水中体感</small></div>
+          <p>浮力抵消约九成体重，膝、踝关节承重接近零。<b>体重不是障碍</b>；起步阶段把目标定成"学会"，而不是"掉秤"。</p>
+        </div>
+      </div>
+
+      <div class="callout reveal">
+        <div class="icon">🎯</div>
+        <div>
+          <p><strong>建议主项：自由泳；保底泳姿：蛙泳。</strong>先用蛙泳建立"抬头能呼吸、随时能停"的安全感，再把自由泳作为长期主项——它的划水行程和你的臂展最匹配。</p>
+          <p>目标排序不要搞反：<strong>先"不慌"→ 再"能停能站"→ 最后才是"游得远、游得快"</strong>。跳过前两步直接练速度，是新手最常见的返工原因。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- ============ 三个认知 ============ -->
+  <section id="mind">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="kicker">02 / Mindset</div>
+        <h2>下水前先想明白<em>三件事</em></h2>
+        <p>这三条决定了你前四周是"越练越顺"还是"越练越怕"。它们比任何动作细节都重要。</p>
+      </div>
+
+      <div class="beliefs">
+        <div class="card belief reveal">
+          <div class="no">01</div><div class="glyph">≈</div>
+          <h3>会游泳 = 会呼吸</h3>
+          <p>水里只能"吐"，吸气只发生在转头或抬头的那 0.5 秒。憋气游的人，30 米就会因二氧化碳堆积而喘不上来，这不是体能问题。</p>
+          <div class="fix">改法：水下用鼻子持续"嗯——"吐泡泡，出水那一瞬只用嘴吸气。</div>
+        </div>
+        <div class="card belief reveal">
+          <div class="no">02</div><div class="glyph">—</div>
+          <h3>身体是"压"平的，不是"抬"平的</h3>
+          <p>头一抬，腿必沉。这是杠杆，不是意志力。新手总想抬头看前方，结果身体像一块斜插进水里的木板，阻力翻倍、越游越累。</p>
+          <div class="fix">改法：眼看池底，后脑勺露出水面；需要看前方时，只在换气时侧头扫一眼。</div>
+        </div>
+        <div class="card belief reveal">
+          <div class="no">03</div><div class="glyph">◷</div>
+          <h3>慢就是快</h3>
+          <p>新手 80% 的疲劳来自"动作顺序错 + 憋气 + 用力过猛"，而不是心肺差。用 60% 的力、长滑行，反而能游得更远。</p>
+          <div class="fix">改法：每次练习先做"慢动作正确版"，连续 2 组不散架，再允许加速。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- ============ 四阶段 ============ -->
+  <section id="route">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="kicker">03 / Roadmap</div>
+        <h2>四个阶段，<em>每一阶段都有过关标准</em></h2>
+        <p>不要跳级。每个阶段都有一个"做到了再往下走"的硬指标——达标才进入下一阶段，这是零基础最省时间的路线。</p>
+      </div>
+
+      <div class="timeline">
+        <div class="card phase reveal">
+          <div class="node">01</div>
+          <div class="phase-body">
+            <div>
+              <h3>水性<span>第 1–2 周</span></h3>
+              <p class="goal">克服头部入水的恐惧，建立"水托得住我"的确定感。</p>
+              <ul>
+                <li>齐胸浅水区行走、转圈、轻轻跳起落地</li>
+                <li>淋水洗脸、闭气 3 秒→5 秒，脸埋入水中</li>
+                <li>水下用鼻子持续吐泡泡（吹蜡烛的慢速版）</li>
+                <li>抱膝浮冬瓜 → 展体俯漂 → 仰漂</li>
+                <li>从漂浮状态"收腿—落脚—压水"站起</li>
+              </ul>
+            </div>
+            <div class="pass"><b>过关标准</b>水下连续吐气 20 次不呛；俯漂 10 秒身体成一条线；能独立从俯漂安全站起。</div>
+          </div>
+        </div>
+
+        <div class="card phase reveal">
+          <div class="node">02</div>
+          <div class="phase-body">
+            <div>
+              <h3>滑行与打腿<span>第 3–4 周</span></h3>
+              <p class="goal">让身体变成流线型，学会用髋部发力推水。</p>
+              <ul>
+                <li>扶池边收腿蹬壁，双臂前伸夹耳滑行</li>
+                <li>滑行 3 米 → 5 米，全程不抬头</li>
+                <li>扶板打腿：25 米、50 米、100 米渐进</li>
+                <li>侧头换气：扶板单侧换气 10 次一组</li>
+              </ul>
+            </div>
+            <div class="pass"><b>过关标准</b>蹬壁滑行 ≥ 3 米；扶板打腿 25 米不停顿、脚不出大水花。</div>
+          </div>
+        </div>
+
+        <div class="card phase reveal">
+          <div class="node">03</div>
+          <div class="phase-body">
+            <div>
+              <h3>配合<span>第 5–8 周</span></h3>
+              <p class="goal">把呼吸、打腿、划手串成一个稳定循环，能连续游 25 米。</p>
+              <ul>
+                <li>单臂自由泳（另一手前伸）+ 侧头换气</li>
+                <li>自由泳完整配合，先 15 米再 25 米</li>
+                <li>蛙泳腿：收—翻—蹬—夹，扶板 25 米</li>
+                <li>蛙泳手腿配合：划手→收手→收腿→蹬夹→滑行</li>
+              </ul>
+            </div>
+            <div class="pass"><b>过关标准</b>自由泳完整配合 25 米；蛙泳腿 25 米（有滑行）+ 手腿分解配合顺畅，中途能停能站。完整蛙泳配合放到第 4 阶段。</div>
+          </div>
+        </div>
+
+        <div class="card phase reveal">
+          <div class="node">04</div>
+          <div class="phase-body">
+            <div>
+              <h3>距离与习惯<span>第 9–12 周</span></h3>
+              <p class="goal">从"能游"变成"会安排训练"，把游泳变成每周固定动作。</p>
+              <ul>
+                <li>蛙泳 50 → 100 → 200 米渐进</li>
+                <li>自由泳 25 → 50 米，中间 30 秒休息</li>
+                <li>加入 4×25 米间歇，控制动作不变形</li>
+                <li>固定每周 2–3 次的训练时间表</li>
+              </ul>
+            </div>
+            <div class="pass"><b>过关标准</b>连续蛙泳 200 米或自由泳 50 米；连续 4 周每周下水 ≥ 2 次。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson reveal" style="margin-top:22px">
+        <div>
+          <h3>一次 55~60 分钟训练怎么排</h3>
+          <p>新手最容易犯的错是"下水就游"：不热身、不练分解，直接整趟游，然后 20 分钟就累垮。按下面的结构走，同样一小时效率相差一倍以上。</p>
+        </div>
+        <div>
+          <div class="bars">
+            <span class="b1">热身</span>
+            <span class="b2">适应</span>
+            <span class="b3">技术练习</span>
+            <span class="b4">放松</span>
+            <span class="b5">小结</span>
+          </div>
+          <div class="legend">
+            <span><i style="background:#7cf0c4"></i>陆上热身 5′</span>
+            <span><i style="background:#3ddbe8"></i>水中适应 5′</span>
+            <span><i style="background:#ffc46b"></i>技术练习 30′</span>
+            <span><i style="background:#8fb8ff"></i>放松游 10′</span>
+            <span><i style="background:rgba(255,255,255,.25)"></i>小结 5′</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- ============ 12 周计划 ============ -->
+  <section id="plan">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="kicker">04 / 12-Week Plan</div>
+        <h2>12 周训练表</h2>
+        <p>每周 2–3 次即可，间隔开（例如周二、周四、周六）。宁可一周只去 2 次但每次都练分解，也不要把 3 次挤在同一天。</p>
+      </div>
+
+      <div class="table-wrap reveal">
+        <table>
+          <thead>
+            <tr>
+              <th>周次</th>
+              <th>训练重点</th>
+              <th>具体练什么</th>
+              <th>过关标准</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="wk" data-label="周次">第 1–2 周<small>约 4–6 次</small></td>
+              <td data-label="重点"><span class="tag">水性</span>呼吸与漂浮</td>
+              <td data-label="内容">淋水、闭气、水下吐泡泡；抱膝浮冬瓜 → 俯漂；仰漂；练习从漂浮中站起。每次至少 100 次吐气。</td>
+              <td data-label="标准">吐气 20 次不呛；俯漂 10 秒；独立站起无慌乱。</td>
+            </tr>
+            <tr>
+              <td class="wk" data-label="周次">第 3–4 周<small>约 4–6 次</small></td>
+              <td data-label="重点"><span class="tag">流线</span>滑行与打腿</td>
+              <td data-label="内容">蹬壁滑行 3–5 米；扶板打腿 25/50 米；脚背绷直、幅度 30 cm、频率快；扶板单侧换气 10 次×3 组。</td>
+              <td data-label="标准">滑行 3 米不抬头；打腿 25 米不停、水花小。</td>
+            </tr>
+            <tr>
+              <td class="wk" data-label="周次">第 5–6 周<small>约 6 次</small></td>
+              <td data-label="重点"><span class="tag">自由泳</span>单臂与换气</td>
+              <td data-label="内容">单臂自由泳 15 米；划手分解（入水—抱水—推水—移臂）；3 划一换气；打腿 6 次一划的节奏。</td>
+              <td data-label="标准">单臂 25 米；换气时只转头不抬头。</td>
+            </tr>
+            <tr>
+              <td class="wk" data-label="周次">第 7–8 周<small>约 6 次</small></td>
+              <td data-label="重点"><span class="tag">配合</span>完整泳姿成型</td>
+              <td data-label="内容">自由泳完整配合 15→25 米；蛙泳腿（收翻蹬夹）扶板 25 米；蛙泳手腿配合分解。</td>
+              <td data-label="标准">自由泳 25 米；蛙泳腿 25 米有滑行。</td>
+            </tr>
+            <tr>
+              <td class="wk" data-label="周次">第 9–10 周<small>约 6 次</small></td>
+              <td data-label="重点"><span class="tag">耐久</span>拉距离</td>
+              <td data-label="内容">蛙泳 50→100 米；自由泳 25 米×4 组（休息 30 秒）；每次课固定 200 米总量打底。</td>
+              <td data-label="标准">蛙泳 100 米不停；自由泳连续 50 米。</td>
+            </tr>
+            <tr>
+              <td class="wk" data-label="周次">第 11–12 周<small>约 6 次</small></td>
+              <td data-label="重点"><span class="tag warm">巩固</span>习惯与自测</td>
+              <td data-label="内容">蛙泳 200 米；自由泳 50 米；技术复训（录像或请教练看一次动作）；制定下一周期计划。</td>
+              <td data-label="标准">蛙泳 200 米 / 自由泳 50 米；连续 4 周每周 ≥2 次。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- ============ 动作要点 ============ -->
+  <section id="drill">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="kicker">05 / Technique</div>
+        <h2>动作要点<em>逐条拆开</em></h2>
+        <p>每个动作只记一个核心提示，练的时候脑子里只放这一句，比记十条要领有效。</p>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="泳姿选择">
+        <button class="tab" role="tab" id="tab-base" aria-controls="panel-base" aria-selected="true">呼吸与漂浮</button>
+        <button class="tab" role="tab" id="tab-free" aria-controls="panel-free" aria-selected="false">自由泳</button>
+        <button class="tab" role="tab" id="tab-breast" aria-controls="panel-breast" aria-selected="false">蛙泳</button>
+      </div>
+
+      <div class="panel active" id="panel-base" role="tabpanel" aria-labelledby="tab-base">
+        <div class="steps">
+          <div class="card step">
+            <div class="n">01</div>
+            <h4>陆上先建立呼吸节奏</h4>
+            <p>嘴吸气 2 秒 → 嘴鼻缓慢吐气 4 秒。在水里，"吐"是主动动作，"吸"是被动结果。</p>
+            <div class="cue">口诀：吸要快、吐要慢，任何时刻都不憋气。</div>
+          </div>
+          <div class="card step">
+            <div class="n">02</div>
+            <h4>水下吐泡泡</h4>
+            <p>齐胸水站立，深吸一口气，脸入水，用鼻子持续发出"嗯——"的声音，把气吐完再抬头。抬头时只吸气、不吐气。</p>
+            <div class="cue">鼻子在水里只能出气不能进气；进水发酸，就是你在水里吸了气。</div>
+          </div>
+          <div class="card step">
+            <div class="n">03</div>
+            <h4>俯漂：眼看池底</h4>
+            <p>双手扶池边，吸气后脸入水，双腿并拢伸直，让身体水平浮起。关键是低头看池底，后脑勺刚出水面。</p>
+            <div class="cue">抬头 = 腿沉。想看前方时，只在抬头换气那一瞬看。</div>
+          </div>
+          <div class="card step">
+            <div class="n">04</div>
+            <h4>站起：收腿 → 落脚 → 压水</h4>
+            <p>从漂浮状态收膝到胸下，双脚踩到池底，同时两手向下压水辅助起身。这个动作要在浅水区练到不用思考。</p>
+            <div class="cue">学会"随时能停"，深水区才敢去。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-free" role="tabpanel" aria-labelledby="tab-free">
+        <div class="steps">
+          <div class="card step">
+            <div class="n">01</div>
+            <h4>入水点：肩线前方，指尖先入</h4>
+            <p>手臂前伸入水，落点在肩膀延长线略外，手掌外翻约 45°，像把手伸进一个窄缝。</p>
+            <div class="cue">入水不要"拍"水，要"插"进去，几乎没有声音。</div>
+          </div>
+          <div class="card step">
+            <div class="n">02</div>
+            <h4>抱水：高肘，像抱一个大桶</h4>
+            <p>手肘高于手掌，前臂和手掌对准后方"抓住"一桶水，再开始发力。这一步决定了你是在"推水"还是在"划空气"。</p>
+            <div class="cue">手掌始终朝后，别朝下。</div>
+          </div>
+          <div class="card step">
+            <div class="n">03</div>
+            <h4>推水：沿身体中线推到大腿</h4>
+            <p>从胸口一路推到大腿旁，手臂伸直、手掌加速。你 180 cm 的臂长在这里直接换成推进距离。</p>
+            <div class="cue">推完再抬手，不要提前"捞"。</div>
+          </div>
+          <div class="card step">
+            <div class="n">04</div>
+            <h4>换气：转头，不抬头</h4>
+            <p>同侧手推水时转头，一只眼在水下、耳朵贴住大臂，张嘴快速吸气 0.5 秒，头立即回中继续吐气。</p>
+            <div class="cue">3 划一换气起步，熟练后 2 划；换气时另一只手臂要保持前伸。</div>
+          </div>
+          <div class="card step">
+            <div class="n">05</div>
+            <h4>打腿：髋部发力，鞭状下压</h4>
+            <p>大腿带动小腿，膝盖只微弯，幅度约 30 cm，脚背放松绷直。频率快、幅度小，主要作用是保持平衡而不是推进。</p>
+            <div class="cue">像甩鞭子，不是蹬自行车；一次划手配 6 次打腿。</div>
+          </div>
+          <div class="card step">
+            <div class="n">06</div>
+            <h4>身体滚动：以脊柱为轴</h4>
+            <p>划水侧的肩膀下沉，髋部跟着轻微转动，幅度约 30–45°，让手臂能"够得更远"。</p>
+            <div class="cue">滚动是转，不是扭；头要保持稳定朝向池底。</div>
+          </div>
+        </div>
+        <div class="rhyme">
+          <small>Free style cue</small>
+          长 · 滑 · 滚 · 伸 —— 先把身体拉长，再谈力量
+        </div>
+      </div>
+
+      <div class="panel" id="panel-breast" role="tabpanel" aria-labelledby="tab-breast">
+        <div class="steps">
+          <div class="card step">
+            <div class="n">01</div>
+            <h4>划手：向外向下，划到胸前收手</h4>
+            <p>双手外翻向外划开约肩宽，再向胸口收拢，肘部贴近身体。划手的力量来自"抱水"，不是拍水。</p>
+            <div class="cue">划手阶段腿不要动，保持并拢伸直。</div>
+          </div>
+          <div class="card step">
+            <div class="n">02</div>
+            <h4>收腿：脚跟向臀部收</h4>
+            <p>手收到胸前时才开始收腿，膝盖分开不超过肩宽，脚跟尽量靠近臀部。</p>
+            <div class="cue">先收腿，腿收好时手正好前伸，再同时蹬夹——顺序反了就会"原地扑腾"。</div>
+          </div>
+          <div class="card step">
+            <div class="n">03</div>
+            <h4>翻脚：勾脚外翻是推进关键</h4>
+            <p>脚掌向外翻、脚尖勾起，让脚的内侧和小腿内侧对准后方水面，形成"桨"的面积。</p>
+            <div class="cue">翻脚不到位，蹬得再用力也走不动，这是蛙泳第一号问题。</div>
+          </div>
+          <div class="card step">
+            <div class="n">04</div>
+            <h4>蹬夹与滑行</h4>
+            <p>向后向外蹬开，再并拢夹水，双腿伸直并拢滑行 1–2 秒。滑行是蛙泳"省力"的全部秘密。</p>
+            <div class="cue">蹬夹之后一定漂一下，别急着下一次划手。</div>
+          </div>
+          <div class="card step">
+            <div class="n">05</div>
+            <h4>换气：划手时抬头，伸手时低头</h4>
+            <p>划手到胸前时顺势抬头吸气，双臂前伸时低头用鼻子吐气。头不要一直抬着。</p>
+            <div class="cue">吸气时间只有一下，别"看着前方游"。</div>
+          </div>
+          <div class="card step">
+            <div class="n">06</div>
+            <h4>节奏：慢收快蹬，滑行到底</h4>
+            <p>收腿收手要慢而稳（减少阻力），蹬夹要快而有力，然后完全滑行。一次完整动作 2–3 秒。</p>
+            <div class="cue">蛙泳怕快，滑行越长越省力。</div>
+          </div>
+        </div>
+        <div class="rhyme">
+          <small>Breaststroke cue</small>
+          划手腿不动 · 收手再收腿 · 先伸胳膊后蹬腿 · 并拢伸直漂一会儿
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- ============ 常见错误 ============ -->
+  <section id="mistake">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="kicker">06 / Troubleshooting</div>
+        <h2>八个高频错误，<em>逐条对症</em></h2>
+        <p>如果你练了两周还是"游不动、很累、很怕"，八成命中下面其中一条。点开对照。</p>
+      </div>
+
+      <div class="acc">
+        <details class="err reveal">
+          <summary><span class="idx">01</span>一换气就往下沉，越游越慌
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="body">
+            <div class="row"><b>原因</b><span>抬头换气。头一抬，髋和腿立刻下沉，身体从"平"变成"斜"，阻力变大，下一口气更慌。</span></div>
+            <div class="row fix"><b>改法</b><span>只转头不抬头：一只眼留在水下，耳朵贴住同侧大臂；换气全程另一只手保持前伸。先扶板练 10 次单侧换气，再带入整趟游。</span></div>
+          </div>
+        </details>
+
+        <details class="err reveal">
+          <summary><span class="idx">02</span>游 25 米就喘不上气
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="body">
+            <div class="row"><b>原因</b><span>憋气游。气只吸不吐，二氧化碳在体内堆积，身体会强制要求呼吸，表现为"突然没气"。</span></div>
+            <div class="row fix"><b>改法</b><span>水下全程用鼻子匀速吐气（能持续 4–6 秒），出水只吸。练法：站立做"吐 6 秒—吸 1 秒"×20 次，再带入游动。</span></div>
+          </div>
+        </details>
+
+        <details class="err reveal">
+          <summary><span class="idx">03</span>打腿很用力，却几乎不前进
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="body">
+            <div class="row"><b>原因</b><span>蹬自行车式打腿：膝盖弯曲过多、幅度过大，脚掌朝前"刹车"，把水往前推。</span></div>
+            <div class="row fix"><b>改法</b><span>大腿带动小腿，幅度压到 30 cm 左右，脚背放松绷直；频率加快、力量减小。扶板练 25 米，要求"水花小、身体直"。</span></div>
+          </div>
+        </details>
+
+        <details class="err reveal">
+          <summary><span class="idx">04</span>蛙泳原地扑腾，屁股上下起伏
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="body">
+            <div class="row"><b>原因</b><span>收腿太早、收腿太急，或者翻脚不到位。阻力在身体前方被"拉"住，推进力被抵消。</span></div>
+            <div class="row fix"><b>改法</b><span>背口诀：划手腿不动，收手再收腿，先伸胳膊后蹬腿。单独练"翻脚"：坐池边或趴池边，勾脚外翻保持 3 秒，做 20 次建立脚感。</span></div>
+          </div>
+        </details>
+
+        <details class="err reveal">
+          <summary><span class="idx">05</span>肩颈酸痛，游完比搬砖还累
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="body">
+            <div class="row"><b>原因</b><span>耸肩、脖子紧、手入水后还"端着"。新手紧张时会把肩膀锁死，斜方肌全程发力。</span></div>
+            <div class="row fix"><b>改法</b><span>入水前抖肩放松；手入水后主动"沉肩"，让肩胛骨滑向前方；每次 25 米中间停顿 10 秒做一次深呼吸。</span></div>
+          </div>
+        </details>
+
+        <details class="err reveal">
+          <summary><span class="idx">06</span>动作一加速就全乱
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="body">
+            <div class="row"><b>原因</b><span>在动作还没定型时追求速度。速度会把错误放大，新手提速 20% 通常等于技术下降 40%。</span></div>
+            <div class="row fix"><b>改法</b><span>先用 60% 力量游，能连续 2 组动作不变形再提速；每节课留 5 分钟做"慢动作正确版"收尾。</span></div>
+          </div>
+        </details>
+
+        <details class="err reveal">
+          <summary><span class="idx">07</span>总在浅水区，不敢去深水
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="body">
+            <div class="row"><b>原因</b><span>没有建立"随时能停、能站、能仰漂"的底层安全感，深水区只是把恐惧放大。</span></div>
+            <div class="row fix"><b>改法</b><span>先在浅水练熟"漂浮→站起"和"仰漂 30 秒"；第一次进深水时贴着池壁游，每 5 米抓一次边，有人陪同，全程在救生员视野内。</span></div>
+          </div>
+        </details>
+
+        <details class="err reveal">
+          <summary><span class="idx">08</span>练了三周感觉没进步
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="body">
+            <div class="row"><b>原因</b><span>每次都在"整趟游"，没有分解练习，也没有过关标准，练的是体力不是技术。</span></div>
+            <div class="row fix"><b>改法</b><span>按四阶段标准自测：哪一条没过就回练哪一条。每周只设 1 个可验证的小目标（例如"俯漂 10 秒"），达标再换。</span></div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- ============ 装备与安全 ============ -->
+  <section id="gear">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="kicker">07 / Gear &amp; Safety</div>
+        <h2>装备清单与<em>安全底线</em></h2>
+        <p>新手不需要买一堆东西。三件必备 + 一块浮板足够撑过前 8 周。</p>
+      </div>
+
+      <div class="two-col">
+        <div class="card list-card reveal">
+          <h3><span class="em">🎒</span>装备</h3>
+          <ul class="items">
+            <li><span class="mark">✓</span><span>泳镜<small>防雾、硅胶圈贴合眼窝。别买大框潜水镜，会漏。</small></span></li>
+            <li><span class="mark">✓</span><span>泳帽<small>硅胶款最耐用，也能减少头发阻力、保护头发。</small></span></li>
+            <li><span class="mark">✓</span><span>泳裤<small>及膝紧身款比沙滩裤阻力小得多，别穿棉质短裤下水。</small></span></li>
+            <li><span class="mark">✓</span><span>浮板<small>学打腿必备，前 4 周使用频率最高。</small></span></li>
+            <li><span class="mark">✓</span><span>防水袋 / 拖鞋<small>泳池地面湿滑，拖鞋防滑比好看重要。</small></span></li>
+            <li class="no"><span class="mark">✕</span><span>鼻夹<small>会阻碍你练习"水下吐气"，新手不建议用。</small></span></li>
+            <li class="no"><span class="mark">✕</span><span>脚蹼 / 手蹼<small>容易形成依赖，掩盖打腿和划手的问题，入门期不用。</small></span></li>
+          </ul>
+        </div>
+
+        <div class="card list-card reveal">
+          <h3><span class="em">🛟</span>安全底线</h3>
+          <ul class="items safety">
+            <li><span class="mark">!</span><span>只在有救生员的正规泳池游<small>江河湖海、无人看护的水域，新手一律不去。</small></span></li>
+            <li><span class="mark">!</span><span>饭后 1–1.5 小时再下水，酒后绝不下水<small>空腹也容易低血糖头晕。</small></span></li>
+            <li><span class="mark">!</span><span>下水前 5–10 分钟陆上热身 + 水中适应<small>活动肩、髋、踝，先淋水再入池。</small></span></li>
+            <li><span class="mark">!</span><span>抽筋时立刻抓池边，改仰漂，反向拉伸小腿呼救<small>不要硬撑游回岸边。</small></span></li>
+            <li><span class="mark">!</span><span>耳朵进水：单脚跳 + 侧头，别用棉签掏<small>掏耳容易把水和细菌推得更深。</small></span></li>
+            <li><span class="mark">!</span><span>不在池边奔跑，新手不做跳水动作<small>浅水区跳水是颈椎损伤的高发原因。</small></span></li>
+            <li><span class="mark">!</span><span>有心脏病、癫痫、哮喘、中耳炎等，先咨询医生<small>氯水与憋气会加重部分症状。</small></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- ============ 打卡 ============ -->
+  <section id="check">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="kicker">08 / Checklist</div>
+        <h2>14 个里程碑，<em>勾一个算一个</em></h2>
+        <p>进度会自动保存在本机浏览器里，下次打开还在。全部勾完，你已经能独立完成一次完整训练课。</p>
+      </div>
+
+      <div class="check-shell">
+        <div class="card progress-card reveal">
+          <div class="ring">
+            <svg width="150" height="150" viewBox="0 0 150 150" aria-hidden="true">
+              <defs>
+                <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#3ddbe8"/>
+                  <stop offset="100%" stop-color="#7cf0c4"/>
+                </linearGradient>
+              </defs>
+              <circle class="track" cx="75" cy="75" r="64"/>
+              <circle class="fill" id="ringFill" cx="75" cy="75" r="64"
+                      stroke-dasharray="402.1" stroke-dashoffset="402.1"/>
+            </svg>
+            <div class="pct"><span id="pctNum">0</span><span>%</span></div>
+          </div>
+          <div>
+            <div class="count"><b id="doneNum">0</b> / <span id="totalNum">14</span> 已完成</div>
+            <button class="reset" id="resetBtn" type="button">清空进度</button>
+          </div>
+          <div class="tip">打勾代表你亲自完成了这个动作，不是"看过了"。没做到的先留着，它就是你下次下水的目标。</div>
+        </div>
+
+        <div class="tasks" id="taskList">
+          <label class="task"><input type="checkbox" data-id="t1"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="title">水中连续吐气 20 次，不呛水</span><span class="stage">S1</span></label>
+          <label class="task"><input type="checkbox" data-id="t2"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="title">俯漂 10 秒，身体成一条直线</span><span class="stage">S1</span></label>
+          <label class="task"><input type="checkbox" data-id="t3"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="title">仰漂 10 秒，耳朵入水不慌</span><span class="stage">S1</span></label>
+          <label class="task"><input type="checkbox" data-id="t4"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="title">从俯漂状态独立站起，不抓边</span><span class="stage">S1</span></label>
+          <label class="task"><input type="checkbox" data-id="t5"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="title">蹬壁滑行 3 米以上，全程不抬头</span><span class="stage">S2</span></label>
+          <label class="task"><input type="checkbox" data-id="t6"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="title">扶板打腿 25 米不停顿</span><span class="stage">S2</span></label>
+          <label class="task"><input type="checkbox" data-id="t7"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="title">扶板单侧换气连续 10 次</span><span class="stage">S2</span></label>
+          <label class="task"><input type="checkbox" data-id="t8"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="title">单臂自由泳 25 米</span><span class="stage">S3</span></label>
+          <label class="task"><input type="checkbox" data-id="t9"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="title">自由泳完整配合 25 米</span><span class="stage">S3</span></label>
+          <label class="task"><input type="checkbox" data-id="t10"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="title">蛙泳腿"收—翻—蹬—夹"25 米</span><span class="stage">S3</span></label>
+          <label class="task"><input type="checkbox" data-id="t11"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="title">蛙泳完整配合 25 米</span><span class="stage">S4</span></label>
+          <label class="task"><input type="checkbox" data-id="t12"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="title">连续蛙泳 200 米</span><span class="stage">S4</span></label>
+          <label class="task"><input type="checkbox" data-id="t13"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="title">连续自由泳 50 米</span><span class="stage">S4</span></label>
+          <label class="task"><input type="checkbox" data-id="t14"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="title">连续 4 周保持每周 ≥ 2 次</span><span class="stage">S4</span></label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="kicker">09 / FAQ</div>
+        <h2>几个一定会问到的问题</h2>
+      </div>
+      <div class="faq">
+        <details class="qa reveal">
+          <summary>先学蛙泳还是自由泳？</summary>
+          <div class="a">想最快"在水里不慌、能自己游起来"，先学蛙泳——抬头就能呼吸，视野好，随时能停。想让身高的臂展优势发挥出来、长期游得远，主项选自由泳。最省事的组合：<strong>蛙泳起步建立信心，自由泳做长期主项</strong>，两条线错开两三周推进。</div>
+        </details>
+        <details class="qa reveal">
+          <summary>零基础大概多久能学会？</summary>
+          <div class="a">按每周 2–3 次、每次 60 分钟算，大多数人 <strong>4–6 周能完整游 25 米</strong>，8–12 周能连续 200 米蛙泳。差异不在体能，而在"一周去几次"和"有没有练分解动作"。一周只去一次的人，周期通常要翻倍。</div>
+        </details>
+        <details class="qa reveal">
+          <summary>180cm、80kg 会不会容易沉？</summary>
+          <div class="a">不会。人体密度接近水，正常呼吸时几乎都能浮起来，男士体脂偏低也只是"浮得浅一点"，靠打腿和换气完全能维持。<strong>下沉通常不是体重问题，是憋气 + 抬头</strong>——肺里气吐光了又不及时吸气，才是沉的直接原因。</div>
+        </details>
+        <details class="qa reveal">
+          <summary>一定要请教练吗？</summary>
+          <div class="a">不必全程请，但<strong>前 3–4 节课请教练性价比最高</strong>：呼吸、漂浮、蹬壁这些基础动作，自己练错两周很难改回来。之后按周计划自主训练，每 2–3 周请教练看一次动作（或让同伴录像），纠错效率最高。</div>
+        </details>
+        <details class="qa reveal">
+          <summary>怕水、脸不敢入水怎么办？</summary>
+          <div class="a">不要硬憋。分五步走：①浅水行走；②用手捧水洗脸；③闭气把下巴浸入水中；④鼻子入水吐泡泡；⑤整张脸入水 3 秒。每一步做到不紧张再进入下一步，通常 1–2 次课就能完成。恐惧是习惯问题，不是胆量问题。</div>
+        </details>
+        <details class="qa reveal">
+          <summary>游泳能减肥吗？一周游几次合适？</summary>
+          <div class="a">能消耗，但别指望它单独解决体重。80 kg 的人中等强度游 60 分钟大约消耗 <strong>550–750 千卡</strong>（估算值，随强度和泳姿浮动），而游完更容易饿。建议每周 2–3 次、每次 45–60 分钟，把重点放在"养成习惯"，饮食另算。频繁到每天反而容易肩部劳损。</div>
+        </details>
+        <details class="qa reveal">
+          <summary>泳镜起雾、耳朵进水、皮肤干怎么处理？</summary>
+          <div class="a">泳镜别用手擦内侧镜片（会破坏防雾层），用清水冲一下即可；耳朵进水就单脚跳 + 侧头甩，别用棉签掏；游完立刻用清水冲洗全身、涂身体乳，氯水引起的干痒通常几天自愈，持续不退就看皮肤科。</div>
+        </details>
+        <details class="qa reveal">
+          <summary>中途断了两个月，要从头再来吗？</summary>
+          <div class="a">不用。水性记忆（吐气、漂浮）几乎不会丢，退步的主要是耐力和动作稳定性。回归路线：先 1 次课做"吐气 + 漂浮 + 单臂"找感觉，第二次直接进 25 米配合，第三周恢复到断档前的距离。通常 2–3 次课就能回到原水平。</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p>本页为通用游泳学习方案，基于常见的入门教学顺序整理，<strong>不替代专业教练的现场指导</strong>。有心脏病、癫痫、哮喘、中耳炎、肩关节伤病史者，请先咨询医生再开始训练。所有训练请在配备救生员的正规泳池进行。</p>
+    <div class="sig">Swim Starter · 180 / 80</div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="回到顶部">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- 标签页 ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  var panels = Array.prototype.slice.call(document.querySelectorAll(".panel"));
+
+  function activate(tab) {
+    tabs.forEach(function (t) {
+      t.setAttribute("aria-selected", String(t === tab));
+    });
+    panels.forEach(function (p) {
+      p.classList.toggle("active", p.id === tab.getAttribute("aria-controls"));
+    });
+  }
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () { activate(tab); });
+    tab.addEventListener("keydown", function (e) {
+      var i = tabs.indexOf(tab);
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        var next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
+        next.focus();
+        activate(next);
+      }
+    });
+  });
+
+  /* ---------- 打卡与本地存储 ---------- */
+  var KEY = "swim-guide-progress-v1";
+  var tasks = Array.prototype.slice.call(document.querySelectorAll(".task"));
+  var inputs = tasks.map(function (t) { return t.querySelector("input"); });
+  var ring = document.getElementById("ringFill");
+  var pctNum = document.getElementById("pctNum");
+  var doneNum = document.getElementById("doneNum");
+  var totalNum = document.getElementById("totalNum");
+  var resetBtn = document.getElementById("resetBtn");
+  var CIRC = 2 * Math.PI * 64;
+
+  totalNum.textContent = String(inputs.length);
+
+  function load() {
+    try {
+      var raw = window.localStorage.getItem(KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (err) {
+      return [];
+    }
+  }
+  function save(done) {
+    try { window.localStorage.setItem(KEY, JSON.stringify(done)); } catch (err) { /* 隐私模式下忽略 */ }
+  }
+  function paint() {
+    var done = inputs.filter(function (i) { return i.checked; }).length;
+    var pct = inputs.length ? Math.round((done / inputs.length) * 100) : 0;
+    tasks.forEach(function (t) {
+      t.classList.toggle("done", t.querySelector("input").checked);
+    });
+    pctNum.textContent = String(pct);
+    doneNum.textContent = String(done);
+    ring.style.strokeDashoffset = String(CIRC * (1 - done / inputs.length));
+  }
+
+  var saved = load();
+  inputs.forEach(function (input) {
+    if (saved.indexOf(input.dataset.id) !== -1) { input.checked = true; }
+    input.addEventListener("change", function () {
+      var done = inputs.filter(function (i) { return i.checked; }).map(function (i) { return i.dataset.id; });
+      save(done);
+      paint();
+    });
+  });
+  paint();
+
+  resetBtn.addEventListener("click", function () {
+    inputs.forEach(function (i) { i.checked = false; });
+    save([]);
+    paint();
+  });
+
+  /* ---------- 滚动进度条 ---------- */
+  var progressBar = document.getElementById("navProgress");
+  var toTop = document.getElementById("toTop");
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    progressBar.style.width = p + "%";
+    toTop.classList.toggle("show", h.scrollTop > 700);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  toTop.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  /* ---------- 导航高亮 ---------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll(".nav-links a"));
+  var sections = links.map(function (a) {
+    return document.querySelector(a.getAttribute("href"));
+  }).filter(Boolean);
+
+  if ("IntersectionObserver" in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) { return; }
+        links.forEach(function (a) {
+          a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id);
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+    sections.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* ---------- 滚动出现动画 ---------- */
+  var reveals = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add("in"); });
+  }
+})();
+</script>
+</body>
+</html>

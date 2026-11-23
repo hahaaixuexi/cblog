@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>买东西要交多少税 · 一份看得懂的购物税指南</title>
+<style>
+:root{
+  --paper:#F4F0E8;
+  --paper-2:#FFFDF8;
+  --ink:#191713;
+  --ink-2:#4B443A;
+  --muted:#726A5C;
+  --red:#B23A2B;
+  --red-deep:#8E2A1E;
+  --red-soft:#F4E4DF;
+  --green:#2B4A3D;
+  --gold:#A8802A;
+  --line:#DCD3C3;
+  --line-2:#EDE6D9;
+  --shadow:0 1px 2px rgba(25,23,19,.05), 0 8px 24px -12px rgba(25,23,19,.18);
+  --radius:14px;
+  --mono:"SF Mono","JetBrains Mono","Cascadia Mono",Consolas,"Liberation Mono",monospace;
+  --sans:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Source Han Sans SC","Noto Sans CJK SC",system-ui,sans-serif;
+  --serif:"Songti SC","STSong","SimSun","Noto Serif CJK SC",serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(25,23,19,.045) 1px, transparent 0);
+  background-size:22px 22px;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* ---------- 顶部导航 ---------- */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(244,240,232,.86);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.topbar .wrap{display:flex;align-items:center;gap:22px;height:56px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+.brand .seal{
+  width:26px;height:26px;border-radius:5px;background:var(--red);color:#fff;
+  display:grid;place-items:center;font-size:14px;font-weight:700;
+  font-family:var(--serif);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35);
+}
+.navlinks{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.navlinks::-webkit-scrollbar{display:none}
+.navlinks a{
+  color:var(--ink-2);text-decoration:none;font-size:13.5px;padding:6px 10px;border-radius:7px;
+  white-space:nowrap;transition:.18s;
+}
+.navlinks a:hover{background:rgba(178,58,43,.08);color:var(--red-deep)}
+
+/* ---------- Hero ---------- */
+.hero{padding:64px 0 40px;position:relative;overflow:hidden}
+.hero::before{
+  content:"税";
+  position:absolute;right:-40px;top:10px;
+  font-family:var(--serif);font-size:340px;line-height:1;color:rgba(178,58,43,.045);
+  font-weight:700;pointer-events:none;user-select:none;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12.5px;letter-spacing:.16em;color:var(--red);font-weight:600;
+  text-transform:uppercase;margin-bottom:20px;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--red);opacity:.6}
+h1{
+  font-family:var(--serif);
+  font-size:clamp(34px,5.4vw,62px);
+  line-height:1.16;
+  letter-spacing:-.015em;
+  font-weight:700;
+  margin-bottom:22px;
+  max-width:15em;
+}
+h1 .hl{
+  color:var(--red);
+  position:relative;
+  z-index:0;
+  white-space:nowrap;
+}
+h1 .hl::after{
+  content:"";position:absolute;left:0;right:0;bottom:.04em;height:.28em;
+  background:rgba(178,58,43,.16);z-index:-1;border-radius:2px;
+}
+.lede{font-size:17.5px;color:var(--ink-2);max-width:38em;line-height:1.85}
+.lede strong{color:var(--ink);font-weight:600}
+
+.hero-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  margin-top:44px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.hero-stats .cell{
+  padding:22px 20px 22px 0;border-right:1px dashed var(--line);
+}
+.hero-stats .cell:last-child{border-right:0}
+.hero-stats .cell + .cell{padding-left:22px}
+.hero-stats .k{font-family:var(--mono);font-size:30px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.hero-stats .k small{font-size:14px;font-weight:500;color:var(--muted);margin-left:2px}
+.hero-stats .v{font-size:12.5px;color:var(--muted);margin-top:7px;letter-spacing:.02em}
+.hero-stats .cell:nth-child(1) .k{color:var(--red)}
+.hero-stats .cell:nth-child(2) .k{color:var(--green)}
+.hero-stats .cell:nth-child(3) .k{color:var(--gold)}
+.hero-stats .cell:nth-child(4) .k{color:var(--ink)}
+
+/* ---------- 通用 section ---------- */
+section{padding:62px 0}
+.sec-head{margin-bottom:34px;max-width:44em}
+.sec-num{
+  font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--muted);
+  display:block;margin-bottom:10px;
+}
+h2{
+  font-family:var(--serif);font-size:clamp(24px,3.2vw,34px);
+  line-height:1.3;font-weight:700;letter-spacing:-.01em;margin-bottom:14px;
+}
+h2 .red{color:var(--red)}
+.sub{color:var(--ink-2);font-size:15.5px;line-height:1.85}
+
+/* ---------- 卡片 ---------- */
+.card{
+  background:var(--paper-2);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+
+/* 概念：两张对比卡 */
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:26px}
+.concept-card{padding:28px 26px;position:relative;overflow:hidden}
+.concept-card .tag{
+  display:inline-block;font-size:11.5px;letter-spacing:.12em;font-weight:600;
+  padding:3px 9px;border-radius:99px;margin-bottom:14px;
+}
+.concept-card.in .tag{background:var(--red-soft);color:var(--red-deep)}
+.concept-card.out .tag{background:#E5EDE8;color:var(--green)}
+.concept-card h3{font-size:18px;font-weight:700;margin-bottom:10px;letter-spacing:.01em}
+.concept-card p{font-size:14px;color:var(--ink-2);line-height:1.8}
+.concept-card .formula{
+  margin-top:16px;padding:12px 14px;background:rgba(25,23,19,.035);border-radius:8px;
+  font-family:var(--mono);font-size:13px;color:var(--ink);letter-spacing:.01em;
+  overflow-x:auto;white-space:nowrap;
+}
+
+/* 公式条 */
+.formula-bar{
+  padding:24px 26px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;
+  background:linear-gradient(100deg,#2B241C,#3A2E22);
+  color:#F4EFE4;border-radius:var(--radius);
+}
+.formula-bar .label{font-size:12.5px;letter-spacing:.14em;color:rgba(244,239,228,.78);font-weight:600}
+.formula-bar .f{font-family:var(--mono);font-size:16px;letter-spacing:.01em}
+.formula-bar .f em{font-style:normal;color:#E8B95C}
+.formula-bar .eg{margin-left:auto;font-size:13px;color:rgba(244,239,228,.82)}
+
+/* ---------- 计算器 ---------- */
+.calc{padding:0;overflow:hidden}
+.calc-top{
+  display:grid;grid-template-columns:1fr 260px;gap:0;
+  border-bottom:1px solid var(--line);
+}
+.calc-inputs{padding:26px 28px}
+.calc-title{
+  font-size:12.5px;letter-spacing:.14em;color:var(--muted);font-weight:600;margin-bottom:20px;
+}
+.field{margin-bottom:18px}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:13px;color:var(--ink-2);margin-bottom:7px;font-weight:500}
+.field .hint{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.6}
+.input-money{
+  display:flex;align-items:center;gap:2px;
+  border:1.5px solid var(--line);border-radius:9px;background:#fff;
+  padding:0 14px;transition:.16s;
+}
+.input-money:focus-within{border-color:var(--red);box-shadow:0 0 0 3px rgba(178,58,43,.09)}
+.input-money span{font-family:var(--mono);font-size:22px;color:var(--muted)}
+.input-money input{
+  border:0;outline:0;background:transparent;width:100%;padding:12px 8px;
+  font-family:var(--mono);font-size:24px;font-weight:600;color:var(--ink);letter-spacing:-.01em;
+}
+select{
+  width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:9px;
+  background:#fff;font-size:14.5px;color:var(--ink);font-family:var(--sans);
+  outline:0;transition:.16s;appearance:none;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%238C8375' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;
+  cursor:pointer;
+}
+select:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(178,58,43,.09)}
+
+.calc-result{
+  background:linear-gradient(160deg,#FBF7EE,#F6EFE0);
+  padding:26px 26px;border-left:1px solid var(--line);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.calc-result .rk{font-size:12.5px;letter-spacing:.14em;color:var(--muted);font-weight:600}
+.calc-result .rv{
+  font-family:var(--mono);font-size:40px;font-weight:700;letter-spacing:-.03em;
+  line-height:1.1;margin:8px 0 4px;color:var(--red);font-variant-numeric:tabular-nums;
+}
+.calc-result .rv small{font-size:16px;font-weight:500;margin-right:2px;color:var(--red)}
+.calc-result .rp{
+  display:inline-flex;align-items:center;gap:6px;margin-top:10px;
+  font-size:12.5px;color:var(--ink-2);
+}
+.calc-result .rp b{font-family:var(--mono);font-size:14px;color:var(--ink)}
+
+/* 条形分解 */
+.breakdown{padding:24px 28px 26px;border-top:1px solid var(--line)}
+.bar{
+  display:flex;height:34px;border-radius:8px;overflow:hidden;background:#EDE6D8;
+  margin-bottom:16px;box-shadow:inset 0 0 0 1px rgba(25,23,19,.04);
+}
+.bar span{
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:#fff;font-weight:700;letter-spacing:.02em;
+  overflow:hidden;white-space:nowrap;transition:flex-grow .35s ease;
+  text-shadow:0 1px 2px rgba(0,0,0,.45);
+}
+.bar .b-base{background:linear-gradient(180deg,#6E7A6F,#5A655C)}
+.bar .b-vat{background:linear-gradient(180deg,#C2543F,#A83D2B)}
+.bar .b-excise{background:linear-gradient(180deg,#C08A3A,#A5782C)}
+.bar .b-other{background:linear-gradient(180deg,#4A6C5B,#35503F)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px}
+.legend .li{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-2)}
+.legend .dot{width:9px;height:9px;border-radius:2px;flex:none}
+.legend .li b{font-family:var(--mono);color:var(--ink);font-weight:600;margin-left:2px}
+
+.calc-lines{padding:0 28px 26px;display:grid;gap:0}
+.cline{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  padding:11px 0;border-bottom:1px dashed var(--line-2);font-size:14px;
+}
+.cline:last-child{border-bottom:0}
+.cline .n{color:var(--ink-2)}
+.cline .n i{font-style:normal;color:var(--muted);font-size:12px;display:block;line-height:1.5}
+.cline .v{font-family:var(--mono);font-weight:600;white-space:nowrap;color:var(--ink)}
+.cline.total{border-top:1.5px solid var(--line);border-bottom:0;margin-top:6px;padding-top:14px}
+.cline.total .n{font-weight:600;color:var(--ink)}
+.cline.total .v{font-size:17px;color:var(--red)}
+.qty-row{display:none}
+.qty-row.show{display:block}
+
+/* ---------- 术语：税负 ---------- */
+.taxload{
+  margin-top:26px;padding:26px 28px;border-radius:var(--radius);
+  background:linear-gradient(160deg,#FBF7EE,#F7F1E4);
+  border:1px solid var(--line);box-shadow:var(--shadow);
+}
+.taxload .tl-title{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.taxload .tl-tag{
+  font-size:11px;letter-spacing:.14em;font-weight:700;color:#fff;background:var(--red);
+  padding:3px 8px;border-radius:4px;flex:none;
+}
+.taxload h3{font-family:var(--serif);font-size:21px;font-weight:700;letter-spacing:.01em}
+.taxload .tl-lede{font-size:14.5px;color:var(--ink-2);line-height:1.85;margin:4px 0 20px;max-width:74ch}
+.taxload .tl-lede b{color:var(--ink);font-weight:700}
+.tl-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tl-cell{background:#fff;border:1px solid var(--line-2);border-radius:9px;padding:16px 18px}
+.tl-cell .tl-k{
+  font-size:12.5px;font-weight:700;letter-spacing:.04em;color:var(--red-deep);
+  margin-bottom:8px;padding-bottom:7px;border-bottom:1px dashed var(--line-2);
+}
+.tl-cell p{font-size:13.5px;color:var(--ink-2);line-height:1.8}
+.tl-cell p + p{margin-top:8px}
+.tl-cell p b{color:var(--ink);font-weight:700}
+.tl-formula{
+  font-family:var(--mono);font-size:14px;font-weight:600;color:var(--ink);
+  background:#F6F1E6;border-left:3px solid var(--red);padding:8px 12px;
+  border-radius:0 5px 5px 0;margin-bottom:10px;
+}
+.tl-cell .tl-why{
+  font-size:12.5px;color:var(--muted);background:#FAF6EC;
+  padding:9px 11px;border-radius:6px;margin-top:10px;
+}
+.tl-cell .tl-why b{color:var(--ink-2)}
+.taxload .tl-foot{
+  margin-top:16px;padding-top:14px;border-top:1px dashed var(--line-2);
+  font-size:13.5px;color:var(--ink-2);line-height:1.8;
+}
+.taxload .tl-foot b{color:var(--red-deep);font-weight:700}
+
+/* ---------- 表格 ---------- */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px}
+.tbl{width:100%;border-collapse:collapse;font-size:14.5px;background:var(--paper-2);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+.tbl thead th{
+  background:#2B241C;color:#F0E9DC;font-weight:600;font-size:12.5px;letter-spacing:.08em;
+  text-align:left;padding:13px 18px;white-space:nowrap;
+}
+.tbl td{padding:14px 18px;border-bottom:1px solid var(--line-2);vertical-align:top;line-height:1.65}
+.tbl tbody tr:last-child td{border-bottom:0}
+.tbl tbody tr:hover{background:rgba(178,58,43,.028)}
+.tbl .rate{
+  font-family:var(--mono);font-weight:700;color:var(--red);white-space:nowrap;font-size:15px;
+}
+.tbl .item{font-weight:600;color:var(--ink)}
+.tbl .note{color:var(--muted);font-size:13px}
+.tbl .eg{color:var(--ink-2);font-size:13.5px}
+
+/* 税率档位卡 */
+.rates{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.rate-card{padding:22px 20px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.rate-card::after{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+}
+.rate-card.r13::after{background:#B23A2B}
+.rate-card.r9::after{background:#C08A3A}
+.rate-card.r6::after{background:#4A6C5B}
+.rate-card.r0::after{background:#8C8375}
+.rate-card .big{font-family:var(--mono);font-size:32px;font-weight:700;letter-spacing:-.03em;line-height:1.1}
+.rate-card.r13 .big{color:#B23A2B}
+.rate-card.r9 .big{color:#A5782C}
+.rate-card.r6 .big{color:#3A5A4A}
+.rate-card.r0 .big{color:#6B6355}
+.rate-card .cap{font-size:13px;font-weight:600;margin:6px 0 12px;color:var(--ink)}
+.rate-card .desc{font-size:12.5px;color:var(--muted);line-height:1.7}
+.rate-card .taxline{
+  margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);
+  font-size:12.5px;color:var(--ink-2);
+}
+.rate-card .taxline b{font-family:var(--mono);font-size:14px;color:var(--ink)}
+
+/* ---------- 速查卡 ---------- */
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.quick-card{
+  padding:22px 22px 20px;background:var(--paper-2);border:1px solid var(--line);
+  border-radius:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;
+}
+.quick-card .qname{font-size:14px;font-weight:600;color:var(--ink);line-height:1.5;min-height:2.9em}
+.quick-card .qprice{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:6px}
+.quick-card .qtax{
+  font-family:var(--mono);font-size:27px;font-weight:700;letter-spacing:-.02em;color:var(--red);
+  margin:14px 0 2px;line-height:1.1;
+}
+.quick-card .qtax small{font-size:13px;font-weight:500;margin-right:1px}
+.quick-card .qratio{font-size:12.5px;color:var(--ink-2)}
+.quick-card .qratio b{font-family:var(--mono);color:var(--ink)}
+.quick-card .qbar{height:6px;border-radius:3px;background:#EAE2D2;overflow:hidden;display:flex;margin-top:14px}
+.quick-card .qbar i{display:block;height:100%}
+.quick-card .qnote{font-size:11.5px;color:var(--muted);margin-top:11px;line-height:1.6;border-top:1px dashed var(--line-2);padding-top:10px}
+
+/* ---------- 三大件 ---------- */
+.big-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.big-card{padding:28px 26px;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);position:relative}
+.big-card .ico{
+  width:40px;height:40px;border-radius:10px;display:grid;place-items:center;
+  font-size:19px;margin-bottom:18px;background:var(--red-soft);color:var(--red-deep);
+}
+.big-card.c2 .ico{background:#E7EDE8;color:var(--green)}
+.big-card.c3 .ico{background:#F3EBD8;color:#8A6520}
+.big-card h3{font-size:19px;font-weight:700;margin-bottom:12px;letter-spacing:.01em}
+.big-card p{font-size:13.8px;color:var(--ink-2);line-height:1.85;margin-bottom:14px}
+.big-card ul{list-style:none;display:grid;gap:9px;margin-top:16px}
+.big-card li{
+  font-size:13.2px;color:var(--ink-2);padding-left:15px;position:relative;line-height:1.7;
+  display:flex;justify-content:space-between;gap:12px;
+}
+.big-card li::before{
+  content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;
+  border-radius:50%;background:var(--red);opacity:.5;
+}
+.big-card li b{font-family:var(--mono);color:var(--ink);white-space:nowrap;font-size:13px}
+.big-card .foot{
+  margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);
+  font-size:12px;color:var(--muted);line-height:1.7;
+}
+
+/* ---------- FAQ ---------- */
+.faq{display:grid;gap:0;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{
+  list-style:none;cursor:pointer;padding:20px 40px 20px 0;position:relative;
+  font-size:16px;font-weight:600;color:var(--ink);transition:.16s;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);
+  font-family:var(--mono);font-size:22px;font-weight:400;color:var(--muted);
+  transition:transform .2s;
+}
+.faq details[open] summary::after{transform:translateY(-50%) rotate(45deg);color:var(--red)}
+.faq summary:hover{color:var(--red-deep)}
+.faq .ans{padding:0 12% 24px 0;font-size:14.5px;color:var(--ink-2);line-height:1.9}
+.faq .ans b{color:var(--ink);font-weight:600}
+
+/* ---------- 结尾 ---------- */
+.endnote{
+  margin:40px 0 0;padding:26px 28px;border:1px dashed var(--line);
+  border-radius:var(--radius);background:rgba(255,253,248,.6);
+  font-size:13px;color:var(--muted);line-height:1.85;
+}
+.endnote b{color:var(--ink-2);font-weight:600}
+footer{
+  padding:34px 0 56px;border-top:1px solid var(--line);margin-top:56px;
+  font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width:900px){
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .hero-stats .cell:nth-child(2){border-right:0}
+  .hero-stats .cell:nth-child(1),.hero-stats .cell:nth-child(2){border-bottom:1px dashed var(--line);padding-bottom:18px}
+  .hero-stats .cell:nth-child(3),.hero-stats .cell:nth-child(4){padding-top:18px}
+  .hero-stats .cell:nth-child(3){padding-left:0}
+  .rates{grid-template-columns:1fr 1fr}
+  .quick-grid{grid-template-columns:1fr 1fr}
+  .big-grid{grid-template-columns:1fr}
+  .calc-top{grid-template-columns:1fr}
+  .calc-result{border-left:0;border-top:1px solid var(--line)}
+}
+@media (max-width:640px){
+  .wrap{padding:0 18px}
+  .hero{padding:44px 0 30px}
+  .hero::before{font-size:200px;right:-30px;opacity:.7}
+  section{padding:44px 0}
+  .concept-grid{grid-template-columns:1fr}
+  .hero-stats .k{font-size:24px}
+  .rates{grid-template-columns:1fr}
+  .quick-grid{grid-template-columns:1fr}
+  .calc-inputs,.breakdown,.calc-lines{padding-left:20px;padding-right:20px}
+  .calc-result{padding:24px 20px}
+  .tbl{font-size:13.5px}
+  .tbl thead th,.tbl td{padding:11px 12px}
+  .tbl .note{display:none}
+  .navlinks a{font-size:12.5px;padding:6px 8px}
+  .formula-bar .eg{margin-left:0;width:100%}
+  .faq .ans{padding-right:0}
+  .tl-grid{grid-template-columns:1fr}
+  .taxload{padding:20px 18px}
+}
+@media print{
+  body{background:#fff}
+  .topbar,.calc-top{display:none}
+  section{padding:24px 0;page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand"><span class="seal">税</span><span>购物税负指南</span></div>
+    <nav class="navlinks">
+      <a href="#concept">先搞懂</a>
+      <a href="#calc">算一算</a>
+      <a href="#vat">增值税</a>
+      <a href="#excise">消费税</a>
+      <a href="#big">房·车·海淘</a>
+      <a href="#quick">速查</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">消费税负 · 2026 版</div>
+    <h1>买东西，<br>你到底交了多少<span class="hl">税</span>？</h1>
+    <p class="lede">
+      很多人以为税是「额外」交给国家的。其实在中国，<strong>你看到的标价就已经是含税价</strong>——
+      一件 100 元的商品，价格里大约已经有 <strong>11.5 元</strong>是增值税。
+      但有些东西远不止这些：一瓶白酒、一部进口车、一套房子，税能占到总价的 <strong>三成甚至更多</strong>。
+      这一页把「买什么、交多少」一次说清楚。
+    </p>
+
+    <div class="hero-stats">
+      <div class="cell"><div class="k">13<small>%</small></div><div class="v">大多数商品的增值税率</div></div>
+      <div class="cell"><div class="k">11.5<small>元</small></div><div class="v">100 元商品里的增值税</div></div>
+      <div class="cell"><div class="k">1–56<small>%</small></div><div class="v">消费税跨度（小汽车 → 卷烟）</div></div>
+      <div class="cell"><div class="k">10<small>%</small></div><div class="v">买车的车辆购置税</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 1. 概念 ================= -->
+<section id="concept">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01 — 先搞懂一件事</span>
+      <h2>中国买东西，价格里<b class="red">已经含税</b></h2>
+      <p class="sub">同样是标价 100 元，有的国家结账时再加税（美国），有的国家价里含税（中国、欧洲）。中国走的是「价内税」路线，所以你在超市、商场、网店看到的数字，就是最终要付的钱。</p>
+    </div>
+
+    <div class="concept-grid">
+      <div class="card concept-card in">
+        <span class="tag">中国 · 价内税</span>
+        <h3>标价即含税价</h3>
+        <p>商品标价 113 元，其中 100 元是商品本身，13 元是增值税。你付 113 元，不需要在收银台再补一笔税。发票上如果单独列出税额，那只是把价格里的税拆开给你看。</p>
+        <div class="formula">含税价 113 = 不含税价 100 + 增值税 13</div>
+      </div>
+      <div class="card concept-card out">
+        <span class="tag">美国 · 价外税</span>
+        <h3>标价不含税，结账时加</h3>
+        <p>美国商店标签上的 100 美元不含销售税（Sales Tax），结账时按当地税率再加一笔，各州各市税率都不一样（俄勒冈、蒙大拿等州为 0%，部分城市合计超过 10%），所以同一件商品在不同地方价格不同。这种「标签价 ×（1+税率）= 实付」的做法，游客最容易算错。</p>
+        <div class="formula">标价 100 + 销售税 8 = 实付 108</div>
+      </div>
+    </div>
+
+    <div class="formula-bar">
+      <span class="label">核心公式</span>
+      <span class="f">税额 = 含税价 ÷ (1 + 税率) × 税率</span>
+      <span class="eg">例：100 ÷ 1.13 × 0.13 = <em>11.50 元</em></span>
+    </div>
+
+    <div class="taxload">
+      <div class="tl-title"><span class="tl-tag">术语</span><h3>「税负」是什么意思？</h3></div>
+      <p class="tl-lede">税负 = <b>税收负担</b>。说白了就是：<b>你花出去的钱里，有多大比例最终变成了税。</b>它是一个比例或金额，不是一种税的名字。</p>
+      <div class="tl-grid">
+        <div class="tl-cell">
+          <div class="tl-k">怎么算</div>
+          <div class="tl-formula">税负 = 税额 ÷ 含税价 × 100%</div>
+          <p>用你实际付的钱做分母，不是用不含税价。这样算出来的百分比，才等于「每花 100 元，其中多少元是税」。</p>
+        </div>
+        <div class="tl-cell">
+          <div class="tl-k">两个容易混的数</div>
+          <p><b>名义税负</b>：法律规定的税率，13% 就是 13%。<br>
+          <b>实际税负</b>：占你付款额的比例，100 元商品只有 <b>11.5%</b>。</p>
+          <p class="tl-why">差的这 1.5 个百分点，是因为增值税按<b>不含税价</b>计算（100 × 13% = 13 元），而你的付款额是含税的 113 元（13 ÷ 113 = 11.5%）。税率 ≠ 税负，这是最容易搞错的一处。</p>
+        </div>
+        <div class="tl-cell">
+          <div class="tl-k">两种常见口径</div>
+          <p><b>微观税负</b>：一件商品、一个企业、一个人交的税占其收入或价格的比例——本页算的都是这个。</p>
+          <p><b>宏观税负</b>：全国税收收入占 GDP 的比重，用来横向比较国家之间、年份之间的整体负担水平。</p>
+        </div>
+        <div class="tl-cell">
+          <div class="tl-k">同一件东西，税负不一样</div>
+          <p>衣服 11.5%、餐饮 5.7%、白酒 29.4%、香烟 43.5%、首套房 1.0%。<b>税负高低取决于征几道税、税率多少</b>：只征增值税的日用品最低，增值税再叠消费税的烟酒最高。</p>
+        </div>
+      </div>
+      <p class="tl-foot">所以本页计算器里的「税负占比」，就是指<b>你支付的这笔钱中，税额所占的百分比</b>。数值越高，说明你为这件东西承担的税越重。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2. 计算器 ================= -->
+<section id="calc" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02 — 算一算</span>
+      <h2>输入金额，看你的钱<b class="red">去哪了</b></h2>
+      <p class="sub">选一个品类、填上你实际支付的金额，下面会拆出这笔钱里的商品成本、增值税、消费税和其他税。</p>
+    </div>
+
+    <div class="card calc">
+      <div class="calc-top">
+        <div class="calc-inputs">
+          <div class="calc-title">INPUT / 输入</div>
+
+          <div class="field">
+            <label for="price">你实际支付的金额（含税）</label>
+            <div class="input-money"><span>¥</span><input id="price" type="number" value="1000" min="0" step="10" inputmode="decimal"></div>
+          </div>
+
+          <div class="field">
+            <label for="cat">买的是什么</label>
+            <select id="cat"></select>
+            <div class="hint" id="catNote"></div>
+          </div>
+
+          <div class="field qty-row" id="qtyRow">
+            <label for="qty" id="qtyLabel">数量</label>
+            <div class="input-money"><input id="qty" type="number" value="1" min="1" step="1" inputmode="decimal"><span id="qtyUnit" style="font-size:14px"></span></div>
+            <div class="hint" id="qtyHint"></div>
+          </div>
+        </div>
+
+        <div class="calc-result">
+          <div class="rk">其中税额</div>
+          <div class="rv"><small>¥</small><span id="outTax">0.00</span></div>
+          <div class="rp">税负占比 <b id="outRatio">0.0%</b></div>
+        </div>
+      </div>
+
+      <div class="breakdown">
+        <div class="bar" id="bar">
+          <span class="b-base" id="barBase" style="flex-grow:88">商品</span>
+          <span class="b-vat" id="barVat" style="flex-grow:12">增值税</span>
+          <span class="b-excise" id="barExcise" style="flex-grow:0;display:none"></span>
+          <span class="b-other" id="barOther" style="flex-grow:0;display:none"></span>
+        </div>
+        <div class="legend" id="legend"></div>
+      </div>
+
+      <div class="calc-lines" id="lines"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. 增值税 ================= -->
+<section id="vat">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03 — 增值税</span>
+      <h2>最大的一笔：<b class="red">增值税</b></h2>
+      <p class="sub">2026 年 1 月 1 日起施行的《增值税法》把税率定为四档。这是买东西时几乎躲不掉的一笔税——只要你买的是商品或服务，价格里就有它。</p>
+    </div>
+
+    <div class="rates">
+      <div class="rate-card r13">
+        <div class="big">13%</div>
+        <div class="cap">基本税率</div>
+        <div class="desc">绝大多数货物：服装、家电、手机、家具、包装食品、加工修理、有形动产租赁、进口货物</div>
+        <div class="taxline">100 元商品含税 <b>11.50 元</b></div>
+      </div>
+      <div class="rate-card r9">
+        <div class="big">9%</div>
+        <div class="cap">低税率</div>
+        <div class="desc">农产品、食用植物油、食用盐、自来水、暖气、燃气、图书报刊、饲料化肥、交通运输、建筑、不动产租赁与销售</div>
+        <div class="taxline">100 元商品含税 <b>8.26 元</b></div>
+      </div>
+      <div class="rate-card r6">
+        <div class="big">6%</div>
+        <div class="cap">服务税率</div>
+        <div class="desc">餐饮、住宿、理发、家政、娱乐、金融、电信增值、咨询设计等现代服务与无形资产</div>
+        <div class="taxline">100 元服务含税 <b>5.66 元</b></div>
+      </div>
+      <div class="rate-card r0">
+        <div class="big">0%</div>
+        <div class="cap">免税 / 零税率</div>
+        <div class="desc">出口货物、蔬菜、部分鲜活肉蛋、避孕药具、古旧图书、残疾人用品等</div>
+        <div class="taxline">100 元商品含税 <b>0 元</b></div>
+      </div>
+    </div>
+
+    <div class="endnote" style="margin-top:0;margin-bottom:24px">
+      <b>为什么叫「增值」税？</b>增值税是链条税：工厂卖出时收一次，但可以扣掉买原料时已付的进项税，只就「增值的部分」纳税。所以一件商品从原料到货架可能辗转五六道，最终价格里却<b>只含了一次</b> 13%，不会层层叠加成 50%。真正层层叠加的，是消费税。
+    </div>
+
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <thead>
+        <tr><th style="width:24%">买什么</th><th style="width:12%">增值税</th><th style="width:30%">说明</th><th>100 元里含多少税</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="item">衣服、鞋子、包包</td><td class="rate">13%</td><td class="note">普通工业制成品，基本税率</td><td class="eg mono">11.50 元</td></tr>
+        <tr><td class="item">手机、电脑、家电</td><td class="rate">13%</td><td class="note">数码产品、家用电器一律 13%</td><td class="eg mono">11.50 元</td></tr>
+        <tr><td class="item">包装食品、饮料</td><td class="rate">13%</td><td class="note">注意：普通食品是 13%，不是 9%</td><td class="eg mono">11.50 元</td></tr>
+        <tr><td class="item">米、面、食用油、鲜肉</td><td class="rate">9%</td><td class="note">农产品、食用植物油适用低税率</td><td class="eg mono">8.26 元</td></tr>
+        <tr><td class="item">蔬菜、部分鲜活肉蛋</td><td class="rate">免征</td><td class="note">流通环节免征增值税，所以菜市场的菜通常更便宜</td><td class="eg mono">0 元</td></tr>
+        <tr><td class="item">图书、报纸、杂志</td><td class="rate">9%</td><td class="note">出版物适用低税率</td><td class="eg mono">8.26 元</td></tr>
+        <tr><td class="item">水、电、燃气、暖气</td><td class="rate">9%<span style="color:var(--muted);font-weight:400"> / 13%</span></td><td class="note">自来水、暖气、燃气 9%；电按货物 13%</td><td class="eg mono">8.26 / 11.50 元</td></tr>
+        <tr><td class="item">下馆子、点外卖</td><td class="rate">6%</td><td class="note">餐饮服务 6%（小规模纳税人 3%，个体户常见）</td><td class="eg mono">5.66 元</td></tr>
+        <tr><td class="item">打车、机票、快递</td><td class="rate">9% / 6%</td><td class="note">交通运输 9%，快递收派 6%</td><td class="eg mono">8.26 / 5.66 元</td></tr>
+        <tr><td class="item">健身房、KTV、电影</td><td class="rate">6%</td><td class="note">生活服务中的文化体育、娱乐服务</td><td class="eg mono">5.66 元</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="endnote" style="margin-top:24px">
+      <b>小规模纳税人更便宜？</b>是的——年销售额 500 万元以下的小规模纳税人按 <b>3% 征收率</b>计税，现行政策延续至 2027 年 12 月 31 日：除销售、出租不动产或转让土地使用权外，<b>减按 1% 征收</b>。这就是为什么小店的报价有时能比大商场低一点点。另外，月销售额 10 万元以下（季度 30 万元）免征增值税。
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. 消费税 ================= -->
+<section id="excise">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">04 — 消费税</span>
+      <h2>真正拉高税负的：<b class="red">消费税</b></h2>
+      <p class="sub">只针对 15 类特定商品征收，目的是「寓禁于征」——烟、酒、油、车、化妆品、珠宝，越奢侈税率越高。它和增值税叠加，是烟酒行业税负能达到售价 50% 以上的原因。</p>
+    </div>
+
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <thead>
+        <tr><th style="width:22%">税目</th><th style="width:26%">税率</th><th style="width:16%">征收环节</th><th>常见例子</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="item">卷烟</td><td class="rate">36% / 56%<br><span style="font-size:12px;font-weight:400;color:var(--muted)">+ 0.003 元/支</span></td><td>生产、进口 + 批发</td><td class="eg">批发环节另加 11% + 0.005 元/支</td></tr>
+        <tr><td class="item">白酒</td><td class="rate">20%<br><span style="font-size:12px;font-weight:400;color:var(--muted)">+ 0.5 元/500ml</span></td><td>生产、进口</td><td class="eg">复合计税：从价 + 从量</td></tr>
+        <tr><td class="item">啤酒</td><td class="rate">220 / 250 元/吨</td><td>生产、进口</td><td class="eg">出厂价 ≥3000 元/吨为甲类 250 元</td></tr>
+        <tr><td class="item">高档化妆品</td><td class="rate">15%</td><td>生产、进口</td><td class="eg">香水、口红、成套护肤；普通化妆品不征</td></tr>
+        <tr><td class="item">贵重首饰及珠宝玉石</td><td class="rate">5% / 10%</td><td>零售 / 生产进口</td><td class="eg">金银铂钻零售 5%，其他珠宝玉石 10%</td></tr>
+        <tr><td class="item">高档手表</td><td class="rate">20%</td><td>生产、进口</td><td class="eg">不含税单价 ≥1 万元/只</td></tr>
+        <tr><td class="item">成品油</td><td class="rate">1.2–1.52 元/升</td><td>生产、进口</td><td class="eg">汽油 1.52 元/升、柴油 1.2 元/升</td></tr>
+        <tr><td class="item">小汽车</td><td class="rate">1%–40%</td><td>生产、进口</td><td class="eg">按排量：1.0L 以下 1%，4.0L 以上 40%</td></tr>
+        <tr><td class="item">摩托车</td><td class="rate">3% / 10%</td><td>生产、进口</td><td class="eg">250ml 以下 3%，以上 10%</td></tr>
+        <tr><td class="item">高尔夫球及球具</td><td class="rate">10%</td><td>生产、进口</td><td class="eg">球杆、球包、球</td></tr>
+        <tr><td class="item">游艇</td><td class="rate">10%</td><td>生产、进口</td><td class="eg">8–90 米游艇</td></tr>
+        <tr><td class="item">实木地板 / 一次性筷子</td><td class="rate">5%</td><td>生产、进口</td><td class="eg">环保导向征收</td></tr>
+        <tr><td class="item">电池 / 涂料</td><td class="rate">4%</td><td>生产、进口</td><td class="eg">环保导向征收</td></tr>
+        <tr><td class="item">鞭炮、焰火</td><td class="rate">15%</td><td>生产、进口</td><td class="eg">—</td></tr>
+        <tr><td class="item">超豪华小汽车</td><td class="rate">+10%</td><td>零售环节加征</td><td class="eg">零售价 90 万元及以上（不含增值税，2025 年 7 月起；此前为 130 万元）</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="endnote" style="margin-top:24px">
+      <b>为什么一瓶 500ml 的白酒税负这么高？</b>假设一瓶酒卖 300 元：增值税约 34.5 元（300÷1.13×13%），消费税约 53.1 元（265.5×20%）再加 0.5 元从量税，光这两项就是 <b>88 元</b>，占售价 29%。如果算上生产环节的企业所得税和上游的粮食成本，整条链条的税占比更高。卷烟更夸张，综合税负常在零售价的 50% 以上。
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5. 三大件 ================= -->
+<section id="big">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">05 — 大额支出</span>
+      <h2>房、车、海淘：<b class="red">税最重的三件事</b></h2>
+      <p class="sub">日常消费的税藏在价格里，感知不强。但买房、买车、海淘时，税是真的会单列出来让你掏钱的项目。</p>
+    </div>
+
+    <div class="big-grid">
+      <div class="big-card">
+        <div class="ico">房</div>
+        <h3>买房：契税是大头</h3>
+        <p>买家真正要额外掏的是<b>契税</b>，按成交价一次性缴纳。2024 年 12 月 1 日起新政，首套和二套的优惠力度明显加大；三套及以上不享受优惠，按法定税率 3%（各省在 3%–5% 幅度内确定）缴纳。</p>
+        <ul>
+          <li><span>首套 ≤140㎡</span><b>1%</b></li>
+          <li><span>首套 &gt;140㎡</span><b>1.5%</b></li>
+          <li><span>二套 ≤140㎡</span><b>1%</b></li>
+          <li><span>二套 &gt;140㎡</span><b>2%</b></li>
+          <li><span>三套及以上（无优惠）</span><b>3%–5%</b></li>
+        </ul>
+        <div class="foot">200 万的房子，首套 89㎡ → 契税 2 万元。增值税和个税由卖方承担（满 2 年免增值税），但实际交易中常被折算进房价。</div>
+      </div>
+
+      <div class="big-card c2">
+        <div class="ico">车</div>
+        <h3>买车：三道税叠加</h3>
+        <p>一辆车的落地价里，藏着增值税、消费税、车辆购置税三层。排量越大，消费税越狠。</p>
+        <ul>
+          <li><span>增值税</span><b>13%</b></li>
+          <li><span>消费税（按排量）</span><b>1%–40%</b></li>
+          <li><span>车辆购置税</span><b>10%</b></li>
+          <li><span>新能源购置税（2026–27）</span><b>5%</b></li>
+          <li><span>车船税（每年）</span><b>60–5400 元</b></li>
+        </ul>
+        <div class="foot">20 万的 1.5L 燃油车：增值税约 2.3 万 + 消费税约 0.88 万 + 购置税约 1.77 万 ≈ <b>4.95 万元</b>，占车价近 25%。新能源车购置税减半，每辆最多减 1.5 万元。</div>
+      </div>
+
+      <div class="big-card c3">
+        <div class="ico">海</div>
+        <h3>海淘：限额内很划算</h3>
+        <p>跨境电商零售进口有专门的优惠：单次 5000 元、年度 26000 元以内，关税暂按 0，增值税和消费税只按 <b>70%</b> 征收。</p>
+        <ul>
+          <li><span>单次限额</span><b>5,000 元</b></li>
+          <li><span>年度限额</span><b>26,000 元</b></li>
+          <li><span>关税</span><b>0</b></li>
+          <li><span>增值税 + 消费税</span><b>× 70%</b></li>
+          <li><span>综合税率（普通商品）</span><b>9.1%</b></li>
+        </ul>
+        <div class="foot">超额部分按一般贸易全额征税。个人随身携带入境：居民旅客境外购物 5000 元以内免税；从港澳进境为 12000 元以内；在设有进境免税店的口岸，连同口岸免税店购物合计 15000 元以内免税。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 6. 速查 ================= -->
+<section id="quick">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">06 — 速查</span>
+      <h2>常见东西，<b class="red">大概含多少税</b></h2>
+      <p class="sub">按 2026 年现行税率估算，假设你支付的就是含税零售价。可直接对照自己最近买的东西。</p>
+    </div>
+    <div class="quick-grid" id="quickGrid"></div>
+  </div>
+</section>
+
+<!-- ================= 7. FAQ ================= -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">07 — 常见问题</span>
+      <h2>你可能还想问</h2>
+    </div>
+
+    <div class="faq">
+      <details open>
+        <summary>我在超市买东西，需要另外交税吗？</summary>
+        <div class="ans">不需要。<b>中国的零售标价就是含税价</b>，你付的钱里已经包含了增值税。收银小票上通常不单独列税额，因为它是「价内税」，已经融化在价格里了。只有企业之间开增值税专用发票时，才会把不含税价和税额分开写。</div>
+      </details>
+      <details>
+        <summary>为什么有些小票上会写「税额」？</summary>
+        <div class="ans">那是商家为了让你看得清楚，把价格拆开显示（常见于电商订单、加油小票、酒店发票）。<b>税额已经包含在你支付的总价里</b>，不是额外加收。计算公式是：税额 = 含税价 ÷ (1 + 税率) × 税率。</div>
+      </details>
+      <details>
+        <summary>网购和实体店，税一样吗？</summary>
+        <div class="ans">税率一样，但纳税主体可能不同。大平台自营通常是一般纳税人，按 13%/9%/6% 计税；平台上的个体小店可能是小规模纳税人，按 3%（2026–2027 年减按 1%）计税，甚至月销售额 10 万元以下免征。所以同样的东西，小店有时能便宜一点点。</div>
+      </details>
+      <details>
+        <summary>为什么菜市场的菜比超市便宜？</summary>
+        <div class="ans">一个重要原因是<b>蔬菜、部分鲜活肉蛋在流通环节免征增值税</b>，而超市里经过加工的包装食品按 13% 征税。此外流通环节少、损耗低也是原因。买初级农产品（未加工的米面粮油、鲜肉、蔬菜）适用 9% 或免税，买加工食品是 13%。</div>
+      </details>
+      <details>
+        <summary>买房除了契税，还要交什么税？</summary>
+        <div class="ans">作为<b>买方</b>，主要就是契税（1%–3%，看套数和面积）。此外还有印花税（个人购买住房暂免）、不动产登记费（几十到几百元）。增值税、个人所得税、土地增值税是<b>卖方</b>的税负，个人销售满 2 年的住房免征增值税，销售住房暂免土地增值税和印花税。</div>
+      </details>
+      <details>
+        <summary>买进口商品，税是怎么算的？</summary>
+        <div class="ans">一般贸易进口要交三笔：<b>关税 + 进口环节增值税 + 消费税</b>（仅限应税消费品）。计算顺序是：先按完税价格算关税，再用「(完税价格 + 关税) ÷ (1 − 消费税税率)」算出组成计税价格，最后乘增值税率和消费税率。跨境电商零售进口在 5000 元限额内关税为 0、增值税和消费税按 70% 征收，划算很多。</div>
+      </details>
+      <details>
+        <summary>买黄金、买基金、买保险要交税吗？</summary>
+        <div class="ans">黄金首饰属于「贵重首饰」，零售环节要交 5% 消费税，外加 13% 增值税，所以金店的价格里税不低（但金条、黄金 ETF 通常不征消费税）。买基金、买保险本身不征增值税（金融商品转让由机构缴纳），个人投资者目前免征个人所得税的情况较多，具体看产品类型。</div>
+      </details>
+      <details>
+        <summary>这些税率会变吗？</summary>
+        <div class="ans">会。2026 年 1 月 1 日《增值税法》正式施行，把原来分散在暂行条例里的规则上升为法律。消费税、契税、车辆购置税的优惠政策也常有两三年的期限（例如新能源车购置税减免到 2027 年底）。<b>大额消费前，建议以财政部、税务总局最新公告为准。</b></div>
+      </details>
+    </div>
+
+    <div class="endnote">
+      <b>数据说明：</b>本页税率依据《中华人民共和国增值税法》（2026 年 1 月 1 日施行）、《消费税暂行条例》及税目税率表、财政部 税务总局 住房城乡建设部公告 2024 年第 16 号（契税）、财政部 税务总局 工业和信息化部公告 2023 年第 10 号（新能源车购置税）、跨境电商零售进口税收政策等整理。所有金额均为<b>按零售含税价的估算值</b>，实际税额受生产环节、批发环节、地区政策、优惠叠加等因素影响，仅供理解税负结构参考，不作为纳税依据。
+    </div>
+
+    <footer>
+      <span>购物税负指南 · 2026 版</span>
+      <span>税率会变，常识不变：你付的每一笔钱，都有一部分是税。</span>
+    </footer>
+  </div>
+</section>
+
+<script>
+/* ============ 品类数据 ============ */
+const CATS = [
+  {id:'general', g:'日常消费', name:'普通商品（服装、家电、日用品、包装食品）', vat:0.13,
+   note:'适用 13% 基本税率。绝大多数工业制成品都在这一档。'},
+  {id:'food', g:'日常消费', name:'米面粮油、肉蛋奶、蔬菜水果', vat:0.09,
+   note:'农产品、食用植物油等适用 9%；蔬菜、部分鲜活肉蛋在流通环节免征增值税。'},
+  {id:'book', g:'日常消费', name:'图书报刊、自来水、燃气、暖气', vat:0.09,
+   note:'适用 9% 低税率（电按货物 13%）。'},
+  {id:'service', g:'日常消费', name:'餐饮、住宿、理发、家政、娱乐', vat:0.06,
+   note:'生活服务适用 6%；小规模纳税人按 3%（2026–2027 年减按 1%）。'},
+  {id:'cosmetic', g:'消费税商品', name:'高档化妆品（香水、口红、成套护肤）', vat:0.13, excise:0.15,
+   note:'生产（进口）环节 15%。普通化妆品不征消费税，只交增值税。'},
+  {id:'jewelry', g:'消费税商品', name:'金银首饰、铂金、钻石饰品', vat:0.13, excise:0.05,
+   note:'零售环节 5%。其他珠宝玉石在生产进口环节 10%。'},
+  {id:'watch', g:'消费税商品', name:'高档手表（不含税单价 ≥1 万元）', vat:0.13, excise:0.20,
+   note:'生产（进口）环节 20%。'},
+  {id:'baijiu', g:'消费税商品', name:'白酒', vat:0.13, excise:0.20,
+   perUnit:{amount:0.5, unit:'元/500ml', per:1}, unit:'瓶（500ml）', defaultQty:1,
+   qtyHint:'按 500ml/瓶计算从量税 0.5 元/瓶。', note:'复合计税：从价 20% + 从量 0.5 元/500ml。'},
+  {id:'beer', g:'消费税商品', name:'啤酒', vat:0.13,
+   perUnit:{amount:220, unit:'元/吨', per:1/2000}, unit:'瓶（500ml）', defaultQty:12,
+   qtyHint:'按 500ml/瓶、乙类 220 元/吨折算，约 0.11 元/瓶。', note:'定额税：220 元/吨（乙类）～250 元/吨（甲类）。'},
+  {id:'cigarette', g:'消费税商品', name:'卷烟', vat:0.13, excise:0.36,
+   perUnit:{amount:0.003, unit:'元/支', per:20}, unit:'包（20 支）', defaultQty:10,
+   qtyHint:'按 20 支/包计算从量税 0.06 元/包（生产环节）。', note:'生产环节 36%/56% + 0.003 元/支；批发环节另征 11% + 0.005 元/支。此处按乙类估算。'},
+  {id:'fuel', g:'消费税商品', name:'汽油', vat:0.13,
+   perUnit:{amount:1.52, unit:'元/升', per:1}, unit:'升', defaultQty:40,
+   qtyHint:'定额税 1.52 元/升。', note:'成品油从量定额征收。'},
+  {id:'car', g:'大件', name:'燃油车（1.5–2.0L 排量）', vat:0.13, excise:0.05, purchaseTax:0.10,
+   note:'增值税 13% + 消费税 5% + 车辆购置税 10%。排量越大消费税越高（1%–40%）。'},
+  {id:'nev', g:'大件', name:'新能源汽车', vat:0.13, purchaseTax:0.10, purchaseHalf:0.5, purchaseCap:15000,
+   note:'2026–2027 年购置税减按 5% 征收（法定 10% 的一半），每辆减免额不超过 1.5 万元。'},
+  {id:'import', g:'大件', name:'跨境电商进口（单次 ≤5000 元）', vat:0.13, importFactor:0.7,
+   note:'限额内关税为 0，进口环节增值税、消费税按法定应纳税额的 70% 征收，实际税负约为标价的 9.1%。'},
+  {id:'house', g:'大件', name:'买房（首套，≤140㎡）', deed:0.01,
+   note:'契税 1%。增值税、个税由卖方承担（满 2 年免增值税）。'},
+  {id:'house2', g:'大件', name:'买房（二套，≤140㎡）', deed:0.01,
+   note:'契税 1%；面积 >140㎡ 时为 2%。'}
+];
+
+/* ============ 计算核心 ============ */
+function compute(cat, P, qty){
+  qty = qty || 1;
+  const vatRate = cat.vat || 0;
+  const factor = cat.importFactor || 1;          // 跨境电商：按法定应纳税额 70% 征收
+  const denom = 1 + vatRate * factor;            // 含税价 = 不含税价 × (1 + 税率×征收比例)
+  const B = denom > 1 ? P / denom : P;           // 不含增值税（完税）价格
+  const vat = P - B;                             // 价内税：标价里含着的那部分
+  const excise = B * (cat.excise || 0);
+  let specific = 0;
+  if (cat.perUnit) specific = cat.perUnit.amount * cat.perUnit.per * qty;
+
+  // 车辆购置税：按不含增值税价 × 税率；新能源减半征收且设减免上限
+  let purchaseTax = 0;
+  if (cat.purchaseTax){
+    purchaseTax = B * cat.purchaseTax;
+    if (cat.purchaseHalf){
+      const relief = Math.min(purchaseTax * cat.purchaseHalf, cat.purchaseCap || Infinity);
+      purchaseTax = purchaseTax - relief;
+    }
+  }
+  const deed = cat.deed ? P * cat.deed : 0;
+  const tax = vat + excise + specific + purchaseTax + deed;
+  return {B, vat, excise, specific, purchaseTax, deed, tax, qty};
+}
+
+const fmt = n => n.toLocaleString('zh-CN',{minimumFractionDigits:2, maximumFractionDigits:2});
+const fmt0 = n => n.toLocaleString('zh-CN',{maximumFractionDigits:0});
+const pct = n => (n*100).toFixed(1) + '%';
+
+/* ============ 初始化下拉框 ============ */
+const catSel = document.getElementById('cat');
+const groups = {};
+CATS.forEach(c => { (groups[c.g] = groups[c.g] || []).push(c); });
+Object.keys(groups).forEach(g => {
+  const og = document.createElement('optgroup');
+  og.label = g;
+  groups[g].forEach(c => {
+    const o = document.createElement('option');
+    o.value = c.id; o.textContent = c.name;
+    og.appendChild(o);
+  });
+  catSel.appendChild(og);
+});
+
+const priceEl = document.getElementById('price');
+const qtyEl = document.getElementById('qty');
+const qtyRow = document.getElementById('qtyRow');
+const qtyLabel = document.getElementById('qtyLabel');
+const qtyUnit = document.getElementById('qtyUnit');
+const qtyHint = document.getElementById('qtyHint');
+const catNote = document.getElementById('catNote');
+
+/* ============ 渲染计算器 ============ */
+function render(){
+  const cat = CATS.find(c => c.id === catSel.value) || CATS[0];
+  const P = Math.max(parseFloat(priceEl.value) || 0, 0);
+  const qty = Math.max(parseFloat(qtyEl.value) || 1, 1);
+
+  // 数量行
+  if (cat.perUnit){
+    qtyRow.classList.add('show');
+    qtyLabel.textContent = '数量（' + cat.unit + '）';
+    qtyUnit.textContent = cat.unit;
+    qtyHint.textContent = cat.qtyHint || '';
+  } else {
+    qtyRow.classList.remove('show');
+  }
+
+  catNote.textContent = cat.note || '';
+
+  const r = compute(cat, P, qty);
+  const total = r.tax;
+  const ratio = P > 0 ? total / P : 0;
+
+  document.getElementById('outTax').textContent = fmt(total);
+  document.getElementById('outRatio').textContent = pct(ratio);
+
+  /* 条形图 */
+  const base = Math.max(P - total, 0);
+  const segs = [
+    ['barBase', base],
+    ['barVat', r.vat],
+    ['barExcise', r.excise + r.specific],
+    ['barOther', r.purchaseTax + r.deed]
+  ];
+  const sum = segs.reduce((a, s) => a + Math.max(s[1], 0), 0) || 1;
+  segs.forEach(([id, v]) => {
+    const el = document.getElementById(id);
+    const w = Math.max(v, 0) / sum * 100;
+    el.style.flexGrow = w;
+    el.style.display = v > 0.000001 ? 'flex' : 'none';
+    el.textContent = w > 9 ? fmt0(v) : '';
+  });
+
+  /* 图例 */
+  const legendItems = [
+    ['#5A655C', '商品/服务本身', base],
+    ['#B23A2B', '增值税', r.vat]
+  ];
+  if (r.excise + r.specific > 0) legendItems.push(['#A5782C', '消费税', r.excise + r.specific]);
+  if (r.purchaseTax + r.deed > 0) legendItems.push(['#35503F', '车辆购置税/契税', r.purchaseTax + r.deed]);
+
+  document.getElementById('legend').innerHTML = legendItems.map(([c, n, v]) =>
+    `<span class="li"><i class="dot" style="background:${c}"></i>${n}<b>¥${fmt(v)}</b></span>`
+  ).join('');
+
+  /* 明细 */
+  const rows = [];
+  if (r.vat > 0){
+    const vatLabel = cat.importFactor
+      ? `进口环节增值税 <i>法定 ${pct(cat.vat)}，按 70% 征收</i>`
+      : `增值税 <i>税率 ${pct(cat.vat)}，价内税，已含在标价里</i>`;
+    rows.push([vatLabel, '¥' + fmt(r.vat)]);
+  }
+  if (r.excise > 0){
+    rows.push([`消费税（从价） <i>税率 ${pct(cat.excise)}，按不含增值税价计算</i>`, '¥' + fmt(r.excise)]);
+  }
+  if (r.specific > 0){
+    rows.push([`消费税（从量） <i>${cat.perUnit.amount} ${cat.perUnit.unit} × ${fmt0(r.qty)} ${cat.unit}</i>`, '¥' + fmt(r.specific)]);
+  }
+  if (r.purchaseTax > 0){
+    rows.push([`车辆购置税 <i>税率 ${pct(cat.purchaseTax)}，按不含增值税价计算</i>`, '¥' + fmt(r.purchaseTax)]);
+  }
+  if (r.deed > 0){
+    rows.push([`契税 <i>税率 ${pct(cat.deed)}，按成交价计算</i>`, '¥' + fmt(r.deed)]);
+  }
+  if (rows.length === 0){
+    rows.push(['<span style="color:var(--green)">这一档免征增值税</span> <i>初级农产品流通环节免税</i>', '¥0.00']);
+  }
+  rows.push([`不含税价（商品本身） <i>你支付金额 − 税额</i>`, '¥' + fmt(base)]);
+
+  document.getElementById('lines').innerHTML = rows.map(([n, v]) =>
+    `<div class="cline"><span class="n">${n}</span><span class="v">${v}</span></div>`
+  ).join('') +
+  `<div class="cline total"><span class="n">合计税额</span><span class="v">¥${fmt(total)}</span></div>`;
+}
+
+catSel.addEventListener('change', () => {
+  const c = CATS.find(x => x.id === catSel.value);
+  if (c && c.perUnit) qtyEl.value = c.defaultQty || 1;
+  render();
+});
+priceEl.addEventListener('input', render);
+qtyEl.addEventListener('input', render);
+render();
+
+/* ============ 速查卡 ============ */
+const QUICK = [
+  {n:'一件 500 元的衣服', p:500, cat:'general', note:'13% 增值税'},
+  {n:'一部 5999 元的手机', p:5999, cat:'general', note:'13% 增值税'},
+  {n:'一顿 200 元的火锅', p:200, cat:'service', note:'6% 生活服务'},
+  {n:'一瓶 300 元的白酒', p:300, cat:'baijiu', qty:1, note:'增值税 + 消费税（复合）'},
+  {n:'一条 500 元的烟', p:500, cat:'cigarette', qty:10, note:'按 10 包估算'},
+  {n:'一瓶 1200 元的香水', p:1200, cat:'cosmetic', note:'增值税 + 15% 消费税'},
+  {n:'一块 3 万元的手表', p:30000, cat:'watch', note:'增值税 + 20% 消费税'},
+  {n:'20 万元的燃油车', p:200000, cat:'car', note:'增值税 + 消费税 + 购置税'},
+  {n:'200 万元的首套房（89㎡）', p:2000000, cat:'house', note:'契税 1%'}
+];
+
+document.getElementById('quickGrid').innerHTML = QUICK.map(q => {
+  const cat = CATS.find(c => c.id === q.cat);
+  const r = compute(cat, q.p, q.qty || 1);
+  const ratio = r.tax / q.p;
+  const colors = [
+    ['#5A655C', (q.p - r.tax)],
+    ['#B23A2B', r.vat],
+    ['#A5782C', r.excise + r.specific],
+    ['#35503F', r.purchaseTax + r.deed]
+  ].filter(c => c[1] > 0);
+  const sum = colors.reduce((a, c) => a + c[1], 0);
+  const bar = colors.map(([c, v]) =>
+    `<i style="width:${(v/sum*100).toFixed(2)}%;background:${c}"></i>`
+  ).join('');
+  return `<div class="quick-card">
+    <div class="qname">${q.n}</div>
+    <div class="qprice">支付 ¥${fmt0(q.p)}</div>
+    <div class="qtax"><small>¥</small>${fmt0(r.tax)}</div>
+    <div class="qratio">税额占比 <b>${pct(ratio)}</b></div>
+    <div class="qbar">${bar}</div>
+    <div class="qnote">${q.note}</div>
+  </div>`;
+}).join('');
+</script>
+</body>
+</html>

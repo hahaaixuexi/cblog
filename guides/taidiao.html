@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>台钓调漂指南 · 调四钓二七步法</title>
+<meta name="description" content="台钓调漂入门：用调四钓二讲清找底、半水、剪铅、测饵重、定钓目，附灵钝坐标系、鱼情调整表、场景配方和常见误区。">
+<style>
+  :root{
+    --bg:#f4faf8;
+    --surface:#ffffff;
+    --ink:#13343a;
+    --ink-2:#406066;
+    --muted:#577275;
+    --line:#dbe9e6;
+    --line-soft:#eaf3f1;
+    --teal:#0f7b6c;
+    --teal-dark:#0a5c51;
+    --teal-soft:#e6f4f0;
+    --aqua:#39a99a;
+    --warm:#dd7a34;
+    --warm-soft:#fdf3e9;
+    --red:#c95245;
+    --blue:#3b7e9e;
+    --radius:18px;
+    --shadow:0 1px 2px rgba(15,60,55,.04), 0 14px 34px -22px rgba(15,60,55,.35);
+    --font:"Inter","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:86px;-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    font-family:var(--font);
+    color:var(--ink);
+    line-height:1.75;
+    background:
+      radial-gradient(1100px 620px at 88% -10%, rgba(57,169,154,.11), transparent 62%),
+      radial-gradient(900px 520px at -10% 6%, rgba(221,122,52,.06), transparent 55%),
+      var(--bg);
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{max-width:100%}
+  a{color:var(--teal-dark)}
+  ::selection{background:rgba(57,169,154,.24)}
+  h1,h2,h3,h4,p{margin-top:0}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 24px}
+
+  .skip{
+    position:absolute;left:-9999px;top:0;z-index:100;
+    background:var(--teal);color:#fff;padding:10px 16px;border-radius:0 0 10px 0;
+  }
+  .skip:focus{left:0}
+
+  /* ---------- 顶部导航 ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:60;
+    background:rgba(247,252,250,.88);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:1200px;margin:0 auto;padding:0 24px;height:64px;
+    display:flex;align-items:center;gap:22px;
+  }
+  .brand{
+    display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);
+    font-weight:750;letter-spacing:.01em;white-space:nowrap;flex:none;
+  }
+  .brand-mark{
+    width:32px;height:32px;border-radius:10px;display:grid;place-items:center;
+    background:linear-gradient(145deg,var(--teal),var(--aqua));
+    color:#fff;font-size:15px;font-weight:800;
+    box-shadow:0 7px 16px -7px rgba(15,123,108,.75);
+  }
+  .brand-text{font-size:15px}
+  .nav{
+    display:flex;gap:2px;margin-left:auto;
+    overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;
+  }
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{
+    font-size:13.5px;color:var(--ink-2);text-decoration:none;
+    padding:7px 11px;border-radius:999px;white-space:nowrap;
+    transition:background .18s ease,color .18s ease;
+  }
+  .nav a:hover{background:#e8f4f1;color:var(--teal-dark)}
+  .nav a.active{background:var(--teal);color:#fff;font-weight:600}
+  .print-btn{
+    flex:none;font:inherit;font-size:13px;font-weight:600;
+    color:var(--teal-dark);background:#fff;border:1px solid var(--line);
+    border-radius:999px;padding:7px 14px;cursor:pointer;
+    transition:border-color .18s ease,background .18s ease;
+  }
+  .print-btn:hover{border-color:#bcded7;background:var(--teal-soft)}
+  .progress{
+    position:absolute;left:0;bottom:-1px;height:2px;width:0;
+    background:linear-gradient(90deg,var(--aqua),var(--teal),var(--warm));
+    border-radius:0 2px 2px 0;
+  }
+
+  /* ---------- 首屏 ---------- */
+  .hero{padding:52px 0 26px}
+  .hero-grid{
+    display:grid;grid-template-columns:1.06fr .94fr;gap:46px;align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--teal);
+    text-transform:uppercase;margin:0 0 16px;
+  }
+  .eyebrow::before{content:"";width:24px;height:2px;background:var(--teal);border-radius:2px}
+  h1{
+    font-size:clamp(34px,4.7vw,54px);
+    line-height:1.16;letter-spacing:-.025em;font-weight:820;
+    margin:0 0 20px;
+  }
+  h1 em{
+    font-style:normal;color:var(--teal-dark);white-space:nowrap;
+    background:linear-gradient(transparent 64%, #cfece5 64%);
+    padding:0 2px;
+  }
+  .lede{
+    font-size:16.5px;line-height:1.85;color:var(--ink-2);
+    max-width:58ch;margin:0 0 24px;
+  }
+  .lede strong{color:var(--ink);font-weight:700}
+  .hero-stats{
+    display:flex;margin:0 0 26px;overflow:hidden;
+    background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:14px;
+  }
+  .hero-stats>div{
+    flex:1;min-width:0;display:flex;align-items:center;gap:11px;
+    padding:13px 16px;border-left:1px solid var(--line);
+  }
+  .hero-stats>div:first-child{border-left:0}
+  .hero-stats b{
+    font-size:24px;font-weight:800;color:var(--teal-dark);
+    font-variant-numeric:tabular-nums;line-height:1;white-space:nowrap;
+  }
+  .hero-stats span{font-size:11.5px;color:var(--muted);line-height:1.45}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:11px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-size:14px;font-weight:650;text-decoration:none;
+    padding:12px 20px;border-radius:11px;border:1px solid transparent;
+    transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--teal),#12907e);
+    color:#fff;box-shadow:0 12px 24px -14px rgba(15,123,108,.9);
+  }
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 16px 28px -14px rgba(15,123,108,.9)}
+  .btn-ghost{background:#fff;border-color:var(--line);color:var(--ink-2)}
+  .btn-ghost:hover{background:var(--teal-soft);border-color:#c9e5de;color:var(--teal-dark)}
+  .hero-figure{
+    margin:0;padding:14px 14px 10px;
+    background:var(--surface);border:1px solid var(--line);border-radius:24px;
+    box-shadow:0 34px 64px -44px rgba(10,70,62,.55);
+  }
+  .hero-figure svg{display:block;width:100%;height:auto}
+  .figure-bar{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+    gap:8px 12px;padding:9px 2px 1px;text-align:left;
+  }
+  .figure-cap{margin:0;font-size:12.5px;line-height:1.6;color:var(--muted)}
+  .figure-cap b{color:var(--teal-dark);font-weight:700}
+  .figure-actions{display:flex;gap:6px;flex:none}
+  .fig-btn{
+    display:inline-flex;align-items:center;gap:5px;
+    font:inherit;font-size:12px;font-weight:600;color:var(--teal-dark);
+    background:#fff;border:1px solid var(--line);border-radius:999px;
+    padding:6px 11px;cursor:pointer;
+    transition:background .16s ease,border-color .16s ease,transform .16s ease;
+  }
+  .fig-btn:hover{background:var(--teal-soft);border-color:#c9e5de}
+  .fig-btn:active{transform:translateY(1px)}
+  .fig-ico{font-size:9px;line-height:1;letter-spacing:0;width:9px;text-align:center;flex:none}
+
+  /* 放大查看 */
+  .figure-backdrop{
+    position:fixed;inset:0;z-index:200;background:rgba(8,38,35,.58);
+    backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+    opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s;
+  }
+  body.figure-zoom-open{overflow:hidden}
+  body.figure-zoom-open .figure-backdrop{opacity:1;visibility:visible}
+  .hero-figure.is-zoomed{
+    position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
+    z-index:210;width:min(94vw,900px);max-height:94vh;margin:0;
+    padding:16px 16px 12px;border-radius:20px;overflow:auto;
+    box-shadow:0 40px 90px -30px rgba(4,26,24,.6);
+  }
+  .hero-figure.is-zoomed .diagram{
+    width:100%;height:calc(92vh - 132px);max-height:760px;
+  }
+  .hero-figure.is-zoomed .figure-bar{padding-bottom:6px}
+  .diagram text{font-family:var(--font)}
+  .svg-label{font-size:13.5px;fill:#5a8a85;letter-spacing:.08em}
+  .svg-strong{font-size:16px;font-weight:700;fill:#0f5f55}
+  .svg-muted{font-size:13px;fill:#648480}
+
+  /* ---------- 鱼咬钩 → 顿口 动画（7s 一轮） ---------- */
+  #fishGroup,#biteBadge,#rippleA,#rippleB,#bubbleA,#bubbleB,#bubbleC{opacity:0}
+  #fishGroup,#floatGroup,#floatAnnotations,#biteBadge{transform-box:view-box;transform-origin:0 0}
+  #fishTail{transform-box:fill-box;transform-origin:100% 50%}
+  #rippleA,#rippleB,#bubbleA,#bubbleB,#bubbleC{transform-box:fill-box;transform-origin:center}
+
+  .hero-figure.is-playing #fishGroup{animation:fishSwim 7s linear infinite}
+  .hero-figure.is-playing #fishTail{animation:tailWag .42s ease-in-out infinite alternate}
+  .hero-figure.is-playing #floatGroup{animation:floatDip 7s linear infinite}
+  .hero-figure.is-playing #floatAnnotations{animation:annotFade 7s linear infinite}
+  .hero-figure.is-playing #biteBadge{animation:badgePop 7s linear infinite}
+  .hero-figure.is-playing #rippleA{animation:rippleA 7s linear infinite}
+  .hero-figure.is-playing #rippleB{animation:rippleB 7s linear infinite}
+  .hero-figure.is-playing #bubbleA{animation:bubbleA 7s linear infinite}
+  .hero-figure.is-playing #bubbleB{animation:bubbleB 7s linear infinite}
+  .hero-figure.is-playing #bubbleC{animation:bubbleC 7s linear infinite}
+
+  .hero-figure.is-paused #fishGroup,
+  .hero-figure.is-paused #fishTail,
+  .hero-figure.is-paused #floatGroup,
+  .hero-figure.is-paused #floatAnnotations,
+  .hero-figure.is-paused #biteBadge,
+  .hero-figure.is-paused #rippleA,
+  .hero-figure.is-paused #rippleB,
+  .hero-figure.is-paused #bubbleA,
+  .hero-figure.is-paused #bubbleB,
+  .hero-figure.is-paused #bubbleC{animation-play-state:paused}
+  .hero-figure.is-offscreen #fishGroup,
+  .hero-figure.is-offscreen #fishTail,
+  .hero-figure.is-offscreen #floatGroup,
+  .hero-figure.is-offscreen #floatAnnotations,
+  .hero-figure.is-offscreen #biteBadge,
+  .hero-figure.is-offscreen #rippleA,
+  .hero-figure.is-offscreen #rippleB,
+  .hero-figure.is-offscreen #bubbleA,
+  .hero-figure.is-offscreen #bubbleB,
+  .hero-figure.is-offscreen #bubbleC{animation-play-state:paused}
+  .hero-figure.is-print #fishGroup,
+  .hero-figure.is-print #fishTail,
+  .hero-figure.is-print #floatGroup,
+  .hero-figure.is-print #floatAnnotations,
+  .hero-figure.is-print #biteBadge,
+  .hero-figure.is-print #rippleA,
+  .hero-figure.is-print #rippleB,
+  .hero-figure.is-print #bubbleA,
+  .hero-figure.is-print #bubbleB,
+  .hero-figure.is-print #bubbleC{animation:none!important}
+  .hero-figure.is-print #floatGroup,
+  .hero-figure.is-print #floatAnnotations{transform:none}
+
+  @keyframes fishSwim{
+    0%{transform:translate(120px,586px) scale(.62);opacity:0}
+    5%{transform:translate(142px,589px) scale(.62);opacity:1}
+    18%{transform:translate(196px,593px) scale(.62);opacity:1}
+    22.5%{transform:translate(226px,600px) scale(.62);opacity:1}
+    25.5%{transform:translate(232px,601px) scale(.62);opacity:1}
+    29%{transform:translate(230px,601px) scale(.62);opacity:1}
+    33%{transform:translate(220px,600px) scale(.62);opacity:1}
+    41%{transform:translate(162px,587px) scale(.62);opacity:1}
+    48%{transform:translate(120px,582px) scale(.6);opacity:0}
+    100%{transform:translate(120px,582px) scale(.6);opacity:0}
+  }
+  @keyframes tailWag{
+    from{transform:rotate(-8deg)}
+    to{transform:rotate(8deg)}
+  }
+  /* 30px = 1.5 目（每目 20px） */
+  @keyframes floatDip{
+    0%,23%{transform:translateY(0)}
+    26.5%{transform:translateY(30px)}
+    30%{transform:translateY(27px)}
+    36.5%{transform:translateY(0)}
+    100%{transform:translateY(0)}
+  }
+  @keyframes annotFade{
+    0%,23%{opacity:1}
+    25.5%{opacity:0}
+    37%{opacity:0}
+    42%{opacity:1}
+    100%{opacity:1}
+  }
+  @keyframes badgePop{
+    0%,22.5%{opacity:0;transform:translateY(8px)}
+    25%{opacity:1;transform:translateY(0)}
+    36%{opacity:1;transform:translateY(0)}
+    41%{opacity:0;transform:translateY(-4px)}
+    100%{opacity:0;transform:translateY(-4px)}
+  }
+  @keyframes rippleA{
+    0%,24%{opacity:0;transform:scale(.5)}
+    26%{opacity:.85;transform:scale(1)}
+    33%{opacity:0;transform:scale(3.2)}
+    100%{opacity:0;transform:scale(3.2)}
+  }
+  @keyframes rippleB{
+    0%,26.5%{opacity:0;transform:scale(.45)}
+    28.5%{opacity:.7;transform:scale(.95)}
+    36%{opacity:0;transform:scale(3.6)}
+    100%{opacity:0;transform:scale(3.6)}
+  }
+  @keyframes bubbleA{
+    0%,23.5%{opacity:0;transform:translate(0,0)}
+    25.5%{opacity:.95}
+    35%{opacity:0;transform:translate(-9px,-26px)}
+    100%{opacity:0;transform:translate(-9px,-26px)}
+  }
+  @keyframes bubbleB{
+    0%,24.5%{opacity:0;transform:translate(0,0)}
+    26.5%{opacity:.85}
+    36%{opacity:0;transform:translate(7px,-21px)}
+    100%{opacity:0;transform:translate(7px,-21px)}
+  }
+  @keyframes bubbleC{
+    0%,25%{opacity:0;transform:translate(0,0)}
+    27%{opacity:.9}
+    37%{opacity:0;transform:translate(-2px,-30px)}
+    100%{opacity:0;transform:translate(-2px,-30px)}
+  }
+
+
+  /* ---------- 通用章节 ---------- */
+  .section{padding:54px 0}
+  .section.tint{
+    background:linear-gradient(180deg,rgba(230,244,240,.6),rgba(247,251,250,.25));
+    border-top:1px solid var(--line-soft);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .sec-head{max-width:800px;margin-bottom:26px}
+  .sec-tag{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--mono);font-size:11.5px;font-weight:700;
+    letter-spacing:.14em;color:var(--teal);text-transform:uppercase;
+    margin:0 0 10px;
+  }
+  .sec-tag::before{content:"";width:22px;height:2px;background:var(--teal);border-radius:2px}
+  h2{
+    font-size:clamp(25px,3.1vw,34px);line-height:1.3;
+    letter-spacing:-.015em;font-weight:780;margin:0 0 10px;
+  }
+  .sec-sub{font-size:15.3px;line-height:1.8;color:var(--muted);margin:0}
+  .grid{display:grid;gap:14px}
+  .g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px;box-shadow:var(--shadow);
+  }
+  .card-kicker{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    color:var(--aqua);text-transform:uppercase;margin:0 0 8px;
+  }
+  .card h3{font-size:16.5px;margin:0 0 7px;line-height:1.45}
+  .card p{font-size:13.7px;line-height:1.72;color:var(--ink-2);margin:0}
+
+  /* ---------- 提示条 ---------- */
+  .note{
+    display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;
+    align-items:start;padding:15px 18px;border-radius:13px;
+    font-size:14px;line-height:1.75;margin:18px 0 0;
+  }
+  .note-label{
+    width:28px;height:28px;border-radius:8px;display:grid;place-items:center;
+    font-size:12.5px;font-weight:800;color:#fff;margin-top:1px;
+  }
+  .note p{margin:0}
+  .note.tip{background:#eef8f4;border:1px solid #cfe9e0;color:#1c5a4f}
+  .note.tip .note-label{background:var(--teal)}
+  .note.warn{background:#fdf4ea;border:1px solid #f2ddc4;color:#7c4b1d}
+  .note.warn .note-label{background:var(--warm)}
+  .note.info{background:#eef5fa;border:1px solid #d3e4f0;color:#28546e}
+  .note.info .note-label{background:var(--blue)}
+  .note b{font-weight:750}
+
+  /* ---------- 名词卡 ---------- */
+  .term{position:relative;padding-top:21px}
+  .term-idx{
+    position:absolute;top:17px;right:18px;
+    font-family:var(--mono);font-size:10.5px;color:#a9c3bf;
+  }
+  .term h3{font-size:16.5px;margin:0 0 6px;padding-right:36px}
+  .term p{font-size:13.6px;line-height:1.7;color:var(--ink-2);margin:0}
+
+  /* ---------- 三个数与坐标系 ---------- */
+  .measure{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:22px 0 8px}
+  .m{
+    position:relative;overflow:hidden;background:var(--surface);
+    border:1px solid var(--line);border-radius:16px;padding:17px 19px;
+    box-shadow:var(--shadow);
+  }
+  .m::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--teal)}
+  .m:nth-child(2)::before{background:var(--aqua)}
+  .m:nth-child(3)::before{background:var(--warm)}
+  .m .k{font-size:11.5px;letter-spacing:.1em;color:var(--muted);font-weight:600}
+  .m .v{
+    font-size:29px;font-weight:800;line-height:1.15;color:var(--teal-dark);
+    margin:2px 0 3px;font-variant-numeric:tabular-nums;
+  }
+  .m:nth-child(3) .v{color:#a9611f}
+  .m p{font-size:12.8px;color:var(--ink-2);line-height:1.6;margin:0}
+  .formula{
+    font-size:13px;color:var(--muted);margin:12px 0 0;
+    padding:10px 14px;background:rgba(255,255,255,.65);
+    border:1px dashed var(--line);border-radius:10px;
+  }
+  .formula b{color:var(--ink-2);font-weight:700}
+  .scale{
+    display:flex;align-items:center;gap:12px;
+    margin:28px 0 16px;font-size:12px;color:var(--muted);font-weight:600;
+  }
+  .scale .end{white-space:nowrap}
+  .scale-bar{
+    flex:1;height:10px;border-radius:99px;
+    background:linear-gradient(90deg,#7ec4d8 0%,#3fae9b 28%,#0f7b6c 44%,#d9a441 66%,#c07a35 82%,#6b5b4e 100%);
+  }
+  .zones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .zone{
+    background:var(--surface);border:1px solid var(--line);
+    border-top:4px solid var(--c);border-radius:16px;padding:17px 18px 16px;
+    box-shadow:var(--shadow);
+  }
+  .zone .zr{
+    font-family:var(--mono);font-size:11.5px;font-weight:700;
+    letter-spacing:.06em;color:var(--c);margin:0 0 3px;
+  }
+  .zone h3{font-size:15.5px;line-height:1.45;margin:0 0 7px}
+  .zone p{font-size:13.2px;line-height:1.68;color:var(--ink-2);margin:0}
+  .zone .use{
+    margin-top:10px;padding-top:9px;border-top:1px dashed var(--line);
+    font-size:12px;line-height:1.6;color:var(--muted);
+  }
+  .zone .use b{color:var(--ink-2);font-weight:650}
+
+  /* ---------- 七步 ---------- */
+  .steps{display:grid;gap:13px;margin-top:22px}
+  .step{
+    display:grid;grid-template-columns:50px minmax(0,1fr);gap:17px;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 24px 20px 20px;box-shadow:var(--shadow);
+  }
+  .step.key{border-color:#efd3b8;background:linear-gradient(180deg,#fffdfa,#fff)}
+  .step-num{
+    width:44px;height:44px;border-radius:13px;display:grid;place-items:center;
+    background:linear-gradient(145deg,#e9f6f2,#d2ece5);
+    color:var(--teal-dark);font-family:var(--mono);font-size:14px;font-weight:800;
+  }
+  .step.key .step-num{background:linear-gradient(145deg,#fcebd9,#f6d9b8);color:#95531a}
+  .step h3{
+    font-size:17.5px;line-height:1.5;margin:0;display:flex;align-items:center;
+    gap:9px;flex-wrap:wrap;
+  }
+  .step h3 small{font-size:12.5px;font-weight:500;color:var(--muted);letter-spacing:0}
+  .key-badge{
+    font-size:10.5px;font-weight:700;letter-spacing:.04em;
+    color:#fff;background:#a85a1a;border-radius:999px;padding:2px 8px;
+  }
+  .facts{display:grid;gap:7px;margin-top:11px}
+  .fact{
+    display:grid;grid-template-columns:56px minmax(0,1fr);gap:10px;
+    font-size:13.9px;line-height:1.72;
+  }
+  .fact .tag{
+    font-size:11.5px;font-weight:700;letter-spacing:.05em;text-align:center;
+    color:var(--teal-dark);background:var(--teal-soft);border-radius:6px;
+    padding:2px 0;margin-top:3px;height:22px;line-height:18px;
+  }
+  .fact.read .tag{background:#edf4fa;color:#2f6684}
+  .fact.warn .tag{background:var(--warm-soft);color:#9a5a1e}
+  .fact p{margin:0;color:var(--ink-2)}
+  .fact strong{color:var(--ink);font-weight:700}
+  .prep{
+    display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;
+    background:rgba(255,255,255,.7);border:1px solid var(--line);
+    border-radius:13px;padding:13px 17px;margin:0 0 4px;font-size:13.5px;color:var(--ink-2);
+  }
+  .prep b{color:var(--teal-dark)}
+  .prep span{display:inline-flex;align-items:center;gap:6px}
+  .prep i{
+    font-style:normal;width:20px;height:20px;border-radius:6px;
+    display:grid;place-items:center;background:var(--teal-soft);color:var(--teal-dark);
+    font-size:11px;font-weight:800;
+  }
+
+  /* ---------- 表格 ---------- */
+  .table-wrap{
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    box-shadow:var(--shadow);
+  }
+  table{width:100%;border-collapse:collapse;font-size:13.8px}
+  thead th{
+    background:#edf6f3;color:var(--teal-dark);
+    font-size:12px;font-weight:700;letter-spacing:.06em;text-align:left;
+    padding:11px 16px;border-bottom:1px solid var(--line);white-space:nowrap;
+  }
+  tbody td{
+    padding:12px 16px;border-bottom:1px solid #edf3f2;
+    color:var(--ink-2);vertical-align:top;line-height:1.65;
+  }
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:hover{background:#fafdfc}
+  tbody td strong{color:var(--ink);font-weight:700}
+  .t-nowrap{white-space:nowrap}
+  .t-num{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:650;color:var(--ink)}
+
+  /* ---------- 灵钝规则 ---------- */
+  .rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:20px}
+  .rule{
+    display:flex;gap:14px;align-items:flex-start;
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:16px;padding:18px 20px;box-shadow:var(--shadow);
+  }
+  .rule .arrow{
+    flex:none;width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+    font-size:20px;font-weight:800;
+  }
+  .rule.up .arrow{background:var(--warm-soft);color:#a9611f}
+  .rule.down .arrow{background:var(--teal-soft);color:var(--teal-dark)}
+  .rule b{display:block;font-size:14.5px;margin-bottom:3px}
+  .rule p{font-size:13px;line-height:1.65;color:var(--muted);margin:0}
+
+  /* ---------- 误区 ---------- */
+  .myths{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .myth{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:16px;padding:18px 20px;box-shadow:var(--shadow);
+  }
+  .myth .bad,.myth .good{display:flex;gap:8px;align-items:flex-start;font-size:14px;line-height:1.68}
+  .myth .bad{font-weight:700;color:var(--ink)}
+  .myth .bad span{color:var(--red);font-weight:800;flex:none}
+  .myth .bad-text{color:var(--ink-2);font-weight:400}
+  .myth .good{color:var(--teal-dark);margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+  .myth .good span{color:var(--teal);font-weight:800;flex:none}
+  .myth .good b{font-weight:650}
+
+  /* ---------- 速查 ---------- */
+  .quick{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
+  .verse{
+    position:relative;overflow:hidden;border-radius:22px;padding:28px 30px;
+    background:linear-gradient(155deg,#0d4b44 0%,#0b6b5e 58%,#12897a 100%);
+    color:#eafaf6;box-shadow:0 28px 54px -34px rgba(10,70,62,.8);
+  }
+  .verse::after{
+    content:"漂";position:absolute;right:-6px;bottom:-46px;
+    font-size:190px;font-weight:800;line-height:1;color:#fff;opacity:.055;
+  }
+  .verse-title{
+    font-size:12px;font-weight:700;letter-spacing:.18em;color:#9fe0d3;
+    text-transform:uppercase;margin:0 0 12px;
+  }
+  .verse p.lines{
+    position:relative;z-index:1;margin:0;font-size:19px;line-height:1.95;
+    font-weight:650;letter-spacing:.05em;
+  }
+  .verse small{display:block;margin-top:14px;font-size:12px;color:#a9d9cf;line-height:1.6}
+  .check-card{
+    background:var(--surface);border:1px solid var(--line);border-radius:22px;
+    padding:22px 24px;box-shadow:var(--shadow);
+  }
+  .check-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+  .check-head h3{font-size:16px;margin:0}
+  .link-btn{
+    font:inherit;font-size:12px;color:var(--muted);background:none;border:0;
+    cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:2px;
+  }
+  .link-btn:hover{color:var(--teal-dark)}
+  .checklist{display:grid;grid-template-columns:1fr;gap:8px}
+  .check{
+    display:flex;align-items:flex-start;gap:10px;cursor:pointer;
+    font-size:13.6px;line-height:1.6;color:var(--ink-2);
+    padding:5px 7px;border-radius:8px;transition:background .15s ease;
+  }
+  .check:hover{background:#f5fbf9}
+  .check input{
+    width:17px;height:17px;margin:2px 0 0;flex:none;
+    accent-color:var(--teal);cursor:pointer;
+  }
+  .check input:checked+span{color:#9bb0ae;text-decoration:line-through}
+
+  /* ---------- FAQ ---------- */
+  .faq{display:grid;gap:9px}
+  details{
+    background:var(--surface);border:1px solid var(--line);border-radius:13px;
+    padding:0 18px;transition:border-color .18s ease,box-shadow .18s ease;
+  }
+  details[open]{border-color:#cbe7df;box-shadow:var(--shadow)}
+  summary{
+    position:relative;cursor:pointer;list-style:none;
+    padding:15px 28px 15px 0;font-size:14.8px;font-weight:650;color:var(--ink);
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::after{
+    content:"+";position:absolute;right:0;top:12px;
+    font-size:20px;font-weight:400;line-height:1.4;color:var(--teal);
+    transition:transform .2s ease;
+  }
+  details[open] summary::after{content:"−"}
+  .faq-body{padding:0 0 16px;font-size:14px;line-height:1.8;color:var(--ink-2)}
+  .faq-body p{margin:0}
+  .faq-body p+p{margin-top:8px}
+
+  /* ---------- 页脚 ---------- */
+  .footer{
+    border-top:1px solid var(--line);padding:30px 0 52px;
+    font-size:12.5px;line-height:1.8;color:var(--muted);
+  }
+  .footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:baseline}
+  .footer p{margin:0}
+
+  /* ---------- 返回顶部 ---------- */
+  .backtop{
+    position:fixed;right:22px;bottom:22px;z-index:70;
+    width:42px;height:42px;border-radius:50%;border:1px solid var(--line);
+    background:#fff;color:var(--teal-dark);font-size:18px;line-height:1;
+    cursor:pointer;box-shadow:0 10px 24px -12px rgba(10,70,62,.5);
+    opacity:0;visibility:hidden;transform:translateY(8px);
+    transition:opacity .2s ease,transform .2s ease,visibility .2s;
+  }
+  .backtop.show{opacity:1;visibility:visible;transform:translateY(0)}
+  .backtop:hover{background:var(--teal-soft)}
+
+  :focus-visible{outline:3px solid rgba(15,123,108,.35);outline-offset:2px;border-radius:6px}
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:32px}
+    .hero-figure:not(.is-zoomed){max-width:560px;margin:0 auto;width:100%}
+    .g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .zones{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media (max-width:860px){
+    .print-btn{display:none}
+    .topbar-inner{gap:14px}
+    .nav a{padding:6px 9px;font-size:13px}
+    .quick{grid-template-columns:1fr}
+    .section{padding:46px 0}
+    .nav{-webkit-mask-image:linear-gradient(to right,#000 0,#000 calc(100% - 18px),transparent 100%);mask-image:linear-gradient(to right,#000 0,#000 calc(100% - 18px),transparent 100%)}
+  }
+  @media (max-width:700px){
+    .g3,.g2,.rules,.myths,.measure{grid-template-columns:1fr}
+    .hero-stats{flex-direction:column}
+    .hero-stats>div{border-left:0;border-top:1px solid var(--line)}
+    .hero-stats>div:first-child{border-top:0}
+    .step{grid-template-columns:40px minmax(0,1fr);gap:12px;padding:18px}
+    .step-num{width:38px;height:38px;border-radius:11px;font-size:12.5px}
+    .fact{grid-template-columns:52px minmax(0,1fr);font-size:13.5px}
+    .zones{grid-template-columns:1fr}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 18px}
+    .topbar-inner{padding:0 18px;height:58px}
+    .brand-text{display:none}
+    .hero{padding-top:34px}
+    .lede{font-size:15.5px}
+    .section{padding:40px 0}
+    .card{padding:18px}
+    .hero-figure{padding:8px 8px 6px;border-radius:18px}
+    .verse{padding:22px}
+    .verse p.lines{font-size:17px}
+    .check-card{padding:18px}
+    .g4{grid-template-columns:1fr}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .hero-figure.is-playing #fishGroup,
+    .hero-figure.is-playing #fishTail,
+    .hero-figure.is-playing #floatGroup,
+    .hero-figure.is-playing #floatAnnotations,
+    .hero-figure.is-playing #biteBadge,
+    .hero-figure.is-playing #rippleA,
+    .hero-figure.is-playing #rippleB,
+    .hero-figure.is-playing #bubbleA,
+    .hero-figure.is-playing #bubbleB,
+    .hero-figure.is-playing #bubbleC{animation:none}
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition:none!important;animation:none!important}
+  }
+
+  /* ---------- 打印 ---------- */
+  @media print{
+    :root{--bg:#fff;--shadow:none}
+    body{background:#fff;color:#000;font-size:11pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .topbar,.backtop,.hero-actions,.print-btn,.skip,.link-btn{display:none!important}
+    .progress{display:none!important}
+    .hero{padding:0 0 18px}
+    @page{margin:14mm 12mm}
+    .hero-grid{grid-template-columns:1fr 0.82fr;gap:22px}
+    .hero-figure{box-shadow:none;padding:6px}
+    .figure-actions{display:none!important}
+    .figure-bar{display:block;text-align:center}
+    .figure-cap{font-size:9.5pt}
+    .section{padding:20px 0;break-inside:auto}
+    .sec-head{break-after:avoid;page-break-after:avoid}
+    .step-body{break-inside:avoid}
+    .steps{display:block}
+    .steps .step{margin-bottom:8px}
+    .tint{background:#fff;border-color:#ddd}
+    .card,.step,.zone,.myth,.table-wrap,.check-card,.rule{box-shadow:none;break-inside:avoid}
+    .step,.zone,.myth,.card{page-break-inside:avoid}
+    h1{font-size:30pt}
+    h2{font-size:19pt}
+    a{color:inherit;text-decoration:none}
+    details{break-inside:avoid}
+    .faq details{display:block}
+    .faq details .faq-body{display:block}
+    summary::after{content:"";display:none}
+    .note{break-inside:avoid}
+    .footer{padding:14px 0 0;border-top:1px solid #ddd}
+    table{font-size:9.5pt}
+    thead th{padding:7px 10px}
+    tbody td{padding:7px 10px}
+  }
+</style>
+</head>
+<body id="top">
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top" aria-label="回到页面顶部">
+      <span class="brand-mark" aria-hidden="true">漂</span>
+      <span class="brand-text">台钓调漂指南</span>
+    </a>
+    <nav class="nav" aria-label="页面章节导航">
+      <a href="#principle">原理</a>
+      <a href="#terms">名词</a>
+      <a href="#scale">坐标系</a>
+      <a href="#steps">七步</a>
+      <a href="#tuning">看口</a>
+      <a href="#scenes">场景</a>
+      <a href="#myths">误区</a>
+      <a href="#quick">速查</a>
+      <a href="#faq">答疑</a>
+    </nav>
+    <button class="print-btn" id="printBtn" type="button">打印 / PDF</button>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<main id="main">
+
+  <!-- ============ 首屏 ============ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">台钓入门 · 悬坠钓法</p>
+        <h1><em>调四钓二</em>，<br>手把手教你调出来</h1>
+        <p class="lede">
+          调漂，说到底是让浮漂读出<strong>钩饵在水下的状态</strong>。先用「调四钓二」把下饵调到触底，再根据鱼口在灵与钝之间挪半目。不用背公式，照下面七步做就行。
+        </p>
+        <div class="hero-stats" role="list" aria-label="内容速览">
+          <div role="listitem"><b>4 / 2</b><span>经典起点<br>调四钓二</span></div>
+          <div role="listitem"><b>7</b><span>标准步骤<br>一步不跳</span></div>
+          <div role="listitem"><b>6</b><span>灵钝区间<br>一眼看懂</span></div>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#steps">直接看七步流程</a>
+          <a class="btn btn-ghost" href="#quick">跳到速查卡</a>
+        </div>
+      </div>
+
+      <div class="figure-backdrop" id="figureBackdrop" aria-hidden="true"></div>
+      <figure class="hero-figure" id="heroFigure">
+        <svg class="diagram" id="heroDiagram" viewBox="0 0 560 640" role="img" aria-labelledby="diagram-title diagram-desc">
+          <title id="diagram-title">调四钓二线组示意图</title>
+          <desc id="diagram-desc">浮漂露出两目，铅坠悬空，上钩挂饵悬浮，下钩挂饵轻触水底；鱼咬住下饵时浮漂快速下顿一目半，形成顿口。</desc>
+          <defs>
+            <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#e5f5f3"/>
+              <stop offset="1" stop-color="#c3e6e4"/>
+            </linearGradient>
+            <linearGradient id="floatBody" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#f9d59c"/>
+              <stop offset=".55" stop-color="#efad5e"/>
+              <stop offset="1" stop-color="#da8a35"/>
+            </linearGradient>
+            <linearGradient id="fishSkin" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#6aa9a0"/>
+              <stop offset=".55" stop-color="#4f8f87"/>
+              <stop offset="1" stop-color="#3d7670"/>
+            </linearGradient>
+            <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0b4a45" flood-opacity=".16"/>
+            </filter>
+          </defs>
+
+          <!-- 水体与河底 -->
+          <rect x="24" y="170" width="512" height="470" fill="url(#water)"/>
+          <path d="M24 618 Q110 611 196 618 T368 616 T536 619 L536 640 L24 640 Z" fill="#e7dbc3"/>
+          <path d="M24 618 Q110 611 196 618 T368 616 T536 619" fill="none" stroke="#d6c6a6" stroke-width="1.2"/>
+          <line x1="24" y1="170" x2="536" y2="170" stroke="#84c4be" stroke-width="1.6"/>
+          <text x="34" y="163" class="svg-label">水面</text>
+          <text x="34" y="636" class="svg-label" fill="#9c8c6c">水底</text>
+
+          <!-- 浮漂主体：水面以上 2 目，咬钩时整组下沉 -->
+          <g filter="url(#soft)">
+            <line x1="170" y1="300" x2="170" y2="452" stroke="#5b6b70" stroke-width="1.6"/>
+            <g id="floatGroup">
+              <rect x="166" y="130" width="8" height="20" fill="#d94f43"/>
+              <rect x="166" y="150" width="8" height="20" fill="#fbf7ee"/>
+              <rect x="166" y="170" width="8" height="20" fill="#d94f43" opacity=".45"/>
+              <rect x="166" y="190" width="8" height="20" fill="#fbf7ee" opacity=".55"/>
+              <rect x="166" y="210" width="8" height="20" fill="#d94f43" opacity=".35"/>
+              <path d="M170 228 C148 240 139 262 139 278 C139 296 152 310 170 310 C188 310 201 296 201 278 C201 262 192 240 170 228 Z" fill="url(#floatBody)"/>
+              <ellipse cx="157" cy="272" rx="4.5" ry="16" fill="#fff" opacity=".26"/>
+              <rect x="167.5" y="310" width="5" height="30" fill="#37484c"/>
+            </g>
+            <rect x="156" y="452" width="28" height="34" rx="6" fill="#54686d"/>
+            <rect x="160" y="456" width="20" height="6" rx="3" fill="#7d9296"/>
+            <circle cx="170" cy="494" r="4.5" fill="#54686d"/>
+            <polyline points="170,498 170,514 110,540" fill="none" stroke="#8a9a9e" stroke-width="1.2"/>
+            <polyline points="170,498 170,514 226,590" fill="none" stroke="#8a9a9e" stroke-width="1.2"/>
+          </g>
+
+          <!-- 水面涟漪 -->
+          <g aria-hidden="true">
+            <ellipse id="rippleA" cx="170" cy="171" rx="12" ry="3" fill="none" stroke="#5fb6ac" stroke-width="1.6" opacity="0"/>
+            <ellipse id="rippleB" cx="170" cy="171" rx="12" ry="3" fill="none" stroke="#7cc6bd" stroke-width="1.4" opacity="0"/>
+          </g>
+
+          <!-- 子线、鱼钩与饵团 -->
+          <path d="M110 540 v6 a7 7 0 0 0 14 0" fill="none" stroke="#43565a" stroke-width="2"/>
+          <ellipse cx="117" cy="554" rx="8" ry="7" fill="#cf8b52"/>
+          <g id="lowerBaitGroup">
+            <path d="M226 590 v6 a7 7 0 0 0 14 0" fill="none" stroke="#43565a" stroke-width="2"/>
+            <ellipse cx="233" cy="607" rx="9" ry="8" fill="#cf8b52"/>
+          </g>
+
+          <!-- 气泡 -->
+          <g aria-hidden="true">
+            <circle id="bubbleA" cx="238" cy="600" r="2.6" fill="#ffffff" stroke="#89c9c3" stroke-width=".8" opacity="0"/>
+            <circle id="bubbleB" cx="226" cy="604" r="2" fill="#ffffff" stroke="#89c9c3" stroke-width=".8" opacity="0"/>
+            <circle id="bubbleC" cx="232" cy="596" r="3" fill="#ffffff" stroke="#89c9c3" stroke-width=".8" opacity="0"/>
+          </g>
+
+          <!-- 鱼：从左侧游来，咬住下钩饵 -->
+          <g id="fishGroup" transform="translate(-180 470) scale(.82)" opacity="0" aria-hidden="true">
+            <path id="fishTail" d="M-119 -3 L-148 -22 Q-141 0 -148 22 L-119 3 Z" fill="#4d8781"/>
+            <path d="M0 0 C-7 -15 -29 -24 -57 -23 C-85 -22 -107 -12 -119 -3 L-123 0 L-119 3 C-107 12 -85 22 -57 23 C-29 24 -7 15 0 0 Z" fill="url(#fishSkin)"/>
+            <path d="M-89 -21 Q-73 -40 -55 -22 Z" fill="#4d8781"/>
+            <path d="M-42 7 Q-54 21 -35 21 Q-29 13 -27 6 Z" fill="#4d8781" opacity=".9"/>
+            <path d="M-27 -14 Q-20 0 -27 14" fill="none" stroke="#3d6f69" stroke-width="1.4" opacity=".55"/>
+            <circle cx="-15" cy="-6.5" r="3.6" fill="#16383a"/>
+            <circle cx="-16.5" cy="-7.8" r="1.2" fill="#eaf6f3"/>
+            <path d="M0 0 q-6 -2 -9 1" fill="none" stroke="#3d6f69" stroke-width="1.2" opacity=".7"/>
+          </g>
+
+          <!-- 顿口提示 -->
+          <g id="biteBadge" opacity="0" aria-hidden="true">
+            <rect x="86" y="84" width="118" height="30" rx="15" fill="#0f7b6c"/>
+            <path d="M136 114 L142 122 L148 114 Z" fill="#0f7b6c"/>
+            <text x="145" y="104.5" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">顿口 ↓ 1.5 目</text>
+          </g>
+
+          <!-- 标注：钓目（咬钩时淡出，避免与下沉的漂身打架） -->
+          <g id="floatAnnotations">
+            <path d="M162 130 h-8 v40 h8" fill="none" stroke="#0f7b6c" stroke-width="1.4"/>
+            <text x="146" y="140" text-anchor="end" class="svg-strong">钓目 2 目</text>
+            <text x="146" y="158" text-anchor="end" class="svg-muted">水面之上</text>
+          </g>
+
+          <!-- 标注：调目 -->
+          <rect x="282" y="18" width="258" height="146" rx="14" fill="#ffffff" opacity=".86" stroke="#cfe3df"/>
+          <text x="302" y="48" font-size="16" font-weight="750" fill="#a9772a">调目 4 目</text>
+          <text x="302" y="68" class="svg-muted">空钩半水，漂尾露四目</text>
+          <line x1="302" y1="80" x2="520" y2="80" stroke="#e3eeeb" stroke-width="1"/>
+          <text x="302" y="104" font-size="16" font-weight="750" fill="#0f7b6c">钓目 2 目</text>
+          <text x="302" y="124" class="svg-muted">挂上双饵，漂再下沉两目</text>
+          <text x="302" y="147" font-size="13.5" font-weight="700" fill="#a9611f">下饵触底 · 上饵悬浮</text>
+
+          <!-- 标注：铅坠与钩饵状态 -->
+          <line x1="188" y1="470" x2="214" y2="470" stroke="#7fa6a2" stroke-width="1" stroke-dasharray="3 4"/>
+          <text x="222" y="466" font-size="14" font-weight="700" fill="#2f6f68">铅坠悬空</text>
+          <text x="222" y="492" class="svg-muted">不触底</text>
+
+          <text x="96" y="546" text-anchor="end" font-size="14" font-weight="700" fill="#2f6f68">上饵悬浮</text>
+          <text x="96" y="568" text-anchor="end" class="svg-muted">离底</text>
+
+          <line x1="245" y1="601" x2="264" y2="596" stroke="#7fa6a2" stroke-width="1" stroke-dasharray="3 4"/>
+          <text x="272" y="590" font-size="14" font-weight="700" fill="#2f6f68">下饵触底</text>
+          <text x="272" y="617" class="svg-muted">轻触水底</text>
+        </svg>
+        <figcaption class="figure-bar">
+          <p class="figure-cap"><b>看「顿口」</b>：鱼吸住下饵，浮漂先快速下顿 1.5 目，再缓慢回位——这一下就是提竿信号。</p>
+          <div class="figure-actions">
+            <button class="fig-btn" id="biteReplay" type="button" aria-label="重播鱼咬钩动画">↻ 重播</button>
+            <button class="fig-btn" id="biteToggle" type="button" aria-pressed="true"><span class="fig-ico" id="biteToggleIcon" aria-hidden="true">❚❚</span><span id="biteToggleText">暂停</span></button>
+            <button class="fig-btn" id="figureZoom" type="button" aria-pressed="false" aria-label="放大示意图"><span aria-hidden="true">⤢</span><span id="figureZoomText">放大</span></button>
+          </div>
+        </figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <!-- ============ 01 原理 ============ -->
+  <section class="section" id="principle">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-tag">01 · 原理</p>
+        <h2>浮漂，其实是一杆「秤」</h2>
+        <p class="sec-sub">挂的东西越重，漂沉得越多，露出的目数就越少。调漂就是先把这杆秤的「零点」定好，再读出钩饵的状态。</p>
+      </div>
+
+      <div class="grid g4">
+        <article class="card">
+          <p class="card-kicker">Reading</p>
+          <h3>露出的目数 = 读数</h3>
+          <p>漂尾上一格颜色叫「一目」。水面以上露出几格，就是几目。目数越少，说明下面的坠、钩、饵越重。</p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Baseline</p>
+          <h3>调目 = 基准线</h3>
+          <p>空钩、半水、不挂饵，用剪铅让漂尾露出 4 目。这个「4 目」就是整套线组的零点。</p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Working point</p>
+          <h3>钓目 = 工作点</h3>
+          <p>挂上饵、真正开钓时露出的目数。钓 2 目、4 目还是 6 目，直接决定钩饵在水下的状态。</p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Balance</p>
+          <h3>差值 = 灵与钝</h3>
+          <p>钓目比调目小，偏灵；比调目大，偏钝；调几钓几，就是不灵不钝的起点。</p>
+        </article>
+      </div>
+
+      <div class="note tip">
+        <span class="note-label">记</span>
+        <p><b>一句话记住：</b>调目定基准，钓目定状态，饵重和钩重决定中间差多少。所以「调四钓二」不是死规定，而是一套可以复制的方法。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 名词 ============ -->
+  <section class="section tint" id="terms">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-tag">02 · 名词</p>
+        <h2>先认识这 8 个词</h2>
+        <p class="sec-sub">不用记定义，混个眼熟就行。后面每一步都会用到它们。</p>
+      </div>
+
+      <div class="grid g4">
+        <article class="card term">
+          <span class="term-idx">01</span>
+          <h3>目</h3>
+          <p>漂尾上的一格颜色。露 4 目，就是水面上有 4 格。半目、一目半，是实战里最常用的调整幅度。</p>
+        </article>
+        <article class="card term">
+          <span class="term-idx">02</span>
+          <h3>调目</h3>
+          <p>空钩、半水、不挂饵时，剪铅调出来的目数。例：调 4 目。它是基准，不是钓的时候的读数。</p>
+        </article>
+        <article class="card term">
+          <span class="term-idx">03</span>
+          <h3>钓目</h3>
+          <p>挂饵开钓时实际露出的目数。例：钓 2 目。钓目变一点，钩饵在水底的状态就变一点。</p>
+        </article>
+        <article class="card term">
+          <span class="term-idx">04</span>
+          <h3>半水</h3>
+          <p>双钩离底、悬在水里的状态，不是「水深的一半」。调漂必须半水，钩碰到水底就不准了。</p>
+        </article>
+        <article class="card term">
+          <span class="term-idx">05</span>
+          <h3>找底</h3>
+          <p>找到水底，确认钩饵落在哪里。先找底，钓目才有参照；不找底就调漂，等于蒙着眼睛称重。</p>
+        </article>
+        <article class="card term">
+          <span class="term-idx">06</span>
+          <h3>灵</h3>
+          <p>钓目小于调目。子线绷得直、饵轻触底，鱼一吸就出信号。适合生口、轻口，但假动作也多。</p>
+        </article>
+        <article class="card term">
+          <span class="term-idx">07</span>
+          <h3>钝</h3>
+          <p>钓目大于调目。子线弯曲、饵躺底，小动作被过滤，等的是死口。适合滑口、走水、大鱼。</p>
+        </article>
+        <article class="card term">
+          <span class="term-idx">08</span>
+          <h3>无钩调目</h3>
+          <p>去掉双钩、半水时的目数。它是「铅坠将要到底」的临界点，也就是你这套线组的最钝点。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 坐标系 ============ -->
+  <section class="section" id="scale">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-tag">03 · 坐标系</p>
+        <h2>钓目往哪边挪，钩饵就什么状态</h2>
+        <p class="sec-sub">先量三个数，再把钓目放进坐标系。下面用「空钩调 4 目、双钩压 2 目、双饵压 2 目」举例，数字换成你的也一样看。</p>
+      </div>
+
+      <div class="measure">
+        <div class="m">
+          <div class="k">① 空钩调目</div>
+          <div class="v">4 目</div>
+          <p>空钩、半水，剪铅到漂尾露 4 目。</p>
+        </div>
+        <div class="m">
+          <div class="k">② 双饵压目</div>
+          <div class="v">2 目</div>
+          <p>挂双饵、保持半水，漂从 4 目变成 2 目。</p>
+        </div>
+        <div class="m">
+          <div class="k">③ 无钩调目</div>
+          <div class="v">6 目</div>
+          <p>去掉双钩、半水，露 6 目，就是铅坠将到底的临界点。</p>
+        </div>
+      </div>
+      <p class="formula">
+        <b>两个小公式：</b>双钩重 = 无钩调目 − 空钩调目（6 − 4 = 2 目）　·　双饵重 = 空钩调目 − 挂双饵半水目数（4 − 2 = 2 目）
+      </p>
+
+      <div class="scale" aria-hidden="true">
+        <span class="end">更灵 · 钓目小</span>
+        <span class="scale-bar"></span>
+        <span class="end">更钝 · 钓目大</span>
+      </div>
+
+      <div class="zones">
+        <article class="zone" style="--c:#327289">
+          <p class="zr">0 – 2 目</p>
+          <h3>双饵离底 · 钓浮</h3>
+          <p>钩饵都悬在水中，浮漂没有被水底分担重量。信号最灵敏，也最容易被小鱼闹。</p>
+          <p class="use"><b>适合：</b>钓浮、找鱼层、鱼上浮时</p>
+        </article>
+        <article class="zone" style="--c:#1f7e6d">
+          <p class="zr">= 2 目</p>
+          <h3>下饵刚触底 · 最灵点</h3>
+          <p>双饵重量刚好全由浮漂承担，水底几乎不受力。再低一点，双饵就离底了。</p>
+          <p class="use"><b>适合：</b>轻口、生口快鱼、冬天</p>
+        </article>
+        <article class="zone" style="--c:#0f7b6c">
+          <p class="zr">2 – 4 目</p>
+          <h3>下饵到底、上饵由悬到触底 · 灵</h3>
+          <p>最常用的钓底状态：下饵先落底，继续上推，上饵也从悬着慢慢轻触底。鱼入口自然，信号清楚。</p>
+          <p class="use"><b>适合：</b>静水钓鲫鱼、大多数钓底场景</p>
+        </article>
+        <article class="zone" style="--c:#a2761b">
+          <p class="zr">= 4 目</p>
+          <h3>双饵到底 · 不灵不钝</h3>
+          <p>水底正好承担双饵的全部重量，两饵都落底。信号比「灵」少一点，但更真实。</p>
+          <p class="use"><b>适合：</b>滑口、轻口、需要放口的鱼情</p>
+        </article>
+        <article class="zone" style="--c:#9a5f26">
+          <p class="zr">4 – 6 目</p>
+          <h3>双饵躺底、子线弯曲 · 钝</h3>
+          <p>浮漂继续上推，子线越来越弯，小杂鱼的假动作被过滤，主抓鱼吃死口后的大动作。</p>
+          <p class="use"><b>适合：</b>野钓鲤鱼、走水、小鱼闹窝</p>
+        </article>
+        <article class="zone" style="--c:#6b5b4e">
+          <p class="zr">&gt; 6 目</p>
+          <h3>铅坠到底 · 极钝</h3>
+          <p>超过无钩调目，铅坠开始被水底托住。信号以黑漂、送漂为主，稳但慢。</p>
+          <p class="use"><b>适合：</b>跑铅、抗走水、避小鱼、守大鱼</p>
+        </article>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">注</span>
+        <p><b>数字会平移，规律不会变：</b>你的漂尾粗细、钩重、饵重和示例不同，坐标会整体左右移动。真正要记的是「钓目越大越钝、越小越灵」，以及「超过无钩调目，铅坠就到底」。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 七步 ============ -->
+  <section class="section tint" id="steps">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-tag">04 · 七步</p>
+        <h2>到钓点后，按这七步做</h2>
+        <p class="sec-sub">顺序别跳。每步都写了做法、读数和注意，看懂了就不用死记。</p>
+      </div>
+
+      <div class="prep">
+        <span><i>1</i><b>钓底</b>还是钓浮？新手先钓底</span>
+        <span><i>2</i><b>拉饵</b>还是搓饵？它决定饵重</span>
+        <span><i>3</i>目标鱼多大？它决定钩号和线号</span>
+      </div>
+
+      <div class="steps">
+
+        <article class="step">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <h3>重铅找底 <small>先知道水有多深</small></h3>
+            <div class="facts">
+              <div class="fact"><span class="tag">做法</span><p>铅皮卷得重一点，重量要大于浮漂的浮力（抛下去漂会被完全拉沉）。抛竿到钓点，漂沉没后<strong>上推漂座</strong>，直到漂尾露出 1 目左右。</p></div>
+              <div class="fact read"><span class="tag">读数</span><p>此时铅坠到底，漂座到铅坠的距离大约就是水深。</p></div>
+              <div class="fact warn"><span class="tag">注意</span><p>别抛满竿，抛七分竿就好；多抛几竿，确认钓点周围哪里深、哪里浅。</p></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <h3>下拉半水 <small>让双钩离开水底</small></h3>
+            <div class="facts">
+              <div class="fact"><span class="tag">做法</span><p>把漂座向下拉，距离 = <strong>子线长度 + 10~20 厘米</strong>。比如子线 20 厘米，就下拉 30~40 厘米。</p></div>
+              <div class="fact read"><span class="tag">为什么</span><p>调目必须在「双钩离底」时定。钩还擦着底，调出来的目数就是假的。</p></div>
+              <div class="fact warn"><span class="tag">注意</span><p>下拉后先抛一竿，确认漂能正常站立、钩确实离底，再开始剪铅。</p></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <h3>剪铅定调目 <small>定下基准线：空钩 4 目</small></h3>
+            <div class="facts">
+              <div class="fact"><span class="tag">做法</span><p>少量多次剪铅皮，每剪一次抛竿入水，<strong>压风线、等漂站稳</strong>再读数。一直剪到漂尾露出 4 目。</p></div>
+              <div class="fact read"><span class="tag">判断</span><p>露少于 4 目 → 铅重，继续剪；露多于 4 目 → 铅轻，加一小片铅皮。</p></div>
+              <div class="fact warn"><span class="tag">注意</span><p>最后几刀要小，剪过头只能重卷。铅皮卷紧、边缘压平，抛竿时才不会松。</p></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="step key">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <h3>挂饵测重 <small>知道双饵能压几目</small><span class="key-badge">最容易跳过</span></h3>
+            <div class="facts">
+              <div class="fact"><span class="tag">做法</span><p>双钩挂正常大小的饵，保持半水（漂座不动），抛竿看露几目。</p></div>
+              <div class="fact read"><span class="tag">读数</span><p>双饵压目 = 空钩 4 目 − 挂饵后目数。示例：挂饵后露 2 目，说明双饵压 2 目。</p></div>
+              <div class="fact warn"><span class="tag">异常</span><p>挂饵后直接黑漂 → 饵太重或漂太小；还露 3 目以上 → 饵太轻，钓底容易找不到底。</p></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="step key">
+          <div class="step-num">05</div>
+          <div class="step-body">
+            <h3>上推找底 <small>定下钓目：下饵触底</small><span class="key-badge">核心</span></h3>
+            <div class="facts">
+              <div class="fact"><span class="tag">做法</span><p>双钩挂饵，<strong>一点一点上推漂座</strong>（每次 2~3 厘米），抛竿看漂目。</p></div>
+              <div class="fact read"><span class="tag">关键</span><p>半水时漂目不会随水深变化；<strong>漂目开始变大，就说明下饵到底了</strong>。想下饵轻触底，钓 2 目左右；想下饵压实，钓 2.5~3 目。</p></div>
+              <div class="fact warn"><span class="tag">注意</span><p>抛竿后把风线压进水里，等漂稳定再读。一次推太多，会直接推成「过底」。</p></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-num">06</div>
+          <div class="step-body">
+            <h3>抛竿验证 <small>确认目数稳定，不是碰巧</small></h3>
+            <div class="facts">
+              <div class="fact"><span class="tag">做法</span><p>连续抛 3~5 竿，落点尽量一致，看钓目是不是稳定在 2~3 目。</p></div>
+              <div class="fact read"><span class="tag">判断</span><p>稳定 = 找底成功；忽高忽低 = 水底不平、抛满竿、风线没压，或饵大小不一。</p></div>
+              <div class="fact warn"><span class="tag">土办法</span><p>下钩挂一小块橡皮泥（比饵重）抛竿，漂沉说明钩到底；去掉橡皮泥换回饵，再微调钓目。</p></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-num">07</div>
+          <div class="step-body">
+            <h3>看口微调 <small>在灵与钝之间找鱼口</small></h3>
+            <div class="facts">
+              <div class="fact"><span class="tag">做法</span><p>先按钓 2~3 目开钓，观察半小时。假口多、空竿多就上推漂座（钓钝）；长时间没口就下拉漂座（钓灵）。</p></div>
+              <div class="fact read"><span class="tag">幅度</span><p><strong>一次只动 0.5~1 目</strong>，动完抛 3~5 竿再看效果，别一口气推一大截。</p></div>
+              <div class="fact warn"><span class="tag">先排除</span><p>钩太大、饵太硬、子线太粗、窝里没鱼——这些不是调漂能解决的，先换小钩软饵试试。</p></div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 看口调整 ============ -->
+  <section class="section" id="tuning">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-tag">05 · 看口调整</p>
+        <h2>漂相不对，往哪边调？</h2>
+        <p class="sec-sub">调漂的终点不是「调四钓二」，而是「鱼能顺利吃进去，浮漂能清楚出信号」。先记住两个方向。</p>
+      </div>
+
+      <div class="rules">
+        <div class="rule up">
+          <span class="arrow" aria-hidden="true">↑</span>
+          <div>
+            <b>上推漂座 → 钓目变大 → 变钝</b>
+            <p>子线弯曲、饵躺底，过滤假动作。适合空竿多、小鱼闹、走水。</p>
+          </div>
+        </div>
+        <div class="rule down">
+          <span class="arrow" aria-hidden="true">↓</span>
+          <div>
+            <b>下拉漂座 → 钓目变小 → 变灵</b>
+            <p>子线绷直、饵轻触底，放大信号。适合没口、轻口、鱼吃口很轻。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>浮漂表现 / 鱼情</th>
+              <th>大概率原因</th>
+              <th>怎么调</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>动作很多、空竿多、假口乱</strong></td>
+              <td>钓得太灵，饵还没入口就出信号</td>
+              <td>上推漂座 0.5~1 目，钓钝一点</td>
+            </tr>
+            <tr>
+              <td><strong>中鱼后频繁脱钩、跑鱼</strong></td>
+              <td>钓得太灵，鱼没吃稳就出信号，刺鱼浅</td>
+              <td>上推漂座 0.5~1 目，钓钝一点，等吃稳再抬竿</td>
+            </tr>
+            <tr>
+              <td><strong>长时间没口，换饵时却中鱼</strong></td>
+              <td>钓太钝，鱼吃饵时浮漂没反应</td>
+              <td>下拉漂座 0.5~1 目，钓灵一点</td>
+            </tr>
+            <tr>
+              <td><strong>有鱼星、蹭线，就是不给实口</strong></td>
+              <td>饵不对路，或鱼不在这个水层</td>
+              <td>调钓先别动，换饵、找鱼层</td>
+            </tr>
+            <tr>
+              <td><strong>漂随水流走、站不住</strong></td>
+              <td>走水，线组被水流带走</td>
+              <td>钓钝、跑铅，或换吃铅更大的漂</td>
+            </tr>
+            <tr>
+              <td><strong>小鱼疯狂截口</strong></td>
+              <td>饵下沉慢、雾化太快</td>
+              <td>搓大饵、钓钝、适当加铅</td>
+            </tr>
+            <tr>
+              <td><strong>冬季轻口，漂只微微一抖</strong></td>
+              <td>线组粗、漂尾粗，信号被吃掉</td>
+              <td>小漂细线小钩，钓灵（调低钓低）</td>
+            </tr>
+            <tr>
+              <td><strong>目数忽高忽低，找不到规律</strong></td>
+              <td>水底不平、抛满竿、风线没压</td>
+              <td>固定落点、压风线，重新找底</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note tip">
+        <span class="note-label">记</span>
+        <p><b>口袋口诀：</b>空竿多、假口多 → 往钝调；长时间没口、漂没反应 → 往灵调；中鱼后频繁脱钩 → 也往钝调，等吃稳。每次半目到一目，调完多抛几竿再判断。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 场景 ============ -->
+  <section class="section tint" id="scenes">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-tag">06 · 场景</p>
+        <h2>不同鱼情，从哪组数字开始？</h2>
+        <p class="sec-sub">下表是「起点」，不是标准答案。同一支漂、同一套钩饵，数字才有可比性。表中各行按示例钩重（双钩压 2 目 ⇒ 调 4 目时无钩调目 6 目）给出的边界填写；你的钩更重更轻，边界会整体平移，判断时一律回到「钓目 vs 无钩调目」这个相对关系。</p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>场景</th>
+              <th>调目</th>
+              <th>钓目</th>
+              <th>钩饵状态</th>
+              <th>说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>静水鲫鱼 · 生口</strong></td>
+              <td class="t-num">4</td>
+              <td class="t-num">2 ~ 2.5</td>
+              <td>下饵触底、上饵悬</td>
+              <td>经典灵敏组合，信号快、入口自然</td>
+            </tr>
+            <tr>
+              <td><strong>静水鲫鱼 · 滑口</strong></td>
+              <td class="t-num">4</td>
+              <td class="t-num">4 ~ 5</td>
+              <td>双饵到底</td>
+              <td>放口、过滤假动作，抓实口</td>
+            </tr>
+            <tr>
+              <td><strong>野钓鲤鱼 / 草鱼</strong></td>
+              <td class="t-num">3 ~ 4</td>
+              <td class="t-num">4 ~ 5</td>
+              <td>双饵到底、子线弯曲</td>
+              <td>钓钝守死口，减少惊鱼（钓目别越过无钩调目）</td>
+            </tr>
+            <tr>
+              <td><strong>走水 / 风浪</strong></td>
+              <td class="t-num">2 ~ 3</td>
+              <td class="t-num">5 ~ 6 或跑铅</td>
+              <td>铅坠到底</td>
+              <td>站得住、看得清，主抓黑漂和送漂</td>
+            </tr>
+            <tr>
+              <td><strong>深水（超过 3 米）</strong></td>
+              <td class="t-num">6 ~ 7</td>
+              <td class="t-num">5 ~ 6</td>
+              <td>下饵到底 → 双饵到底</td>
+              <td>大漂重铅，水线绷直，饵快速到底（钓目别越过无钩调目）</td>
+            </tr>
+            <tr>
+              <td><strong>小鱼闹窝</strong></td>
+              <td class="t-num">4</td>
+              <td class="t-num">5 ~ 6</td>
+              <td>双饵躺底</td>
+              <td>搓黏饵、钓钝，让小鱼追不上（钓目别越过无钩调目）</td>
+            </tr>
+            <tr>
+              <td><strong>冬季 / 轻口</strong></td>
+              <td class="t-num">3</td>
+              <td class="t-num">1 ~ 1.5</td>
+              <td>下饵轻触底</td>
+              <td>小漂细尾、细线小钩，减少挡口（可用小饵，双饵只压 0.5~1 目）</td>
+            </tr>
+            <tr>
+              <td><strong>黑坑 · 生口快鱼</strong></td>
+              <td class="t-num">5 ~ 6</td>
+              <td class="t-num">2 ~ 3</td>
+              <td>双饵离底，钓截口</td>
+              <td>调高钓低就是钓离底：钓目低于挂双饵半水目数时饵不触底，想钓实底要把钓目加到该目数以上</td>
+            </tr>
+            <tr>
+              <td><strong>黑坑 · 老鱼滑鱼</strong></td>
+              <td class="t-num">4</td>
+              <td class="t-num">4 ~ 5</td>
+              <td>双饵到底</td>
+              <td>放慢节奏，钓钝放口</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">注</span>
+        <p><b>换漂、换饵、换钩，先重新测「双饵压几目」。</b>很多人只换了饵，还按原来的钓目钓，结果钩饵状态早就变了，却以为鱼不开口。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07 误区 ============ -->
+  <section class="section" id="myths">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-tag">07 · 误区</p>
+        <h2>新手最常踩的 8 个坑</h2>
+        <p class="sec-sub">大部分「调不准」，不是手笨，而是顺序或细节错了。</p>
+      </div>
+
+      <div class="myths">
+        <article class="myth">
+          <p class="bad"><span>✕</span><span class="bad-text">不找底，调完就钓</span></p>
+          <p class="good"><span>✓</span><b>先重铅找底，再下拉半水调目。</b>没有水底做参照，钓目就是空的。</p>
+        </article>
+        <article class="myth">
+          <p class="bad"><span>✕</span><span class="bad-text">抛满竿调漂</span></p>
+          <p class="good"><span>✓</span><b>抛七分竿，或抛满后回拉、压风线再读。</b>水线斜着，目数会虚高。</p>
+        </article>
+        <article class="myth">
+          <p class="bad"><span>✕</span><span class="bad-text">不压风线</span></p>
+          <p class="good"><span>✓</span><b>每次抛竿都把竿稍到漂的线压进水里。</b>风线被风推着，漂目会一直漂。</p>
+        </article>
+        <article class="myth">
+          <p class="bad"><span>✕</span><span class="bad-text">一次剪太多铅</span></p>
+          <p class="good"><span>✓</span><b>少量多次，最后用修铅刀刮。</b>剪过头只能重新卷，反而更慢。</p>
+        </article>
+        <article class="myth">
+          <p class="bad"><span>✕</span><span class="bad-text">换饵不校漂</span></p>
+          <p class="good"><span>✓</span><b>拉饵换搓饵、蚯蚓换商品饵，都要重看钓目。</b>饵重变了，钩饵状态也变了。</p>
+        </article>
+        <article class="myth">
+          <p class="bad"><span>✕</span><span class="bad-text">迷信「调四钓二」</span></p>
+          <p class="good"><span>✓</span><b>先测三个数，再定钓目。</b>漂尾粗细、钩重饵重不同，照搬会离底或过底。</p>
+        </article>
+        <article class="myth">
+          <p class="bad"><span>✕</span><span class="bad-text">半水没到位</span></p>
+          <p class="good"><span>✓</span><b>下拉「子线长 + 10~20 厘米」。</b>钩还擦着底就调目，调出来的 4 目是假的。</p>
+        </article>
+        <article class="myth">
+          <p class="bad"><span>✕</span><span class="bad-text">调完不验证</span></p>
+          <p class="good"><span>✓</span><b>连抛 3~5 竿，目数稳定再开钓。</b>水底不平、饵大小不一，抛一竿看不出来。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 08 速查 ============ -->
+  <section class="section tint" id="quick">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-tag">08 · 速查</p>
+        <h2>出门前，看这一页就够了</h2>
+        <p class="sec-sub">口诀记顺序，清单防遗漏。可以打印出来，塞进钓箱。</p>
+      </div>
+
+      <div class="quick">
+        <div class="verse">
+          <p class="verse-title">五句口诀</p>
+          <p class="lines">
+            重铅找底，下拉半水；<br>
+            剪铅到四，挂饵看数；<br>
+            上推露二，下饵触底；<br>
+            空竿钓钝，没口钓灵；<br>
+            每次半目，别大折腾。
+          </p>
+          <small>到钓点后按这个顺序做，基本不会乱。数字 4 和 2 是起点，按你的漂和饵调整。</small>
+        </div>
+
+        <div class="check-card">
+          <div class="check-head">
+            <h3>出钓检查清单</h3>
+            <button class="link-btn" id="resetChecks" type="button">重置勾选</button>
+          </div>
+          <div class="checklist">
+            <label class="check"><input type="checkbox" data-check="c1"><span>浮漂提前泡水 10 分钟，检查漂尾有无裂纹</span></label>
+            <label class="check"><input type="checkbox" data-check="c2"><span>铅皮多带几片，修铅刀 / 剪刀放包里</span></label>
+            <label class="check"><input type="checkbox" data-check="c3"><span>子线多备几副，长短各一组</span></label>
+            <label class="check"><input type="checkbox" data-check="c4"><span>到钓点先试水深，记住最深的位置</span></label>
+            <label class="check"><input type="checkbox" data-check="c5"><span>重铅找底 → 下拉半水 → 剪铅到 4 目</span></label>
+            <label class="check"><input type="checkbox" data-check="c6"><span>挂双饵测压目，记下「双饵压几目」</span></label>
+            <label class="check"><input type="checkbox" data-check="c7"><span>挂饵找底到 2~3 目，抛 3 竿验证稳定</span></label>
+            <label class="check"><input type="checkbox" data-check="c8"><span>开钓 30 分钟后按鱼口微调，每次 0.5~1 目</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 09 FAQ ============ -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-tag">09 · 答疑</p>
+        <h2>几个常见问题</h2>
+        <p class="sec-sub">都是新手问得最多的，答案尽量说人话。</p>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>「调四钓二」是万能的吗？</summary>
+          <div class="faq-body">
+            <p>不是。它只是「下饵触底、上饵悬浮」的一个标准起点。如果你的双饵压不到 2 目，照搬调四钓二，钩饵可能还悬着；如果饵很重，又可能直接过底。</p>
+            <p>正确做法是先测「双饵压几目」，再决定钓几目。调四钓二可以当默认值，但别当铁律。</p>
+          </div>
+        </details>
+        <details>
+          <summary>为什么我的钓目一直在变？</summary>
+          <div class="faq-body">
+            <p>常见原因有五个：① 饵在雾化、脱落，重量变轻，钓目升高；② 风线没压，风把漂拉走；③ 水底不平或有斜坡；④ 浮漂吸水；⑤ 每竿抛的位置不一样。</p>
+            <p>先固定落点、压风线，再连抛三竿看是否稳定。还变，就换一个平整的钓点重新找底。</p>
+          </div>
+        </details>
+        <details>
+          <summary>拉饵换成搓饵，要重新调漂吗？</summary>
+          <div class="faq-body">
+            <p>调目不用重调，但钓目一定要校。拉饵轻，压下去的目数少；搓饵重，压下去的多。换饵后先半水看「双饵压几目」，再决定钓几目，否则钩饵状态会悄悄变掉。</p>
+          </div>
+        </details>
+        <details>
+          <summary>加粗尾的浮漂怎么调？</summary>
+          <div class="faq-body">
+            <p>加粗那几目的浮力大，饵压下去的目数会变少，灵敏度也低。两个办法：一是调低目（比如调 2~3 目），二是把加粗部分当「看不见」，只按细尾的目数算。</p>
+            <p>钓轻口、冬天，不建议用加粗尾；看不清楚可以换扁尾或放大镜，但别牺牲灵敏度。</p>
+          </div>
+        </details>
+        <details>
+          <summary>什么是「调平水钓两目」？</summary>
+          <div class="faq-body">
+            <p>调目是 0（漂尾和水面齐平），钓 2 目。属于偏钝的钓法，铅坠接近水底，子线弯曲，适合走水、小鱼多、守大鱼。它和「跑铅」是一个思路，只是没把铅皮座完全放开。</p>
+          </div>
+        </details>
+        <details>
+          <summary>「无钩调目」到底有什么用？</summary>
+          <div class="faq-body">
+            <p>它是「铅坠将要到底」的临界点，也就是你这套线组的最钝点。知道它，你就知道自己的钓目还有多少「钝」的空间——钓目超过它，铅坠就到底了，信号会明显变慢。</p>
+            <p>测法很简单：调好空钩 4 目后，把双钩剪掉（或用快速别针取下），半水抛一竿，看露几目。</p>
+          </div>
+        </details>
+        <details>
+          <summary>水深超过 3 米怎么调？</summary>
+          <div class="faq-body">
+            <p>换吃铅大的漂、加大铅，调目调高（6~7 目），钓 4~5 目。水越深，水线越长，信号衰减越厉害，所以要「调高钓低」让水线绷直，饵也能快速到底。</p>
+            <p>注意：大漂配小饵时，双饵可能压不下几目，钓底前一定要重新测压目。</p>
+          </div>
+        </details>
+        <details>
+          <summary>冬天鱼口轻，怎么调？</summary>
+          <div class="faq-body">
+            <p>小漂、细尾、细线、小钩；调低目（2~3 目），钓低目（1~2 目），让饵轻触底，减少挡口。饵要小、软、轻，别搓大团。</p>
+            <p>如果漂只有微微一点动作，先换小一号的线组，比一味改钓目更有效。</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10 记录表 ============ -->
+  <section class="section tint" id="record">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-tag">10 · 记录</p>
+        <h2>好记性不如一张表</h2>
+        <p class="sec-sub">同一片水域钓三次，你就有自己的「调钓数据库」了。打印后手写，比记在手机里更顺手。</p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>日期</th>
+              <th>钓点 / 水深</th>
+              <th>调目</th>
+              <th>钓目</th>
+              <th>饵料</th>
+              <th>鱼获</th>
+              <th>备注（漂相 / 调整）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note info">
+        <span class="note-label">i</span>
+        <p><b>记录三件事就够了：</b>当天的调目、钓目，以及中鱼时浮漂是什么动作。下次再来，直接从这组数字开始试。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p>台钓调漂指南 · 从「调四钓二」到看口微调</p>
+    <p>数值为通用起点，实际作钓请结合水域、鱼情和装备调整。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部">↑</button>
+
+<script>
+  (function () {
+    'use strict';
+
+    var figure = document.querySelector('.hero-figure');
+    var diagram = document.getElementById('heroDiagram');
+    var replayBtn = document.getElementById('biteReplay');
+    var toggleBtn = document.getElementById('biteToggle');
+    var toggleIcon = document.getElementById('biteToggleIcon');
+    var toggleText = document.getElementById('biteToggleText');
+
+    var reduceMotion = window.matchMedia
+      ? window.matchMedia('(prefers-reduced-motion: reduce)')
+      : { matches: false };
+    var playing = !reduceMotion.matches;
+
+    function render() {
+      if (!figure) return;
+      figure.classList.toggle('is-playing', playing);
+      figure.classList.toggle('is-paused', !playing);
+      if (toggleBtn) {
+        toggleBtn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+        toggleBtn.setAttribute('aria-label', playing ? '暂停咬钩动画' : '播放咬钩动画');
+      }
+      if (toggleIcon) toggleIcon.textContent = playing ? '❚❚' : '▶';
+      if (toggleText) toggleText.textContent = playing ? '暂停' : '播放';
+    }
+
+    render();
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function () {
+        playing = !playing;
+        render();
+      });
+    }
+
+    // 放大查看
+    var zoomBtn = document.getElementById('figureZoom');
+    var zoomText = document.getElementById('figureZoomText');
+    var backdrop = document.getElementById('figureBackdrop');
+    var zoomed = false;
+
+    function setZoom(on) {
+      if (!figure || !zoomBtn) return;
+      zoomed = !!on;
+      figure.classList.toggle('is-zoomed', zoomed);
+      document.body.classList.toggle('figure-zoom-open', zoomed);
+      zoomBtn.setAttribute('aria-pressed', zoomed ? 'true' : 'false');
+      zoomBtn.setAttribute('aria-label', zoomed ? '缩小示意图' : '放大示意图');
+      if (zoomText) zoomText.textContent = zoomed ? '缩小' : '放大';
+    }
+
+    if (zoomBtn) {
+      zoomBtn.addEventListener('click', function () { setZoom(!zoomed); });
+    }
+    if (backdrop) {
+      backdrop.addEventListener('click', function () { setZoom(false); });
+    }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && zoomed) setZoom(false);
+    });
+
+    if (replayBtn) {
+      replayBtn.addEventListener('click', function () {
+        if (!diagram) return;
+        // 取出所有动画元素，移除动画后强制回流，再重新挂上
+        var animated = diagram.querySelectorAll('#fishGroup,#fishTail,#floatGroup,#floatAnnotations,#biteBadge,#rippleA,#rippleB,#bubbleA,#bubbleB,#bubbleC');
+        figure.classList.remove('is-playing', 'is-paused');
+        void diagram.getBoundingClientRect();
+        Array.prototype.forEach.call(animated, function (el) {
+          el.style.animation = 'none';
+        });
+        void diagram.getBoundingClientRect();
+        Array.prototype.forEach.call(animated, function (el) {
+          el.style.animation = '';
+        });
+        playing = true;
+        render();
+        void diagram.getBoundingClientRect();
+      });
+    }
+
+    // 示意图滚出视口时暂停，省电
+    if (figure && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          figure.classList.toggle('is-offscreen', !entry.isIntersecting);
+        });
+      }, { threshold: 0.02 });
+      io.observe(figure);
+    }
+
+    // 打印前停住动画，避免定格在半空
+    window.addEventListener('beforeprint', function () {
+      if (figure) figure.classList.add('is-print');
+    });
+    window.addEventListener('afterprint', function () {
+      if (figure) figure.classList.remove('is-print');
+    });
+  })();
+
+(function () {
+  'use strict';
+
+  var progress = document.getElementById('progress');
+  var backtop = document.getElementById('backtop');
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+  var sections = navLinks.map(function (a) {
+    return document.querySelector(a.getAttribute('href'));
+  }).filter(Boolean);
+  var ticking = false;
+
+  function update() {
+    var doc = document.documentElement;
+    var scrollTop = window.scrollY || doc.scrollTop;
+    var max = doc.scrollHeight - window.innerHeight;
+    var pct = max > 0 ? Math.min(100, (scrollTop / max) * 100) : 0;
+
+    if (progress) progress.style.width = pct + '%';
+    if (backtop) backtop.classList.toggle('show', scrollTop > 700);
+
+    var current = sections[0];
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].offsetTop <= scrollTop + 90) current = sections[i];
+    }
+    var navBox = document.querySelector('.nav');
+    navLinks.forEach(function (a) {
+      var isCurrent = current && a.getAttribute('href') === '#' + current.id;
+      a.classList.toggle('active', isCurrent);
+      if (isCurrent && navBox && navBox.scrollWidth > navBox.clientWidth + 4) {
+        var target = a.offsetLeft - (navBox.clientWidth - a.offsetWidth) / 2;
+        if (target > 0) navBox.scrollLeft = target;
+      }
+    });
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+
+  if (backtop) {
+    backtop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  var printBtn = document.getElementById('printBtn');
+  if (printBtn) printBtn.addEventListener('click', function () { window.print(); });
+
+  // 清单勾选记忆
+  var checks = document.querySelectorAll('.check input[data-check]');
+  Array.prototype.forEach.call(checks, function (el) {
+    var key = 'taidiao-check-' + el.getAttribute('data-check');
+    try {
+      if (window.localStorage.getItem(key) === '1') el.checked = true;
+    } catch (e) { /* file:// 下可能不可用，忽略 */ }
+    el.addEventListener('change', function () {
+      try {
+        window.localStorage.setItem(key, el.checked ? '1' : '0');
+      } catch (e) { /* 忽略 */ }
+    });
+  });
+
+  var resetBtn = document.getElementById('resetChecks');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function () {
+      Array.prototype.forEach.call(checks, function (el) {
+        el.checked = false;
+        try {
+          window.localStorage.setItem('taidiao-check-' + el.getAttribute('data-check'), '0');
+        } catch (e) { /* 忽略 */ }
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

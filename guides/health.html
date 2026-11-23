@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日常健康指南 — 正确坐姿 · 每日营养摄入 · 衣物换洗频率</title>
+<style>
+  :root{
+    --blue:#2563eb; --blue-dark:#1d4ed8; --blue-light:#eff6ff; --blue-border:#bfdbfe;
+    --ink:#0f172a; --text:#334155; --muted:#64748b; --line:#e2e8f0;
+    --bg:#f1f5f9; --card:#ffffff;
+    --green:#059669; --green-light:#ecfdf5; --green-border:#a7f3d0;
+    --orange:#d97706; --orange-light:#fffbeb; --orange-border:#fde68a;
+    --red:#dc2626; --red-light:#fef2f2; --red-border:#fecaca;
+    --purple:#7c3aed; --purple-light:#f5f3ff;
+    --teal:#0d9488;
+    --radius:14px;
+    --shadow:0 1px 2px rgba(15,23,42,.04), 0 4px 16px -6px rgba(15,23,42,.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.72;
+    font-size:15px; -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      radial-gradient(900px 320px at 12% -10%, #dbeafe 0%, transparent 62%),
+      radial-gradient(700px 300px at 92% 6%, #e0f2fe 0%, transparent 60%),
+      linear-gradient(180deg,#ffffff 0%, #f8fafc 100%);
+    border-bottom:1px solid var(--line);
+    padding:56px 24px 34px;
+  }
+  .hero-inner{max-width:1080px;margin:0 auto;}
+  .eyebrow{
+    font-size:11px;letter-spacing:.22em;font-weight:700;color:var(--blue);
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:clamp(28px,4.2vw,40px);line-height:1.22;color:var(--ink);
+    letter-spacing:-.02em;font-weight:800;margin-bottom:12px;
+  }
+  .hero h1 em{font-style:normal;color:var(--blue);}
+  .lede{font-size:15px;color:var(--muted);max-width:660px;margin-bottom:28px;}
+  .hero-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:720px;}
+  .stat{
+    background:rgba(255,255,255,.82);border:1px solid var(--line);border-radius:12px;
+    padding:14px 16px;backdrop-filter:blur(6px);
+  }
+  .stat b{display:block;font-size:20px;color:var(--ink);font-weight:750;letter-spacing:-.01em;}
+  .stat span{font-size:11.5px;color:var(--muted);letter-spacing:.02em;}
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+    backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;
+    gap:6px;height:54px;overflow-x:auto;scrollbar-width:none;
+  }
+  .nav-inner::-webkit-scrollbar{display:none;}
+  .nav-brand{font-size:13px;font-weight:750;color:var(--ink);margin-right:auto;white-space:nowrap;}
+  .nav a{
+    font-size:13px;font-weight:600;color:var(--muted);text-decoration:none;
+    padding:6px 14px;border-radius:20px;white-space:nowrap;transition:.18s;
+  }
+  .nav a:hover{color:var(--blue);background:var(--blue-light);}
+  .nav a.active{color:#fff;background:var(--blue);}
+
+  /* ---------- Layout ---------- */
+  main{max-width:1080px;margin:0 auto;padding:32px 24px 20px;}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:34px;margin-bottom:24px;box-shadow:var(--shadow);
+    scroll-margin-top:72px;
+  }
+  h2{
+    font-size:22px;color:var(--ink);font-weight:750;letter-spacing:-.01em;
+    padding-bottom:14px;margin-bottom:8px;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;gap:12px;
+  }
+  h2 .badge{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-width:34px;height:26px;padding:0 9px;border-radius:7px;
+    background:var(--blue);color:#fff;font-size:13px;font-weight:700;letter-spacing:.02em;
+  }
+  .sec-sub{font-size:13.5px;color:var(--muted);margin:12px 0 4px;}
+  h3{font-size:16px;color:var(--ink);font-weight:700;margin:32px 0 12px;
+     display:flex;align-items:center;gap:8px;}
+  h3::before{content:"";width:3px;height:15px;border-radius:2px;background:var(--blue);}
+  h4{font-size:13.5px;color:var(--ink);font-weight:700;margin:16px 0 6px;}
+  p{font-size:14px;color:var(--text);}
+  .note{font-size:12.5px;color:var(--muted);line-height:1.75;}
+
+  /* ---------- Diagram ---------- */
+  .diagram-wrap{
+    border:1px solid var(--line);border-radius:12px;background:
+      linear-gradient(180deg,#fbfdff 0%, #f8fafc 100%);
+    padding:8px 10px 4px;margin:14px 0 8px;
+  }
+  .diagram{display:block;width:100%;height:auto;}
+  .diagram text{font-family:inherit;font-size:11px;fill:#475569;}
+  .diagram .lbl-ok{fill:#047857;font-weight:600;}
+  .diagram .lbl-bad{fill:#b91c1c;font-weight:600;}
+  .diagram .lbl-key{fill:#0f172a;font-weight:700;font-size:12px;}
+  .diagram .leader{stroke:#10b981;stroke-width:1.1;fill:none;}
+  .diagram .leader-bad{stroke:#ef4444;stroke-width:1.1;fill:none;}
+  .diagram .dot{fill:#10b981;}
+  .diagram .dot-bad{fill:#ef4444;}
+  .figcap{font-size:11.5px;color:var(--muted);text-align:center;padding:4px 0 10px;}
+  .swipe-hint{display:none;color:var(--blue);font-weight:600;}
+
+  .legend{display:flex;flex-wrap:wrap;gap:16px;margin:10px 0 0;font-size:12px;color:var(--muted);}
+  .legend i{display:inline-block;width:18px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle;}
+
+  /* ---------- Point grid ---------- */
+  .points{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:12px;margin:14px 0;}
+  .point{
+    border:1px solid var(--line);border-radius:10px;padding:13px 15px;background:#fcfdff;
+    position:relative;padding-left:44px;
+  }
+  .point .n{
+    position:absolute;left:13px;top:13px;width:21px;height:21px;border-radius:6px;
+    background:var(--blue-light);color:var(--blue);font-size:11.5px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .point strong{display:block;font-size:13.5px;color:var(--ink);margin-bottom:2px;}
+  .point span{font-size:12.5px;color:var(--muted);line-height:1.6;}
+
+  /* ---------- Tables ---------- */
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:12px 0 6px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;min-width:560px;}
+  th,td{border-bottom:1px solid var(--line);padding:9px 14px;text-align:left;vertical-align:top;}
+  th{
+    background:#f8fafc;color:#475569;font-size:11.5px;font-weight:700;
+    letter-spacing:.04em;text-transform:uppercase;position:sticky;top:0;
+  }
+  tr:last-child td{border-bottom:none;}
+  tbody tr:hover td{background:#fbfdff;}
+  td.k{font-weight:700;color:var(--ink);white-space:nowrap;}
+  td .u{color:var(--muted);font-size:12px;}
+  .num{font-variant-numeric:tabular-nums;font-weight:600;color:var(--blue-dark);white-space:nowrap;}
+
+  /* ---------- Callouts ---------- */
+  .callout{border-radius:10px;padding:14px 16px;margin:14px 0;font-size:13px;line-height:1.7;}
+  .callout b{font-weight:700;}
+  .c-tip{background:var(--green-light);border-left:3px solid var(--green);color:#065f46;}
+  .c-warn{background:var(--red-light);border-left:3px solid var(--red);color:#991b1b;}
+  .c-info{background:var(--blue-light);border-left:3px solid var(--blue);color:#1e40af;}
+  .c-note{background:var(--orange-light);border-left:3px solid var(--orange);color:#92400e;}
+
+  /* ---------- Calculator ---------- */
+  .calc{
+    border:1px solid var(--blue-border);border-radius:12px;overflow:hidden;margin:16px 0 8px;
+    background:linear-gradient(180deg,#f8fbff 0%,#ffffff 100%);
+  }
+  .calc-head{
+    background:var(--blue-light);padding:11px 18px;font-size:13px;font-weight:700;
+    color:var(--blue-dark);display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid var(--blue-border);
+  }
+  .calc-body{display:grid;grid-template-columns:1fr 1.25fr;gap:0;}
+  .calc-inputs{padding:20px;border-right:1px solid var(--line);}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:11.5px;font-weight:700;color:var(--muted);
+    letter-spacing:.04em;margin-bottom:5px;text-transform:uppercase;}
+  .field input,.field select{
+    width:100%;padding:9px 12px;font-size:14px;font-family:inherit;color:var(--ink);
+    border:1px solid var(--line);border-radius:8px;background:#fff;outline:none;transition:.16s;
+  }
+  .field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.10);}
+  .calc-out{padding:20px;}
+  .out-main{display:flex;align-items:baseline;gap:10px;margin-bottom:2px;}
+  .out-main .v{font-size:38px;font-weight:800;color:var(--blue);letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1;}
+  .out-main .unit{font-size:13px;color:var(--muted);font-weight:600;}
+  .out-sub{font-size:12px;color:var(--muted);margin-bottom:16px;}
+  .macro{margin-bottom:11px;}
+  .macro-top{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px;}
+  .macro-top b{color:var(--ink);font-weight:700;}
+  .macro-top span{color:var(--muted);font-variant-numeric:tabular-nums;}
+  .bar{height:7px;border-radius:4px;background:#eef2f7;overflow:hidden;}
+  .bar i{display:block;height:100%;border-radius:4px;transition:width .35s cubic-bezier(.4,0,.2,1);}
+  .b-p{background:linear-gradient(90deg,#3b82f6,#60a5fa);}
+  .b-f{background:linear-gradient(90deg,#f59e0b,#fbbf24);}
+  .b-c{background:linear-gradient(90deg,#10b981,#34d399);}
+  .b-w{background:linear-gradient(90deg,#06b6d4,#22d3ee);}
+  .micro-row{display:flex;gap:10px;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);}
+  .micro{flex:1;text-align:center;}
+  .micro b{display:block;font-size:15px;color:var(--ink);font-weight:750;font-variant-numeric:tabular-nums;}
+  .micro span{font-size:10.5px;color:var(--muted);}
+
+  /* ---------- Food grid ---------- */
+  .food-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0;}
+  .food{
+    border:1px solid var(--line);border-radius:10px;padding:13px;background:#fff;
+    position:relative;overflow:hidden;
+  }
+  .food::after{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:var(--fc,#cbd5e1);}
+  .food .ico{font-size:17px;line-height:1;margin-bottom:6px;display:block;}
+  .food .cat{font-size:12px;font-weight:700;color:var(--ink);}
+  .food .amt{font-size:16px;font-weight:800;color:var(--blue-dark);letter-spacing:-.01em;
+    font-variant-numeric:tabular-nums;margin:2px 0 1px;}
+  .food .amt small{font-size:11px;font-weight:600;color:var(--muted);}
+  .food .tip{font-size:11px;color:var(--muted);line-height:1.5;}
+
+  /* ---------- Laundry ---------- */
+  .freq-group{margin:18px 0 6px;}
+  .freq-head{
+    display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:9px 9px 0 0;
+    font-size:13px;font-weight:700;
+  }
+  .freq-head .dotc{width:9px;height:9px;border-radius:50%;flex:none;}
+  .freq-head .cnt{margin-left:auto;font-size:11px;font-weight:600;opacity:.75;}
+  .fg-red{background:var(--red-light);color:#991b1b;}
+  .fg-red .dotc{background:var(--red);}
+  .fg-orange{background:var(--orange-light);color:#92400e;}
+  .fg-orange .dotc{background:var(--orange);}
+  .fg-blue{background:var(--blue-light);color:#1e40af;}
+  .fg-blue .dotc{background:var(--blue);}
+  .fg-green{background:var(--green-light);color:#065f46;}
+  .fg-green .dotc{background:var(--green);}
+  .freq-body{
+    border:1px solid var(--line);border-top:none;border-radius:0 0 9px 9px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(292px,1fr));
+  }
+  .item{
+    padding:12px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    display:flex;align-items:center;gap:10px;min-width:0;
+  }
+  .item:last-child{border-right:none;}
+  .item .em{font-size:16px;flex:none;width:22px;text-align:center;}
+  .item .tx{font-size:13px;color:var(--ink);font-weight:600;line-height:1.4;min-width:0;}
+  .item .tx small{display:block;font-size:11px;color:var(--muted);font-weight:400;}
+  .item .fr{
+    margin-left:auto;font-size:10.5px;font-weight:800;white-space:nowrap;
+    padding:2px 7px;border-radius:5px;background:#f1f5f9;color:#475569;flex:none;
+  }
+
+  /* ---------- Timer ---------- */
+  .timer-box{
+    display:flex;align-items:center;gap:26px;flex-wrap:wrap;
+    border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:16px 0 4px;
+    background:linear-gradient(135deg,#f8fbff,#ffffff);
+  }
+  .ring{position:relative;width:112px;height:112px;flex:none;}
+  .ring svg{transform:rotate(-90deg);}
+  .ring .val{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+  }
+  .ring .val b{font-size:23px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;}
+  .ring .val span{font-size:10px;color:var(--muted);margin-top:3px;letter-spacing:.06em;}
+  .timer-txt{flex:1;min-width:230px;}
+  .timer-txt h4{margin:0 0 4px;font-size:14px;}
+  .timer-txt p{font-size:12.5px;color:var(--muted);line-height:1.65;}
+  .timer-btns{display:flex;gap:8px;margin-top:12px;}
+  .btn{
+    font-family:inherit;font-size:13px;font-weight:650;padding:8px 18px;border-radius:8px;
+    border:1px solid transparent;cursor:pointer;transition:.16s;
+  }
+  .btn-p{background:var(--blue);color:#fff;}
+  .btn-p:hover{background:var(--blue-dark);}
+  .btn-g{background:#fff;color:var(--text);border-color:var(--line);}
+  .btn-g:hover{background:#f8fafc;border-color:#cbd5e1;}
+  .timer-box.done{border-color:var(--green-border);background:var(--green-light);}
+
+  /* ---------- Misc ---------- */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  .mini{background:#fbfdff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;}
+  .mini h4{margin-top:0;}
+  .mini ul{margin:6px 0 0 18px;font-size:12.5px;color:var(--text);line-height:1.85;}
+  .mini li{margin-bottom:2px;}
+
+  .chip{display:inline-block;font-size:10.5px;font-weight:800;padding:2px 7px;
+    border-radius:5px;letter-spacing:.03em;vertical-align:middle;}
+  .chip-r{background:#fee2e2;color:#991b1b;}
+  .chip-o{background:#fef3c7;color:#92400e;}
+  .chip-b{background:#dbeafe;color:#1e40af;}
+  .chip-g{background:#d1fae5;color:#065f46;}
+
+  footer{
+    max-width:1080px;margin:0 auto;padding:0 24px 60px;
+    font-size:11.5px;color:var(--muted);line-height:1.95;
+  }
+  footer .fline{height:1px;background:var(--line);margin-bottom:18px;}
+  footer b{color:#475569;}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  @media (max-width:820px){
+    .card{padding:24px 18px;}
+    .calc-body{grid-template-columns:1fr;}
+    .calc-inputs{border-right:none;border-bottom:1px solid var(--line);}
+    .grid2{grid-template-columns:1fr;}
+    .hero-stats{grid-template-columns:1fr;gap:8px;}
+    .stat{display:flex;align-items:baseline;gap:10px;}
+    .stat b{font-size:17px;}
+    .freq-body{grid-template-columns:1fr;}
+    .item{border-right:none;}
+    .nav-brand{display:none;}
+    .diagram-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+    .diagram{min-width:600px;}
+    .figcap{font-size:11px;}
+    .swipe-hint{display:inline;}
+  }
+  @media (max-width:600px){
+    table{font-size:11.5px;min-width:470px;}
+    th,td{padding:7px 9px;}
+    .tbl-scroll{scrollbar-width:thin;}
+  }
+
+  @media print{
+    body{background:#fff;font-size:11px;}
+    .hero{padding:0 0 12px;background:#fff;border:none;}
+    .nav,.timer-box,.calc{display:none;}
+    main{padding:0;max-width:none;}
+    .card{box-shadow:none;border:none;padding:0 0 18px;margin:0 0 14px;break-inside:auto;}
+    h2{break-after:avoid;}
+    .diagram-wrap{break-inside:avoid;}
+    .tbl-scroll{overflow:visible;}
+    table{min-width:0;font-size:9.5px;}
+    th,td{padding:4px 7px;}
+    .reveal{opacity:1;transform:none;}
+    footer{padding:0;max-width:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Daily Health Reference</p>
+    <h1>日常健康指南<br><em>坐姿 · 营养 · 衣物换洗</em></h1>
+    <p class="lede">
+      面向 180 cm 成年男性整理的三份日常参考：一套可自查的坐姿标准、一份按体重与活动量估算的每日摄入清单，以及一份可直接贴在衣柜门上的换洗频率表。
+    </p>
+    <div class="hero-stats">
+      <div class="stat"><b>45 min</b><span>久坐起身间隔上限（经验值）</span></div>
+      <div class="stat"><b>2,380–2,680</b><span>千卡 / 日（公式估算·轻至中度活动）</span></div>
+      <div class="stat"><b>90–110 g</b><span>蛋白质 / 日（1.2–1.5 g/kg）</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-brand">日常健康指南</span>
+    <a href="#posture" class="active">一 · 正确坐姿</a>
+    <a href="#nutrition">二 · 每日营养</a>
+    <a href="#laundry">三 · 衣物换洗</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============================================================
+     SECTION 1 · 坐姿
+     ============================================================ -->
+<section class="card reveal" id="posture">
+  <h2><span class="badge">01</span>正确的坐姿</h2>
+  <p class="sec-sub">
+    坐姿问题的核心不是“坐直”，而是让脊柱保持其天然的 S 形曲线，并让桌椅高度匹配你的身体尺寸。
+    下图以 180 cm 男性、标准办公桌椅为比例绘制。
+  </p>
+
+  <!-- 正确坐姿示意图 -->
+  <div class="diagram-wrap">
+    <svg class="diagram" viewBox="0 0 680 400" role="img" aria-label="正确坐姿侧视图：双脚平放、腰背贴合、肘部九十度、屏幕上沿与视线平齐">
+      <!-- 地面 -->
+      <line x1="24" y1="368" x2="656" y2="368" stroke="#cbd5e1" stroke-width="2"/>
+
+      <!-- 桌子 -->
+      <rect x="302" y="217" width="330" height="10" rx="3" fill="#94a3b8"/>
+      <rect x="600" y="227" width="9" height="141" fill="#cbd5e1"/>
+
+      <!-- 椅子 -->
+      <path d="M 218 280 L 206 128" stroke="#94a3b8" stroke-width="13" stroke-linecap="round" fill="none"/>
+      <rect x="195" y="274" width="102" height="13" rx="4" fill="#94a3b8"/>
+      <line x1="206" y1="287" x2="206" y2="368" stroke="#94a3b8" stroke-width="8" stroke-linecap="round"/>
+      <line x1="288" y1="287" x2="288" y2="368" stroke="#94a3b8" stroke-width="8" stroke-linecap="round"/>
+
+      <!-- 显示器 -->
+      <rect x="370" y="100" width="15" height="100" rx="3" fill="#475569"/>
+      <rect x="372" y="107" width="4" height="86" rx="2" fill="#94a3b8"/>
+      <rect x="374" y="200" width="6" height="17" fill="#64748b"/>
+      <rect x="361" y="214" width="32" height="4" rx="2" fill="#64748b"/>
+
+      <!-- 人体 -->
+      <line x1="230" y1="266" x2="233" y2="148" stroke="#334155" stroke-width="13" stroke-linecap="round"/>
+      <line x1="233" y1="148" x2="234" y2="120" stroke="#334155" stroke-width="9" stroke-linecap="round"/>
+      <ellipse cx="236" cy="96" rx="17" ry="24" fill="#334155"/>
+      <circle cx="248" cy="92" r="2.3" fill="#fff"/>
+
+      <line x1="233" y1="154" x2="260" y2="214" stroke="#334155" stroke-width="10" stroke-linecap="round"/>
+      <line x1="260" y1="214" x2="313" y2="211" stroke="#334155" stroke-width="10" stroke-linecap="round"/>
+      <line x1="313" y1="211" x2="332" y2="210" stroke="#334155" stroke-width="9" stroke-linecap="round"/>
+
+      <line x1="230" y1="266" x2="316" y2="270" stroke="#334155" stroke-width="12" stroke-linecap="round"/>
+      <line x1="316" y1="270" x2="322" y2="353" stroke="#334155" stroke-width="11" stroke-linecap="round"/>
+      <line x1="322" y1="353" x2="376" y2="364" stroke="#334155" stroke-width="10" stroke-linecap="round"/>
+
+      <!-- 关节 -->
+      <circle cx="233" cy="148" r="3.4" fill="#fff" stroke="#334155" stroke-width="2"/>
+      <circle cx="260" cy="214" r="3.4" fill="#fff" stroke="#334155" stroke-width="2"/>
+      <circle cx="230" cy="266" r="3.4" fill="#fff" stroke="#334155" stroke-width="2"/>
+      <circle cx="316" cy="270" r="3.4" fill="#fff" stroke="#334155" stroke-width="2"/>
+
+      <!-- 角度弧 -->
+      <path d="M 260 194 A 20 20 0 0 1 280 214" stroke="#10b981" stroke-width="1.6" fill="none"/>
+      <path d="M 230 246 A 20 20 0 0 1 250 266" stroke="#10b981" stroke-width="1.6" fill="none"/>
+      <path d="M 296 270 A 20 20 0 0 0 316 290" stroke="#10b981" stroke-width="1.6" fill="none"/>
+
+      <!-- 标注 1：头颈 -->
+      <circle cx="236" cy="72" r="3" fill="#10b981"/>
+      <polyline points="236,68 236,42 222,42" stroke="#10b981" stroke-width="1.1" fill="none"/>
+      <text x="218" y="46" text-anchor="end" fill="#047857" font-weight="600">头部中立 · 耳垂、肩峰、髋成一线</text>
+
+      <!-- 标注 2：屏幕 -->
+      <circle cx="377" cy="100" r="3" fill="#10b981"/>
+      <polyline points="377,96 377,66 392,66" stroke="#10b981" stroke-width="1.1" fill="none"/>
+      <text x="396" y="70" fill="#047857" font-weight="600">屏幕上沿与视线平齐，距离 55–70 cm</text>
+
+      <!-- 标注 3：腰 -->
+      <circle cx="224" cy="210" r="3" fill="#10b981"/>
+      <polyline points="220,210 190,210 190,180" stroke="#10b981" stroke-width="1.1" fill="none"/>
+      <text x="186" y="176" text-anchor="end" fill="#047857" font-weight="600">腰部贴合靠背，有支撑</text>
+
+      <!-- 标注 4：肘 -->
+      <circle cx="260" cy="214" r="3" fill="#10b981"/>
+      <polyline points="256,222 256,250 270,250" stroke="#10b981" stroke-width="1.1" fill="none"/>
+      <text x="274" y="254" fill="#047857" font-weight="600">肘约 90°，前臂平放桌面</text>
+
+      <!-- 标注 5：髋膝 -->
+      <circle cx="316" cy="270" r="3" fill="#10b981"/>
+      <polyline points="322,278 352,278 352,302" stroke="#10b981" stroke-width="1.1" fill="none"/>
+      <text x="356" y="306" fill="#047857" font-weight="600">髋、膝各约 90°–100°</text>
+
+      <!-- 标注 6：双脚 -->
+      <circle cx="376" cy="364" r="3" fill="#10b981"/>
+      <polyline points="380,362 400,340 414,340" stroke="#10b981" stroke-width="1.1" fill="none"/>
+      <text x="418" y="344" fill="#047857" font-weight="600">双脚平放，膝不内扣</text>
+
+      <text x="30" y="392" fill="#94a3b8" font-size="10">比例 1 cm ≈ 2.1 px · 桌椅按 180 cm 男性标准尺寸绘制</text>
+    </svg>
+  </div>
+  <p class="figcap"><span class="swipe-hint">← 左右滑动查看完整图示 · </span>正确坐姿：脊柱保持天然 S 曲线，受力沿骨骼传导，肌肉只需维持平衡。</p>
+
+  <h3>七个可自查的关键点</h3>
+  <div class="points">
+    <div class="point"><span class="n">1</span><strong>双脚踏实地面</strong><span>全脚掌着地，膝角 90°–100°，膝盖略低于或平齐髋部。脚悬空会让大腿后侧受压。</span></div>
+    <div class="point"><span class="n">2</span><strong>臀部坐满椅面</strong><span>臀后部顶到靠背与座面交界，不要只坐前 1/3，也不要瘫坐前滑。</span></div>
+    <div class="point"><span class="n">3</span><strong>腰部有支撑</strong><span>靠背应填满腰后的空隙。空隙约一拳时，用 3–5 cm 厚的腰靠补足。</span></div>
+    <div class="point"><span class="n">4</span><strong>肩部放松下沉</strong><span>不耸肩、不含胸。锁骨展开，肩胛骨自然贴回胸廓。</span></div>
+    <div class="point"><span class="n">5</span><strong>肘部约 90°</strong><span>上臂自然下垂，前臂与桌面平行，手腕中立不翘起。肘角过小说明桌面偏高。</span></div>
+    <div class="point"><span class="n">6</span><strong>屏幕上沿齐视线</strong><span>平视时视线落在屏幕上沿或略下方，屏幕距眼睛 55–70 cm（约一臂长，经验值）。</span></div>
+    <div class="point"><span class="n">7</span><strong>每 30–45 分钟起身</strong><span>经验性建议：任何“完美坐姿”持续过久都会造成静态负荷，起身 2–3 分钟即可重置压力分布。</span></div>
+  </div>
+
+  <div class="callout c-info">
+    <b>一句话判断法：</b>从侧面拍一张自己办公时的照片，画一条从耳垂 → 肩峰 → 髋部的直线。
+    三点接近一条垂直线，且腰后没有明显空隙，基本就是合格坐姿。
+  </div>
+
+  <h3>常见错误姿势对照</h3>
+  <div class="diagram-wrap">
+    <svg class="diagram" viewBox="0 0 680 400" role="img" aria-label="错误坐姿侧视图：头前伸、含胸驼背、腰部悬空、膝关节锁死">
+      <line x1="24" y1="368" x2="656" y2="368" stroke="#cbd5e1" stroke-width="2"/>
+
+      <rect x="302" y="217" width="330" height="10" rx="3" fill="#e2e8f0"/>
+      <rect x="600" y="227" width="9" height="141" fill="#eef2f7"/>
+
+      <path d="M 218 280 L 206 128" stroke="#e2e8f0" stroke-width="13" stroke-linecap="round" fill="none"/>
+      <rect x="195" y="274" width="102" height="13" rx="4" fill="#e2e8f0"/>
+      <line x1="206" y1="287" x2="206" y2="368" stroke="#e2e8f0" stroke-width="8" stroke-linecap="round"/>
+      <line x1="288" y1="287" x2="288" y2="368" stroke="#e2e8f0" stroke-width="8" stroke-linecap="round"/>
+
+      <rect x="370" y="100" width="15" height="100" rx="3" fill="#94a3b8"/>
+      <rect x="372" y="107" width="4" height="86" rx="2" fill="#cbd5e1"/>
+      <rect x="374" y="200" width="6" height="17" fill="#cbd5e1"/>
+      <rect x="361" y="214" width="32" height="4" rx="2" fill="#cbd5e1"/>
+
+      <!-- 错误人体：髋前滑 + 驼背 + 头前伸 -->
+      <path d="M 250 272 L 222 214 L 256 154" stroke="#dc2626" stroke-width="13"
+            fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="256" y1="154" x2="268" y2="132" stroke="#dc2626" stroke-width="9" stroke-linecap="round"/>
+      <ellipse cx="276" cy="110" rx="17" ry="24" fill="#dc2626"/>
+      <circle cx="288" cy="108" r="2.3" fill="#fff"/>
+
+      <line x1="256" y1="158" x2="292" y2="214" stroke="#dc2626" stroke-width="10" stroke-linecap="round"/>
+      <line x1="292" y1="214" x2="334" y2="210" stroke="#dc2626" stroke-width="10" stroke-linecap="round"/>
+
+      <line x1="250" y1="272" x2="340" y2="282" stroke="#dc2626" stroke-width="12" stroke-linecap="round"/>
+      <line x1="340" y1="282" x2="396" y2="346" stroke="#dc2626" stroke-width="11" stroke-linecap="round"/>
+      <path d="M 396 346 L 392 364 L 424 338" stroke="#dc2626" stroke-width="10"
+            fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <circle cx="256" cy="154" r="3.4" fill="#fff" stroke="#dc2626" stroke-width="2"/>
+      <circle cx="292" cy="214" r="3.4" fill="#fff" stroke="#dc2626" stroke-width="2"/>
+      <circle cx="250" cy="272" r="3.4" fill="#fff" stroke="#dc2626" stroke-width="2"/>
+      <circle cx="340" cy="282" r="3.4" fill="#fff" stroke="#dc2626" stroke-width="2"/>
+
+      <!-- 标注 -->
+      <circle cx="276" cy="86" r="3" fill="#dc2626"/>
+      <polyline points="276,82 276,56 300,56" stroke="#ef4444" stroke-width="1.1" fill="none"/>
+      <text x="304" y="60" fill="#b91c1c" font-weight="600">头前伸：颈椎负荷显著上升</text>
+
+      <circle cx="236" cy="190" r="3" fill="#dc2626"/>
+      <polyline points="232,190 174,190 174,160" stroke="#ef4444" stroke-width="1.1" fill="none"/>
+      <text x="170" y="156" text-anchor="end" fill="#b91c1c" font-weight="600">含胸驼背，胸廓受压</text>
+
+      <circle cx="218" cy="214" r="3" fill="#dc2626"/>
+      <polyline points="214,214 150,214 150,248" stroke="#ef4444" stroke-width="1.1" fill="none"/>
+      <text x="146" y="252" text-anchor="end" fill="#b91c1c" font-weight="600">腰部悬空，腰椎后凸</text>
+
+      <circle cx="340" cy="282" r="3" fill="#dc2626"/>
+      <polyline points="336,286 316,308 284,308" stroke="#ef4444" stroke-width="1.1" fill="none"/>
+      <text x="280" y="312" text-anchor="end" fill="#b91c1c" font-weight="600">腿伸过直，膝锁死</text>
+
+      <circle cx="424" cy="338" r="3" fill="#dc2626"/>
+      <polyline points="428,334 444,316 456,316" stroke="#ef4444" stroke-width="1.1" fill="none"/>
+      <text x="460" y="320" fill="#b91c1c" font-weight="600">脚尖上翘、脚跟点地</text>
+
+      <text x="30" y="392" fill="#94a3b8" font-size="10">叠加上述两项以上，即属于需要纠正的坐姿</text>
+    </svg>
+  </div>
+  <p class="figcap"><span class="swipe-hint">← 左右滑动查看完整图示 · </span>错误坐姿：腰背失去支撑、头颈代偿前伸，静态负荷集中于颈椎与腰椎。</p>
+
+  <div class="callout c-warn">
+    <b>关于“挺直腰板”：</b>刻意挺胸、塌腰（过度腰椎前凸）同样是错误姿势，会让竖脊肌持续紧张。
+    正确感觉是“被轻轻托住”，而不是“用力撑住”。如果坐 20 分钟就开始腰酸，说明支撑不足而非姿势不够用力。
+  </div>
+
+  <h3>桌椅尺寸速查（身高 180 cm）</h3>
+  <div class="tbl-scroll">
+    <table>
+      <thead>
+        <tr><th>项目</th><th>参考尺寸</th><th>快速自测</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="k">座椅高度</td><td><span class="num">40–44 cm</span></td><td>双脚平放时，大腿与地面平行，膝角约 90°</td></tr>
+        <tr><td class="k">桌面高度</td><td><span class="num">68–76 cm</span></td><td>肘角 90° 时，前臂能自然平放在桌面</td></tr>
+        <tr><td class="k">桌椅高差</td><td><span class="num">25–32 cm</span></td><td>高差过小 → 耸肩；过大 → 手臂上抬</td></tr>
+        <tr><td class="k">座面深度</td><td><span class="num">40–45 cm</span></td><td>膝后应留出 2–3 指宽空隙，不压迫腘窝</td></tr>
+        <tr><td class="k">靠背高度</td><td><span class="num">肩胛骨下缘以上</span></td><td>能同时支撑腰与中背</td></tr>
+        <tr><td class="k">屏幕距离</td><td><span class="num">55–70 cm（经验值）</span></td><td>约一臂长，伸手可及但无需前倾</td></tr>
+        <tr><td class="k">屏幕上沿</td><td><span class="num">与眼平齐或低 0–5 cm</span></td><td>平视时视线落在屏幕上沿附近</td></tr>
+        <tr><td class="k">键盘倾角</td><td><span class="num">0°（平放）</span></td><td>手背与前臂成一条直线，手腕不上翘</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">
+    桌子偏高而椅子不可调时，优先用脚凳抬高双脚 + 键盘托降低手位；桌子偏低时，用显示器支架抬高屏幕，
+    避免通过“低头 + 弓背”去迁就屏幕高度。
+  </p>
+
+  <h3>久坐提醒</h3>
+  <div class="timer-box" id="timerBox">
+    <div class="ring">
+      <svg width="112" height="112" viewBox="0 0 112 112">
+        <circle cx="56" cy="56" r="49" fill="none" stroke="#e2e8f0" stroke-width="7"/>
+        <circle id="ringFill" cx="56" cy="56" r="49" fill="none" stroke="#2563eb" stroke-width="7"
+                stroke-linecap="round" stroke-dasharray="307.88" stroke-dashoffset="0"/>
+      </svg>
+      <div class="val"><b id="clock">45:00</b><span>剩余</span></div>
+    </div>
+    <div class="timer-txt">
+      <h4>每 45 分钟起身 2–3 分钟</h4>
+      <p>经验性建议：起身接水、走到窗边、做 10 次肩胛后缩。短暂的姿势切换比维持“标准坐姿”更能缓解腰椎压力。</p>
+      <div class="timer-btns">
+        <button class="btn btn-p" id="startBtn">开始计时</button>
+        <button class="btn btn-g" id="resetBtn">重置</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 2 · 营养
+     ============================================================ -->
+<section class="card reveal" id="nutrition">
+  <h2><span class="badge">02</span>成年男性每日营养摄入</h2>
+  <p class="sec-sub">
+    基准：身高 180 cm、体重 75 kg、30 岁、轻体力活动。宏量营养素与维生素矿物质参考《中国居民膳食营养素参考摄入量（2023 版）》
+    与《中国居民膳食指南（2022）》；每日能量与蛋白质为按 Mifflin-St Jeor 公式结合活动系数的估算值，并非指南的 EER 定值，可按实际体重与活动量换算。
+  </p>
+
+  <div class="callout c-note">
+    <b>先确认体重区间：</b>180 cm 对应的健康体重范围为 <b>60.0–77.4 kg</b>（BMI 18.5–23.9）。
+    本页以 75 kg 为计算基准；若体重偏离较多，请用下方计算器重新换算，不要直接套用固定数值。
+  </div>
+
+  <!-- 计算器 -->
+  <div class="calc">
+    <div class="calc-head">⚙ 个性化换算器</div>
+    <div class="calc-body">
+      <div class="calc-inputs">
+        <div class="field">
+          <label for="weight">体重（kg）</label>
+          <input type="number" id="weight" value="75" min="40" max="150" step="0.5">
+        </div>
+        <div class="field">
+          <label for="age">年龄（岁）</label>
+          <input type="number" id="age" value="30" min="18" max="90" step="1">
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label for="activity">活动水平</label>
+          <select id="activity">
+            <option value="1.2">久坐 · 几乎不运动（×1.2）</option>
+            <option value="1.375" selected>轻度 · 每周 1–3 次（×1.375）</option>
+            <option value="1.55">中度 · 每周 3–5 次（×1.55）</option>
+            <option value="1.725">高度 · 每周 6–7 次（×1.725）</option>
+            <option value="1.9">极高 · 体力工作或一天两练（×1.9）</option>
+          </select>
+        </div>
+      </div>
+      <div class="calc-out">
+        <div class="out-main"><span class="v" id="kcalOut">2,380</span><span class="unit">kcal / 日</span></div>
+        <div class="out-sub" id="kcalSub">基础代谢 1,730 kcal × 活动系数 1.375</div>
+
+        <div class="macro">
+          <div class="macro-top"><b>蛋白质</b><span><span id="pOut">90</span> g · <span id="pPct">15</span>% 供能</span></div>
+          <div class="bar"><i class="b-p" id="pBar" style="width:15%"></i></div>
+        </div>
+        <div class="macro">
+          <div class="macro-top"><b>脂肪</b><span><span id="fOut">73</span> g · 27.5% 供能</span></div>
+          <div class="bar"><i class="b-f" id="fBar" style="width:27.5%"></i></div>
+        </div>
+        <div class="macro">
+          <div class="macro-top"><b>碳水化合物</b><span><span id="cOut">341</span> g · <span id="cPct">57</span>% 供能</span></div>
+          <div class="bar"><i class="b-c" id="cBar" style="width:57%"></i></div>
+        </div>
+
+        <div class="micro-row">
+          <div class="micro"><b id="fibOut">33</b><span>膳食纤维 g</span></div>
+          <div class="micro"><b id="waterOut">2,250</b><span>饮水 ml</span></div>
+          <div class="micro"><b>≤5</b><span>食盐 g</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">
+    计算采用 Mifflin-St Jeor 公式：BMR = 10×体重 + 6.25×身高 − 5×年龄 + 5，再乘活动系数得到估算总能量。
+    该结果属公式估算，并非《中国居民膳食营养素参考摄入量》的 EER 值（后者按体力活动水平 PAL 分档给出）。
+    蛋白质按 1.2 g/kg 计（日常健康下限，抗阻训练者可上调至 1.6–2.0 g/kg）；脂肪按 27.5% 供能计；
+    余下热量分配给碳水。饮水按 30 ml/kg 估算（供参考，指南对成年男性的推荐值为 1,700 ml，不含食物中的水）。
+  </p>
+
+  <h3>三大宏量营养素</h3>
+  <div class="tbl-scroll">
+    <table>
+      <thead>
+        <tr><th>营养素</th><th>每日推荐量</th><th>供能占比</th><th>说明与主要来源</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="k">蛋白质</td>
+          <td><span class="num">90–110 g</span></td>
+          <td>15%–20%</td>
+          <td>约 1.2–1.5 g/kg 体重。优质蛋白应占一半以上：鸡蛋、奶类、鱼虾、禽肉、瘦肉、大豆制品。</td>
+        </tr>
+        <tr>
+          <td class="k">脂肪</td>
+          <td><span class="num">65–80 g</span></td>
+          <td>20%–30%</td>
+          <td>饱和脂肪 &lt;10% 供能，反式脂肪尽量为零。来源：坚果、深海鱼、橄榄油、菜籽油。</td>
+        </tr>
+        <tr>
+          <td class="k">碳水化合物</td>
+          <td><span class="num">300–350 g</span></td>
+          <td>50%–65%</td>
+          <td>添加糖 &lt;25 g（上限 50 g）。全谷物与杂豆应占谷物的 1/3 以上。</td>
+        </tr>
+        <tr>
+          <td class="k">膳食纤维</td>
+          <td><span class="num">25–30 g</span></td>
+          <td>—</td>
+          <td>每日 25–30 g。全谷物、豆类、蔬菜、水果、菌菇。突然增量需同步增加饮水。</td>
+        </tr>
+        <tr>
+          <td class="k">水</td>
+          <td><span class="num">1,700 ml</span></td>
+          <td>—</td>
+          <td>指饮水量，成年男性推荐 1,700 ml（《中国居民膳食指南 2022》）；总水含食物约 3,000 ml，高温或大量出汗时按需上调。</td>
+        </tr>
+        <tr>
+          <td class="k">钠 / 食盐</td>
+          <td><span class="num">&lt;2,000 mg / &lt;5 g</span></td>
+          <td>—</td>
+          <td>一啤酒瓶盖平装约 5 g 盐。注意酱油、腌制品、加工肉中的隐形钠。</td>
+        </tr>
+        <tr>
+          <td class="k">酒精</td>
+          <td><span class="num">0（最佳）</span></td>
+          <td>—</td>
+          <td>如饮酒，纯酒精 ≤15 g/日（约啤酒 450 ml、葡萄酒 150 ml、38 度白酒 50 ml）。</td>
+        </tr>
+        <tr>
+          <td class="k">咖啡因</td>
+          <td><span class="num">≤400 mg</span></td>
+          <td>—</td>
+          <td>约 3–4 杯美式。下午 2 点后摄入会影响深睡眠，即使主观无感。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>维生素（18–49 岁成年男性 RNI / AI）</h3>
+  <div class="tbl-scroll">
+    <table>
+      <thead>
+        <tr><th>维生素</th><th>每日推荐量</th><th>可耐受最高量</th><th>主要食物来源</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="k">维生素 A</td><td><span class="num">770 μg RAE</span></td><td>3,000 μg</td><td>动物肝脏、蛋黄、胡萝卜、南瓜、深绿叶菜</td></tr>
+        <tr><td class="k">维生素 D</td><td><span class="num">10 μg（400 IU）</span></td><td>50 μg</td><td>日晒 15–20 分钟；海鱼、蛋黄、强化奶。室内工作者常需补充</td></tr>
+        <tr><td class="k">维生素 E</td><td><span class="num">14 mg α-TE</span></td><td>700 mg</td><td>植物油、坚果、种子、麦胚</td></tr>
+        <tr><td class="k">维生素 K</td><td><span class="num">80 μg</span></td><td>—</td><td>菠菜、西兰花、羽衣甘蓝、纳豆</td></tr>
+        <tr><td class="k">维生素 C</td><td><span class="num">100 mg</span></td><td>2,000 mg</td><td>鲜枣、猕猴桃、青椒、草莓、柑橘</td></tr>
+        <tr><td class="k">维生素 B1（硫胺素）</td><td><span class="num">1.4 mg</span></td><td>—</td><td>全谷物、瘦猪肉、豆类、花生</td></tr>
+        <tr><td class="k">维生素 B2（核黄素）</td><td><span class="num">1.4 mg</span></td><td>—</td><td>奶类、蛋、动物肝脏、瘦肉、绿叶菜</td></tr>
+        <tr><td class="k">维生素 B3（烟酸）</td><td><span class="num">15 mg NE</span></td><td>35 mg</td><td>禽肉、鱼、花生、全谷物</td></tr>
+        <tr><td class="k">维生素 B6</td><td><span class="num">1.4 mg</span></td><td>60 mg</td><td>鸡肉、鱼、土豆、鹰嘴豆、香蕉</td></tr>
+        <tr><td class="k">叶酸（B9）</td><td><span class="num">400 μg DFE</span></td><td>1,000 μg</td><td>深绿叶菜、豆类、动物肝脏、强化谷物</td></tr>
+        <tr><td class="k">维生素 B12</td><td><span class="num">2.4 μg</span></td><td>—</td><td>动物性食品；素食者需强化食品或补充剂</td></tr>
+        <tr><td class="k">泛酸（B5）</td><td><span class="num">5 mg</span></td><td>—</td><td>几乎存在于所有食物，蛋、肉、全谷物含量较高</td></tr>
+        <tr><td class="k">生物素（B7）</td><td><span class="num">40 μg</span></td><td>—</td><td>蛋黄、坚果、大豆、动物肝脏</td></tr>
+        <tr><td class="k">胆碱</td><td><span class="num">450 mg</span></td><td>3,000 mg</td><td>蛋黄、动物肝脏、大豆、鱼类</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>矿物质（18–49 岁成年男性 RNI / AI）</h3>
+  <div class="tbl-scroll">
+    <table>
+      <thead>
+        <tr><th>矿物质</th><th>每日推荐量</th><th>可耐受最高量</th><th>主要食物来源</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="k">钙</td><td><span class="num">800 mg</span></td><td>2,000 mg</td><td>牛奶 300 ml ≈ 320 mg；豆腐、深绿叶菜、小鱼干</td></tr>
+        <tr><td class="k">磷</td><td><span class="num">720 mg</span></td><td>3,500 mg</td><td>肉、蛋、奶、全谷物、坚果</td></tr>
+        <tr><td class="k">钾</td><td><span class="num">2,000 mg</span></td><td>—</td><td>土豆、香蕉、菠菜、豆类、菌菇、橙子</td></tr>
+        <tr><td class="k">镁</td><td><span class="num">330 mg</span></td><td>—（2023 版未设 UL）</td><td>坚果、全谷物、深绿叶菜、黑巧克力</td></tr>
+        <tr><td class="k">铁</td><td><span class="num">12 mg</span></td><td>42 mg</td><td>红肉、动物血、肝脏（血红素铁吸收率高）；维 C 促吸收</td></tr>
+        <tr><td class="k">锌</td><td><span class="num">12.5 mg</span></td><td>40 mg</td><td>牡蛎、牛肉、羊肉、南瓜籽、坚果</td></tr>
+        <tr><td class="k">硒</td><td><span class="num">60 μg</span></td><td>400 μg</td><td>海产品、动物内脏、巴西坚果、蛋</td></tr>
+        <tr><td class="k">碘</td><td><span class="num">120 μg</span></td><td>600 μg</td><td>碘盐、海带、紫菜、海鱼</td></tr>
+        <tr><td class="k">铜</td><td><span class="num">0.8 mg</span></td><td>8 mg</td><td>动物肝脏、坚果、可可、贝类</td></tr>
+        <tr><td class="k">锰</td><td><span class="num">4.5 mg</span></td><td>11 mg</td><td>全谷物、坚果、茶叶、深绿叶菜</td></tr>
+        <tr><td class="k">铬</td><td><span class="num">35 μg</span></td><td>—</td><td>全谷物、西兰花、坚果、肉类</td></tr>
+        <tr><td class="k">钼</td><td><span class="num">25 μg</span></td><td>900 μg</td><td>豆类、全谷物、坚果、动物内脏</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout c-tip">
+    <b>补充剂优先级：</b>在饮食均衡的前提下，通常只有 <b>维生素 D</b>（室内工作者普遍不足）和
+    <b>ω-3 脂肪酸</b>（每周吃不到两次深海鱼）值得常规补充。其余微量营养素优先从食物获取——
+    补充剂无法复现全食物中的协同成分。
+  </div>
+
+  <h3>每日食物份量（按 2,400 kcal 配比）</h3>
+  <div class="food-grid">
+    <div class="food" style="--fc:#a3e635"><span class="ico">🌾</span><div class="cat">谷类</div><div class="amt">200–300 <small>g</small></div><div class="tip">全谷物与杂豆占 50–150 g，如燕麦、糙米、红豆</div></div>
+    <div class="food" style="--fc:#fbbf24"><span class="ico">🥔</span><div class="cat">薯类</div><div class="amt">50–100 <small>g</small></div><div class="tip">土豆、红薯、山药，可替代部分主食</div></div>
+    <div class="food" style="--fc:#22c55e"><span class="ico">🥬</span><div class="cat">蔬菜</div><div class="amt">300–500 <small>g</small></div><div class="tip">深色蔬菜应占一半以上</div></div>
+    <div class="food" style="--fc:#f97316"><span class="ico">🍎</span><div class="cat">水果</div><div class="amt">200–350 <small>g</small></div><div class="tip">整果优于果汁，果汁不替代水果</div></div>
+    <div class="food" style="--fc:#ef4444"><span class="ico">🥩</span><div class="cat">畜禽肉</div><div class="amt">40–75 <small>g</small></div><div class="tip">优先禽肉与瘦肉，每周至少一天无肉日</div></div>
+    <div class="food" style="--fc:#0ea5e9"><span class="ico">🐟</span><div class="cat">水产品</div><div class="amt">40–75 <small>g</small></div><div class="tip">每周 2 次深海鱼，补充 EPA / DHA</div></div>
+    <div class="food" style="--fc:#eab308"><span class="ico">🥚</span><div class="cat">蛋类</div><div class="amt">40–50 <small>g</small></div><div class="tip">约 1 个鸡蛋，不弃蛋黄</div></div>
+    <div class="food" style="--fc:#38bdf8"><span class="ico">🥛</span><div class="cat">奶及奶制品</div><div class="amt">300–500 <small>g</small></div><div class="tip">纯牛奶、无糖酸奶，是钙的主要来源</div></div>
+    <div class="food" style="--fc:#a78bfa"><span class="ico">🫘</span><div class="cat">大豆与坚果</div><div class="amt">25–35 <small>g</small></div><div class="tip">豆腐 75 g 或豆浆 300 ml；坚果约一小把</div></div>
+    <div class="food" style="--fc:#facc15"><span class="ico">🫒</span><div class="cat">烹调油</div><div class="amt">25–30 <small>g</small></div><div class="tip">约 2–3 白瓷勺，控制总用油量</div></div>
+    <div class="food" style="--fc:#94a3b8"><span class="ico">🧂</span><div class="cat">食盐</div><div class="amt">&lt;5 <small>g</small></div><div class="tip">含酱油、蚝油、腌制品中的钠</div></div>
+    <div class="food" style="--fc:#06b6d4"><span class="ico">💧</span><div class="cat">饮水</div><div class="amt">1,700 <small>ml 起</small></div><div class="tip">主动饮水，尿液呈淡黄色为宜；出汗多时上调</div></div>
+  </div>
+  <p class="note">
+    每日食物种类应达 12 种以上，每周 25 种以上。餐盘比例可简记为
+    <b>蔬菜 : 主食 : 蛋白质 = 2 : 1 : 1</b>。
+  </p>
+
+  <h3>一日示例（约 2,400 kcal / 蛋白质 120 g）</h3>
+  <div class="tbl-scroll">
+    <table>
+      <thead>
+        <tr><th>餐次</th><th>搭配</th><th>大致热量</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="k">早餐</td>
+          <td>燕麦 60 g + 牛奶 300 ml + 鸡蛋 1 个 + 全麦面包 2 片 + 蓝莓 100 g</td>
+          <td><span class="num">≈ 675 kcal</span></td>
+        </tr>
+        <tr>
+          <td class="k">午餐</td>
+          <td>米饭 250 g + 清蒸鱼 120 g + 西兰花 200 g + 豆腐 150 g</td>
+          <td><span class="num">≈ 700 kcal</span></td>
+        </tr>
+        <tr>
+          <td class="k">加餐</td>
+          <td>无糖酸奶 150 g + 混合坚果 25 g + 苹果 1 个</td>
+          <td><span class="num">≈ 350 kcal</span></td>
+        </tr>
+        <tr>
+          <td class="k">晚餐</td>
+          <td>杂粮饭 200 g + 鸡胸肉 120 g + 菠菜 200 g + 番茄 150 g</td>
+          <td><span class="num">≈ 550 kcal</span></td>
+        </tr>
+        <tr>
+          <td class="k">烹调油</td>
+          <td>全天 20–25 g（约 2 白瓷勺）</td>
+          <td><span class="num">≈ 200 kcal</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>四个常见误区</h3>
+  <div class="grid2">
+    <div class="mini">
+      <h4>“蛋白质越多越能增肌”</h4>
+      <ul>
+        <li>健康人群 1.6–2.0 g/kg 已覆盖增肌需求，超出部分主要被氧化供能。</li>
+        <li>长期超过 2.5 g/kg 会增加肾脏负担，且挤占碳水与蔬果摄入。</li>
+      </ul>
+    </div>
+    <div class="mini">
+      <h4>“每天必须喝满 8 杯水”</h4>
+      <ul>
+        <li>总水需求 3,000 ml 中约 1,000–1,300 ml 来自食物。</li>
+        <li>更可靠的判断是尿色：淡黄色接近透明即为充足。</li>
+      </ul>
+    </div>
+    <div class="mini">
+      <h4>“无糖饮料可以随便喝”</h4>
+      <ul>
+        <li>代糖不提供热量，但甜味预期可能影响后续进食与胰岛素反应。</li>
+        <li>建议以白水、淡茶为主，无糖饮料控制在每日 1 份以内。</li>
+      </ul>
+    </div>
+    <div class="mini">
+      <h4>“补剂能替代蔬菜水果”</h4>
+      <ul>
+        <li>蔬果中的膳食纤维、植物化学物与多酚无法被单一维生素片复现。</li>
+        <li>补充剂只用于填补已确认的缺口，不能作为饮食结构的替代品。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 3 · 衣物换洗
+     ============================================================ -->
+<section class="card reveal" id="laundry">
+  <h2><span class="badge">03</span>各类衣物的换洗频率</h2>
+  <p class="sec-sub">
+    换洗频率取决于三个变量：<b>是否贴身</b>、<b>出汗量</b>、<b>接触外界污染的程度</b>。
+    下表按“穿过几次后需要清洗”分为四档，可直接对照执行。
+  </p>
+
+  <div class="callout c-info">
+    <b>判断原则：</b>贴身层看“菌”——汗液与皮脂是微生物培养基，接触皮肤就直接隔天洗；
+    外层看“味”与“形”——没有异味、没有变形、没有可见污渍，可以继续穿。
+    皮肤敏感、易长痘或有湿疹者，所有贴身衣物建议按最严格一档执行。
+  </div>
+
+  <!-- 第一档 -->
+  <div class="freq-group">
+    <div class="freq-head fg-red"><span class="dotc"></span>每次穿着后即洗<span class="cnt">细菌繁殖最快</span></div>
+    <div class="freq-body">
+      <div class="item"><span class="em">🩲</span><div class="tx">内裤<small>贴身层，汗液与分泌物集中</small></div><span class="fr">1 次 / 天</span></div>
+      <div class="item"><span class="em">🧦</span><div class="tx">袜子<small>足部汗腺密集，真菌温床</small></div><span class="fr">1 次 / 天</span></div>
+      <div class="item"><span class="em">🏃</span><div class="tx">运动服 / 速干衣<small>大量汗液，异味难去除</small></div><span class="fr">每次运动后</span></div>
+      <div class="item"><span class="em">🩳</span><div class="tx">运动短裤 / 压缩衣<small>紧贴皮肤且高湿</small></div><span class="fr">每次运动后</span></div>
+      <div class="item"><span class="em">🏊</span><div class="tx">泳衣<small>氯水与皮脂残留，易老化</small></div><span class="fr">每次使用后</span></div>
+      <div class="item"><span class="em">🧼</span><div class="tx">洗脸毛巾<small>潮湿 + 面部菌群</small></div><span class="fr">1–2 天</span></div>
+    </div>
+  </div>
+
+  <!-- 第二档 -->
+  <div class="freq-group">
+    <div class="freq-head fg-orange"><span class="dotc"></span>穿 1–2 次后洗<span class="cnt">异味主要来源</span></div>
+    <div class="freq-body">
+      <div class="item"><span class="em">👕</span><div class="tx">T 恤 / 打底衫<small>直接接触躯干，吸汗量大</small></div><span class="fr">1–2 次</span></div>
+      <div class="item"><span class="em">👔</span><div class="tx">衬衫<small>领口与腋下易积皮脂</small></div><span class="fr">1–2 次</span></div>
+      <div class="item"><span class="em">🎽</span><div class="tx">背心 / 吊带<small>贴身层</small></div><span class="fr">1–2 次</span></div>
+      <div class="item"><span class="em">🛌</span><div class="tx">睡衣 / 家居服<small>整夜接触皮肤与床品</small></div><span class="fr">2–3 次（约每周）</span></div>
+      <div class="item"><span class="em">🧣</span><div class="tx">贴身围巾 / 脖套<small>接触颈部与面部</small></div><span class="fr">3–5 次</span></div>
+      <div class="item"><span class="em">🩱</span><div class="tx">打底裤 / 保暖内衣<small>贴身且不透气</small></div><span class="fr">1–2 次</span></div>
+    </div>
+  </div>
+
+  <!-- 第三档 -->
+  <div class="freq-group">
+    <div class="freq-head fg-blue"><span class="dotc"></span>穿 3–5 次后洗<span class="cnt">看气味与褶皱</span></div>
+    <div class="freq-body">
+      <div class="item"><span class="em">👖</span><div class="tx">休闲裤 / 西裤<small>有内裤隔离，主要防褶皱与异味</small></div><span class="fr">3–5 次</span></div>
+      <div class="item"><span class="em">🧶</span><div class="tx">毛衣 / 针织衫<small>通常有内搭，减少直接接触</small></div><span class="fr">5–7 次</span></div>
+      <div class="item"><span class="em">🩳</span><div class="tx">短裤 / 半身裙<small>有内裤隔离，主要看汗渍</small></div><span class="fr">3–4 次</span></div>
+      <div class="item"><span class="em">🧥</span><div class="tx">卫衣 / 薄外套<small>无内搭时按 1–2 次执行</small></div><span class="fr">4–6 次</span></div>
+      <div class="item"><span class="em">🧤</span><div class="tx">手套<small>接触外界与面部</small></div><span class="fr">1–2 周</span></div>
+      <div class="item"><span class="em">🧢</span><div class="tx">帽子<small>接触头皮与汗液</small></div><span class="fr">1–2 周</span></div>
+    </div>
+  </div>
+
+  <!-- 第四档 -->
+  <div class="freq-group">
+    <div class="freq-head fg-green"><span class="dotc"></span>低频 / 按季清洗<span class="cnt">过度清洗反伤衣</span></div>
+    <div class="freq-body">
+      <div class="item"><span class="em">👖</span><div class="tx">牛仔裤<small>频繁水洗会加速褪色与变形</small></div><span class="fr">5–10 次</span></div>
+      <div class="item"><span class="em">🧥</span><div class="tx">夹克 / 风衣<small>通风晾挂即可延长周期</small></div><span class="fr">10–15 次</span></div>
+      <div class="item"><span class="em">🥼</span><div class="tx">西装外套<small>建议干洗，不宜水洗</small></div><span class="fr">每季 3–5 次</span></div>
+      <div class="item"><span class="em">🧥</span><div class="tx">羽绒服 / 大衣<small>局部污渍局部处理</small></div><span class="fr">每季 1–2 次</span></div>
+      <div class="item"><span class="em">👔</span><div class="tx">领带<small>干洗，避免水洗变形</small></div><span class="fr">3–5 次后干洗</span></div>
+      <div class="item"><span class="em">👞</span><div class="tx">皮鞋 / 运动鞋<small>不水洗，通风 + 鞋垫每月更换</small></div><span class="fr">按需清洁</span></div>
+    </div>
+  </div>
+
+  <h3>床品与织物</h3>
+  <div class="tbl-scroll">
+    <table>
+      <thead>
+        <tr><th>物品</th><th>换洗频率</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="k">枕套</td><td><span class="num">每周 1 次</span></td><td>直接接触面部，与痤疮、过敏关系最密切</td></tr>
+        <tr><td class="k">床单 / 被套</td><td><span class="num">每 1–2 周</span></td><td>夏季或裸睡习惯者取 1 周；冬季可延至 2 周</td></tr>
+        <tr><td class="k">浴巾</td><td><span class="num">使用 3–4 次后</span></td><td>每次用后完全展开晾干，潮湿环境缩短至 2 次</td></tr>
+        <tr><td class="k">枕芯</td><td><span class="num">每 3–6 个月</span></td><td>不可水洗的材质暴晒 + 拍打；可洗材质按标签清洗</td></tr>
+        <tr><td class="k">被芯 / 羽绒被</td><td><span class="num">每季 / 每半年</span></td><td>换季收纳前清洗晾晒，避免螨虫积聚</td></tr>
+        <tr><td class="k">沙发套 / 靠垫套</td><td><span class="num">每 1–2 个月</span></td><td>有宠物或过敏体质者缩短至 2–3 周</td></tr>
+        <tr><td class="k">窗帘</td><td><span class="num">每 3–6 个月</span></td><td>临近马路或厨房的窗户取 3 个月</td></tr>
+        <tr><td class="k">拖把布 / 抹布</td><td><span class="num">每次使用后</span></td><td>需消毒晾干，否则成为细菌扩散源</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>洗涤参数速查</h3>
+  <div class="tbl-scroll">
+    <table>
+      <thead>
+        <tr><th>面料</th><th>水温</th><th>方式</th><th>注意</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="k">棉 / 麻</td><td><span class="num">40 ℃（可至 60 ℃）</span></td><td>常规机洗</td><td>深色首次单独洗；避免长时间浸泡导致掉色</td></tr>
+        <tr><td class="k">涤纶 / 尼龙</td><td><span class="num">30–40 ℃</span></td><td>常规机洗</td><td>不用柔顺剂，会破坏速干性能</td></tr>
+        <tr><td class="k">羊毛 / 羊绒</td><td><span class="num">≤30 ℃</span></td><td>羊毛程序或手洗</td><td>平铺阴干，不可悬挂、不可拧绞</td></tr>
+        <tr><td class="k">真丝</td><td><span class="num">≤30 ℃</span></td><td>手洗或真丝程序</td><td>中性洗涤剂，避光晾干</td></tr>
+        <tr><td class="k">牛仔布</td><td><span class="num">≤30 ℃</span></td><td>反面洗，减少脱水</td><td>反面冷水、少洗、阴干，可显著延缓褪色</td></tr>
+        <tr><td class="k">羽绒</td><td><span class="num">30 ℃</span></td><td>羽绒程序 + 烘干</td><td>烘干时放网球拍打，恢复蓬松；彻底干燥防霉</td></tr>
+        <tr><td class="k">运动服（速干）</td><td><span class="num">30 ℃</span></td><td>快速程序</td><td>禁用柔顺剂与漂白剂；汗渍勿用热水，会固化蛋白</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout c-tip">
+    <b>三个延长衣物寿命的习惯：</b>
+    ① 穿过但还不脏的衣物挂起来通风 2–4 小时，比直接放回衣柜更能去味；
+    ② 深浅色分开洗，深色反面洗、反面晾；
+    ③ 毛衣、针织衫折叠收纳而非悬挂，避免肩部变形。
+  </div>
+
+  <div class="callout c-note">
+    <b>需要立即清洗的信号：</b>出现异味、腋下或领口有泛黄痕迹、面料发硬、
+    皮肤出现不明红点或瘙痒。此时不应再按“次数”判断。
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="fline"></div>
+  <b>数据来源</b>：《中国居民膳食营养素参考摄入量（2023 版）》；《中国居民膳食指南（2022）》；
+  国家卫生行业标准《成人体重判定》（WS/T 428-2013）；《家具 桌、椅、凳类主要尺寸》（GB/T 3326-2016）。
+  久坐起身间隔与屏幕距离为常见的经验建议，非强制性标准。<br>
+  <b>免责说明</b>：本页为一般人群健康参考，不构成医学诊断或治疗建议。患有肾脏疾病、糖尿病、痛风、
+  心血管疾病或处于孕期、术后恢复期者，营养摄入量须遵医嘱调整。坐姿与换洗建议亦应结合个人皮肤状况与生活环境调整。<br>
+  <b>生成日期</b>：2026 年 10 月 · 单文件离线可用，支持直接打印或导出 PDF。
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- 滚动进场 ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.06 });
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* ---------- 导航高亮 ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+  var sections = navLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  function syncNav(){
+    var pos = window.scrollY + 120, idx = 0;
+    sections.forEach(function(s, i){ if (s && s.offsetTop <= pos) idx = i; });
+    navLinks.forEach(function(a, i){ a.classList.toggle('active', i === idx); });
+  }
+  window.addEventListener('scroll', syncNav, { passive: true });
+  syncNav();
+
+  /* ---------- 营养计算器 ---------- */
+  var HEIGHT = 180;
+  var $ = function(id){ return document.getElementById(id); };
+  var fmt = function(n){ return Math.round(n).toLocaleString('en-US'); };
+
+  function calc(){
+    var w = parseFloat($('weight').value) || 75;
+    var age = parseFloat($('age').value) || 30;
+    var act = parseFloat($('activity').value) || 1.375;
+
+    if (w < 35) w = 35;
+    if (w > 200) w = 200;
+    if (age < 15) age = 15;
+    if (age > 100) age = 100;
+
+    var bmr = 10 * w + 6.25 * HEIGHT - 5 * age + 5;
+    var tdee = bmr * act;
+
+    var protein = w * 1.2;
+    var fat = tdee * 0.275 / 9;
+    var carb = Math.max(0, (tdee - protein * 4 - fat * 9) / 4);
+    var fiber = Math.max(20, Math.min(40, tdee / 1000 * 14));
+    var water = w * 30;
+
+    var pPct = protein * 4 / tdee * 100;
+    var fPct = 27.5;
+    var cPct = 100 - pPct - fPct;
+
+    $('kcalOut').textContent = fmt(tdee);
+    $('kcalSub').textContent = '基础代谢 ' + fmt(bmr) + ' kcal × 活动系数 ' + act;
+
+    $('pOut').textContent = fmt(protein);
+    $('pPct').textContent = pPct.toFixed(0);
+    $('pBar').style.width = Math.max(4, pPct) + '%';
+
+    $('fOut').textContent = fmt(fat);
+    $('fBar').style.width = fPct + '%';
+
+    $('cOut').textContent = fmt(carb);
+    $('cPct').textContent = Math.max(0, cPct).toFixed(0);
+    $('cBar').style.width = Math.max(4, cPct) + '%';
+
+    $('fibOut').textContent = Math.round(fiber);
+    $('waterOut').textContent = fmt(water);
+  }
+
+  ['weight','age','activity'].forEach(function(id){
+    var el = $(id);
+    el.addEventListener('input', calc);
+    el.addEventListener('change', calc);
+  });
+  calc();
+
+  /* ---------- 久坐计时器 ---------- */
+  var TOTAL = 45 * 60;
+  var remain = TOTAL;
+  var tick = null;
+  var running = false;
+  var C = 2 * Math.PI * 49;
+
+  var ringFill = $('ringFill');
+  var clock = $('clock');
+  var startBtn = $('startBtn');
+  var resetBtn = $('resetBtn');
+  var box = $('timerBox');
+
+  ringFill.setAttribute('stroke-dasharray', C.toFixed(2));
+  ringFill.setAttribute('stroke-dashoffset', '0');
+
+  function render(){
+    var m = Math.floor(remain / 60);
+    var s = remain % 60;
+    clock.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+    var ratio = remain / TOTAL;
+    ringFill.setAttribute('stroke-dashoffset', (C * (1 - ratio)).toFixed(2));
+
+    if (remain <= 300) {
+      ringFill.setAttribute('stroke', '#dc2626');
+    } else {
+      ringFill.setAttribute('stroke', '#2563eb');
+    }
+  }
+
+  function tickFn(){
+    remain -= 1;
+    if (remain <= 0) {
+      remain = 0;
+      render();
+      stop();
+      box.classList.add('done');
+      clock.textContent = '起身';
+      clock.style.fontSize = '19px';
+      startBtn.textContent = '已到时间';
+      startBtn.disabled = true;
+      ringFill.setAttribute('stroke', '#059669');
+      return;
+    }
+    render();
+  }
+
+  function start(){
+    if (running || remain <= 0) return;
+    running = true;
+    startBtn.textContent = '暂停';
+    tick = setInterval(tickFn, 1000);
+  }
+
+  function stop(){
+    running = false;
+    if (tick) { clearInterval(tick); tick = null; }
+  }
+
+  startBtn.addEventListener('click', function(){
+    if (running) {
+      stop();
+      startBtn.textContent = '继续';
+    } else {
+      start();
+    }
+  });
+
+  resetBtn.addEventListener('click', function(){
+    stop();
+    remain = TOTAL;
+    box.classList.remove('done');
+    clock.style.fontSize = '';
+    startBtn.disabled = false;
+    startBtn.textContent = '开始计时';
+    ringFill.setAttribute('stroke', '#2563eb');
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
