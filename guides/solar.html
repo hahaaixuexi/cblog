@@ -839,7 +839,7 @@ footer b{color:var(--ink-2)}
       </div>
       <div class="item">
         <div class="box"></div>
-        <div class="tx"><b>并联：正接正，负接负</b><span>总电流 = 各块电流相加；总电压 = 最小的那一块。所以并联的板子必须<b>电压参数一致</b>。</span></div>
+        <div class="tx"><b>并联：正接正，负接负</b><span>总电流 = 各块电流相加；总电压 = 各块中<b>最低的那个</b>（所以并联必须电压一致，否则高电压那几块被低电压的拖着走）。</span></div>
       </div>
       <div class="item">
         <div class="box"></div>
@@ -1630,10 +1630,10 @@ footer b{color:var(--ink-2)}
         <tbody>
           <tr><td>2 × 150W 单晶板</td><td class="num">600 元</td><td class="num">16%</td></tr>
           <tr><td>40A MPPT 控制器</td><td class="num">300 元</td><td class="num">8%</td></tr>
-          <tr><td>12V 150Ah 磷酸铁锂</td><td class="num">2400 元</td><td class="num"><b>63%</b></td></tr>
-          <tr><td>300W 纯正弦波逆变器</td><td class="num">300 元</td><td class="num">8%</td></tr>
-          <tr><td>线材、保险、接头</td><td class="num">200 元</td><td class="num">5%</td></tr>
-          <tr style="background:#f8fafc"><td><b>合计</b></td><td class="num"><b>约 3800 元</b></td><td class="num">100%</td></tr>
+          <tr><td>12V 150Ah 磷酸铁锂</td><td class="num">1500~2000 元</td><td class="num"><b>50%</b></td></tr>
+          <tr><td>300W 纯正弦波逆变器</td><td class="num">300 元</td><td class="num">10%</td></tr>
+          <tr><td>线材、保险、接头</td><td class="num">200 元</td><td class="num">6%</td></tr>
+          <tr style="background:#f8fafc"><td><b>合计</b></td><td class="num"><b>约 3000 元左右</b></td><td class="num">100%</td></tr>
         </tbody>
       </table>
     </div>
@@ -1642,7 +1642,7 @@ footer b{color:var(--ink-2)}
       <div class="ico">!</div>
       <div class="bd">
         <div class="t">看懂这张表，就知道钱该花在哪</div>
-        <p><b>电池占六成</b>。所以"省电"比"省钱买设备"更有效——把路由器换成低功耗的、灯全用 LED，电池就能小一档，直接省几百块。<br>
+        <p><b>电池占一半</b>。所以"省电"比"省钱买设备"更有效——把路由器换成低功耗的、灯全用 LED，电池就能小一档，直接省几百块。<br>
         反过来，<b>板子和控制器别省</b>，它们决定了每天能发多少电，而且用十几年不会坏。</p>
       </div>
     </div>
