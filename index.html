@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>程龙 - 个人博客 | AI & 计算机视觉</title>
-<meta name="description" content="程龙的个人技术博客，专注于计算机视觉、AI 应用与视觉软件二次开发。分享 VisionPro 二开、Halcon 算子、YOLO、OpenCV、Python、Linux 等技术实践与学习心得。">
-<meta name="keywords" content="程龙,AI,计算机视觉,YOLO,Python,OpenCV,VisionPro,Halcon,C#,机器视觉,视觉软件二次开发,边缘计算,个人博客">
+<meta name="description" content="程龙的个人技术博客，专注于计算机视觉、AI 应用与工业上位机开发。分享 VisionPro 二开、Halcon 算子、VisionMaster 方案、Modbus / 西门子 S7 / 欧姆龙 FINS 通讯、WinForm 与 WPF 界面、YOLO、OpenCV、Python、Linux 等技术实践与学习心得。">
+<meta name="keywords" content="程龙,AI,计算机视觉,YOLO,Python,OpenCV,VisionPro,Halcon,VisionMaster,C#,WPF,WinForm,Modbus,西门子S7,欧姆龙FINS,机器视觉,上位机开发,视觉软件二次开发,边缘计算,个人博客">
 <meta name="author" content="程龙">
 
 <!-- Open Graph -->
 <meta property="og:title" content="程龙 - 个人博客 | AI & 计算机视觉">
-<meta property="og:description" content="专注于计算机视觉与 AI 应用，具备从模型训练到边缘部署，再到视觉软件二次开发与上位机集成的完整工程能力。">
+<meta property="og:description" content="专注于计算机视觉与 AI 应用，具备从模型训练到边缘部署、从视觉软件二开到 PLC 通讯与上位机界面交付的完整工程能力。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hahaaixuexi.github.io/cblog/">
 <meta property="og:locale" content="zh_CN">
@@ -46,8 +46,8 @@
     { "@type": "CollegeOrUniversity", "name": "河南工学院" },
     { "@type": "CollegeOrUniversity", "name": "河南应用技术职业学院" }
   ],
-  "knowsAbout": ["计算机视觉","人工智能","YOLO","Python","OpenCV","Linux","边缘计算","VisionPro","Halcon","C#"],
-  "description": "人工智能专业学生，专注于计算机视觉与AI应用开发，掌握 VisionPro 二次开发与 Halcon 常用算子。"
+  "knowsAbout": ["计算机视觉","人工智能","YOLO","Python","OpenCV","Linux","边缘计算","VisionPro","Halcon","VisionMaster","C#","WPF","WinForm","Modbus","西门子 S7","欧姆龙 FINS","工业相机接线","上位机开发"],
+  "description": "人工智能专业学生，专注于计算机视觉与AI应用开发。掌握 VisionPro 二次开发、Halcon 常用算子与 VisionMaster 方案搭建，能通过 Modbus、西门子 S7、欧姆龙 FINS 与 TCP 完成设备通讯，并用 WinForm / WPF 开发上位机界面。"
 }
 </script>
 
@@ -598,7 +598,7 @@
   /* ==================== 技术栈卡片网格 ==================== */
   .tech-grid {
     display: grid;
-    /* 12 个技术卡片：4 列正好 3 行；平板 3 列、手机 2 列也都能整除 */
+    /* 20 个技术卡片：4 列正好 5 行；平板 3 列、手机 2 列也都能整除 */
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-md); max-width: 900px; margin: 0 auto;
   }
@@ -993,7 +993,8 @@
     <div class="subtitle">人工智能专业 · 26届毕业生</div>
     <div class="desc">
       专注机器视觉和 AI 应用方向，用 OpenCV、YOLO、VisionPro 做过视觉检测项目；
-      已完成 VisionPro 二次开发与 Halcon 常用算子实践，继续在视觉算法落地与上位机联调方向积累。
+      已完成 VisionPro 二次开发、Halcon 算子与 VisionMaster 方案搭建，打通欧姆龙、Modbus、西门子 S7 与 TCP 通讯，
+      并能用 WinForm / WPF 写完整上位机界面——从海康相机接线一路做到界面交付。
     </div>
     <div class="contact-row">
       <span class="contact-item">
@@ -2174,6 +2175,235 @@ const techStackData = [
         { "type": "code", "code": "# 连接成功后可正常使用，和操作远程服务器一致\nwhoami          # 查看当前用户\nuname -a        # 查看系统信息\nls -la           # 浏览文件\ntop             # 实时监控进程" }
       ]}
     ]
+  },
+  {
+    "id": "visionmaster",
+    "name": "VisionMaster",
+    "icon": "🎯",
+    "color": "#2F6FE4",
+    "desc": "海康机器人的视觉算法平台：拖拽搭流程、全局脚本写逻辑、通讯模块把结果送出去，一个 .sol 就是一套完整方案。",
+    "sections": [
+      { "title": "流程搭建：模块怎么串", "content": [
+        { "type": "p", "text": "VisionMaster（下称 VM）的流程是一条从左到右的<b>模块链</b>：<b>图像源</b>给图 → <b>定位</b>（模板匹配 / 特征匹配）给基准 → <b>测量</b>（圆、线、Blob、颜色、顶点）出数据 → <b>逻辑与格式化</b>拼结果 → 交给<b>发送数据</b>或<b>通讯管理</b>模块送出去。" },
+        { "type": "p", "text": "一个 .sol 文件解压后就是这几样东西，看懂目录就知道工程里有什么：" },
+        { "type": "code", "code": "SolutionFile/\n├── VmServer.xml        流程信息：模块清单、软版本、超时、是否停止 NG\n├── MoudleFrame         模块连接关系、输入输出订阅（二进制）\n├── GlobalScript_0      全局脚本（C#）\n└── UiParamData/        每个模块一份参数，文件名是「序号+类型」\n    └── _13+0+IMVSBlobFindModu" },
+        { "type": "p", "text": "模块类名是固定的，看日志里出现哪个就知道卡在哪：<code>ImageSourceModule</code> <code>IMVSFastFeatureMatchModu</code> <code>IMVSHPFeatureMatchModu</code> <code>IMVSBlobFindModu</code> <code>IMVSCircleFindModu</code> <code>IMVSColorExtractModu</code> <code>IMVSFixtureModu</code> <code>FormatModule</code> <code>SendDatasModule</code> <code>CommManagerModule</code>。" }
+      ]},
+      { "title": "全局脚本：Init / Process / 结果回调", "content": [
+        { "type": "p", "text": "全局脚本不是「写几行辅助函数」，而是一个固定签名的类：<code>UserGlobalScript : UserGlobalMethods, IScriptMethods</code>，平台在三个时机回调你。" },
+        { "type": "code", "code": "using System;\nusing VM.GlobalScript.Methods;\nusing iMVS_6000PlatformSDKCS;\nusing System.Runtime.InteropServices;\n\npublic class UserGlobalScript : UserGlobalMethods, IScriptMethods\n{\n    // 1. 初始化：调 SDK，整个方案只跑一次\n    public int Init()\n    {\n        return InitSDK();\n    }\n\n    // 2. 每次流程执行（连续运行时按间隔反复调）\n    public int Process()\n    {\n        int nRet = DefaultExecuteProcess();   // 默认顺序跑完全部模块\n        return nRet;\n    }\n\n    // 3. 结果回调：模块结果、运行状态都在这里取\n    public override void ResultDataCallBack(IntPtr outputPlatformInfo, IntPtr puser)\n    {\n        base.ResultDataCallBack(outputPlatformInfo, puser);\n        var info = (ImvsSdkPFDefine.IMVS_PF_OUTPUT_PLATFORM_INFO)Marshal.PtrToStructure(\n            outputPlatformInfo, typeof(ImvsSdkPFDefine.IMVS_PF_OUTPUT_PLATFORM_INFO));\n\n        switch (info.nInfoType)\n        {\n            case ImvsSdkPFDefine.IMVS_CTRLC_OUTPUT_PlATFORM_INFO_TYPE\n                    .IMVS_ENUM_CTRLC_OUTPUT_PLATFORM_INFO_MODULE_RESULT:\n                // 这里拿模块结果\n                break;\n            case ImvsSdkPFDefine.IMVS_CTRLC_OUTPUT_PlATFORM_INFO_TYPE\n                    .IMVS_ENUM_CTRLC_OUTPUT_PLATFORM_INFO_WORK_STATE:\n                // 这里拿运行状态\n                break;\n        }\n    }\n}" },
+        { "type": "p", "text": "<b>返回值是 int 错误码</b>，0 表示成功——签名对不上写 <code>return true</code> 会直接编译失败。<code>DefaultExecuteProcess()</code> 会按流程顺序跑完所有模块；要自己控制顺序（跳模块、条件执行、提前判 NG）就把它删掉，改成自己调。" }
+      ]},
+      { "title": "通讯模块：把结果送给 PLC", "content": [
+        { "type": "p", "text": "VM 自带通讯管理（<code>CommManagerModule</code>），常见三种通道：<b>TCP 客户端/服务端</b>、<b>Modbus</b>、<b>PLC</b>（西门子 S7、三菱 MC 等）。配置项就是 IP、端口、Rack/Slot、轮询周期。" },
+        { "type": "code", "code": "# .sol 里通讯模块的典型参数（解压 MoudleFrame 可见）\nTcpClientModule / TcpServerModule\n  HostIP     = 127.0.0.1\n  HostPort   = 7930\n  TargetIP   = 172.16.20.220\n  TargetPort = 4197\n\nSiemensS7S1200Module\n  TargetIP   = 172.16.20.220\n  Rack / Slot= 0 / 1\n  PollTime   = 轮询周期(ms)\n\nSendDatasModule\n  PLCItem1..16 / ModbusItem1..16 / Data1..16 / GlobalVar1..16" },
+        { "type": "p", "text": "<b>发送数据模块</b>最多 16 路 PLC 项 + 16 路 Modbus 项 + 16 路自定义数据项，一般产线够用。要点是<b>触发方式</b>要选对（流程结束触发 / 条件触发），选错会出现「结果还没算完就发出去」的空数据。" }
+      ]},
+      { "title": "踩坑清单", "content": [
+        { "type": "p", "text": "<b>脚本不生效</b>：全局脚本改完要在编辑器里编译，只保存不编译跑的还是旧代码。<br><b>流程超时</b>：流程超时时间设太小，图像大或模板多时会误判 NG，先看运行日志里的实际耗时。<br><b>模块被跳过</b>：模块使能（<code>EnableModule</code>）关掉后不报错，只是不出结果，排查先确认它亮着。<br><b>终端对不上</b>：输入输出终端名是模块里自定义的，脚本里写错名字要到运行期才报。<br><b>版本迁移</b>：低版本 .sol 用高版本打开会自动升级，反过来一般打不开，跨版本协作先统一版本。" }
+      ]}
+    ]
+  },
+  {
+    "id": "omron",
+    "name": "欧姆龙 PLC",
+    "icon": "🏭",
+    "color": "#E60012",
+    "desc": "FINS 协议与 Host Link 命令，上位机读写 DM / CIO 区的完整路径。",
+    "sections": [
+      { "title": "FINS：端口与握手", "content": [
+        { "type": "p", "text": "FINS 是欧姆龙自家的数据链路协议，<b>TCP 和 UDP 都用 9600 端口</b>。UDP 快但可能丢包，产线上读写关键参数一般走 TCP。" },
+        { "type": "p", "text": "FINS/TCP 建连后要先发一条「节点地址自动分配」握手帧，5 个 32 位字段共 <b>20 字节</b>：" },
+        { "type": "code", "code": "46 49 4E 53   \"FINS\" 固定魔数\n00 00 00 0C   长度 = 12（从 Command 起算）\n00 00 00 00   命令 0x0000 = 节点地址自动分配\n00 00 00 00   错误码，请求时固定 0\n00 00 00 00   客户端节点地址，填 0 = 请服务器分配\n\n# 服务器回帧多一个 Server node address 字段，共 24 字节\n# 这条命令每次连接只能发一次，重发会收到错误码并被断开" },
+        { "type": "p", "text": "握手之后才是正经的 FINS 帧。常用命令码：<code>0101</code> 存储区读、<code>0102</code> 存储区写、<code>0501</code> 读控制器信息、<code>2301</code> 强制置位/复位。读哪个区靠 area code 区分：" },
+        { "type": "code", "code": "DM 区（字）          0x82      掉电保持，最常用\nDM 区（位）          0x02\nCIO 区（字 / 位）    0xB0 / 0x30\nW 工作区（字 / 位）  0xB1 / 0x31\nH 保持区（字 / 位）  0xB2 / 0x32\nAR 区（字 / 位）     0xB3 / 0x33\n定时器/计数器当前值  0x89" }
+      ]},
+      { "title": "Host Link：串口的老办法", "content": [
+        { "type": "p", "text": "串口机型（CJ/CP 系列 C-Mode）走 Host Link，ASCII 命令，一条指令一行。命令码：<code>RD</code> 读 DM、<code>WD</code> 写 DM、<code>RR</code> 读 CIO、<code>WR</code> 写 CIO。" },
+        { "type": "code", "code": "@00RD00000010\n\n@      起始符\n00     单元号（PLC 侧设定）\nRD     命令：DM 区读\n0000   起始地址（BCD）\n0010   读取数量（BCD，即 10 个字）\n\n# 结尾补 FCS（前面所有字节异或，2 位十六进制）+ \"*\" + CR\n# 串口参数常见 9600, E, 7, 2，以随机手册为准" },
+        { "type": "p", "text": "<code>RR / WR</code> 操作的是 <b>CIO 区</b>，不是很多人以为的 IR 区——写错区名，去手册里就找不到对应的表。" }
+      ]},
+      { "title": "C# 落地：HslCommunication", "content": [
+        { "type": "p", "text": "自己拼 FINS 帧可以，但没必要。<code>HslCommunication</code> 的 <code>OmronFinsNet</code> 已经把握手、帧头、区码封好了，地址直接写软元件名。" },
+        { "type": "code", "code": "using HslCommunication.Profinet.Omron;\n\nvar fins = new OmronFinsNet(\"192.168.1.110\", 9600);\nfins.ConnectServer();\n\n// 地址写软元件名，不用记 area code\nshort d100 = fins.ReadInt16(\"D100\").Content;\nbool  bit  = fins.ReadBool(\"D100.7\").Content;\nfins.Write(\"D100\", (short)123);\n\nfins.ConnectClose();" },
+        { "type": "p", "text": "<b>节点号别硬编码</b>：DA1 在连接时由 PLC 自动分配，写死换台机器就连不上。<b>同类还有</b> <code>OmronFinsUdp</code>（UDP）、<code>OmronCipNet</code> / <code>OmronConnectedCipNet</code>（NJ/NX 走 CIP）、<code>OmronHostLinkCMode</code>（串口）。" }
+      ]},
+      { "title": "NJ / NX 系列要分清", "content": [
+        { "type": "p", "text": "NJ/NX 是机器自动化控制器，<b>同时支持</b> EtherNet/IP、CIP 和 FINS。端口别混：CIP 用 <b>44818</b>（TCP+UDP，固定不可改）、tag data link 用 UDP 2222/2223、OPC UA 用 4840、FINS 用 9600。" },
+        { "type": "p", "text": "支持范围的口径：FINS/UDP 9600 覆盖 NJ 全系、NX1P2、NX102、NX701；FINS/TCP 9600 覆盖 NJ 全系、NX102、NX701。老机型（CJ/CS）只有 FINS，别指望 CIP。" }
+      ]}
+    ]
+  },
+  {
+    "id": "modbus",
+    "name": "Modbus",
+    "icon": "🔗",
+    "color": "#7B4F9E",
+    "desc": "工业现场最通用的协议：RTU 走串口、TCP 走网口，功能码与地址偏移是永恒考点。",
+    "sections": [
+      { "title": "两种形态与默认参数", "content": [
+        { "type": "p", "text": "Modbus RTU 走 RS485/RS232，二进制帧 + CRC 校验；Modbus TCP 走以太网，默认 <b>502</b> 端口，报文头换成 7 字节 MBAP。" },
+        { "type": "p", "text": "RTU 的串口参数（波特率 / 校验 / 数据位 / 停止位）是<b>可配的</b>，常见 9600 8N1 或 19200 8E1——照设备手册配，别背成「规范规定 9600 8N1」。" }
+      ]},
+      { "title": "功能码与地址偏移", "content": [
+        { "type": "p", "text": "四种数据区先分开记，功能码就那一组：" },
+        { "type": "code", "code": "线圈（可读写位）      00001   01 读 / 05 写单个 / 15 写多个\n离散输入（只读位）    10001   02 读\n输入寄存器（只读）    30001   04 读\n保持寄存器（可读写）  40001   03 读 / 06 写单个 / 16 写多个\n\n# 协议地址 = 文档参考编号 − 基址\n# 例：40001 → 0     40100 → 99     30001 → 0     00001 → 0" },
+        { "type": "p", "text": "<b>最容易翻车的地方</b>：有的手册给「参考编号」（40001 起），有的直接给「协议地址」（0 起）。同一个参数在两家文档里能差 1、也能差 40001，先看手册措辞再填。" }
+      ]},
+      { "title": "报文长什么样", "content": [
+        { "type": "p", "text": "RTU 一帧：从站地址 + 功能码 + 数据 + CRC16（低字节在前）；TCP 在业务数据前加 7 字节 MBAP，全部大端。" },
+        { "type": "code", "code": "# RTU：读 1 号站 保持寄存器从 0 起的 2 个\n01 03 00 00 00 02 C4 0B\n│  │  └──┬──┘ └──┬──┘ └──┬──┘\n│  │     │       │     CRC16（低字节在前）\n│  │     │       数量 2\n│  │     起始地址 0\n│  功能码 03\n从站地址 1\n\n# TCP：MBAP 7 字节 + PDU\n00 01 │ 00 00 │ 00 06 │ 01 │ 03 │ 00 00 │ 00 02\n事务ID  协议ID  长度   单元  功能  起始     数量" },
+        { "type": "p", "text": "CRC16 的多项式写 <code>0xA001</code>（这是 0x8005 的反射形式），手写时最常见的错就是忘了低字节在前。" }
+      ]},
+      { "title": "C# 两个库，签名不一样", "content": [
+        { "type": "code", "code": "// ---- NModbus：读方法带 slaveId ----\nvar factory = new ModbusFactory();\nvar master  = factory.CreateMaster(new TcpClient(\"192.168.1.10\", 502));\nushort[] regs = master.ReadHoldingRegisters(1, 0, 10);   // (从站, 起始, 数量)\nmaster.WriteSingleRegister(1, 0, 1234);\n\n// ---- EasyModbus：从站号是属性，读方法只有两个参数 ----\nvar client = new ModbusClient(\"192.168.1.10\", 502) { UnitIdentifier = 1 };\nclient.Connect();\nint[] values = client.ReadHoldingRegisters(0, 10);        // (起始, 数量)" },
+        { "type": "p", "text": "两套签名混着抄一定编译不过，这是新手最常见的一处。<b>另外</b>：32 位浮点占两个寄存器，高低字顺序各家不同，<code>RegisterOrder</code>（LowHigh / HighLow）要显式指定，否则读出来的数看着像随机数。" }
+      ]}
+    ]
+  },
+  {
+    "id": "tcpio",
+    "name": "TCP Socket",
+    "icon": "🌐",
+    "color": "#0E7490",
+    "desc": "上位机与视觉/PLC 点对点通讯的通用方案，难点全在粘包与断线检测。",
+    "sections": [
+      { "title": "先接受一件事：TCP 没有消息边界", "content": [
+        { "type": "p", "text": "<b>TCP 是字节流</b>，操作系统只保证字节顺序，不保证你发的一条消息对方收到时还是一整条。一次 Send 可能被拆成几段收到，两次 Send 也可能被合并成一段——这就是粘包/拆包。" },
+        { "type": "p", "text": "所以协议设计必须自己带边界，三种办法：" },
+        { "type": "code", "code": "① 定长：每条报文固定 N 字节，收满 N 就切一刀\n   优点：解析最简单；缺点：长度波动大时浪费带宽\n\n② 分隔符：以 \\r\\n 或某个特殊字节结尾\n   优点：可读性好（文本协议常用）；缺点：内容出现分隔符要转义\n\n③ 长度前缀：先发 4 字节长度，再发正文\n   优点：任意长度、解析 O(1)，是最通用的工业做法" },
+        { "type": "p", "text": "欧姆龙官方手册解释 FINS/TCP 为什么要加帧头，就是这个原因：TCP 层「无法判断数据在哪里断开，多个包会被合并」，所以要在帧头放长度当分隔符。" }
+      ]},
+      { "title": "长度前缀的收发骨架", "content": [
+        { "type": "code", "code": "// 接收：先收 4 字节长度，再按长度收正文\nstatic byte[] ReadFrame(NetworkStream ns)\n{\n    byte[] head = ReadExactly(ns, 4);\n    Array.Reverse(head);                       // 大端转小端\n    int len = BitConverter.ToInt32(head, 0);\n    return ReadExactly(ns, len);\n}\n\nstatic byte[] ReadExactly(NetworkStream ns, int count)\n{\n    byte[] buf = new byte[count];\n    int got = 0;\n    while (got < count)\n    {\n        int n = ns.Read(buf, got, count - got);  // 一次读不满是常态\n        if (n == 0) throw new IOException(\"对端已关闭连接\");\n        got += n;\n    }\n    return buf;\n}" },
+        { "type": "p", "text": "两个细节：<b>①</b> 长度字段在协议层几乎都是<b>大端</b>（网络字节序），小端只出现在寄存器内容层（比如浮点的两个字拼接）。<b>②</b> <code>Read</code> <b>一次读不满是常态</b>，必须循环到收满为止——直接信一次 Read 的返回值，就是最常见的丢包式 bug。" }
+      ]},
+      { "title": "心跳、断线、Nagle", "content": [
+        { "type": "code", "code": "var client = new TcpClient();\nclient.NoDelay = true;      // .NET 默认 false，即默认启用 Nagle\nclient.Connect(ip, port);\nclient.Client.SetSocketOption(\n    SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);" },
+        { "type": "p", "text": "<b>别指望内核心跳</b>：<code>tcp_keepalive_time</code> 默认 7200 秒，两小时后才发第一个探测，产线早停了。必须自己做应用层心跳（例如 3 秒一包，连续 3 次没回就重连）。" },
+        { "type": "p", "text": "<b>断线判据是「收到 0 字节」</b>，不是 <code>Socket.Connected</code>。那个属性只反映上一次 I/O 的结果，对端拔线它照样可能返回 true。同理 S7.Net 的 <code>IsConnected</code> 注释里也明说不可靠。" },
+        { "type": "p", "text": "<b>Nagle</b> 会把小包攒起来再发，对实时性有害，所以 <code>NoDelay = true</code>；代价是包变多，局域网无所谓。" }
+      ]}
+    ]
+  },
+  {
+    "id": "s7",
+    "name": "西门子 S7",
+    "icon": "🟦",
+    "color": "#009999",
+    "desc": "S7 协议的 ISO-on-TCP 通讯：地址写法、优化块、PUT/GET 权限三个必踩的坑。",
+    "sections": [
+      { "title": "连接三要素：IP、Rack、Slot", "content": [
+        { "type": "p", "text": "S7 走 <b>RFC1006 / ISO-on-TCP</b>，固定 <b>102</b> 端口。建连除了 IP 还要 rack 和 slot，这两个值决定连到 CPU 的哪个槽位。" },
+        { "type": "code", "code": "S7-1200 / S7-1500    rack = 0, slot = 1    （最常见）\nS7-300               rack = 0, slot = 2\nS7-400               rack = 0, slot = 2 或 3" },
+        { "type": "p", "text": "不同库的默认值不一样（S7.Net 默认给 0/0，python-snap7 文档给 0/1），<b>最终以 TIA 里的硬件组态 / TSAP 为准</b>；连不上就先试 0/1 和 0/2。" }
+      ]},
+      { "title": "S7.Net 读写", "content": [
+        { "type": "code", "code": "using S7.Net;\n\nvar plc = new Plc(CpuType.S71200, \"192.168.0.1\", 0, 1);\nplc.Open();\n\nbool b = (bool)plc.Read(\"DB1.DBX0.0\");        // 位\nuint d = (uint)plc.Read(\"DB1.DBD0\");          // 双字\nplc.Write(\"DB1.DBD0\", 1.5f);                  // 写浮点\n\nbyte[] raw = plc.ReadBytes(DataType.DataBlock, 1, 0, 4);  // 按块读\n\nplc.Close();" },
+        { "type": "p", "text": "地址语法：<code>DB1.DBX0.0</code> 位、<code>DB1.DBB0</code> 字节、<code>DB1.DBW0</code> 字、<code>DB1.DBD0</code> 双字；M 区写 <code>M10.0</code>，I/Q 写 <code>I0.1</code>、<code>Q0.1</code>。" },
+        { "type": "p", "text": "<b>性能提醒</b>：<code>Read(\"DB1.DBD0\")</code> 每个变量一次 TCP 请求，读 20 个点就是 20 次往返。批量读用 <code>ReadMultipleVars</code> 传一个 DataItem 列表，或 <code>ReadStruct</code>，一次请求拿一片。" }
+      ]},
+      { "title": "两个必须改的 PLC 设置", "content": [
+        { "type": "p", "text": "<b>① 关掉「优化的块访问」</b>：S7-1200/1500 默认新建的 DB 是优化块，变量由 CPU 自己排布、没有固定地址，<code>DB1.DBD0</code> 这种绝对寻址直接读不到。改法：DB 属性 → Attributes → 取消勾选 Optimized block access。" },
+        { "type": "p", "text": "<b>② 允许 PUT/GET 通讯访问</b>：默认是关的。TIA 里 CPU 属性 → Protection &amp; Security → Connection mechanisms → 勾选「Permit access with PUT/GET communication from remote partner」。<b>而且要求双向</b>——两侧 CPU 都要允许。" }
+      ]},
+      { "title": "踩坑清单", "content": [
+        { "type": "p", "text": "<b>连不上</b>：先 ping 通，再看 102 端口有没有被挡（Windows 防火墙和企业网络策略都爱挡 102）。<br><b>能连不能读</b>：八成是优化块或 PUT/GET 权限。<br><b>读出来是 0</b>：地址对但 PLC 侧没写值，先在线监控 DB 确认。<br><b>IsConnected 说 true 但通讯失败</b>：这个属性只反映上次 I/O，判活要靠读成功或心跳。<br><b>替代方案</b>：Snap7（C/C++/Python）是主流开源实现，python-snap7 是它的 Python 封装。" }
+      ]}
+    ]
+  },
+  {
+    "id": "hikcamera",
+    "name": "海康相机",
+    "icon": "📷",
+    "color": "#1C7ED6",
+    "desc": "GigE / USB3 工业相机的接线、触发与 MVS SDK 取图，从针脚到帧回调。",
+    "sections": [
+      { "title": "接口与供电", "content": [
+        { "type": "p", "text": "常见三种接口：<b>GigE 网口</b>（网线，传得远、可多机）、<b>USB3.0</b>（线短、免网卡配置）、<b>Camera Link / CoaXPress</b>（要专用采集卡，高速高分辨率场景）。" },
+        { "type": "p", "text": "GigE 机型供电 <b>9~24 VDC</b>，<b>PoE 是选配</b>——只有带 PoE 的型号才能一根网线同时给数据供电，其它必须另接电源。<b>USB3 工业线</b>普遍用带锁紧螺丝的 Micro-B，防现场震动掉线。" }
+      ]},
+      { "title": "触发接线：6-pin 与 12-pin 不一样", "content": [
+        { "type": "p", "text": "海康工业相机常见两种 I/O 接口，<b>电气结构完全不同</b>，接错会烧光耦：" },
+        { "type": "code", "code": "6-pin P7（HR10A-7P-6S 一类）\n  Line0   单端光耦输入（OPTO_IN / OPTO_GND）—— 外触发接这里\n  Line1   单端光耦输出\n  Line2   双向可配置 I/O\n  1 脚    DC_PWR，相机电源（9~24 VDC）\n\n12-pin P10\n  Line0_P / Line0_N 成对出现 —— 差分输入\n  多路差分输入输出，线阵相机多见" },
+        { "type": "p", "text": "<b>6-pin 是单端，12-pin 才有差分</b>。把「光耦输入是差分」这句话套到 6-pin 上，现场一定接不出来。" },
+        { "type": "p", "text": "<b>先认针脚号，再对线色</b>。海康手册明确写了：线芯颜色只适用于原厂线缆，用第三方线必须按针脚定义核对，不能凭颜色接线。" }
+      ]},
+      { "title": "PNP / NPN 与限流电阻", "content": [
+        { "type": "p", "text": "光耦输入有 <b>最大通过电流 25 mA</b> 的硬限制，超了要串限流电阻，而且<b>光耦输入与信号地不能直接短路</b>。" },
+        { "type": "code", "code": "PNP 传感器（输出高电平，如西门子 PLC）\n  → 直接接 OPTO_IN，信号地与设备电源地共地\n  → 24V 场合常见上拉 4.7 kΩ\n\nNPN 传感器（输出低电平，如三菱 PLC）\n  → 需要上拉电阻或 NPN 转 PNP 转换器\n  → 12V 场合常见上拉 1 kΩ" },
+        { "type": "p", "text": "阻值是<b>特定电平下的经验值</b>，不是通用规则：先按 25 mA 上限算，再以随机手册为准。能不加上拉就不加——优先选 PNP 接法。" }
+      ]},
+      { "title": "网口链路先调通", "content": [
+        { "type": "p", "text": "取不到图，九成是链路没配好，按这个顺序查：" },
+        { "type": "code", "code": "1. 相机与网卡同网段（相机 192.168.1.64 / 网卡 192.168.1.100）\n2. 巨型帧：Windows 网卡属性填 9014（含 14 字节二层头）\n   → 等价 IP MTU 9000；网卡只给 \"9KB\" 选项时选 9KB\n3. 关网卡节能：允许计算机关闭此设备以节约电源 / 节能以太网\n4. 防火墙放行 MVS 和业务程序\n5. 用 MVS 客户端枚举设备；没有硬件也能加虚拟相机调试" },
+        { "type": "p", "text": "参数概念：<b>曝光</b>单位微秒（常见 52 μs ~ 10 s）、<b>增益</b> dB（常见 0~24 dB）、<b>触发模式</b>分连续（<code>TriggerMode=OFF</code>）、软触发（<code>ON</code> + <code>TriggerSource=Software</code>）、硬触发（<code>ON</code> + <code>TriggerSource=Line0</code>）。" }
+      ]},
+      { "title": "MVS SDK 取图", "content": [
+        { "type": "code", "code": "// 枚举 + 创建，注意是 Device，不是 Handle\nMyCamera.MV_CC_EnumDevices_NET(\n    MyCamera.MV_GIGE_DEVICE | MyCamera.MV_USB_DEVICE, ref m_stDeviceList);\nm_MyCamera.MV_CC_CreateDevice_NET(ref m_stDeviceList);\n\n// 打开、设参数、取流\nm_MyCamera.MV_CC_OpenDevice_NET();\nm_MyCamera.MV_CC_SetFloatValue_NET(\"ExposureTime\", 5000f);   // 曝光/增益走 Float\nm_MyCamera.MV_CC_SetEnumValue_NET(\"TriggerMode\",            // 硬触发\n    (uint)MyCamera.MV_CAM_TRIGGER_MODE.MV_TRIGGER_MODE_ON);\nm_MyCamera.MV_CC_SetEnumValue_NET(\"TriggerSource\",\n    (uint)MyCamera.MV_CAM_TRIGGER_SOURCE.MV_TRIGGER_SOURCE_LINE0);\nm_MyCamera.MV_CC_StartGrabbing_NET();\n\n// 回调注册：第二参数是自定义 IntPtr，多相机靠它区分是第几台\nMyCamera.cbOutputExdelegate cb = new MyCamera.cbOutputExdelegate(ImageCallBack);\nm_MyCamera.MV_CC_RegisterImageCallBackEx_NET(cb, (IntPtr)index);\n\n// 收尾\nm_MyCamera.MV_CC_StopGrabbing_NET();\nm_MyCamera.MV_CC_CloseDevice_NET();\nm_MyCamera.MV_CC_DestroyDevice_NET();" },
+        { "type": "p", "text": "<b>三个高频错误</b>：① 把 <code>MV_CC_CreateDevice_NET</code> 写成 <code>CreateHandle</code>（那是 C 版 SDK 的名字）；② 改曝光 / 触发参数时没先停流，函数返回错误码但很多人不检查；③ 千兆网相机忘了设包长——用 <code>MV_CC_GetOptimalPacketSize_NET()</code> 取值，再 <code>SetIntValueEx_NET(\"GevSCPSPacketSize\", n)</code>，否则大分辨率会丢包。" },
+        { "type": "p", "text": "顺带一句：在 <b>HALCON</b> 里取海康相机的通用口是 <code>open_framegrabber('GigEVision2', ...)</code>——海康符合 GigE Vision 标准，没有专门的 Hikrobot 接口名。" }
+      ]}
+    ]
+  },
+  {
+    "id": "winform",
+    "name": "WinForm",
+    "icon": "🪟",
+    "color": "#2E7D32",
+    "desc": "上位机最稳的桌面界面方案，跨线程更新 UI 是绕不开的第一课。",
+    "sections": [
+      { "title": "跨线程更新 UI", "content": [
+        { "type": "p", "text": "相机回调、Socket 接收线程都在后台线程上跑，直接改控件会抛 <code>Cross-thread operation not valid</code>。标准写法两种：" },
+        { "type": "code", "code": "// 写法一：InvokeRequired 判断 + BeginInvoke（异步，不阻塞后台线程）\nif (label1.InvokeRequired)\n    label1.BeginInvoke((Action)(() => label1.Text = s));\nelse\n    label1.Text = s;\n\n// 写法二：async/await，续体自动回 UI 线程\nprivate async void btnStart_Click(object sender, EventArgs e)\n{\n    var result = await Task.Run(() => Detect());   // 后台跑\n    txtResult.Text = result;                       // 这里已在 UI 线程\n}" },
+        { "type": "p", "text": "为什么 <code>await</code> 能自动回来：WinForm 在启动消息循环时装了 <code>WindowsFormsSynchronizationContext</code>，它的 <code>Post</code> 就是 <code>Control.BeginInvoke</code>、<code>Send</code> 就是 <code>Control.Invoke</code>，await 之后由 Post 把续体投回消息队列。" },
+        { "type": "p", "text": "<b>Invoke 是同步的</b>（等到 UI 线程执行完才返回），在 UI 线程里等一个要回到 UI 线程的委托就会死锁。能用 <code>BeginInvoke</code> / await 就别用 <code>Invoke</code>。.NET 9 起有 <code>Control.InvokeAsync</code>，可 await、可取消，但 .NET Framework 没有。" }
+      ]},
+      { "title": "CheckForIllegalCrossThreadCalls", "content": [
+        { "type": "p", "text": "这个静态属性只控制「调试时要不要抛异常」，<b>不是线程安全的开关</b>。" },
+        { "type": "code", "code": "// 官方定义：调试时捕获跨线程访问控件 Handle 的调用\nControl.CheckForIllegalCrossThreadCalls = false;   // 千万别这么干" },
+        { "type": "p", "text": "微软的态度很明确：应该<b>修问题</b>，而不是关开关。关掉之后不是变安全，而是把必然的崩溃换成偶发的界面错乱——更难查。" }
+      ]},
+      { "title": "卡顿与闪烁", "content": [
+        { "type": "code", "code": "// DoubleBuffered 是 protected，只能在控件子类里设\npublic class SmoothPanel : Panel\n{\n    public SmoothPanel()\n    {\n        SetStyle(ControlStyles.OptimizedDoubleBuffer\n               | ControlStyles.AllPaintingInWmPaint, true);\n    }\n}" },
+        { "type": "p", "text": "<b>DoubleBuffered 是 protected</b>，在窗体外部写 <code>form.DoubleBuffered = true</code> 编译不过，要用 <code>SetStyle</code> 或自定义控件。<br><b>Timer 精度</b>：<code>System.Windows.Forms.Timer</code> 在 UI 线程 Tick，好处是回调里能直接改控件，坏处是精度只有十几毫秒（文档写 55 ms），<b>别拿它做相机节拍或精确同步</b>。<br><b>BackgroundWorker 已不推荐</b>，官方建议改用 <code>async/await</code> + <code>Task.Run</code>。" }
+      ]},
+      { "title": "高 DPI 模糊", "content": [
+        { "type": "p", "text": "现在不少采集电脑是 2K/4K 屏加上 125%/150% 缩放，不做 DPI 适配，界面会糊成一片。两条路径别搞混：" },
+        { "type": "code", "code": "<!-- .NET Framework 4.7+：配 app.config（不是 manifest）-->\n<System.Windows.Forms.ApplicationConfigurationSection>\n  <add key=\"DpiAwareness\" value=\"PerMonitorV2\" />\n</System.Windows.Forms.ApplicationConfigurationSection>\n\n<!-- .NET 6+：配 .csproj 的 MSBuild 属性 -->\n<ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>" },
+        { "type": "p", "text": "<code>PerMonitorV2</code> 比 <code>SystemAware</code> 多了子窗口 DPI 通知、comctl32 控件缩放和对话框缩放，多屏不同 DPI 场景必须用它。<code>Application.SetHighDpiMode()</code> 这个 API 从 .NET Core 3.0 起才有，而 <code>&amp;lt;ApplicationHighDpiMode&amp;gt;</code> 属性是 .NET 6+。" }
+      ]}
+    ]
+  },
+  {
+    "id": "wpf",
+    "name": "WPF",
+    "icon": "🎨",
+    "color": "#512BD4",
+    "desc": "更现代的 .NET 桌面方案：绑定与 Dispatcher 是两座必须翻过的山。",
+    "sections": [
+      { "title": "Dispatcher：线程亲和性", "content": [
+        { "type": "p", "text": "WPF 里几乎所有类都继承 <code>DispatcherObject</code>，创建时就把自己和当时线程的 <code>Dispatcher</code> 绑死。后台线程碰控件，抛的是 <code>The calling thread cannot access this object because a different thread owns it</code>。" },
+        { "type": "code", "code": "// 判断 + 异步投递（首选）\nif (!dispatcher.CheckAccess())\n    dispatcher.InvokeAsync(() => txtResult.Text = s);\nelse\n    txtResult.Text = s;\n\n// 死锁经典写法：UI 线程里 task.Wait() 或 .Result\n//   任务里的续体要回 UI 线程，而 UI 线程正在等它" },
+        { "type": "p", "text": "规则很简单：<b>UI 线程里不要 <code>.Wait()</code> / <code>.Result</code></b>，用 <code>await</code>。另外 <code>Dispatcher.Invoke</code> 是同步等待，<code>InvokeAsync</code> / <code>BeginInvoke</code> 立即返回。" }
+      ]},
+      { "title": "MVVM 与绑定", "content": [
+        { "type": "code", "code": "public class MainViewModel : INotifyPropertyChanged\n{\n    public event PropertyChangedEventHandler PropertyChanged;\n    private string _result;\n    public string Result\n    {\n        get => _result;\n        set {\n            _result = value;\n            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Result)));\n        }\n    }\n}" },
+        { "type": "code", "code": "<!-- UpdateSourceTrigger 不写就是 LostFocus：输入框打字，ViewModel 不实时变 -->\n<TextBox Text=\"{Binding Result, UpdateSourceTrigger=PropertyChanged}\" />\n<Button Content=\"开始\" Command=\"{Binding StartCommand}\" />" },
+        { "type": "p", "text": "<b>Binding 的默认 Mode 是 <code>Default</code></b>，不是 OneWay：大多数依赖属性落 OneWay，<code>TextBox.Text</code> 这类标了 <code>BindsTwoWayByDefault</code> 的落 TwoWay。<code>RelayCommand</code> 不是 .NET 内置类，来自 MVVM 库或自己写。" },
+        { "type": "p", "text": "<b>跨线程更新集合</b>：绑到 UI 的 <code>ObservableCollection</code> 在后台线程 Add 会抛异常。光调 <code>BindingOperations.EnableCollectionSynchronization</code> 不够——<b>必须自己用同一个锁对象把每次修改 lock 住</b>，否则照崩。这一步很多示例代码都漏了。" }
+      ]},
+      { "title": "图像显示：WriteableBitmap", "content": [
+        { "type": "code", "code": "// 只 new 一次，之后每帧复用\nvar wb = new WriteableBitmap(width, height, 96, 96, PixelFormats.Gray8, null);\nimg.Source = wb;\n\n// 每帧：锁 → 写 → 标脏区 → 解锁\nwb.Lock();\nMarshal.Copy(pData, wb.BackBuffer, 0, length);\nwb.AddDirtyRect(new Int32Rect(0, 0, width, height));\nwb.Unlock();" },
+        { "type": "p", "text": "每帧 <code>new BitmapSource</code> 会疯狂 GC、界面掉帧；<code>WriteableBitmap</code> 用双缓冲、只标脏区，是相机显示的标准做法。要留意：<b>.NET 6+ 上有 WriteableBitmap 相对 .NET Framework 4.8 性能回退的 issue</b>，高帧率场景先实测。" },
+        { "type": "p", "text": "<b>清晰度别搞反</b>：<code>RenderOptions.BitmapScalingMode</code> 的官方定位是「动画时降到 LowQuality 保帧率」，不是解决模糊的。要清晰就给 <code>NearestNeighbor</code> 并且 1:1 或整数倍显示。<code>UseLayoutRounding=true</code> 能消掉亚像素模糊，但官方明确它对 <code>Shape</code>（Path / Rectangle 画的线）<b>无效</b>。" }
+      ]},
+      { "title": "和 WinForm 混用", "content": [
+        { "type": "p", "text": "两个方向各有一个容器：WPF 里放 WinForm 控件用 <code>WindowsFormsHost</code>，WinForm 里放 WPF 控件用 <code>ElementHost</code>。四条限制先记住：" },
+        { "type": "code", "code": "1. 不支持多级混合：WPF → WinForm → WPF 三级嵌套会出问题\n2. WinForm 控件在独立 HWND 里绘制，永远盖在 WPF 元素之上\n   → 浮层、下拉、弹窗会被挡住，z-order 对它无效\n3. WinForm 控件不能旋转 / 倾斜，多数不支持等比缩放\n4. 互操作要求完全信任（Full Trust）" },
+        { "type": "p", "text": "选型建议：新项目直接上 WPF + MVVM；已有大量 WinForm 控件（第三方图表、老 SDK 的显示控件）就在 WPF 里用 <code>WindowsFormsHost</code> 嵌，别硬重写。" }
+      ]}
+    ]
   }
 ];
 
@@ -2310,12 +2540,24 @@ window.BlogApp = (function() {
   // 原实现把「关键词 + 空格」塞进 \b…\b 里（如 /\bFROM \b/），空格后没有词边界，
   // 永远匹配不上，所以 Docker/SQL 常被判错；这里改成行首锚定 + 词边界。
   function detectLang(code) {
+    // XAML / XML 最先判：这两种标记语言里会同时出现 {Binding} 这样的花括号和 "..." 属性值，
+    // 放在 C++ / C# 之后会被 #include、Console. 之类的启发式抢先误判。
+    if (/<Window\b|<UserControl\b|<ResourceDictionary\b|<DataTemplate\b|xmlns(:[\w]+)?=|\{Binding\s|UpdateSourceTrigger=/.test(code)) return 'XAML';
+    if (/<\?xml\b|<configuration\b|<System\.Windows\.Forms\./.test(code)) return 'XML';
     if (/^#include\b/m.test(code) || /\bstd::|\bcout\s<</.test(code)) return 'C++';
     // C# 必须先于 Python：脚本里的 public class X : Y 会被 Python 的 class 规则误判
     if (/^\s*using\s+(System|Cognex\.|HalconDotNet)\b/m.test(code) ||
         /\bConsole\.|\bCog[A-Z]\w*|\bHOperatorSet\./.test(code) ||
         /^\s*(public|private|protected)\s+(static\s+)?(class|void|bool|int|string|double)\b/m.test(code) ||
-        /\bvar\s+\w+\s*=\s*new\b|\bnew\s+(List|Dictionary)\b/.test(code)) return 'C#';
+        /\bvar\s+\w+\s*=\s*new\b|\bnew\s+(List|Dictionary)\b/.test(code) ||
+        // C# 的其它强特征：数组声明、Invoke/BeginInvoke、try/foreach、new 具体类型、static 方法
+        /\b(byte|int|float|double|ushort|short|string|bool)\[\]\s+\w+\s*=/.test(code) ||
+        /\b(InvokeRequired|BeginInvoke|SynchronizationContext|Dispatcher|ObservableCollection|PropertyChanged|SetStyle|CheckForIllegalCrossThreadCalls|WriteableBitmap)\b/.test(code) ||
+        /^\s*(try|catch|finally)\s*(\{|$)/m.test(code) ||
+        /^\s*(foreach|using)\s*\(/m.test(code) ||
+        /\b(CheckAccess|MyCamera\.[A-Z]\w+|MV_CC_\w+_NET)\b/.test(code) ||
+        /^\s*(static|sealed|override|public|private|protected|internal)\s+[\w<>\[\], ]+\s+\w+\s*\(/m.test(code) ||
+        /\bnew\s+(Plc|ModbusFactory|TcpClient|NetworkStream|Socket|Thread|Task|StreamReader|StreamWriter|TcpListener|ModbusClient|OmronFinsNet)\b/.test(code)) return 'C#';
     if (/^\s*git\s+(clone|init|status|add|commit|push|pull|branch|checkout|merge|log|reset|stash|remote|config|revert|restore|diff|fetch)\b/m.test(code)) return 'Git';
     // Halcon：算子是小写 + 下划线，和 SQL 的大写关键字不会打架
     if (/^\s*(read_image|write_image|get_image_size|gauss_filter|threshold|connection|select_shape|area_center|count_obj|reduce_domain|opening_circle|closing_circle|create_shape_model|find_shape_model|vector_angle_to_rigid|affine_trans_\w+|gen_\w+|dev_\w+)\s*\(/m.test(code)) return 'Halcon';
@@ -2333,6 +2575,8 @@ window.BlogApp = (function() {
 
   // 各语言关键字表：没列出来的语言（Code）只做字符串/注释着色
   const KW_SRC = {
+    XAML: 'Window|UserControl|Grid|StackPanel|DockPanel|WrapPanel|Canvas|Border|Button|TextBox|TextBlock|Label|ComboBox|ListBox|ListView|DataGrid|Image|Path|Rectangle|Ellipse|ScrollViewer|TabControl|TabItem|MenuItem|Binding|DataContext|ItemsSource|Command|CommandParameter|UpdateSourceTrigger|Converter|Style|Setter|Trigger|DataTemplate|ControlTemplate|ResourceDictionary|Resources|Margin|Padding|Width|Height|HorizontalAlignment|VerticalAlignment|IsEnabled|IsChecked|Visibility|Click|Class|Name|Key|xmlns',
+    XML: 'xml|version|encoding|configuration|appSettings|add|key|value|startup|runtime|System.Windows.Forms|ApplicationConfigurationSection|DpiAwareness|supportedRuntime',
     SQL: 'SELECT|FROM|WHERE|INSERT|INTO|VALUES|UPDATE|SET|DELETE|CREATE|TABLE|ALTER|DROP|SHOW|USE|DESC|INNER|LEFT|RIGHT|JOIN|ON|GROUP BY|ORDER BY|LIMIT|OFFSET|HAVING|COUNT|AVG|AS|AND|OR|LIKE|NOT NULL|PRIMARY KEY|AUTO_INCREMENT|UNIQUE|DEFAULT|TIMESTAMP|CURRENT_TIMESTAMP|START TRANSACTION|COMMIT|ROLLBACK',
     'C#': 'using|namespace|public|private|protected|internal|class|struct|interface|enum|static|void|int|double|float|bool|string|char|object|var|new|return|if|else|for|foreach|while|switch|case|break|continue|try|catch|finally|throw|null|true|false|this|base|override|virtual|abstract|sealed|async|await|out|ref|params|get|set|readonly|const|Convert|Console|Math|lock|is|as|Task',
     'C++': 'include|define|using|namespace|int|void|double|float|bool|char|string|class|struct|public|private|protected|static|const|return|if|else|for|while|switch|case|break|continue|new|delete|auto|vector|std|cout|cin|endl|main',
@@ -2348,9 +2592,10 @@ window.BlogApp = (function() {
     dash:  /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(--[^\n]*)/g,
     slash: /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(\/\/[^\n]*|\/\*[\s\S]*?\*\/)/g,
     star:  /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(^[ \t]*\*[^\n]*)/gm,
-    hash:  /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(#[^\n]*)/g
+    hash:  /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(#[^\n]*)/g,
+    xml:   /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(<!--[\s\S]*?-->)/g
   };
-  const COMMENT_OF = { SQL: 'dash', 'C#': 'slash', 'C++': 'slash', Halcon: 'star' };
+  const COMMENT_OF = { SQL: 'dash', 'C#': 'slash', 'C++': 'slash', Halcon: 'star', XAML: 'xml', XML: 'xml' };
 
   function highlightCode(code, lang) {
     // code 传进来时已完成 HTML 转义（& < >），这里只做「标记化 + 一次性输出」，

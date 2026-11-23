@@ -33,7 +33,7 @@
 
 博客内容覆盖的技术领域：
 
-`Linux` `MySQL` `Git` `Python` `YOLO` `VisionPro` `Halcon` `C++` `C#` `Docker` `香橙派` `XShell`
+`Linux` `MySQL` `Git` `Python` `YOLO` `VisionPro` `Halcon` `VisionMaster` `C++` `C#` `WinForm` `WPF` `Modbus` `西门子 S7` `欧姆龙 FINS` `TCP Socket` `工业相机接线` `Docker` `香橙派` `XShell`
 
 ## ✅ 功能特性
 
@@ -43,7 +43,7 @@
 - **技术文章板块** — 8 篇文章卡片，点击展开完整内容（含代码示例）
 - **教育经历时间线** — 可视化时间轴展示学历信息
 - **项目经历** — 左侧彩色装饰条的项目卡片
-- **技术栈网格** — 12 个技术卡片，点击弹窗查看命令速查手册
+- **技术栈网格** — 20 个技术卡片，点击弹窗查看命令速查手册
 - **生活指南** — 5 张入口卡片，新标签页打开 `guides/` 下的独立长文页面
 - **导航栏** — 毛玻璃效果 + 滚动时阴影变化 + 自动高亮当前位置
 - **阅读进度条** — 页面顶部显示当前阅读进度
@@ -52,7 +52,7 @@
 
 - 🌙 一键切换亮色 / 暗色主题
 - 📖 文章阅读时长估算（"约 X 分钟阅读"）
-- 🏷️ 代码块自动语言检测标签（Python / SQL / C++ / C# / Halcon / Bash / Git / Docker）
+- 🏷️ 代码块自动语言检测标签（Python / SQL / C++ / C# / XAML / XML / Halcon / Bash / Git / Docker）
 - 📋 代码块一键复制按钮
 - 🔤 代码块语法高亮（One Dark 配色方案）
 - 🔗 社交分享按钮（微博 / Twitter / 复制链接）
