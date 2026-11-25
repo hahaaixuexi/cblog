@@ -1,6 +1,6 @@
 # 程 龙 - 个人技术博客 🚀
 
-> AI & 计算机视觉方向 · 2026 届应届毕业生
+> AI & 机器视觉方向 · 2026 届应届毕业生
 
 [![GitHub](https://img.shields.io/badge/GitHub-hahaaixuexi%2Fcblog-black?logo=github)](https://github.com/hahaaixuexi/cblog) [![HTML5](https://img.shields.io/badge/-HTML5-E34F26?logo=html5&logoColor=white)]() [![CSS3](https://img.shields.io/badge/-CSS3-1572B6?logo=css3&logoColor=white)]() [![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black)]()
 
