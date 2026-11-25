@@ -643,6 +643,56 @@
   }
   .travel-lock-toggle:hover { color: var(--primary); border-color: var(--primary); }
 
+  /* 页面内直接添加：输入框 + 添加按钮 + 每条记录的删除按钮 */
+  .travel-add {
+    margin: 14px 0 0; padding: 14px 16px;
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .travel-add-row { display: flex; gap: 8px; }
+  .travel-add input {
+    flex: 1; min-width: 0;
+    font: inherit; font-size: var(--fs-small);
+    padding: 8px 11px;
+    color: var(--text); background: var(--bg);
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    outline: none; transition: border-color .2s, box-shadow .2s;
+  }
+  .travel-add input:focus {
+    border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-subtle);
+  }
+  .travel-add input.ta-narrow { flex: 0 1 34%; }
+  .travel-add button {
+    font: inherit; font-size: var(--fs-small); font-weight: 600;
+    padding: 8px 16px; border: none; border-radius: var(--radius-sm);
+    background: var(--primary); color: #fff; cursor: pointer;
+    white-space: nowrap; transition: background .2s;
+  }
+  .travel-add button:hover { background: var(--primary-hover); }
+  .travel-add button:active { transform: translateY(1px); }
+  .travel-del {
+    font: inherit; font-size: 11px; padding: 3px 9px; margin-top: 10px;
+    background: none; color: var(--text-muted); cursor: pointer;
+    border: 1px solid var(--border); border-radius: 12px;
+    transition: color .2s, border-color .2s;
+  }
+  .travel-del:hover { color: #D4380D; border-color: #D4380D; }
+  .travel-tools {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; flex-wrap: wrap; margin-top: var(--space-lg);
+  }
+  .travel-hint { font-size: var(--fs-mini); color: var(--text-muted); }
+  .travel-tool-btn {
+    font: inherit; font-size: var(--fs-mini); font-weight: 600;
+    padding: 5px 12px; cursor: pointer;
+    background: none; color: var(--text-muted);
+    border: 1px solid var(--border); border-radius: 20px;
+    transition: color .2s, border-color .2s;
+  }
+  .travel-tool-btn:hover { color: var(--primary); border-color: var(--primary); }
+
   /* ==================== 教育经历 — 时间线 ==================== */
   .timeline {
     position: relative; padding-left: 40px; max-width: 700px; margin: 0 auto;
@@ -1104,6 +1154,10 @@
     .travel-list { padding-left: 26px; }
     .travel-item::before { left: -21px; }
     .travel-planned { grid-template-columns: 1fr; }
+    .travel-add { padding: 12px; }
+    .travel-add-row { flex-wrap: wrap; }
+    .travel-add input.ta-narrow { flex: 1 1 100%; }
+    .travel-add-row button { flex: 1 1 100%; }
     .travel-lock { padding: var(--space-lg) var(--space-md); }
     .travel-lock form { flex-direction: column; }
     .travel-lock button { width: 100%; }
@@ -1425,6 +1479,17 @@
           <span class="travel-count" id="visitedCount">0</span>
         </div>
         <ul class="travel-list" id="travelVisited"></ul>
+        <form class="travel-add" id="visitedForm" autocomplete="off">
+          <div class="travel-add-row">
+            <input type="text" id="vPlace" placeholder="地名，如 青岛" maxlength="30" required aria-label="去过的地方">
+            <input type="text" id="vYear" class="ta-narrow" placeholder="时间，如 2024 暑假" maxlength="20" aria-label="时间">
+          </div>
+          <input type="text" id="vNote" placeholder="一句话记一下（可留空）" maxlength="80" aria-label="一句话备注">
+          <div class="travel-add-row">
+            <input type="text" id="vTags" placeholder="标签，用逗号分隔（可留空）" maxlength="40" aria-label="标签">
+            <button type="submit">添加</button>
+          </div>
+        </form>
       </div>
       <div class="travel-group">
         <div class="travel-sub">
@@ -1433,6 +1498,17 @@
           <span class="travel-count" id="plannedCount">0</span>
         </div>
         <div class="travel-planned" id="travelPlanned"></div>
+        <form class="travel-add" id="plannedForm" autocomplete="off">
+          <div class="travel-add-row">
+            <input type="text" id="pPlace" placeholder="想去的地方，如 云南" maxlength="30" required aria-label="想去的地方">
+            <button type="submit">添加</button>
+          </div>
+          <input type="text" id="pNote" placeholder="为什么想去（可留空）" maxlength="80" aria-label="一句话备注">
+        </form>
+      </div>
+      <div class="travel-tools">
+        <span class="travel-hint" id="travelHint" aria-live="polite">改动保存在这个浏览器里，刷新不丢</span>
+        <button type="button" class="travel-tool-btn" id="travelCopy">复制数据</button>
       </div>
     </div>
   </div>
@@ -3093,66 +3169,217 @@ function sha256Hex(input) {
 })();
 
 // ==================== TRAVEL FOOTPRINT ====================
-// 这一个对象就是旅行模块的全部数据源，改这里页面就变，不用碰上面的 HTML。
-//   visited：去过的。字段 place（地名，必填）、year（时间，如 "2024 暑假"）、
-//            note（一句话，可省）、tags（标签数组，可省）。最新的写在最前面。
-//   planned：准备去的。字段 place（必填）、note（为什么想去，可省）。
-// 例：
-//   visited: [{ place: "青岛", year: "2024 暑假", note: "第一次看海。", tags: ["毕业旅行"] }]
-//   planned: [{ place: "云南", note: "想去洱海骑一次车。" }]
+// travelData 是"出厂数据"；页面上增删的条目存在浏览器 localStorage 里，
+// 两者合并后渲染。想把本地改动永久化，点页面底部「复制数据」，
+// 把复制到的 const travelData = {...}; 整段贴回这里即可。
+//   visited：place（地名，必填）、year（时间）、note（一句话）、tags（标签数组）
+//   planned：place（必填）、note（为什么想去）
 const travelData = {
   visited: [],
   planned: []
 };
 
-(function renderTravel() {
+(function travelFootprint() {
+  const STORE_KEY = 'cblog.travel.data';
   const visitedBox = document.getElementById('travelVisited');
   const plannedBox = document.getElementById('travelPlanned');
   if (!visitedBox || !plannedBox) return;
 
   const esc = s => String(s == null ? '' : s)
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-  const visited = Array.isArray(travelData.visited) ? travelData.visited : [];
-  const planned = Array.isArray(travelData.planned) ? travelData.planned : [];
+  const clone = o => JSON.parse(JSON.stringify(o));
 
-  document.getElementById('visitedCount').textContent = visited.length;
-  document.getElementById('plannedCount').textContent = planned.length;
+  function baseData() {
+    return {
+      visited: Array.isArray(travelData.visited) ? travelData.visited.map(clone) : [],
+      planned: Array.isArray(travelData.planned) ? travelData.planned.map(clone) : []
+    };
+  }
 
-  if (visited.length) {
-    visitedBox.innerHTML = visited.map(item => {
-      const tags = (item.tags || []).map(t => '<span class="travel-tag">' + esc(t) + '</span>').join('');
-      return '<li class="travel-item">' +
-          '<div class="travel-card">' +
-            '<div class="travel-head">' +
-              '<span class="travel-place">' + esc(item.place) + '</span>' +
-              '<span class="travel-year">' + esc(item.year || '') + '</span>' +
+  // 读本地改动；没有或读失败（隐私模式、存储被禁）就退回出厂数据
+  function load() {
+    try {
+      const raw = localStorage.getItem(STORE_KEY);
+      if (raw) {
+        const obj = JSON.parse(raw);
+        if (obj && Array.isArray(obj.visited) && Array.isArray(obj.planned)) {
+          return { visited: obj.visited, planned: obj.planned };
+        }
+      }
+    } catch (e) { /* 忽略：用出厂数据渲染 */ }
+    return baseData();
+  }
+
+  function save(data) {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); return true; }
+    catch (e) { return false; }
+  }
+
+  const store = load();
+  const hint = document.getElementById('travelHint');
+  const HINT_DEFAULT = hint ? hint.textContent : '';
+  let hintTimer = 0;
+
+  function flash(msg) {
+    if (!hint) return;
+    hint.textContent = msg;
+    clearTimeout(hintTimer);
+    hintTimer = setTimeout(() => { hint.textContent = HINT_DEFAULT; }, 4000);
+  }
+
+  function render() {
+    const visited = store.visited;
+    const planned = store.planned;
+
+    document.getElementById('visitedCount').textContent = visited.length;
+    document.getElementById('plannedCount').textContent = planned.length;
+
+    if (visited.length) {
+      visitedBox.innerHTML = visited.map((item, i) => {
+        const tags = (item.tags || [])
+          .map(t => '<span class="travel-tag">' + esc(t) + '</span>').join('');
+        return '<li class="travel-item">' +
+            '<div class="travel-card">' +
+              '<div class="travel-head">' +
+                '<span class="travel-place">' + esc(item.place) + '</span>' +
+                '<span class="travel-year">' + esc(item.year || '') + '</span>' +
+              '</div>' +
+              (item.note ? '<p>' + esc(item.note) + '</p>' : '') +
+              (tags ? '<div class="travel-tags">' + tags + '</div>' : '') +
+              '<button type="button" class="travel-del" data-kind="visited" data-index="' + i + '">删除</button>' +
             '</div>' +
-            (item.note ? '<p>' + esc(item.note) + '</p>' : '') +
-            (tags ? '<div class="travel-tags">' + tags + '</div>' : '') +
-          '</div>' +
-        '</li>';
-    }).join('');
-  } else {
-    visitedBox.innerHTML = '<li class="travel-item"><div class="travel-empty">' +
-      '还没有记录。往 <code>travelData.visited</code> 里加一条就会出现在这条时间线上。' +
-      '</div></li>';
+          '</li>';
+      }).join('');
+    } else {
+      visitedBox.innerHTML = '<li class="travel-item"><div class="travel-empty">' +
+        '还没有记录 —— 在上面填个地名，点「添加」，它就会出现在这条时间线上。' +
+        '</div></li>';
+    }
+
+    if (planned.length) {
+      plannedBox.innerHTML = planned.map((item, i) =>
+        '<div class="travel-wish">' +
+          '<div class="wish-place">🗺️ ' + esc(item.place) + '</div>' +
+          (item.note ? '<p>' + esc(item.note) + '</p>' : '') +
+          '<button type="button" class="travel-del" data-kind="planned" data-index="' + i + '">删除</button>' +
+        '</div>').join('');
+    } else {
+      plannedBox.innerHTML = '<div class="travel-empty" style="grid-column:1/-1">' +
+        '清单还空着 —— 在上面填个想去的地方，点「添加」。' +
+        '</div>';
+    }
   }
 
-  if (planned.length) {
-    plannedBox.innerHTML = planned.map(item =>
-      '<div class="travel-wish">' +
-        '<div class="wish-place">🗺️ ' + esc(item.place) + '</div>' +
-        (item.note ? '<p>' + esc(item.note) + '</p>' : '') +
-      '</div>').join('');
-  } else {
-    plannedBox.innerHTML = '<div class="travel-empty" style="grid-column:1/-1">' +
-      '清单还空着 —— 想到下一个地方，就往 <code>travelData.planned</code> 里加一条。' +
-      '</div>';
+  function persist() {
+    const ok = save(store);
+    render();
+    flash(ok
+      ? '已保存到这个浏览器，刷新不丢'
+      : '这个浏览器禁用了本地存储，改动只在本次打开有效');
   }
+
+  // ---- 去过的地方：添加 ----
+  const visitedForm = document.getElementById('visitedForm');
+  if (visitedForm) {
+    visitedForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const place = document.getElementById('vPlace').value.trim();
+      if (!place) { document.getElementById('vPlace').focus(); return; }
+      const item = { place: place };
+      const year = document.getElementById('vYear').value.trim();
+      const note = document.getElementById('vNote').value.trim();
+      const tagsRaw = document.getElementById('vTags').value.trim();
+      if (year) item.year = year;
+      if (note) item.note = note;
+      if (tagsRaw) {
+        const tags = tagsRaw.split(/[,，、;；]/).map(t => t.trim()).filter(Boolean);
+        if (tags.length) item.tags = tags;
+      }
+      store.visited.unshift(item);
+      persist();
+      visitedForm.reset();
+      document.getElementById('vPlace').focus();
+    });
+  }
+
+  // ---- 准备去的地方：添加 ----
+  const plannedForm = document.getElementById('plannedForm');
+  if (plannedForm) {
+    plannedForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const place = document.getElementById('pPlace').value.trim();
+      if (!place) { document.getElementById('pPlace').focus(); return; }
+      const item = { place: place };
+      const note = document.getElementById('pNote').value.trim();
+      if (note) item.note = note;
+      store.planned.unshift(item);
+      persist();
+      plannedForm.reset();
+      document.getElementById('pPlace').focus();
+    });
+  }
+
+  // ---- 删除：容器上做事件委托，重渲染后不用重新绑 ----
+  const bodyBox = document.getElementById('travelBody');
+  if (bodyBox) {
+    bodyBox.addEventListener('click', function (e) {
+      const btn = e.target.closest ? e.target.closest('.travel-del') : null;
+      if (!btn) return;
+      const kind = btn.getAttribute('data-kind');
+      const idx = parseInt(btn.getAttribute('data-index'), 10);
+      if (kind !== 'visited' && kind !== 'planned') return;
+      if (!(idx >= 0) || idx >= store[kind].length) return;
+      store[kind].splice(idx, 1);
+      persist();
+    });
+  }
+
+  // ---- 复制数据：把本地改动导出成可以直接贴回源码的常量 ----
+  function buildSource() {
+    const fmt = arr => arr.length
+      ? '[\n' + arr.map(o => '    ' + JSON.stringify(o)).join(',\n') + '\n  ]'
+      : '[]';
+    return 'const travelData = {\n  visited: ' + fmt(store.visited) +
+      ',\n  planned: ' + fmt(store.planned) + '\n};';
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-1000px';
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        if (ok) resolve(); else reject(new Error('copy failed'));
+      } catch (err) { reject(err); }
+    });
+  }
+
+  const copyBtn = document.getElementById('travelCopy');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function () {
+      copyText(buildSource()).then(
+        () => flash('已复制，粘回 index.html 的 travelData 就永久保存了'),
+        () => flash('复制失败：浏览器不允许自动复制，可手动从控制台取')
+      );
+    });
+  }
+
+  render();
 })();
 
 // ==================== DYNAMIC FOOTER DATE ====================
+
 (function() {
   if (typeof blogArticles !== 'undefined' && blogArticles.length) {
     const dates = blogArticles.map(a => a.date).sort().reverse();
