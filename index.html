@@ -494,6 +494,100 @@
     .guide-card { padding: var(--space-md) var(--space-md) var(--space-md) 22px; }
   }
 
+  /* ==================== 旅行足迹 ==================== */
+  /* 两块内容都由 travelData 渲染：visited 走时间线（新条目排上面），
+     planned 走虚线卡片；数组为空时显示填写提示而不是留白。 */
+  .travel-wrap { max-width: 760px; margin: 0 auto; }
+  .travel-group + .travel-group { margin-top: var(--space-2xl); }
+  .travel-sub {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: var(--space-lg);
+  }
+  .travel-sub .ts-icon { font-size: 20px; line-height: 1; }
+  .travel-sub h3 {
+    font-size: var(--fs-h3); font-weight: 700; color: var(--text);
+    letter-spacing: -.2px;
+  }
+  .travel-count {
+    font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 10px;
+    background: var(--primary-bg); color: var(--primary); letter-spacing: .3px;
+  }
+  .travel-list { position: relative; padding-left: 34px; list-style: none; }
+  .travel-list::before {
+    content: ''; position: absolute; left: 11px; top: 6px; bottom: 6px; width: 2px;
+    background: linear-gradient(180deg, var(--primary), var(--border), transparent);
+    border-radius: 1px;
+  }
+  .travel-item { position: relative; margin-bottom: var(--space-md); }
+  .travel-item:last-child { margin-bottom: 0; }
+  .travel-item::before {
+    content: ''; position: absolute; left: -28px; top: 17px;
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--surface);
+    border: 3px solid var(--primary);
+    box-shadow: 0 2px 6px rgba(22,93,255,.18);
+    z-index: 1;
+  }
+  .travel-card {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 18px var(--space-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all .3s cubic-bezier(.25,.46,.45,.94);
+  }
+  .travel-card:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
+  .travel-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap;
+  }
+  .travel-place {
+    font-size: var(--fs-h3); font-weight: 700; color: var(--text);
+    letter-spacing: -.2px;
+  }
+  .travel-year {
+    font-size: var(--fs-mini); font-weight: 600; color: var(--primary);
+    letter-spacing: .5px; white-space: nowrap;
+  }
+  .travel-card p {
+    font-size: var(--fs-small); color: var(--text-secondary);
+    line-height: 1.75; margin-top: 6px;
+  }
+  .travel-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .travel-tag {
+    font-size: 11px; padding: 3px 10px; border-radius: 12px;
+    background: var(--primary-light); color: var(--primary); font-weight: 500;
+  }
+  .travel-planned {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-md);
+  }
+  .travel-wish {
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    transition: all .3s;
+  }
+  .travel-wish:hover { border-color: var(--primary); background: var(--primary-subtle); }
+  .travel-wish .wish-place {
+    font-size: 15px; font-weight: 700; color: var(--text);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .travel-wish p {
+    font-size: var(--fs-mini); color: var(--text-muted);
+    line-height: 1.7; margin-top: 6px;
+  }
+  .travel-empty {
+    border: 1px dashed var(--border); border-radius: var(--radius);
+    padding: 22px 20px; text-align: center;
+    font-size: var(--fs-small); color: var(--text-muted); line-height: 1.8;
+  }
+  .travel-empty code {
+    font-family: var(--font-mono); font-size: var(--fs-mini);
+    background: var(--primary-bg); color: var(--primary);
+    padding: 1px 5px; border-radius: 4px;
+  }
+
   /* ==================== 教育经历 — 时间线 ==================== */
   .timeline {
     position: relative; padding-left: 40px; max-width: 700px; margin: 0 auto;
@@ -952,6 +1046,9 @@
     .code-block { padding: 14px 16px; font-size: 12px; }
     .back-to-top { width: 40px; height: 40px; bottom: 20px; right: 16px; }
     footer { padding: 24px 16px; }
+    .travel-list { padding-left: 26px; }
+    .travel-item::before { left: -21px; }
+    .travel-planned { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -975,6 +1072,7 @@
         <li><a href="#projects">项目经历</a></li>
         <li><a href="#techstack">技术栈</a></li>
         <li><a href="#guides">生活指南</a></li>
+        <li><a href="#travel">旅行足迹</a></li>
       </ul>
       <button class="theme-toggle" id="themeToggle" aria-label="切换暗色/亮色模式" title="切换主题">🌙</button>
       <button class="hamburger" id="hamburgerBtn" aria-label="菜单" aria-expanded="false">
@@ -1237,6 +1335,32 @@
     </a>
   </div>
   <div class="guide-note">以上 5 篇为独立页面，点击后在新标签页打开</div>
+</section>
+
+<!-- ===== 旅行足迹 ===== -->
+<section class="section section--top-only" id="travel">
+  <div class="section-header">
+    <h2><span class="sec-num">06</span>旅行足迹</h2>
+    <div class="section-desc">去过的地方记在这里，还没去的先攒成一张清单</div>
+  </div>
+  <div class="travel-wrap">
+    <div class="travel-group">
+      <div class="travel-sub">
+        <span class="ts-icon">📍</span>
+        <h3>去过的地方</h3>
+        <span class="travel-count" id="visitedCount">0</span>
+      </div>
+      <ul class="travel-list" id="travelVisited"></ul>
+    </div>
+    <div class="travel-group">
+      <div class="travel-sub">
+        <span class="ts-icon">🧭</span>
+        <h3>准备去的地方</h3>
+        <span class="travel-count" id="plannedCount">0</span>
+      </div>
+      <div class="travel-planned" id="travelPlanned"></div>
+    </div>
+  </div>
 </section>
 </main>
 
@@ -2709,6 +2833,11 @@ backToTopBtn.addEventListener('click', () => {
     sections.forEach(s => {
       if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
     });
+    // 末尾区块比较矮时，页面滚到底也够不到它的 offsetTop-120，
+    // 否则最后一项永远高亮不到 —— 到底了就强制归给最后一个 section。
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+      current = sections[sections.length - 1].getAttribute('id');
+    }
     navLinksAll.forEach(a => {
       a.classList.toggle('active', a.getAttribute('href') === '#' + current);
     });
@@ -2757,6 +2886,66 @@ backToTopBtn.addEventListener('click', () => {
   window.addEventListener('beforeprint', () => sections.forEach(reveal));
 })();
 
+
+// ==================== TRAVEL FOOTPRINT ====================
+// 这一个对象就是旅行模块的全部数据源，改这里页面就变，不用碰上面的 HTML。
+//   visited：去过的。字段 place（地名，必填）、year（时间，如 "2024 暑假"）、
+//            note（一句话，可省）、tags（标签数组，可省）。最新的写在最前面。
+//   planned：准备去的。字段 place（必填）、note（为什么想去，可省）。
+// 例：
+//   visited: [{ place: "青岛", year: "2024 暑假", note: "第一次看海。", tags: ["毕业旅行"] }]
+//   planned: [{ place: "云南", note: "想去洱海骑一次车。" }]
+const travelData = {
+  visited: [],
+  planned: []
+};
+
+(function renderTravel() {
+  const visitedBox = document.getElementById('travelVisited');
+  const plannedBox = document.getElementById('travelPlanned');
+  if (!visitedBox || !plannedBox) return;
+
+  const esc = s => String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  const visited = Array.isArray(travelData.visited) ? travelData.visited : [];
+  const planned = Array.isArray(travelData.planned) ? travelData.planned : [];
+
+  document.getElementById('visitedCount').textContent = visited.length;
+  document.getElementById('plannedCount').textContent = planned.length;
+
+  if (visited.length) {
+    visitedBox.innerHTML = visited.map(item => {
+      const tags = (item.tags || []).map(t => '<span class="travel-tag">' + esc(t) + '</span>').join('');
+      return '<li class="travel-item">' +
+          '<div class="travel-card">' +
+            '<div class="travel-head">' +
+              '<span class="travel-place">' + esc(item.place) + '</span>' +
+              '<span class="travel-year">' + esc(item.year || '') + '</span>' +
+            '</div>' +
+            (item.note ? '<p>' + esc(item.note) + '</p>' : '') +
+            (tags ? '<div class="travel-tags">' + tags + '</div>' : '') +
+          '</div>' +
+        '</li>';
+    }).join('');
+  } else {
+    visitedBox.innerHTML = '<li class="travel-item"><div class="travel-empty">' +
+      '还没有记录。往 <code>travelData.visited</code> 里加一条就会出现在这条时间线上。' +
+      '</div></li>';
+  }
+
+  if (planned.length) {
+    plannedBox.innerHTML = planned.map(item =>
+      '<div class="travel-wish">' +
+        '<div class="wish-place">🗺️ ' + esc(item.place) + '</div>' +
+        (item.note ? '<p>' + esc(item.note) + '</p>' : '') +
+      '</div>').join('');
+  } else {
+    plannedBox.innerHTML = '<div class="travel-empty" style="grid-column:1/-1">' +
+      '清单还空着 —— 想到下一个地方，就往 <code>travelData.planned</code> 里加一条。' +
+      '</div>';
+  }
+})();
 
 // ==================== DYNAMIC FOOTER DATE ====================
 (function() {
